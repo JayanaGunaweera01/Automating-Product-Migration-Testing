@@ -101,19 +101,19 @@ jobs:
             
        - name: 🚚 Copy SQL file to PostgreSQL container
          run: | 
-            docker cp /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/postgresone.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/postgresone.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresone.sql'
             echo "Script1 executed successfully!"
-            docker cp /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/postgrestwo.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/identity/postgrestwo.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgrestwo.sql '
             echo "Script2 executed successfully!"
-            docker cp /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/postgresthree.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/identity/uma/postgresthree.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresthree.sql'
             echo "Script3 executed successfully!"
-            docker cp /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/consent/postgresfour.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/consent/postgresfour.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfour.sql'
             echo "Script4 executed successfully!"
-            docker cp /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/metrics/postgresfive.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/metrics/postgresfive.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
             echo "Scripts executed successfully!"
             
@@ -242,11 +242,11 @@ jobs:
           psql -c "GRANT ALL PRIVILEGES ON DATABASE $PGDATABASE TO postgres;"
        - name: 🐘 Execute Postgres SQL scripts
          run: |
-          psql -d testdb -f /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/postgresone.sql
-          psql -d testdb -f /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/consent/postgresfour.sql
-          psql -d testdb -f /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/postgrestwo.sql
-          psql -d testdb -f /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/postgresthree.sql
-          psql -d testdb -f /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/metrics/postgresfive.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/postgresone.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/consent/postgresfour.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/identity/postgrestwo.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/identity/uma/postgresthree.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/metrics/postgresfive.sql
        - name: ✅ Verify script execution
          run: psql -d testdb -c 'SHOW server_version'
          shell: bash
@@ -289,15 +289,15 @@ jobs:
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
           
       - name: 🚀 Run script1
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/mssql.sql
       - name: 🚀 Run script2
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/identity/mssql.sql
       - name: 🚀 Run script3
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/identity/uma/mssql.sql
       - name: 🚀 Run script4
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/consent/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/consent/mssql.sql
       - name: 🚀 Run script5
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/metrics/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/dbscripts/metrics/mssql.sql
       
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
