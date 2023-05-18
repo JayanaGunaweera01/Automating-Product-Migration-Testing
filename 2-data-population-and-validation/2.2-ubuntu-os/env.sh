@@ -9,125 +9,125 @@
 
 
 # Absolute path to root directory
-export DIRECTORY_HOME="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing"
+export DIRECTORY_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing"
 
 # Absolute path to data population script
-export DATA_POPULATION="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/00-Data-Population"
+export DATA_POPULATION="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/2-data-population-and-validation"
 
 # Absolute path to service provider
-export SERVICE_PROVIDER_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/00-Data-Population/00-4service-provider-creation"
+export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/2-data-population-and-validation/00-4service-provider-creation"
 
 # Absolute path to home folder
-export AUTOMATION_HOME="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation"
+export AUTOMATION_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation"
 
 # Absolute path to the deployment file to replace
-export DEPLOYMENT="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
+export DEPLOYMENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
 
 # Absolute path to the oldIS deployment file 
-export DEPLOYMENT_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/conf"
+export DEPLOYMENT_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf"
 
 # Absolute path to the newIS deployment file 
-export DEPLOYMENT_PATH_NEW="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/conf"
+export DEPLOYMENT_PATH_NEW="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/conf"
 
-# Absolute path to the mysql-ubuntu deployment file in 01-Migration-Automation folder
-export DEPLOYMENT_AUTOMATION="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/deployment.toml"
+# Absolute path to the mysql-ubuntu deployment file in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deployment.toml"
 
-# Absolute path to the postgre-ubuntu deployment file in 01-Migration-Automation folder
-export DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/deploymentpostgres.toml" 
+# Absolute path to the postgre-ubuntu deployment file in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentpostgres.toml" 
 
-# Absolute path to the mssql-ubuntu deployment file in 01-Migration-Automation folder
-export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/deploymentmssql.toml" 
+# Absolute path to the mssql-ubuntu deployment file in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentmssql.toml" 
 
 # Absolute path to IS old deployment.toml
-export PATH_IS_OLD="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
+export PATH_IS_OLD="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
 
 # Absolute path to IS old bin folder
-export BIN_ISOLD="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/bin"
+export BIN_ISOLD="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/bin"
 
 # Absolute path to IS New bin folder
-export BIN_ISNEW="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/bin"
+export BIN_ISNEW="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/bin"
 
 # Absolute path to IS Home New folder
-export IS_HOME_NEW="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW"
+export IS_HOME_NEW="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW"
 
 # Absolute path for the relevant JDBC driver for the version you are using
-export JDBC="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils"
+export JDBC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils"
 
 # Absolute path for database creation mysql script
-export DATABASE_CREATION_SCRIPT="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/test.sql"
+export DATABASE_CREATION_SCRIPT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/test.sql"
 
 # Absolute paths for DB scripts
-export DB_SCRIPT_MYSQL="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql"
-export DB_SCRIPT_IDENTITY="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/mysql.sql"
-export DB_SCRIPT_UMA="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/mysql.sql"
-export DB_SCRIPT_CONSENT="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/consent/mysql.sql"
-export DB_SCRIPT_METRICS="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/metrics/mysql.sql"
+export DB_SCRIPT_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql"
+export DB_SCRIPT_IDENTITY="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/mysql.sql"
+export DB_SCRIPT_UMA="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/uma/mysql.sql"
+export DB_SCRIPT_CONSENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/consent/mysql.sql"
+export DB_SCRIPT_METRICS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/metrics/mysql.sql"
      
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
-export LIB="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
+export LIB="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
 
 # Absolute path for the <IS_HOME_OLD>/repository/components/bin folder
-export IS_OLD_BIN="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/bin"
+export IS_OLD_BIN="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/bin"
 
 # Absolute path for the mysql jar connector
-export JAR_MYSQL="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/mysql-connector-java-8.0.29.jar"
+export JAR_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql-connector-java-8.0.29.jar"
 
 # Absolute path for the <IS_HOME_NEW>/repository/components/lib folder
-export LIB_NEW="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/components/"
+export LIB_NEW="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/components/"
 
 # Absolute path for the mssql jar connector
-export JAR_MSSQL="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/mssql-jdbc-9.2.0.jre8.jar"
+export JAR_MSSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mssql-jdbc-9.2.0.jre8.jar"
 
 # Absolute path for the postgres jar connector
-export JAR_POSTGRE="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/postgresql-42.5.3.jar"
+export JAR_POSTGRE="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/postgresql-42.5.3.jar"
 
 # Absolute path for the <IS_HOME_OLD>/Tenants folder
-export TENANT_OLD_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository"
+export TENANT_OLD_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository"
 
 # Absolute path for the <IS_HOME_NEW>/Tenants folder
-export TENANT_NEW_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/components/"
+export TENANT_NEW_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/components/"
 
 # Absolute path for the <IS_HOME_OLD>/Resources folder
-export RESOURCES_OLD_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/resources"
+export RESOURCES_OLD_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/resources"
 
 # Absolute path for the <IS_HOME_NEW>/Resources folder
-export RESOURCES_NEW_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/resources"
+export RESOURCES_NEW_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/resources"
 
 # Absolute path for the <IS_HOME_OLD>/Userstores folder
-export USERSTORE_OLD_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/deployment/server/userstores"
+export USERSTORE_OLD_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/deployment/server/userstores"
 
 # Absolute path for the <IS_HOME_NEW>/Userstores folder
-export USERSTORE_NEW_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/deployment/server/"
+export USERSTORE_NEW_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/deployment/server/"
 
 # Link to download migration client
 export LINK_TO_MIGRATION_CLIENT="https://github.com/wso2-enterprise/identity-migration-resources/releases/download/v1.0.230/wso2is-migration-1.0.230.zip"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins home folder
-export DROPINS_PATH_HOME="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225"
+export DROPINS_PATH_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225"
 
-# Absolute path to utils folder
-export UTILS="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils"
+# Absolute path to 3-utils folder
+export 3-utils="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins folder
-export DROPINS_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225/dropins"
+export DROPINS_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225/dropins"
 
 # Absolute path to IS_HOME_NEW/repository/components
-export COMPONENTS_PATH="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/components"
+export COMPONENTS_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/components"
 
 # Absolute path to migration resources folder
-export MIGRATION_RESOURCES="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225/migration-resources"
+export MIGRATION_RESOURCES="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225/migration-resources"
 
 # Absolute path to latest wso2IS root folder
-export IS_NEW_ROOT="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion"
+export IS_NEW_ROOT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion"
 
 # Absolute path to migration resources folder in latest IS
-export MIGRATION_RESOURCES_NEW_IS="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/migration-resources"
+export MIGRATION_RESOURCES_NEW_IS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources"
 
 # Absolute path to migration config.yaml file in new IS
-export MIGRATION_CONFIG_YAML="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
+export MIGRATION_CONFIG_YAML="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
 
 # Absolute path to POC folder
-export POC_HOME="/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC"
+export POC_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
 
 
 
@@ -139,101 +139,101 @@ export POC_HOME="/home/runner/work/Automate-Product-Migration-Testing/Automate-P
 # ISNEW = version of WSO2 IS that you want to migrate.
 
 # Absolute path to root directory
-export DIRECTORY_HOME_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing"
+export DIRECTORY_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing"
 
 #Absolute path to IS_HOME_OLD
-export IS_HOME_OLD_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD"
+export IS_HOME_OLD_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD"
 
 # Absolute path to data population script
-export DATA_POPULATION_MAC_="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC/macos/00-Data-Population"
+export DATA_POPULATION_MAC_="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/2-data-population-and-validation"
 
 # Absolute path to service provider creation directory
-export SERVICE_PROVIDER_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/00-Data-Population/00-4service-provider-creation"
+export SERVICE_PROVIDER_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/2-data-population-and-validation/00-4service-provider-creation"
 
 # Absolute path to home folder
-export AUTOMATION_HOME_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation"
+export AUTOMATION_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation"
 
 # Absolute path to the deployment file to replace
-export DEPLOYMENT_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
+export DEPLOYMENT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
 
 # Absolute path to the oldIS conf folder
-export DEPLOYMENT_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/conf"
+export DEPLOYMENT_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf"
 
 # Absolute path to the newIS conf folder
-export DEPLOYMENT_PATH_NEW_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/conf"
+export DEPLOYMENT_PATH_NEW_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/conf"
 
-# Absolute path to the mysql-ubuntu deployment file in 01-Migration-Automation folder
-export DEPLOYMENT_AUTOMATION_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/deployment-toml-mac-with-mysql.toml"
+# Absolute path to the mysql-ubuntu deployment file in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deployment-toml-mac-with-mysql.toml"
 
-# Absolute path to the postgre-ubuntu deployment file in 01-Migration-Automation folder
-export DEPLOYMENT_AUTOMATION_POSTGRE_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/deploymentpostgres.toml" 
+# Absolute path to the postgre-ubuntu deployment file in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION_POSTGRE_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentpostgres.toml" 
 
-# Absolute path to the mssql-ubuntu deployment file in 01-Migration-Automation folder
-export DEPLOYMENT_AUTOMATION_MSSQL_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/deploymentmssql.toml" 
+# Absolute path to the mssql-ubuntu deployment file in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION_MSSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentmssql.toml" 
 
 # Absolute path to IS old deployment.toml
-export PATH_IS_OLD_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
+export PATH_IS_OLD_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
 
 # Absolute path to IS old bin folder
-export BIN_ISOLD_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/bin"
+export BIN_ISOLD_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/bin"
 
 # Absolute path to IS New bin folder
-export BIN_ISNEW_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/bin"
+export BIN_ISNEW_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/bin"
 
 # Absolute path to IS Home New folder
-export IS_HOME_NEW_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW"
+export IS_HOME_NEW_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW"
 
 # Link to download wso2IS Old
 export LINK_TO_IS_OLD_MAC="https://github.com/wso2/product-is/releases/download/v5.11.0/wso2is-5.11.0.zip"
 
-# Absolute path for the utils folder to have relevant JDBC driver
-export JDBC_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils"
+# Absolute path for the 3-utils folder to have relevant JDBC driver
+export JDBC_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils"
 
 # Absolute path for database creation mysql script
-export DATABASE_CREATION_SCRIPT_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/test.sql"
+export DATABASE_CREATION_SCRIPT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/test.sql"
 
 # Absolute paths for DB scripts
-export DB_SCRIPT_MYSQL_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql"
-export DB_SCRIPT_IDENTITY_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/mysql.sql"
-export DB_SCRIPT_UMA_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/mysql.sql"
-export DB_SCRIPT_CONSENT_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/consent/mysql.sql"
-export DB_SCRIPT_METRICS_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/metrics/mysql.sql"
+export DB_SCRIPT_MYSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql"
+export DB_SCRIPT_IDENTITY_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/mysql.sql"
+export DB_SCRIPT_UMA_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/uma/mysql.sql"
+export DB_SCRIPT_CONSENT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/consent/mysql.sql"
+export DB_SCRIPT_METRICS_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/metrics/mysql.sql"
      
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
-export LIB_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
+export LIB_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
 
 # Absolute path for the <IS_HOME_OLD>/repository/components/bin folder
-export IS_OLD_BIN_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/bin"
+export IS_OLD_BIN_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/bin"
 
 # Absolute path for the <IS_HOME_NEW>/repository/components/lib folder
-export LIB_NEW_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/components/"
+export LIB_NEW_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/components/"
 
 # Absolute path for the mysql jar connector
-export JAR_MYSQL_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/mysql-connector-java-8.0.29.jar"
+export JAR_MYSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql-connector-java-8.0.29.jar"
 
 # Absolute path for the mssql jar connector
-export JAR_MSSQL_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/mssql-jdbc-9.2.0.jre8.jar"
+export JAR_MSSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mssql-jdbc-9.2.0.jre8.jar"
 
 # Absolute path for the postgre jar connector
-export JAR_POSTGRE_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/postgresql-42.5.3.jar"
+export JAR_POSTGRE_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/postgresql-42.5.3.jar"
 
 # Absolute path for the <IS_HOME_OLD>/Tenants folder
-export TENANT_OLD_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository"
+export TENANT_OLD_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository"
 
 # Absolute path for the <IS_HOME_NEW>/Tenants folder
-export TENANT_NEW_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/components/"
+export TENANT_NEW_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/components/"
 
 # Absolute path for the <IS_HOME_OLD>/Resources folder
-export RESOURCES_OLD_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/resources"
+export RESOURCES_OLD_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/resources"
 
 # Absolute path for the <IS_HOME_NEW>/Resources folder
-export RESOURCES_NEW_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/resources"
+export RESOURCES_NEW_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/resources"
 
 # Absolute path for the <IS_HOME_OLD>/Userstores folder
-export USERSTORE_OLD_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/CurrentVersion/repository/deployment/server/userstores"
+export USERSTORE_OLD_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/deployment/server/userstores"
 
 #Absolute path for the <IS_HOME_NEW>/Userstores folder
-export USERSTORE_NEW_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/deployment/server/"
+export USERSTORE_NEW_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/deployment/server/"
 
 # Link to download wso2IS New
 export LINK_TO_IS_NEW_MAC="https://github.com/wso2/product-is/releases/download/v6.0.0-rc2/wso2is-6.0.0-rc2.zip"
@@ -242,39 +242,39 @@ export LINK_TO_IS_NEW_MAC="https://github.com/wso2/product-is/releases/download/
 export LINK_TO_MIGRATION_CLIENT_MAC="https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins home folder
-export DROPINS_PATH_HOME_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225"
+export DROPINS_PATH_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225"
 
 # Absolute path to dbscripts folder
-export UTILS_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts"
+export 3-utils_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts"
 
-# Absolute path to utils folder
-export UTILS_MAC_PATH="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils"
+# Absolute path to 3-utils folder
+export 3-utils_MAC_PATH="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins folder
-export DROPINS_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225/dropins"
+export DROPINS_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225/dropins"
 
 # Absolute path to IS_HOME_NEW/repository/components
-export COMPONENTS_PATH_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/repository/components"
+export COMPONENTS_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/components"
 
 # Absolute path to migration resources folder
-export MIGRATION_RESOURCES_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225/migration-resources"
+export MIGRATION_RESOURCES_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225/migration-resources"
 
 # Absolute path to latest wso2IS root folder
-export IS_NEW_ROOT_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion"
+export IS_NEW_ROOT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion"
 
 # Absolute path to migration resources folder in latest IS
-export MIGRATION_RESOURCES_NEW_IS_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/migration-resources"
+export MIGRATION_RESOURCES_NEW_IS_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources"
 
 # Absolute path to migration config.yaml file in new IS
-export MIGRATION_CONFIG_YAML_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
+export MIGRATION_CONFIG_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
 
 # Absolute path to POC folder
-export POC_HOME_MAC="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC"
+export POC_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
 
 
 
 ###############################################################################################################################
-#                   ENV CONFIGS RELATED TO 00-Data-Population FOLDER - COMMON TO LINUX & MACOS                                #                                               
+#                   ENV CONFIGS RELATED TO 2-data-population-and-validation FOLDER - COMMON TO LINUX & MACOS                                #                                               
 ###############################################################################################################################
 
 
@@ -352,13 +352,13 @@ export GIVEN_USER_EMAIL_HOME=testemail1home@gmail.com
 export GIVEN_USER_EMAIL_WORK=testemailwork@gmail.com
 
 # Absolute path to user creation shell files
-export USER_CREATION=/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/00-Data-Population/00-1user-creation
+export USER_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/2-data-population-and-validation/00-1user-creation
 
 # Absolute path to tenants creation shell files
-export TENANT_CREATION=/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/00-Data-Population/00-2tenant-creation
+export TENANT_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/2-data-population-and-validation/00-2tenant-creation
 
 # Absolute path to userstore creation shell files
-export USERSTORE_CREATION=/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/00-Data-Population/00-3userstore-creation
+export USERSTORE_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/2-data-population-and-validation/00-3userstore-creation
 
 # Given userstore name 
 export USERSTORE_NAME=NewUserStore1
@@ -373,7 +373,7 @@ export USERSTORE_GROUP_NAME=Engineering
 export USERSTORE_USER_PASSWORD=Wso2@123
  
 # Absolute path to create a group using shell files
-export GROUP_CREATION=/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/00-Data-Population/00-5group-creation
+export GROUP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/2-data-population-and-validation/00-5group-creation
 
 # Given group name 
 export GROUP_NAME=ManagingGroup
@@ -385,7 +385,7 @@ export GROUP_DISPLAY_NAME=SalesGroup
 export GROUP_USER_ID=30ee7b3e-4b07-4931-81a7-830874f76aa2
 
 # Absolute path to service provider creation shell files
-export SP_CREATION=/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/00-Data-Population/00-4service-provider-creation
+export SP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/2-data-population-and-validation/00-4service-provider-creation
 
 # User's First name to register in a Service Provider 
 export SP_USER_NAME=Lanka
@@ -428,7 +428,7 @@ export REDIRECTURI=https://localhost:8080/callback
 #                             ENV CONFIGS RELATED TO DATABASE BACKUP - COMMON TO LINUX & MACOS                                #                                               
 ###############################################################################################################################
 
-export BACKUP_PATH=/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/backup_db.sql
+export BACKUP_PATH=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/backup_db.sql
 
 
 

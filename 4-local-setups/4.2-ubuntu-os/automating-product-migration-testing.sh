@@ -1,8 +1,8 @@
 #!/bin/bash
 
-chmod +x /home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/migration-automation-script-linux.sh
-chmod +x /home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/migration-automation-script-macos.sh
-chmod +x /home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/migration-automation-script-windows.ps1
+chmod +x /home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/migration-automation-script-linux.sh
+chmod +x /home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/migration-automation-script-macos.sh
+chmod +x /home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/migration-automation-script-windows.ps1
 
 # Colors
 RED='\033[0;31m'
@@ -59,13 +59,13 @@ done
 
 if [ "$db" = "mysql" ] && [ "$os" = "ubuntu" ]; then
     echo -e "${BOLD}${GREEN}Executing migration-automation-script-linux.sh for MySQL on Ubuntu${NC}"
-    sh /home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/migration-automation-script-linux.sh
+    sh /home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/migration-automation-script-linux.sh
 elif [ "$db" = "mssql" ] && [ "$os" = "macos" ]; then
     echo -e "${BOLD}${GREEN}Executing migration-automation-script-macos.sh for MSSQL on macOS${NC}"
-    sh /home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/migration-automation-script-macos.sh
+    sh /home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/migration-automation-script-macos.sh
 elif [ "$db" = "postgresql" ] && [ "$os" = "windows" ]; then
     echo -e "${BOLD}${GREEN}Executing migration-automation-script-windows.ps1 for PostgreSQL on Windows${NC}"
-    sh /home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/migration-automation-script-windows.ps1
+    sh /home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/migration-automation-script-windows.ps1
 else
     echo -e "${BOLD}${RED}Invalid database or operating system type. Please try again.${NC}"
 fi

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-chmod +x /home/wso2/Downloads/Automate-Product-Migration-Testing/utils/test.sql
-docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot' < /home/wso2/Downloads/Automate-Product-Migration-Testing/utils/test.sql
+chmod +x /home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/test.sql
+docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot' < /home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/test.sql
 echo "Database created successfully!!"
 
-chmod +x /home/wso2/Downloads/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql
-docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql
-docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automate-Product-Migration-Testing/utils/dbscripts/identity/mysql.sql
-docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/mysql.sql
-docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automate-Product-Migration-Testing/utils/dbscripts/consent/mysql.sql
-docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automate-Product-Migration-Testing/utils/dbscripts/metrics/mysql.sql
+chmod +x /home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql
+docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql
+docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/mysql.sql
+docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/uma/mysql.sql
+docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/dbscripts/consent/mysql.sql
+docker exec -i mysql_eight sh -c 'exec mysql -uroot -proot -D '$DATABASE'' < /home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/dbscripts/metrics/mysql.sql

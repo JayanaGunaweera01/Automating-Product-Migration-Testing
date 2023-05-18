@@ -114,37 +114,37 @@ jobs:
       - name: 🚚 Copy SQL files to container
         run: |
           if [ ${{ github.event.inputs.database }} == 'postgres' ]; then
-            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/postgresone.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/postgresone.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresone.sql'
             echo "Postgre database created successfully!"
-            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/postgrestwo.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/identity/postgrestwo.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgrestwo.sql '
             echo "Script1 executed successfully!"
-            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/uma/postgresthree.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/identity/uma/postgresthree.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresthree.sql'
             echo "Script2 executed successfully!"
-            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/consent/postgresfour.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/consent/postgresfour.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfour.sql'
             echo "Script3 executed successfully!"
-            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/metrics/postgresfive.sql postgres:/
+            docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/metrics/postgresfive.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
             echo "All postgre scripts executed successfully!"
             
           elif [ ${{ github.event.inputs.database }} == 'mssql' ]; then
             
-            docker cp ./3-utils/3.1-db-scripts/IS-5.11/mssql.sql sqlserver-test:/mssql.sql
+            docker cp ./3-3-utils/3.1-db-scripts/IS-5.11/mssql.sql sqlserver-test:/mssql.sql
             docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /mssql.sql
 
-            docker cp ./3-utils/3.1-db-scripts/IS-5.11/identity/mssql.sql sqlserver-test:/identity-mssql.sql
+            docker cp ./3-3-utils/3.1-db-scripts/IS-5.11/identity/mssql.sql sqlserver-test:/identity-mssql.sql
             docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /identity-mssql.sql
 
-            docker cp ./3-utils/3.1-db-scripts/IS-5.11/identity/uma/mssql.sql sqlserver-test:/identity-uma-mssql.sql
+            docker cp ./3-3-utils/3.1-db-scripts/IS-5.11/identity/uma/mssql.sql sqlserver-test:/identity-uma-mssql.sql
             docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /identity-uma-mssql.sql
 
-            docker cp ./3-utils/3.1-db-scripts/IS-5.11/consent/mssql.sql sqlserver-test:/consent-mssql.sql
+            docker cp ./3-3-utils/3.1-db-scripts/IS-5.11/consent/mssql.sql sqlserver-test:/consent-mssql.sql
             docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /consent-mssql.sql
 
-            docker cp ./3-utils/3.1-db-scripts/IS-5.11/metrics/mssql.sql sqlserver-test:/metrics-mssql.sql
+            docker cp ./3-3-utils/3.1-db-scripts/IS-5.11/metrics/mssql.sql sqlserver-test:/metrics-mssql.sql
             docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /metrics-mssql.sql
 
             echo "Copied mssql scripts to docker container"
@@ -157,7 +157,7 @@ jobs:
       - name: 🪄 Run migration automation scripts
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres') && github.event.inputs.os == 'ubuntu-latest' }}
         run: |
-          sh 1-migration-automation/1.1-ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee 01-Migration-Automation/logs.txt
+          sh 1-migration-automation/1.1-ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee 1-migration-automation/logs.txt
         continue-on-error: true
       - name: 🚨 Print errors in logs.txt in red color
         run: |
@@ -193,11 +193,11 @@ jobs:
           psql -c "GRANT ALL PRIVILEGES ON DATABASE $PGDATABASE TO postgres;"
        - name: 🐘 Execute Postgres SQL scripts
          run: |
-          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/postgresone.sql
-          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/postgresone.sql/consent/postgresfour.sql
-          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/postgresone.sql/identity/postgrestwo.sql
-          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/postgresone.sql/identity/uma/postgresthree.sql
-          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/postgresone.sql/metrics/postgresfive.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/postgresone.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/postgresone.sql/consent/postgresfour.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/postgresone.sql/identity/postgrestwo.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/postgresone.sql/identity/uma/postgresthree.sql
+          psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/postgresone.sql/metrics/postgresfive.sql
        - name: ✅ Verify script execution
          run: psql -d testdb -c 'SHOW server_version'
          shell: bash
@@ -205,13 +205,13 @@ jobs:
        - name: 🗝️ Grant permission to run script - postgres 
          run: chmod +x 1-migration-automation/1.2-mac-os/migration-script-mac.sh
        - name: 🪄 Run migration automation script - postgres
-         run: sh 1-migration-automation/1.2-mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee 01-Migration-Automation/logs.txt 
+         run: sh 1-migration-automation/1.2-mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee 1-migration-automation/logs.txt 
          continue-on-error: true
        #- name: 🚨 Print errors in logs.txt in red color
          #run: |
            # if [ -f "1-migration-automation/logs.txt" ]; then
             #  chmod +x 1-migration-automation/logs.txt
-            #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' 01-Migration-Automation/logs.txt
+            #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' 1-migration-automation/logs.txt
            # fi
        - name: 📦 Upload artifact
          uses: actions/upload-artifact@v3
@@ -240,15 +240,15 @@ jobs:
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
           
       - name: 🚀 Run script1
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/mssql.sql
       - name: 🚀 Run script2
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/identity/mssql.sql
       - name: 🚀 Run script3
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/uma/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/identity/uma/mssql.sql
       - name: 🚀 Run script4
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/consent/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/consent/mssql.sql
       - name: 🚀 Run script5
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/metrics/mssql.sql
+        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-3-utils/3.1-db-scripts/IS-5.11/metrics/mssql.sql
       
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
@@ -259,10 +259,10 @@ jobs:
         continue-on-error: true
       - name: 🪄 Run migration automation script - mssql
         if: github.event.inputs.database == 'mssql'
-        run: sh 1-migration-automation/1.1-ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee 01-Migration-Automation/logs.txt 
+        run: sh 1-migration-automation/1.1-ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee 1-migration-automation/logs.txt 
         continue-on-error: true
       #- name: 🚨 Print errors in logs.txt in red color
-       # run: sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' 01-Migration-Automation/logs.txt
+       # run: sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' 1-migration-automation/logs.txt
       - name: 📦 Upload artifact
         uses: actions/upload-artifact@v3
         if: always() 
@@ -281,13 +281,13 @@ jobs:
        - name: 🗝️ Grant permission to run script - mysql
          run: chmod +x 1-migration-automation/1.1-ubuntu-os/migration-script-ubuntu.sh
        - name: 🪄 Run migration automation script - mysql     
-         run: sh 1-migration-automation/1.1-ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee 01-Migration-Automation/logs.txt 
+         run: sh 1-migration-automation/1.1-ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee 1-migration-automation/logs.txt 
          continue-on-error: true
        #- name: 🚨 Print errors in logs.txt in red color
          #run: |
           #  if [ -f "1-migration-automation/logs.txt" ]; then
            #   chmod +x 1-migration-automation/logs.txt
-            #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' 01-Migration-Automation/logs.txt
+            #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' 1-migration-automation/logs.txt
            # fi
        - name: 📦 Upload artifact
          uses: actions/upload-artifact@v3

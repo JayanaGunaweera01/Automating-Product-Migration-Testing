@@ -2,7 +2,7 @@
 
 # WINDOWS OS MYSQL DB - CODEBLOCK TO RUN WITH GITHUB ACTIONS - POC
 
-#tail -n 10000 /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/logs/wso2carbon.log | tee logs.txt
+#tail -n 10000 /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/logs/wso2carbon.log | tee logs.txt
 
 Write-Host "WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING!!" -ForegroundColor Green -BackgroundColor Black
 
@@ -10,14 +10,14 @@ Write-Host "
 `n1.|* Before proceeding make sure you have installed`033[0;31m wget and jq`033[0;34m *|
 2.|* Set up `033[0;31mjava open JDK 11`033[0;34m *|
 3.|* Set up `033[0;31mdocker`033[0;34m and `033[0;31mmysql 8.3`033[0;34m *|
-4 and stop mysql if its locally installed.|* Place relevant JDBC driver for the version you are using in the `033[0;31mutils`033[0;34m folder  *|
+4 and stop mysql if its locally installed.|* Place relevant JDBC driver for the version you are using in the `033[0;31m3-utils`033[0;34m folder  *|
 5.|* Clean the database if there's any revoked, inactive, and expired tokens accumulate in the IDN_OAUTH2_ACCESS_TOKEN table|
 " -ForegroundColor Cyan
 
-Write-Host "`e[0;32m`e[1mTIME TO AUTOMATE PRODUCT MIGRATION TESTING!`e[0m"
+Write-Host "`e[0;32m`e[1mTIME TO Automating PRODUCT MIGRATION TESTING!`e[0m"
 
 # Source env file
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation"
 . ./env.sh
 Write-Host "`e[0;32m`e[1mEnv file sourced successfully`e[0m"
 
@@ -61,7 +61,7 @@ echo "pwd"
 # Navigate to folder
 #cd "./IS_HOME_OLD"
 
-cd D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD
+cd D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD
 
 # Download needed wso2IS zip
 #wget -qq "$LINK_TO_IS_OLD" &
@@ -79,30 +79,30 @@ Write-Host "`e[0;32m`e[1mUnzipped downloaded Identity Server zip`e[0m"
 cd "$AUTOMATION_HOME"
 
 # Given read write access to deployment.toml
-chmod +x /d/a/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/wso2is-5.11.0/repository/conf/deployment.toml
+chmod +x /d/a/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/conf/deployment.toml
 Write-Host "`e[0;32m`e[1mGiven read write access to deployment.toml`e[0m"
 
 #cd "$AUTOMATION_HOME"
 
 # Needed changes in deployment.toml
 
-#for file in $(find  D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\repository\conf -type f -name 'deployment.toml');
+#for file in $(find  D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\repository\conf -type f -name 'deployment.toml');
 #do
-#cat  D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\deploymentwindowsmysql.toml > $file;
+#cat  D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\deploymentwindowsmysql.toml > $file;
 
 #done
 
-$files = Get-ChildItem -Path "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\repository\conf" -Recurse -Filter "deployment.toml"
+$files = Get-ChildItem -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\repository\conf" -Recurse -Filter "deployment.toml"
 
 foreach ($file in $files) {
-  $content = Get-Content "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\deploymentwindowsmysql.toml"
+  $content = Get-Content "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\deploymentwindowsmysql.toml"
   Set-Content $file.FullName $content
 }
 
 Write-Host "`e[0;32m`e[1mDeployment.toml changed successfully`e[0m"
       
 #cd "$AUTOMATION_HOME"
-cd D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation
+cd D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation
 
 # Stop mysql running inside github actions and wait for the MySQL container to start
 #sudo systemctl stop mysql &
@@ -134,16 +134,16 @@ cd D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01
 #fi
 
 # Create database
-#chmod +x /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/test.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot' < /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/test.sql
+#chmod +x /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/test.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot' < /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/test.sql
 #echo "\033[0;32m\033[1mDatabase created successfully!\033[0;m"
 
-#chmod +x ~/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/consent/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/metrics/mysql.sql
+#chmod +x ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/uma/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/consent/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/metrics/mysql.sql
 #echo "\033[0;32m\033[1mDatabase scripts executed and created tables successfully!\033[0;m"
 
 #bash create-new-database\.sh &
@@ -151,12 +151,12 @@ cd D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01
 #echo "\033[0;32m\033[1mCreated database and run needed sql scripts against it - for current IS"   
 
 # Copy the JDBC driver to the target directory
-#cp -r D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\utils\mysql-connector-java-8.0.29.jar D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\repository\components\lib\
-Copy-Item -Path "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\utils\mysql-connector-java-8.0.29.jar" -Destination "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\repository\components\lib\"
+#cp -r D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\3-utils\mysql-connector-java-8.0.29.jar D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\repository\components\lib\
+Copy-Item -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\3-utils\mysql-connector-java-8.0.29.jar" -Destination "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\repository\components\lib\"
 
 Write-Host "`e[0;32m`e[1mPlaced JDBC driver successfully`e[0m"
 # Wait for the JDBC driver to be copied to the lib folder
-while(!(Test-Path "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\repository\components\lib\mysql-connector-java-8.0.29.jar")) {
+while(!(Test-Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\repository\components\lib\mysql-connector-java-8.0.29.jar")) {
     Write-Host "JDBC driver not found in lib folder, waiting..."
     Start-Sleep -Seconds 5
 }
@@ -168,7 +168,7 @@ Write-Host "`e[0;32m`e[1mIs old started running!`e[0m"
 # Start WSO2 Identity Server with Windows OS
 $runPath = "D:\wso2\run"
 New-Item -ItemType Directory -Path $runPath | Out-Null
-Set-Content -Path "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\repository\conf\tomcat\catalina-server.xml" -Value ('<?xml version="1.0" encoding="UTF-8"?>
+Set-Content -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\repository\conf\tomcat\catalina-server.xml" -Value ('<?xml version="1.0" encoding="UTF-8"?>
 <Server port="8005" shutdown="SHUTDOWN">
     <Service name="Catalina">
         <Connector port="9443" protocol="org.apache.coyote.http11.Http11NioProtocol"
@@ -192,7 +192,7 @@ Set-Content -Path "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migr
 
 # Create a start.bat file
 $startBatPath = Join-Path $PSScriptRoot "start.bat"
-Set-Content -Path $startBatPath -Value "set RUNTIME_PATH=$runPath`nD:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\bin\wso2server.bat -Dcarbon.bootstrap.timeout=300" | Out-Null
+Set-Content -Path $startBatPath -Value "set RUNTIME_PATH=$runPath`nD:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\bin\wso2server.bat -Dcarbon.bootstrap.timeout=300" | Out-Null
 
 # Set the execution policy to unrestricted
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -Force
@@ -235,11 +235,11 @@ WaitUntilServerIsUp
 #cd "$BIN_ISOLD"
 #bash server-start.sh&
  
-#cd /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/wso2is-5.11.0/bin
+#cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/wso2is-5.11.0/bin
 Write-Host "Diverted to bin"
 
-#Set-Location -Path "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\02-POC\macos\00-Data-Population"
-#Set-Location -Path "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\00-Data-Population\00-1user-creation"
+#Set-Location -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\02-POC\macos\2-data-population-and-validation"
+#Set-Location -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\2-data-population-and-validation\00-1user-creation"
 Write-Host "Entered to data population directory"
 
 $port = 9443
@@ -654,11 +654,11 @@ Write-Host "An oAuth token has been generated." -ForegroundColor $GREEN
 Write-Host "Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully"
 
 # cd "$BIN_ISOLD"
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\bin"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\bin"
 Write-Host "`e[0;32m`e[1mEntered bin successfully`e[0m"
 
-#D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\bin\wso2server.bat stop
-#$IS_HOME_OLD = "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0"
+#D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\bin\wso2server.bat stop
+#$IS_HOME_OLD = "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0"
 #$wso2serverPath = Join-Path -Path $IS_HOME_OLD -ChildPath "bin\wso2server.bat"
 
 # Stop the WSO2 Identity Server
@@ -678,7 +678,7 @@ if ($shutdownResponse.StatusCode -eq 200) {
 }
 
 # Stop WSO2 IS
-# D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_OLD\wso2is-5.11.0\bin\wso2server.bat stop
+# D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_OLD\wso2is-5.11.0\bin\wso2server.bat stop
 
 $maxAttempts = 30  # Maximum number of attempts to check server status
 $attempt = 0      # Current attempt
@@ -714,7 +714,7 @@ do {
 Write-Host "`e[0;32m`e[1mStopped identity server successfully.`e[0m"
 
 # cd "$AUTOMATION_HOME"
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation"
 Write-Host "`e[0;32m`e[1mDirected to home successfully`e[0m"
 
 # Create directory for placing latest wso2IS (IS to migrate)
@@ -723,7 +723,7 @@ Write-Host "`e[0;32m`e[1mCreated a directory for placing latest wso2IS`e[0m"
 
 # Navigate to folder 
 # cd IS_HOME_NEW
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW"
 pwd
 
 # Download and unzip IS archive
@@ -743,7 +743,7 @@ if (!$extractedDir) {
 }
 
 # Use the extracted directory name to create a path to the new IS_HOME
-$newISHOME = "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\$extractedDir\repository\components"
+$newISHOME = "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\$extractedDir\repository\components"
 
 # Verify that the new IS_HOME directory exists
 if (!(Test-Path $newISHOME)) {
@@ -755,7 +755,7 @@ Write-Host "`e[0;32m`e[1mUnzipped latest wso2IS zip and found extracted director
 
 
 #cd "$AUTOMATION_HOME"
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation"
 
 # Download migration client
 #wget -qq "$LINK_TO_MIGRATION_CLIENT" &
@@ -767,15 +767,15 @@ cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\0
 
 #bash download-migration-client.sh
 # Wait for the Migration client to be copied 
-#while [ ! -f "/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/wso2is-migration-1.0.225" ]
+#while [ ! -f "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/wso2is-migration-1.0.225" ]
 #do
   #echo "\033[0;32m\033[1mMigration client not found in  folder, waiting...\033[0;m"
   #sleep 5
 #done
 #echo "\033[0;32m\033[1mMigration client found in folder, continuing...\033[0;m"
 
-#cd /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\utils"
+#cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\3-utils"
 
 # Unzip migration client archive
 unzip -qq wso2is-migration-1.0.225.zip &
@@ -784,8 +784,8 @@ Write-Host "`e[0;32m`e[1mUnzipped migration client archive`e[0m"
 
 # Navigate to dropins folder 
 #cd "$DROPINS_PATH_HOME"
-#cd /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\utils\wso2is-migration-1.0.225"
+#cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\3-utils\wso2is-migration-1.0.225"
 
 
 # Copy droipns folder to wso2IS (latest) dropins folder                                               
@@ -793,23 +793,23 @@ cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\u
 #sleep 10
 #echo "\033[0;32m\033[1mJar files from migration client have been copied to IS_HOME_NEW/repository/components/dropins folder successfully!\033[0;m"
                                              
-#cp -r /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225 "$COMPONENTS_PATH" &
+#cp -r /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225 "$COMPONENTS_PATH" &
 #sleep 10
 #echo "\033[0;32m\033[1mJar files from migration client have been copied to IS_HOME_NEW/repository/components/dropins folder successfully!\033[0;m"
 
-cp -r "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\utils\wso2is-migration-1.0.225" "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\repository\components" 
+cp -r "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\3-utils\wso2is-migration-1.0.225" "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\repository\components" 
 sleep 10
 Write-Host "`e[0;32m`e[1mJar files from migration client have been copied to IS_HOME_NEW/repository/components/dropins folder successfully!`e[0m"
 
 # Copy migration resources folder to wso2IS (latest) root folder
 
-cp -r "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\utils\wso2is-migration-1.0.225\migration-resources"  "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0"
+cp -r "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\3-utils\wso2is-migration-1.0.225\migration-resources"  "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0"
 sleep 10
 Write-Host "`e[0;32m`e[1mMigration-resources from migration client have been copied to IS_HOME_NEW root folder successfully!`e[0m"
 
 #cd "$AUTOMATION_HOME"
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\02-POC\windows\00-Data-Population"
-Write-Host "`e[0;32m`e[1mDiverted to 00-Data-Population directoy successfully!`e[0m"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\02-POC\windows\2-data-population-and-validation"
+Write-Host "`e[0;32m`e[1mDiverted to 2-data-population-and-validation directoy successfully!`e[0m"
 
 # Needed changes in migration-config.yaml                                                                        
 sh change-migration-configs-windows.sh
@@ -831,18 +831,18 @@ Write-Host "`e[0;32m`e[1mCopied userstores, tenants,jar files,.jks files from ol
 #echo "\033[0;32m\033[1mCreated a new database and cloned the data in the backup in it.\033[0;m" 
 
 #cd "$AUTOMATION_HOME"
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation"
 
-$files = Get-ChildItem -Path "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\repository\conf" -Recurse -Filter "deployment.toml"
+$files = Get-ChildItem -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\repository\conf" -Recurse -Filter "deployment.toml"
 
 foreach ($file in $files) {
-  $content = Get-Content "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\deploymentwindowsmysql.toml"
+  $content = Get-Content "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\deploymentwindowsmysql.toml"
   Set-Content $file.FullName $content
 }
 
 #Divert to bin folder
 #cd "$BIN_ISNEW"
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin"
 Write-Host "`e[0;32m`e[1mDiverted to bin folder successfully`e[0m"
 
 #changes in wso2server.sh file                                                                            Check here
@@ -852,7 +852,7 @@ Write-Host "`e[0;32m`e[1mStarted running migration client`e[0m"
 # Run migration client
 # Set up a new run directory location
 mkdir D:\wso2\runmigration
-echo set RUNTIME_PATH=D:\wso2\runmigration > D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat
+echo set RUNTIME_PATH=D:\wso2\runmigration > D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat
 
 # Start wso2IS with windows OS
 chmod +x wso2server.bat
@@ -864,14 +864,14 @@ sleep 250
 Write-Host "`e[0;32m`e[1mYay!Migration executed successfully`e[0m"
 
 # wso2server.sh stop
-#D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat stop
+#D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat stop
 #sleep 120
 
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin"
 Write-Host "`e[0;32m`e[1mEntered bin successfully`e[0m"
 
 # Stop wso2IS
-D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat stop
+D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat stop
 Start-Sleep -s 30
 Write-Host "`e[0;32m`e[1mStopped migration terminal successfully.`e[0m"
 
@@ -880,9 +880,9 @@ Write-Host "`e[0;32m`e[1mStopped migration terminal successfully.`e[0m"
 #taskkill /F /IM javaw.exe
 
 mkdir D:\wso2\runmigrated
-echo set RUNTIME_PATH=D:\wso2\runmigrated > D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat
+echo set RUNTIME_PATH=D:\wso2\runmigrated > D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat
 
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin"
 chmod +x wso2server.bat
 echo "./wso2server.bat -Dcarbon.bootstrap.timeout=300"  > start.sh
 chmod +x start.sh && chmod 777 start.sh
@@ -892,14 +892,14 @@ sleep 100
 Write-Host "`e[0;32m`e[1m Migrated WSO2 Identity Server has started successfully`e[0m"
 
 # Send a token and verify database
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation"
 
 # Run the .sh script to enter login credentials(admin) and divert to management console home page
 sh enter-login-credentials.sh 
 Write-Host "`e[0;32m`e[1mEntered to Management console home page successfully`e[0m"
  
 #cd "$DATA_POPULATION" 
-cd D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\00-Data-Population
+cd D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\2-data-population-and-validation
 Write-Host "`e[0;32m`e[1mEntered to data population directory`e[0m"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
@@ -908,13 +908,13 @@ sleep 10
 Write-Host "`e[0;32m`e[1mCreated users, user stores, service providers, tenants,generated oAuth tokens and executed the script successfully`e[0m"
 
 # Stop wso2IS
-#D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat stop
+#D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin\wso2server.bat stop
 #Start-Sleep -s 30
 #Write-Host "`e[0;32m`e[1mStopped migrated wso2IS successfully.`e[0m"
 
 set RUNTIME_PATH=D:\wso2\runmigrated 
 
-cd "D:\a\Automate-Product-Migration-Testing\Automate-Product-Migration-Testing\01-Migration-Automation\IS_HOME_NEW\wso2is-6.0.0\bin"
+cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\1-migration-automation\IS_HOME_NEW\wso2is-6.0.0\bin"
 Write-Host "`e[0;32m`e[1mEntered bin successfully`e[0m"
 
 Write-Host "`e[0;32m`e[1mValidated database successfully!`e[0m"

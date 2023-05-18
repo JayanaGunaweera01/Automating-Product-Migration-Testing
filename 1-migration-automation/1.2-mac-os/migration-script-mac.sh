@@ -25,11 +25,11 @@ echo "${GREEN}
 1.|* Before proceeding make sure you have installed ${RESET}\033[0;31mwget and jq${RESET}${GREEN} *|
 2.|* Set up ${RESET}\033[0;31mjava open JDK 11${RESET}${GREEN} *|
 3.|* Set up ${RESET}\033[0;31mdocker${RESET}${GREEN} and ${RESET}\033[0;31mmysql 8.3${RESET}${GREEN} *|
-4 and stop mysql if its locally installed.|* Place relevant JDBC driver for the version you are using in the  ${RESET}\033[0;31mutils${RESET}${GREEN} folder  *|
+4 and stop mysql if its locally installed.|* Place relevant JDBC driver for the version you are using in the  ${RESET}\033[0;31m3-utils${RESET}${GREEN} folder  *|
 5.|* Clean the database if there's any revoked, inactive, and expired tokens accumulate in the IDN_OAUTH2_ACCESS_TOKEN table${RESET}${GREEN}|
 ${RESET}"
 
-toilet -f future --filter border:metal -w 98 'TIME TO AUTOMATE PRODUCT MIGRATION TESTING!'
+toilet -f future --filter border:metal -w 98 'TIME TO Automating PRODUCT MIGRATION TESTING!'
 sudo apt-get install jp2a
 jp2a --colors  --flipx --term-height "./humanoid.jpg"
 
@@ -44,7 +44,7 @@ currentVersion=$(echo $currentVersion | xargs)
 combinedCurrentVersion="wso2is-${currentVersion}"
 
 # Replace all instances of "CurrentVersion" with the combined version value
-sed -i "" "s/CurrentVersion/${combinedCurrentVersion}/g" /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/env.sh
+sed -i "" "s/CurrentVersion/${combinedCurrentVersion}/g" /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/env.sh
 
 # Remove spaces from the beginning and end of the migratingVersion variable
 migratingVersion=$(echo $migratingVersion | xargs)
@@ -53,10 +53,10 @@ migratingVersion=$(echo $migratingVersion | xargs)
 combinedMigratingVersion="wso2is-${migratingVersion}"
 
 # Replace all instances of "MigratingVersion" with the value of the "migratingVersion" input, without spaces
-sed -i "" "s/MigratingVersion/${combinedMigratingVersion}/g" /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/env.sh
+sed -i "" "s/MigratingVersion/${combinedMigratingVersion}/g" /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/env.sh
 
 # Source env file
-cd /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation
 source ./env.sh
 echo "\033[0;32m\033[1mEnv file sourced successfully\033[0;m"
 
@@ -142,19 +142,19 @@ fi
 mysql -u root -proot -e "CREATE DATABASE testdb CHARACTER SET latin1;"
 
 
-cd $UTILS_MAC
+cd $3-utils_MAC
 
 # specify the path to the MySQL script
-script_path1="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql"
-script_path2="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/mysql.sql"
-script_path3="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/mysql.sql"
-script_path4="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/consent/mysql.sql"
-script_path5="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/metrics/mysql.sql"
+script_path1="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql"
+script_path2="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/mysql.sql"
+script_path3="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/uma/mysql.sql"
+script_path4="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/consent/mysql.sql"
+script_path5="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/metrics/mysql.sql"
 
 # specify the database name
 database="testdb"
 
-cd "/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts"
+cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts"
 # execute the script against the specified database
 mysql -u root -proot -D testdb < $script_path1
 mysql -u root -proot -D testdb < $script_path2
@@ -166,7 +166,7 @@ echo "\033[0;32m\033[1mCreated database and run needed sql scripts against it - 
 
 # Copy the JDBC driver to the target directory
 
-cd "$UTILS_MAC"
+cd "$3-utils_MAC"
 cp -r "$JAR_MYSQL_MAC" "$LIB_MAC"
 echo "\033[0;32m\033[1mPlaced JDBC driver successfully\033[0;m"
 
@@ -231,7 +231,7 @@ wait $!
 echo "\033[0;32m\033[1mEntered to Management console home page successfully\033[0;m"
 
 #cd "$DATA_POPULATION_MAC"
-cd /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC/macos/00-Data-Population
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/2-data-population-and-validation
 echo "\033[0;32m\033[1mEntered to data population directory\033[0;m"
 pwd
 ls -a
@@ -296,14 +296,14 @@ cd "$AUTOMATION_HOME_MAC"
 
 #bash download-migration-client.sh
 # Wait for the Migration client to be copied 
-#while [ ! -f "/home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/wso2is-migration-1.0.225" ]
+#while [ ! -f "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/wso2is-migration-1.0.225" ]
 #do
   #echo "\033[0;32m\033[1mMigration client not found in  folder, waiting...\033[0;m"
   #sleep 5
 #done
 #echo "\033[0;32m\033[1mMigration client found in folder, continuing...\033[0;m"
 
-cd "$UTILS_MAC_PATH"
+cd "$3-utils_MAC_PATH"
 # Unzip migration client archive
 unzip -qq wso2is-migration-1.0.225.zip &
 sleep 60
@@ -443,7 +443,7 @@ echo "\033[0;32m\033[1mEntered to Management console home page successfully\033[
  
 #cd "$DATA_POPULATION_MAC" 
 
-cd /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC/macos/00-Data-Population/00-4service-provider-creation
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/2-data-population-and-validation/00-4service-provider-creation
 echo "\033[0;32m\033[1mEntered to data population directory\033[0;m"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
@@ -452,7 +452,7 @@ sh generate-oauth-token-macos-POC.sh
 sleep 5
 echo "\033[0;32m\033[1mValidated database successfully\033[0;m"
 
-#cd /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation
+#cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation
 # log report
 #chmod +x summary-report.sh
 #sh summary-report.sh

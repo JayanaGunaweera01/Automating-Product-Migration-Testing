@@ -1,8 +1,8 @@
 #!/bin/bash
 
-log_file=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/migration.log
-carbon_log_file=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-6.0.0/repository/logs/wso2carbon.log
-wso2_is_home=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0
+log_file=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/migration.log
+carbon_log_file=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-6.0.0/repository/logs/wso2carbon.log
+wso2_is_home=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0
 
 # Start WSO2 Identity Server and redirect all output to log file
 ${wso2_is_home}/bin/wso2server.sh -Dmigrate -Dcomponent=identity >> "${log_file}" 2>&1 &

@@ -2,7 +2,7 @@
 
 # Edit the env file to change parameters.
 
-cd /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC/macos/00-Data-Population/00-1user-creation
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/2-data-population-and-validation/00-1user-creation
 sh create-user.sh
 echo "\033[0;34mA user has been created in Identity Server.User name="$GIVEN_USER_NAME"\033[0;34m"
 
@@ -10,7 +10,7 @@ echo "\033[0;34mA user has been created in Identity Server.User name="$GIVEN_USE
 sh create-bulk-users.sh
 echo "\033[0;34mThis is a bulk import of users to IS.User roles also have been assigned to some users as well.\033[0;34m"
 
-cd /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC/macos/00-Data-Population/00-2tenant-creation
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/2-data-population-and-validation/00-2tenant-creation
 sh create-tenant.sh
 echo "\033[0;34mA tenant has been created with a user. Tenant name="$TENANT_USER_NAME".User name="$TENANT_USER_NAME"\033[0;34m"
 echo "\033[0;34mA tenant has been created with a user. Tenant name=iit.User name=iit@iit.com\033[0;34m"
@@ -23,7 +23,7 @@ echo "\033[0;34mA Service provider has been generated in tenant="$TENANT_NAME". 
 sh get-access-token-tenantwise.sh
 echo "\033[0;34mSome tokens have been generated from a registered application in the tenant="$TENANT_NAME"\033[0;34m"
 
-cd /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC/macos/00-Data-Population/00-3userstore-creation
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/2-data-population-and-validation/00-3userstore-creation
 
 sh create-userstore.sh
 echo "\033[0;34mA userstore has been created in Identity Server. Userstore name="$USERSTORE_NAME"\033[0;34m"
@@ -32,14 +32,14 @@ sh create-user-in-userstore.sh
 echo "\033[0;34mA user has been created in userstore. User name="$USERSTORE_USER_NAME",Group name="$USERSTORE_GROUP_NAME"\033[0;34m"
 
 
-cd /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC/macos/00-Data-Population/00-5group-creation
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/2-data-population-and-validation/00-5group-creation
 sh create-group.sh
 echo "\033[0;34mA group has been created.Group name="$GROUP_NAME"\033[0;34m"
 
 sh create-groups-with-users.sh
 echo "\033[0;34mA group called "$GROUP_DISPLAY_NAME" has been created with a user-ID="$GROUP_USER_ID"\033[0;34m"
 
-cd /Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/02-POC/macos/00-Data-Population/00-4service-provider-creation
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/2-data-population-and-validation/00-4service-provider-creation
 sh register-a-service-provider.sh
 echo "\033[0;34mA new service provider has been registered. Service provider name="$CLIENT_NAME"\033[0;34m"
 

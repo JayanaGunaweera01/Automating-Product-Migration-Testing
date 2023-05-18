@@ -4,7 +4,7 @@
 
   port=9443
   npx ttab -w -q -t "WSO2 Identity Server" \
-    -d "/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/bin/" \
+    -d "/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/bin/" \
     "./wso2server.sh"
 #./wso2server.sh -DportOffset=2
 

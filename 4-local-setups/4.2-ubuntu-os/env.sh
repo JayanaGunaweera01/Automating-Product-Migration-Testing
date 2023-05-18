@@ -3,74 +3,74 @@
 
 
 # Absolute path to data population script
-export DATA_POPULATION=/home/wso2/Downloads/Automate-Product-Migration-Testing/00-Data-Population
+export DATA_POPULATION=/home/wso2/Downloads/Automating-Product-Migration-Testing/2-data-population-and-validation
 
 # Absolute path to database validation script
-export GENERATE_TOKEN=/home/wso2/Downloads/Automate-Product-Migration-Testing/00-Data-Population/00-4service-provider-creation
+export GENERATE_TOKEN=/home/wso2/Downloads/Automating-Product-Migration-Testing/2-data-population-and-validation/00-4service-provider-creation
 
 
 # Absolute path to home folder
-export AUTOMATION_HOME=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup
+export AUTOMATION_HOME=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups
 
-# Absolute path to home folder-01-Migration-Automation
-export AUTOMATION_HOME_01_Migration_Automation=/home/wso2/Downloads/Automate-Product-Migration-Testing/01-Migration-Automation
+# Absolute path to home folder-1-migration-automation
+export AUTOMATION_HOME_01_Migration_Automation=/home/wso2/Downloads/Automating-Product-Migration-Testing/1-migration-automation
 
 # Absolute path to the deployment file to replace
-export DEPLOYMENT=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/repository/conf/deployment.toml
+export DEPLOYMENT=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/repository/conf/deployment.toml
 
 # Absolute path to the oldIS deployment file 
-export DEPLOYMENT_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/repository/conf
+export DEPLOYMENT_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/repository/conf
 
 # Absolute path to the newIS deployment file 
-export DEPLOYMENT_PATH_NEW=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/repository/conf
+export DEPLOYMENT_PATH_NEW=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/repository/conf
 
-# Absolute path to the deployment file in 01-Migration-Automation folder
-export DEPLOYMENT_AUTOMATION=/home/wso2/Downloads/Automate-Product-Migration-Testing/01-Migration-Automation/deployment.toml
+# Absolute path to the deployment file in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION=/home/wso2/Downloads/Automating-Product-Migration-Testing/1-migration-automation/deployment.toml
 
 # Absolute path to the deployment file in mysql usage
-export DEPLOYMENT_AUTOMATION_MYSQL=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/deployment-toml-mysql.toml
+export DEPLOYMENT_AUTOMATION_MYSQL=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/deployment-toml-mysql.toml
 
 # Absolute path to IS old deployment.toml
-export PATH_IS_OLD=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/repository/conf/deployment.toml
+export PATH_IS_OLD=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/repository/conf/deployment.toml
 
 # Absolute path to IS old bin folder
-export BIN_ISOLD=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/bin
+export BIN_ISOLD=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/bin
 
 # Absolute path to IS New bin folder
-export BIN_ISNEW=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/bin
+export BIN_ISNEW=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/bin
 
 # Link to download wso2IS Old
 export LINK_TO_IS_OLD=https://github.com/wso2/product-is/releases/download/v5.11.0/wso2is-5.11.0.zip
 
 # Absolute path for the relevant JDBC driver for the version you are using
-export JDBC=/home/wso2/Downloads/Automate-Product-Migration-Testing/utils
+export JDBC=/home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils
 
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
-export LIB=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/repository/components/lib
+export LIB=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/repository/components/lib
 
-# Absolute path for the mysql Jar file in utils folder
-export MYSQL_JAR=/home/wso2/Downloads/Automate-Product-Migration-Testing/utils/mysql-connector-java-8.0.29.jar
+# Absolute path for the mysql Jar file in 3-utils folder
+export MYSQL_JAR=/home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/mysql-connector-java-8.0.29.jar
 
 # Absolute path for the <IS_HOME_NEW>/repository/components/lib folder
-export LIB_NEW=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/repository/components/
+export LIB_NEW=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/repository/components/
 
 # Absolute path for the <IS_HOME_OLD>/Tenants folder
-export TENANT_OLD_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/repository
+export TENANT_OLD_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/repository
 
 # Absolute path for the <IS_HOME_NEW>/Tenants folder
-export TENANT_NEW_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/repository/components/
+export TENANT_NEW_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/repository/components/
 
 # Absolute path for the <IS_HOME_OLD>/Resources folder
-export RESOURCES_OLD_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/repository/resources
+export RESOURCES_OLD_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/repository/resources
 
 # Absolute path for the <IS_HOME_NEW>/Resources folder
-export RESOURCES_NEW_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/repository/resources
+export RESOURCES_NEW_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/repository/resources
 
 # Absolute path for the <IS_HOME_OLD>/Userstores folder
-export USERSTORE_OLD_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
+export USERSTORE_OLD_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
 
 # Absolute path for the <IS_HOME_NEW>/Userstores folder
-export USERSTORE_NEW_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/repository/deployment/server/
+export USERSTORE_NEW_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/repository/deployment/server/
 
 # Link to download wso2IS New
 export LINK_TO_IS_NEW=https://github.com/wso2/product-is/releases/download/v6.0.0-rc2/wso2is-6.0.0-rc2.zip
@@ -78,32 +78,32 @@ export LINK_TO_IS_NEW=https://github.com/wso2/product-is/releases/download/v6.0.
 # Link to download migration client
 export LINK_TO_MIGRATION_CLIENT=https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip
 
-# Absolute path to utils folder
-export UTILS_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/utils
+# Absolute path to 3-utils folder
+export 3-utils_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins home folder
-export DROPINS_PATH_HOME=/home/wso2/Downloads/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225
+export DROPINS_PATH_HOME=/home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins folder
-export DROPINS_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225/dropins
+export DROPINS_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225/dropins
 
 # Absolute path to IS_HOME_NEW/repository/components
-export COMPONENTS_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/repository/components
+export COMPONENTS_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/repository/components
 
 # Absolute path to migration resources folder
-export MIGRATION_RESOURCES=/home/wso2/Downloads/Automate-Product-Migration-Testing/utils/wso2is-migration-1.0.225/migration-resources
+export MIGRATION_RESOURCES=/home/wso2/Downloads/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225/migration-resources
 
 # Absolute path to latest wso2IS root folder
-export IS_NEW_ROOT=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0
+export IS_NEW_ROOT=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0
 
 # Absolute path to migration resources folder in latest IS
-export MIGRATION_RESOURCES_NEW_IS=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/migration-resources
+export MIGRATION_RESOURCES_NEW_IS=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/migration-resources
 
 # Absolute path to migration config.yaml file in new IS
-export MIGRATION_CONFIG_YAML=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup/IS_HOME_NEW/wso2is-6.0.0/migration-resources/migration-config.yaml
+export MIGRATION_CONFIG_YAML=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups/IS_HOME_NEW/wso2is-6.0.0/migration-resources/migration-config.yaml
 
 
-# Env configs related to 00-Data-Population folder
+# Env configs related to 2-data-population-and-validation folder
 ##################################################
 
 export TOKEN_EP=https://localhost:9443/oauth2/token
@@ -179,13 +179,13 @@ export GIVEN_USER_EMAIL_HOME=testemail1home@gmail.com
 export GIVEN_USER_EMAIL_WORK=testemailwork@gmail.com
 
 # Absolute path to user creation shell files
-export USER_CREATION=/home/wso2/Downloads/Automate-Product-Migration-Testing/00-Data-Population/00-1user-creation
+export USER_CREATION=/home/wso2/Downloads/Automating-Product-Migration-Testing/2-data-population-and-validation/00-1user-creation
 
 # Absolute path to tenants creation shell files
-export TENANT_CREATION=/home/wso2/Downloads/Automate-Product-Migration-Testing/00-Data-Population/00-2tenant-creation
+export TENANT_CREATION=/home/wso2/Downloads/Automating-Product-Migration-Testing/2-data-population-and-validation/00-2tenant-creation
 
 # Absolute path to userstore creation shell files
-export USERSTORE_CREATION=/home/wso2/Downloads/Automate-Product-Migration-Testing/00-Data-Population/00-3userstore-creation
+export USERSTORE_CREATION=/home/wso2/Downloads/Automating-Product-Migration-Testing/2-data-population-and-validation/00-3userstore-creation
 
 # Given userstore name 
 export USERSTORE_NAME=NewUserStore1
@@ -200,7 +200,7 @@ export USERSTORE_GROUP_NAME=Engineering
 export USERSTORE_USER_PASSWORD=Wso2@123
  
 # Absolute path to create a group using shell files
-export GROUP_CREATION=/home/wso2/Downloads/Automate-Product-Migration-Testing/00-Data-Population/00-5group-creation
+export GROUP_CREATION=/home/wso2/Downloads/Automating-Product-Migration-Testing/2-data-population-and-validation/00-5group-creation
 
 # Given group name 
 export GROUP_NAME=ManagingGroup
@@ -212,7 +212,7 @@ export GROUP_DISPLAY_NAME=SalesGroup
 export GROUP_USER_ID=30ee7b3e-4b07-4931-81a7-830874f76aa2
 
 # Absolute path to service provider creation shell files
-export SP_CREATION=/home/wso2/Downloads/Automate-Product-Migration-Testing/00-Data-Population/00-4service-provider-creation
+export SP_CREATION=/home/wso2/Downloads/Automating-Product-Migration-Testing/2-data-population-and-validation/00-4service-provider-creation
 
 # User's First name to register in a Service Provider 
 export SP_USER_NAME=Lanka
@@ -249,9 +249,9 @@ export REDIRECTURI=https://localhost:8080/callback
 
 
 #Database bckup
-export BACKUP_PATH=/home/wso2/Downloads/Automate-Product-Migration-Testing/01-Migration-Automation/backup_db.sql
+export BACKUP_PATH=/home/wso2/Downloads/Automating-Product-Migration-Testing/1-migration-automation/backup_db.sql
 
-export LOCAL_SETUP=/home/wso2/Downloads/Automate-Product-Migration-Testing/03-Local-Setup
+export LOCAL_SETUP=/home/wso2/Downloads/Automating-Product-Migration-Testing/4-local-setups
 
 export DOCKER_CONTAINER_ID=c64bc93f7d28
 

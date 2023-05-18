@@ -18,7 +18,7 @@ for script in \
   if [ -f "$script" ] && [ -x "$script" ]; then
     echo "Running script: $script"
     # execute script and redirect output to console and file
-    "./$script" | tee -a /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/logs.txt
+    "./$script" | tee -a /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/logs.txt
   fi
 done
 
@@ -33,7 +33,7 @@ for dir in */; do
       if [ -f "$script" ] && [ -x "$script" ]; then
         echo "Running script: $script"
         # execute script and redirect output to console and file
-        "./$script" | tee -a /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/logs.txt
+        "./$script" | tee -a /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/logs.txt
       fi
     done
     cd ..

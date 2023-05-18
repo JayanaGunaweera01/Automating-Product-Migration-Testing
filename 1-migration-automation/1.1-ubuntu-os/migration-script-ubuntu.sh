@@ -16,8 +16,8 @@ echo "${ORANGE}"WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING!"${RESET}"
 
 # Print instructions with different colors and formatting using echo command
 echo "${ORANGE}*${RESET} ${CYAN}1.Before proceeding make sure you have done needed changes in env.sh file${RESET} ${ORANGE}${RESET}"
-echo "${ORANGE}*${RESET} ${CYAN}2.If you need to add any new feature like Data population or a Verification add them in 00-Data-Population directory ${RESET} ${ORANGE}${RESET}"
-echo "${ORANGE}*${RESET} ${CYAN}3.Check whether deployment.toml in 01-Migration-Automation matches your database configs${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}*${RESET} ${CYAN}2.If you need to add any new feature like Data population or a Verification add them in 2-data-population-and-validation directory ${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}*${RESET} ${CYAN}3.Check whether deployment.toml in 1-migration-automation matches your database configs${RESET} ${ORANGE}${RESET}"
 echo
 # Update the system before downloading packages
 sudo apt-get -qq update
@@ -26,7 +26,7 @@ sudo apt-get -qq update
 echo "${ORANGE}"PROCESS STARTED!"${RESET}"
 
 cd "$AUTOMATION_HOME"
-cd 01-Migration-Automation
+cd 1-migration-automation
 
 # Get the value of the "currentVersion" and "migratingVersion" inputs
 currentVersion=$3
@@ -39,7 +39,7 @@ currentVersion=$(echo $currentVersion | xargs)
 combinedCurrentVersion="wso2is-${currentVersion}"
 
 # Replace all instances of "CurrentVersion" with the combined version value
-sed -i "s/CurrentVersion/${combinedCurrentVersion}/g" /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/env.sh
+sed -i "s/CurrentVersion/${combinedCurrentVersion}/g" /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/env.sh
 
 # Remove spaces from the beginning and end of the migratingVersion variable
 migratingVersion=$(echo $migratingVersion | xargs)
@@ -48,7 +48,7 @@ migratingVersion=$(echo $migratingVersion | xargs)
 combinedMigratingVersion="wso2is-${migratingVersion}"
 
 # Replace all instances of "MigratingVersion" with the value of the "migratingVersion" input, without spaces
-sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/env.sh
+sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/env.sh
 
 # Source env file
 chmod +x env.sh
@@ -178,7 +178,7 @@ docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD'' < 
 echo "${GREEN}==> Database created successfully!${RESET}"
 
 # Execute SQL scripts
-chmod +x ~/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql
+chmod +x ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql
 docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_MYSQL"
 docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_IDENTITY"
 docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_UMA"
@@ -257,7 +257,7 @@ echo "${GREEN}==> Unzipped ${2} zip${RESET}"
 #sleep 30
 #echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
 
-cd "$UTILS"
+cd "$3-utils"
 
 #Unzip migration client archive
 unzip -qq wso2is-migration-1.0.225.zip &                                                            # add credentials to download migration client here
