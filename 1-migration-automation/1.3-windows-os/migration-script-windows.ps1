@@ -134,8 +134,8 @@ cd D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testin
 #fi
 
 # Create database
-#chmod +x /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/test.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot' < /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/test.sql
+#chmod +x /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot' < /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql.sql
 #echo "\033[0;32m\033[1mDatabase created successfully!\033[0;m"
 
 #chmod +x ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql

@@ -54,7 +54,7 @@ export IS_HOME_NEW="/home/runner/work/Automating-Product-Migration-Testing/Autom
 export JDBC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils"
 
 # Absolute path for database creation mysql script
-export DATABASE_CREATION_SCRIPT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/test.sql"
+export DATABASE_CREATION_SCRIPT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql.sql"
 
 # Absolute paths for DB scripts
 export DB_SCRIPT_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql"
@@ -190,7 +190,7 @@ export LINK_TO_IS_OLD_MAC="https://github.com/wso2/product-is/releases/download/
 export JDBC_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils"
 
 # Absolute path for database creation mysql script
-export DATABASE_CREATION_SCRIPT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/test.sql"
+export DATABASE_CREATION_SCRIPT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql.sql"
 
 # Absolute paths for DB scripts
 export DB_SCRIPT_MYSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql"
