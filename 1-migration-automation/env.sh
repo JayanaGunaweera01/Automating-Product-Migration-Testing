@@ -38,17 +38,21 @@ export DEPLOYMENT_AUTOMATION_MYSQL_IS_6.1="/home/runner/work/Automating-Product-
 export DEPLOYMENT_AUTOMATION_MYSQL_IS_6.2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.2/deployment-mysql.toml"
 
 # Absolute path to the postgre deployment files in 1-migration-automation folder
-export DEPLOYMENT_AUTOMATION_POSTGRE="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentpostgres.toml" 
+export DEPLOYMENT_AUTOMATION_POSTGRE_IS_5.9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.9/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_IS_5.10="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.10/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_IS_5.11="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.11/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_IS_6.0="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.0/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_IS_6.1="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.1/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_IS_6.2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.2/deployment-postgre.toml"
 
 # Absolute path to the mssql deployment files in 1-migration-automation folder
-export DEPLOYMENT_AUTOMATION_MSSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentmssql.toml" 
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_5.9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.9/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_5.10="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.10/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_5.11="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.11/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_6.0="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.0/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_6.1="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.1/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_6.2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.2/deployment-mssql.toml"
 
-
-# Absolute path to the postgre-ubuntu deployment file in 1-migration-automation folder
-exportDEPLOYMENT_AUTOMATION_MYSQL_POSTGRE_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentpostgres.toml" 
-
-# Absolute path to the mssql-ubuntu deployment file in 1-migration-automation folder
-exportDEPLOYMENT_AUTOMATION_MYSQL_MSSQL_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentmssql.toml" 
 
 # Absolute path to IS old deployment.toml
 export PATH_IS_OLD="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
