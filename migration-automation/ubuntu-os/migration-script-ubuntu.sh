@@ -179,7 +179,7 @@ docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD'' < 
 echo "${GREEN}==> Database created successfully!${RESET}"
 
 # Execute SQL scripts
-chmod +x ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/3.1-db-scripts/IS-5.11/mysql.sql
+chmod +x ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/mysql.sql
 docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_MYSQL"
 docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_IDENTITY"
 docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_UMA"
