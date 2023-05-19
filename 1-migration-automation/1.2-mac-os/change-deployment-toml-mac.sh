@@ -21,10 +21,13 @@ perform_cat() {
 
     if [ "$database" = "mysql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_${cat_file}" > "$deployment_file"
+        echo "Deployment file '$deployment_file' changed."
     elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_${cat_file}" > "$deployment_file"
+        echo "Deployment file '$deployment_file' changed."
     elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_${cat_file}" > "$deployment_file"
+        echo "Deployment file '$deployment_file' changed."
     fi
 }
 

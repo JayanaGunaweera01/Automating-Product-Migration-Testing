@@ -110,8 +110,9 @@ echo "${GREEN}==> Given read write access to deployment.toml${RESET}"
 cd "$AUTOMATION_HOME"
 
 # Needed changes in deployment.toml
-chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh
+cd "$UBUNTU_PATH"
+chmod +x change-deployment-toml-ubuntu.sh
+sh change-deployment-toml-ubuntu.sh
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"   
 
 cd "$AUTOMATION_HOME"

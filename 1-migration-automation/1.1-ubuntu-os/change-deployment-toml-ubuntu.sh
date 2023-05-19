@@ -21,10 +21,13 @@ perform_cat() {
 
     if [ "$database" = "mysql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_${cat_file}" > "$deployment_file"
+        echo "Deployment file '$deployment_file' replaced."
     elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_${cat_file}" > "$deployment_file"
+        echo "Deployment file '$deployment_file' replaced."
     elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_${cat_file}" > "$deployment_file"
+        echo "Deployment file '$deployment_file' replaced."
     fi
 }
 
@@ -37,4 +40,3 @@ find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml' | while read -r file; do
     perform_cat "6.1" "$file"
     perform_cat "6.2" "$file"
 done
-
