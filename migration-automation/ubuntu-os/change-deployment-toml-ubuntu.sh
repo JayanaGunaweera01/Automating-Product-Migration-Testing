@@ -33,10 +33,10 @@ perform_cat() {
 
 # Iterate over deployment files
 find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml' | while read -r file; do
-    perform_cat "5.9" "$file"
-    perform_cat "5.10" "$file"
-    perform_cat "5.11" "$file"
-    perform_cat "6.0" "$file"
-    perform_cat "6.1" "$file"
-    perform_cat "6.2" "$file"
+    perform_cat "5_9" "$file"
+    perform_cat "5_10" "$file"
+    perform_cat "5_11" "$file"
+    perform_cat "6_0" "$file"
+    perform_cat "6_1" "$file"
+    perform_cat "6_2" "$file"
 done
