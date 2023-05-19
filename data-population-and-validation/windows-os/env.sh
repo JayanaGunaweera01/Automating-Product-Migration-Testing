@@ -127,7 +127,7 @@ export MIGRATION_RESOURCES_NEW_IS="/home/runner/work/Automating-Product-Migratio
 export MIGRATION_CONFIG_YAML="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
 
 # Absolute path to POC folder
-export POC_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
+export MIGRATION_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
 
 
 
@@ -269,7 +269,7 @@ export MIGRATION_RESOURCES_NEW_IS_MAC="/Users/runner/work/Automating-Product-Mig
 export MIGRATION_CONFIG_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
 
 # Absolute path to POC folder
-export POC_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
+export MIGRATION_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
 
 
 

@@ -97,10 +97,10 @@ export MIGRATION_RESOURCES=/home/wso2/Downloads/Automating-Product-Migration-Tes
 export IS_NEW_ROOT=/home/wso2/Downloads/Automating-Product-Migration-Testing/local-setups/IS_HOME_NEW/wso2is-6.0.0
 
 # Absolute path to migration resources folder in latest IS
-export MIGRATION_RESOURCES_NEW_IS=/home/wso2/Downloads/Automating-Product-Migration-Testing/local-setups/IS_HOME_NEW/wso2is-6.0.0/migration-resources
+export MIGRATION_RESOURCES_NEW_IS_UBUNTU=/home/wso2/Downloads/Automating-Product-Migration-Testing/local-setups/IS_HOME_NEW/wso2is-6.0.0/migration-resources
 
 # Absolute path to migration config.yaml file in new IS
-export MIGRATION_CONFIG_YAML=/home/wso2/Downloads/Automating-Product-Migration-Testing/local-setups/IS_HOME_NEW/wso2is-6.0.0/migration-resources/migration-config.yaml
+export MIGRATION_CONFIG_YAML_UBUNTU=/home/wso2/Downloads/Automating-Product-Migration-Testing/local-setups/IS_HOME_NEW/wso2is-6.0.0/migration-resources/migration-config.yaml
 
 
 # Env configs related to data-population-and-validation folder

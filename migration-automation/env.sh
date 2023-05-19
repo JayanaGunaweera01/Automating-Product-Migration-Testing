@@ -140,13 +140,17 @@ export MIGRATION_RESOURCES="/home/runner/work/Automating-Product-Migration-Testi
 export IS_NEW_ROOT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion"
 
 # Absolute path to migration resources folder in latest IS
-export MIGRATION_RESOURCES_NEW_IS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources"
+export MIGRATION_RESOURCES_NEW_IS_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources"
 
 # Absolute path to migration config.yaml file in new IS
-export MIGRATION_CONFIG_YAML="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
+export MIGRATION_CONFIG_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
 
-# Absolute path to POC folder
-export POC_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
+# Absolute path to change migration config yaml file
+export MIGRATION_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/ubuntu-os
+/change-migration-config-yaml-ubuntu.sh"
+
+# Absolute path to ubuntu folder
+export UBUNTU_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/ubuntu-os"
 
 
 
@@ -307,8 +311,11 @@ export MIGRATION_RESOURCES_NEW_IS_MAC="/Users/runner/work/Automating-Product-Mig
 # Absolute path to migration config.yaml file in new IS
 export MIGRATION_CONFIG_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
 
-# Absolute path to POC folder
-export POC_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
+# Absolute path to migration config yaml file
+export MIGRATION_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/mac-os/change-migration-config-yaml-mac.sh"
+
+# Absolute path to macos folder
+export MAC_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/mac-os"
 
 
 
@@ -630,7 +637,7 @@ export MIGRATION_RESOURCES_NEW_IS="/home/runner/work/Automating-Product-Migratio
 export MIGRATION_CONFIG_YAML="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
 
 # Absolute path to POC folder
-export POC_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
+export MIGRATION_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC"
 
 
 

@@ -286,7 +286,7 @@ cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Diverted to home successfully${RESET}"
 
 # Needed changes in migration-config.yaml                                                                        
-cd "$POC_HOME"
+cd "$MIGRATION_YAML_UBUNTU"
 sh migration-configyaml.sh
 echo "${GREEN}==> Did needed changes in migration-config.yaml file successfully${RESET}"
                      

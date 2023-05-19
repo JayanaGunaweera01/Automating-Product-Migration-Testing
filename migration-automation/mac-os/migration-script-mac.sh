@@ -322,7 +322,7 @@ cp -r "$MIGRATION_RESOURCES_MAC" "$IS_NEW_ROOT_MAC" &
 sleep 5
 echo "\033[0;32m\033[1mMigration-resources from migration client have been copied to IS_HOME_NEW root folder successfully!\033[0;m"
                                                                
-cd "$POC_HOME_MAC"
+cd "$MIGRATION_YAML_MAC"
 echo "\033[0;32m\033[1mDiverted to POC-Macos successfully\033[0;m"
 
 # Needed changes in migration-config.yaml
