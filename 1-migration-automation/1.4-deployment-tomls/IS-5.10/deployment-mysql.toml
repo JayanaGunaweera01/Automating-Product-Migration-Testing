@@ -10,15 +10,11 @@ create_admin_account = true
 
 [user_store]
 type = "database"
+#type = "database_unique_id"
 read_groups = true
 
 [user_store.properties]
 SCIMEnabled= true
-
-# MYSQL CONFIGS
-
-[admin_service.wsdl]
-enable = true
 
 [database.user]
 url = "jdbc:mysql://localhost:3306/mydb?useSSL=false&amp;allowPublicKeyRetrieval=true"
@@ -28,6 +24,21 @@ driver = "com.mysql.jdbc.Driver"
 
 [realm_manager]
 data_source = "WSO2USER_DB"
+
+[keystore.primary]
+file_name = "wso2carbon.jks"
+password = "wso2carbon"
+
+[truststore]
+file_name="client-truststore.jks"
+password="wso2carbon"
+type="JKS"
+
+[account_recovery.endpoint.auth]
+hash= "66cd9688a2ae068244ea01e70f0e230f5623b7fa4cdecb65070a09ec06452262"
+
+[identity.auth_framework.endpoint]
+app_password= "dashboard"
 
 [database.identity_db]
 type = "mysql"
@@ -56,11 +67,5 @@ testOnBorrow = true
 validationQuery="SELECT 1"
 validationInterval="30000"
 defaultAutoCommit=false
-
-[keystore.primary]
-name = "wso2carbon.jks"
-password = "wso2carbon"
-
-#url = "jdbc:mysql://localhost:3306/mydb?useSSL=false"
 
 
