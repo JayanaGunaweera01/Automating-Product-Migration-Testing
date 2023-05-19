@@ -67,8 +67,8 @@ chmod +x change-deployment-toml.sh
 chmod +x backup-database.sh
 chmod +x create-new-database.sh                                                              
 chmod +x check-cpu-health.sh
-chmod +x start-server-isNew.sh
-chmod +x start-server-isOld.sh
+chmod +x start-server-is-new.sh
+chmod +x start-server-is-old.sh
 chmod +x server-stop.sh
 
 # Setup Java
@@ -202,7 +202,7 @@ echo "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
 echo "${GREEN}==> Identity server $1 started running!${RESET}"
 
 # Starting downloaded identity server
-sh start-server-isOld.sh
+sh start-server-is-old.sh
 
 cd "$AUTOMATION_HOME"
 
@@ -408,7 +408,7 @@ cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Migrated WSO2 Identity Server - IS $4 is starting....${RESET}"
 
 # Starting migrated identity server
-sh start-server-isNew.sh
+sh start-server-is-new.sh
 
 cd "$AUTOMATION_HOME"
 
