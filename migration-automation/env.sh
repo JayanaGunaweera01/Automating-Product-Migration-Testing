@@ -122,19 +122,19 @@ export USERSTORE_NEW_PATH="/home/runner/work/Automating-Product-Migration-Testin
 export LINK_TO_MIGRATION_CLIENT="https://github.com/wso2-enterprise/identity-migration-resources/releases/download/v1.0.230/wso2is-migration-1.0.230.zip"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins home folder
-export DROPINS_PATH_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/wso2is-migration-1.0.225"
+export DROPINS_PATH_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.225"
 
 # Absolute path to utils folder
 export utils="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins folder
-export DROPINS_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/wso2is-migration-1.0.225/dropins"
+export DROPINS_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.225/dropins"
 
 # Absolute path to IS_HOME_NEW/repository/components
 export COMPONENTS_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/repository/components"
 
 # Absolute path to migration resources folder
-export MIGRATION_RESOURCES="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/wso2is-migration-1.0.225/migration-resources"
+export MIGRATION_RESOURCES="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.225/migration-resources"
 
 # Absolute path to latest wso2IS root folder
 export IS_NEW_ROOT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion"
@@ -285,7 +285,7 @@ export LINK_TO_IS_NEW_MAC="https://github.com/wso2/product-is/releases/download/
 export LINK_TO_MIGRATION_CLIENT_MAC="https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins home folder
-export DROPINS_PATH_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/wso2is-migration-1.0.225"
+export DROPINS_PATH_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.225"
 
 # Absolute path to db-scripts/IS-5.11 folder
 export utils_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11"
@@ -294,13 +294,13 @@ export utils_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automa
 export utils_MAC_PATH="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins folder
-export DROPINS_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/wso2is-migration-1.0.225/dropins"
+export DROPINS_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.225/dropins"
 
 # Absolute path to IS_HOME_NEW/repository/components
 export COMPONENTS_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/repository/components"
 
 # Absolute path to migration resources folder
-export MIGRATION_RESOURCES_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/wso2is-migration-1.0.225/migration-resources"
+export MIGRATION_RESOURCES_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.225/migration-resources"
 
 # Absolute path to latest wso2IS root folder
 export IS_NEW_ROOT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion"
