@@ -145,16 +145,22 @@ mysql -u root -proot -e "CREATE DATABASE testdb CHARACTER SET latin1;"
 cd $3-utils_MAC
 
 # specify the path to the MySQL script
-script_path1="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/mysql.sql"
-script_path2="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/mysql.sql"
-script_path3="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/identity/uma/mysql.sql"
-script_path4="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/consent/mysql.sql"
-script_path5="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts/metrics/mysql.sql"
+script_path1="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
+/IS-5.11/mysql.sql"
+script_path2="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
+/IS-5.11/identity/mysql.sql"
+script_path3="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
+/IS-5.11/identity/uma/mysql.sql"
+script_path4="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
+/IS-5.11/consent/mysql.sql"
+script_path5="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
+/IS-5.11/metrics/mysql.sql"
 
 # specify the database name
 database="testdb"
 
-cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/dbscripts"
+cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
+/IS-5.11"
 # execute the script against the specified database
 mysql -u root -proot -D testdb < $script_path1
 mysql -u root -proot -D testdb < $script_path2
