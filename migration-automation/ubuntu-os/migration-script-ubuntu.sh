@@ -175,6 +175,7 @@ else
 fi
 
 # Create database
+cd "$DATABASE_CREATION_SCRIPT"
 chmod +x "$DATABASE_CREATION_SCRIPT"
 docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD'' < "$DATABASE_CREATION_SCRIPT"
 echo "${GREEN}==> Database created successfully!${RESET}"
