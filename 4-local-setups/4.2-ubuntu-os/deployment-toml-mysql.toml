@@ -84,8 +84,7 @@ app_password= "dashboard"
 #enable = true
 #retain_access_tokens_for_auditing = true
 
-#https://github.com/wso2/carbon-identity-framework/tree/master/features/identity-core/org.wso2.carbon.identity.core.server.feature/resources/3.1-db-scripts
-/IS-5.11/stored-procedures/mysql/token-cleanup
+#https://github.com/wso2/carbon-identity-framework/tree/master/features/identity-core/org.wso2.carbon.identity.core.server.feature/resources/3.1-db-scripts/IS-5.11/stored-procedures/mysql/token-cleanup
 
 # The KeyStore which is used for encrypting/decrypting internal data. By default the primary keystore is used as the internal keystore.
 

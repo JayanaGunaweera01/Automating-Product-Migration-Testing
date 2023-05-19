@@ -73,16 +73,11 @@ export JDBC="/home/runner/work/Automating-Product-Migration-Testing/Automating-P
 export DATABASE_CREATION_SCRIPT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql.sql"
 
 # Absolute paths for DB scripts
-export DB_SCRIPT_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/mysql.sql"
-export DB_SCRIPT_IDENTITY="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/identity/mysql.sql"
-export DB_SCRIPT_UMA="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/identity/uma/mysql.sql"
-export DB_SCRIPT_CONSENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/consent/mysql.sql"
-export DB_SCRIPT_METRICS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/metrics/mysql.sql"
+export DB_SCRIPT_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/mysql.sql"
+export DB_SCRIPT_IDENTITY="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/mysql.sql"
+export DB_SCRIPT_UMA="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/uma/mysql.sql"
+export DB_SCRIPT_CONSENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/consent/mysql.sql"
+export DB_SCRIPT_METRICS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/metrics/mysql.sql"
      
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
 export LIB="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
@@ -214,16 +209,11 @@ export JDBC_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automat
 export DATABASE_CREATION_SCRIPT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql.sql"
 
 # Absolute paths for DB scripts
-export DB_SCRIPT_MYSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/mysql.sql"
-export DB_SCRIPT_IDENTITY_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/identity/mysql.sql"
-export DB_SCRIPT_UMA_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/identity/uma/mysql.sql"
-export DB_SCRIPT_CONSENT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/consent/mysql.sql"
-export DB_SCRIPT_METRICS_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/metrics/mysql.sql"
+export DB_SCRIPT_MYSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/mysql.sql"
+export DB_SCRIPT_IDENTITY_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/mysql.sql"
+export DB_SCRIPT_UMA_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/uma/mysql.sql"
+export DB_SCRIPT_CONSENT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/consent/mysql.sql"
+export DB_SCRIPT_METRICS_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/metrics/mysql.sql"
      
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
 export LIB_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
@@ -270,10 +260,8 @@ export LINK_TO_MIGRATION_CLIENT_MAC="https://github.com/wso2-extensions/identity
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins home folder
 export DROPINS_PATH_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/wso2is-migration-1.0.225"
 
-# Absolute path to 3.1-db-scripts
-/IS-5.11 folder
-export 3-utils_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11"
+# Absolute path to 3.1-db-scripts/IS-5.11 folder
+export 3-utils_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11"
 
 # Absolute path to 3-utils folder
 export 3-utils_MAC_PATH="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils"

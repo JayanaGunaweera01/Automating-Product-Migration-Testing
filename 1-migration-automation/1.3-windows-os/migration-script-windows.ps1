@@ -138,18 +138,12 @@ cd D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testin
 #docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot' < /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/mysql.sql
 #echo "\033[0;32m\033[1mDatabase created successfully!\033[0;m"
 
-#chmod +x ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/identity/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/identity/uma/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/consent/mysql.sql
-#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts
-/IS-5.11/metrics/mysql.sql
+#chmod +x ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/identity/uma/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/consent/mysql.sql
+#docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' < ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/3-utils/3.1-db-scripts/IS-5.11/metrics/mysql.sql
 #echo "\033[0;32m\033[1mDatabase scripts executed and created tables successfully!\033[0;m"
 
 #bash create-new-database\.sh &
