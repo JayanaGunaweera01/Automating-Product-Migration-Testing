@@ -20,11 +20,11 @@ perform_cat() {
     deployment_file=$2
 
     if [ "$database" = "mysql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MYSQL_IS_${cat_file}" > "$deployment_file"
+        cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_${cat_file}" > "$deployment_file"
     elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MSSQL_IS_${cat_file}" > "$deployment_file"
+        cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_${cat_file}" > "$deployment_file"
     elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_IS_${cat_file}" > "$deployment_file"
+        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_${cat_file}" > "$deployment_file"
     fi
 }
 
