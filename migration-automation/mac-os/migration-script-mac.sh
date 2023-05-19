@@ -142,7 +142,7 @@ fi
 mysql -u root -proot -e "CREATE DATABASE testdb CHARACTER SET latin1;"
 
 
-cd $utils_MAC
+cd $UTILS_MAC
 
 # specify the path to the MySQL script
 script_path1="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/mysql.sql"
@@ -166,7 +166,7 @@ echo "\033[0;32m\033[1mCreated database and run needed sql scripts against it - 
 
 # Copy the JDBC driver to the target directory
 
-cd "$utils_MAC"
+cd "$UTILS_MAC"
 cp -r "$JAR_MYSQL_MAC" "$LIB_MAC"
 echo "\033[0;32m\033[1mPlaced JDBC driver successfully\033[0;m"
 
@@ -303,7 +303,7 @@ cd "$AUTOMATION_HOME_MAC"
 #done
 #echo "\033[0;32m\033[1mMigration client found in folder, continuing...\033[0;m"
 
-cd "$utils_MAC_PATH"
+cd "$UTILS_MAC_PATH"
 # Unzip migration client archive
 unzip -qq wso2is-migration-1.0.225.zip &
 sleep 60

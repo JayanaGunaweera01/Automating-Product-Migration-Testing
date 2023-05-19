@@ -288,10 +288,10 @@ export LINK_TO_MIGRATION_CLIENT_MAC="https://github.com/wso2-extensions/identity
 export DROPINS_PATH_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/wso2is-migration-1.0.225"
 
 # Absolute path to db-scripts/IS-5.11 folder
-export utils_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11"
+export UTILS_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11"
 
 # Absolute path to utils folder
-export utils_MAC_PATH="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils"
+export UTILS_MAC_PATH="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins folder
 export DROPINS_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/wso2is-migration-1.0.225/dropins"
