@@ -20,6 +20,9 @@ export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Tes
 # Absolute path to home folder
 export AUTOMATION_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation"
 
+# Absolute path to ubuntu folder
+export UBUNTU_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.1-ubuntu-os"
+
 # Absolute path to the deployment file to replace
 export DEPLOYMENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
 
@@ -168,6 +171,9 @@ export SERVICE_PROVIDER_PATH_MAC="/Users/runner/work/Automating-Product-Migratio
 
 # Absolute path to home folder
 export AUTOMATION_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation"
+
+# Absolute path to mac folder
+export MAC_PATH="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.2-mac-os"
 
 # Absolute path to the deployment file to replace
 export DEPLOYMENT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
@@ -497,6 +503,9 @@ export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Tes
 
 # Absolute path to home folder
 export AUTOMATION_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation"
+
+# Absolute path to ubuntu folder
+export WINDOWS_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.3-windows-os"
 
 # Absolute path to the deployment file to replace
 export DEPLOYMENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
