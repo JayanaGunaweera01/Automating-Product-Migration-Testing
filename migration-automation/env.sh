@@ -357,6 +357,7 @@ export SP_USER_REGISTER_EP=https://localhost:9443/t/carbon.super/scim2/Users
 export TENANT_EP=https://localhost:9443/t/carbon.super/api/server/v1/tenants
 
 
+
 # Client id
 export CLIENTID=sVgtdpO1c5UL83TFtfLJfkkdMmka
 
@@ -397,13 +398,16 @@ export GIVEN_USER_EMAIL_HOME=testemail1home@gmail.com
 export GIVEN_USER_EMAIL_WORK=testemailwork@gmail.com
 
 # Absolute path to user creation shell files
-export USER_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/1-user-creation
+export USER_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/1-user-creation
+export USER_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/1-user-creation
 
 # Absolute path to tenants creation shell files
-export TENANT_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/2-tenant-creation
+export TENANT_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/2-tenant-creation
+export TENANT_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/2-tenant-creation
 
 # Absolute path to userstore creation shell files
-export USERSTORE_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/3-userstore-creation
+export USERSTORE_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/3-userstore-creation
+export USERSTORE_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/3-userstore-creation
 
 # Given userstore name 
 export USERSTORE_NAME=NewUserStore1
@@ -418,7 +422,8 @@ export USERSTORE_GROUP_NAME=Engineering
 export USERSTORE_USER_PASSWORD=Wso2@123
  
 # Absolute path to create a group using shell files
-export GROUP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/5-group-creation
+export GROUP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/5-group-creation
+export GROUP_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/5-group-creation
 
 # Given group name 
 export GROUP_NAME=ManagingGroup
@@ -430,7 +435,8 @@ export GROUP_DISPLAY_NAME=SalesGroup
 export GROUP_USER_ID=30ee7b3e-4b07-4931-81a7-830874f76aa2
 
 # Absolute path to service provider creation shell files
-export SP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation
+export SP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/4-service-provider-creation
+export SP_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation
 
 # User's First name to register in a Service Provider 
 export SP_USER_NAME=Lanka
@@ -467,6 +473,8 @@ export REDIRECTURI=https://localhost:8080/callback
 
 
 
+
+
 ###############################################################################################################################
 #                             ENV CONFIGS RELATED TO DATABASE BACKUP - COMMON TO LINUX & MACOS                                #                                               
 ###############################################################################################################################
@@ -490,6 +498,8 @@ export DATABASE_NAME=mydb
 ###############################################################################################################################
 #                             END OF ENV CONFIGS RELATED TO POC - LINUX & MACOS                                               #                                               
 ###############################################################################################################################
+
+
 
 
 
