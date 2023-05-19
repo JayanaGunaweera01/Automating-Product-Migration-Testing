@@ -443,7 +443,7 @@ echo "\033[0;32m\033[1mEntered to Management console home page successfully\033[
  
 #cd "$DATA_POPULATION_MAC" 
 
-cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/data-population-and-validation/00-4service-provider-creation
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/data-population-and-validation/4-service-provider-creation
 echo "\033[0;32m\033[1mEntered to data population directory\033[0;m"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.

@@ -15,7 +15,7 @@ export DIRECTORY_HOME="/home/runner/work/Automating-Product-Migration-Testing/Au
 export DATA_POPULATION="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation"
 
 # Absolute path to service provider
-export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/00-4service-provider-creation"
+export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation"
 
 # Absolute path to home folder
 export AUTOMATION_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
@@ -171,7 +171,7 @@ export IS_HOME_OLD_MAC="/Users/runner/work/Automating-Product-Migration-Testing/
 export DATA_POPULATION_MAC_="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/data-population-and-validation"
 
 # Absolute path to service provider creation directory
-export SERVICE_PROVIDER_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/00-4service-provider-creation"
+export SERVICE_PROVIDER_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation"
 
 # Absolute path to home folder
 export AUTOMATION_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
@@ -397,13 +397,13 @@ export GIVEN_USER_EMAIL_HOME=testemail1home@gmail.com
 export GIVEN_USER_EMAIL_WORK=testemailwork@gmail.com
 
 # Absolute path to user creation shell files
-export USER_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/00-1user-creation
+export USER_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/1-user-creation
 
 # Absolute path to tenants creation shell files
-export TENANT_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/00-2tenant-creation
+export TENANT_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/2-tenant-creation
 
 # Absolute path to userstore creation shell files
-export USERSTORE_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/00-3userstore-creation
+export USERSTORE_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/3-userstore-creation
 
 # Given userstore name 
 export USERSTORE_NAME=NewUserStore1
@@ -418,7 +418,7 @@ export USERSTORE_GROUP_NAME=Engineering
 export USERSTORE_USER_PASSWORD=Wso2@123
  
 # Absolute path to create a group using shell files
-export GROUP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/00-5group-creation
+export GROUP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/5-group-creation
 
 # Given group name 
 export GROUP_NAME=ManagingGroup
@@ -430,7 +430,7 @@ export GROUP_DISPLAY_NAME=SalesGroup
 export GROUP_USER_ID=30ee7b3e-4b07-4931-81a7-830874f76aa2
 
 # Absolute path to service provider creation shell files
-export SP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/00-4service-provider-creation
+export SP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation
 
 # User's First name to register in a Service Provider 
 export SP_USER_NAME=Lanka
@@ -506,7 +506,7 @@ export DIRECTORY_HOME="/home/runner/work/Automating-Product-Migration-Testing/Au
 export DATA_POPULATION="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation"
 
 # Absolute path to service provider
-export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/00-4service-provider-creation"
+export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation"
 
 # Absolute path to home folder
 export AUTOMATION_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"

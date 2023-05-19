@@ -239,7 +239,7 @@ WaitUntilServerIsUp
 Write-Host "Diverted to bin"
 
 #Set-Location -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\02-POC\macos\data-population-and-validation"
-#Set-Location -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\data-population-and-validation\00-1user-creation"
+#Set-Location -Path "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\data-population-and-validation\1-user-creation"
 Write-Host "Entered to data population directory"
 
 $port = 9443

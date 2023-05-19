@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 
 # Load client_id and client_secret from file
 if [ -f "client_credentials" ]; then
-  . /home/wso2/Downloads/Automating-Product-Migration-Testing/data-population-and-validation/00-4service-provider-creation/client_credentials
+  . /home/wso2/Downloads/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation/client_credentials
 else
   echo "${RED}Error: client_credentials file not found.${NC}"
   exit 1
