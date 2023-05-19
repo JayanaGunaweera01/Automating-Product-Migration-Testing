@@ -92,13 +92,13 @@ export LIB_NEW="/home/runner/work/Automating-Product-Migration-Testing/Automatin
 export IS_OLD_BIN="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/bin"
 
 # Absolute path for the mysql jar connector
-export JAR_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/mysql-connector-java-8.0.29.jar"
+export JAR_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/mysql/mysql-connector-java-8.0.29.jar"
 
 # Absolute path for the mssql jar connector
-export JAR_MSSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/mssql-jdbc-9.2.0.jre8.jar"
+export JAR_MSSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/mssql-jdbc-9.2.0.jre8.jar"
 
 # Absolute path for the postgres jar connector
-export JAR_POSTGRE="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/postgresql-42.5.3.jar"
+export JAR_POSTGRE="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/postgresql/postgresql-42.5.3.jar"
 
 # Absolute path for the <IS_HOME_OLD>/Tenants folder
 export TENANT_OLD_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository"
@@ -252,13 +252,13 @@ export IS_OLD_BIN_MAC="/Users/runner/work/Automating-Product-Migration-Testing/A
 export LIB_NEW_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/repository/components/"
 
 # Absolute path for the mysql jar connector
-export JAR_MYSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/mysql-connector-java-8.0.29.jar"
+export JAR_MYSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/mysql/mysql-connector-java-8.0.29.jar"
 
 # Absolute path for the mssql jar connector
-export JAR_MSSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/mssql-jdbc-9.2.0.jre8.jar"
+export JAR_MSSQL_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/mssql/mssql-jdbc-9.2.0.jre8.jar"
 
 # Absolute path for the postgre jar connector
-export JAR_POSTGRE_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/postgresql-42.5.3.jar"
+export JAR_POSTGRE_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/postgresql/postgresql-42.5.3.jar"
 
 # Absolute path for the <IS_HOME_OLD>/Tenants folder
 export TENANT_OLD_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository"
