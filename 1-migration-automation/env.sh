@@ -29,8 +29,20 @@ export DEPLOYMENT_PATH="/home/runner/work/Automating-Product-Migration-Testing/A
 # Absolute path to the newIS deployment file 
 export DEPLOYMENT_PATH_NEW="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/IS_HOME_NEW/MigratingVersion/repository/conf"
 
-# Absolute path to the mysql-ubuntu deployment file in 1-migration-automation folder
-exportDEPLOYMENT_AUTOMATION_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deployment.toml"
+# Absolute path to the mysql deployment files in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_5.9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.9/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_5.10="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.10/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_5.11="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-5.11/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_6.0="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.0/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_6.1="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.1/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_IS_6.2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/1.4-deployment-tomls/IS-6.2/deployment-mysql.toml"
+
+# Absolute path to the postgre deployment files in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION_POSTGRE="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentpostgres.toml" 
+
+# Absolute path to the mssql deployment files in 1-migration-automation folder
+export DEPLOYMENT_AUTOMATION_MSSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentmssql.toml" 
+
 
 # Absolute path to the postgre-ubuntu deployment file in 1-migration-automation folder
 exportDEPLOYMENT_AUTOMATION_MYSQL_POSTGRE_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/1-migration-automation/deploymentpostgres.toml" 
