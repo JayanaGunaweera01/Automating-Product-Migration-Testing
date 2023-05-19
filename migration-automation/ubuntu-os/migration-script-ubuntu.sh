@@ -51,6 +51,7 @@ combinedMigratingVersion="wso2is-${migratingVersion}"
 sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh
 
 # Source env file
+cd "$AUTOMATION_HOME"
 chmod +x env.sh
 . ./env.sh
 echo "==> ${GREEN}Env file sourced successfully${RESET}"
