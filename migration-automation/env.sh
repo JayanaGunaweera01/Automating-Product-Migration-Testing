@@ -315,7 +315,7 @@ export MIGRATION_CONFIG_YAML_MAC="/Users/runner/work/Automating-Product-Migratio
 export MIGRATION_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/mac-os/change-migration-config-yaml-mac.sh"
 
 # Absolute path to macos folder
-export MAC_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/mac-os"
+export MAC_HOME="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/mac-os"
 
 
 
