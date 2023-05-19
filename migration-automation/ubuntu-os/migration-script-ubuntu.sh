@@ -247,13 +247,13 @@ cd "$IS_HOME_NEW"
 # Download needed (latest) wso2IS zip                                                            
 wget -qq --waitretry=5 --retry-connrefused ${2}
 ls -a
-echo "${GREEN}==> Downloaded ${2} zip${RESET}"
+echo "${GREEN}==> Downloaded $2 zip${RESET}"
 
 # Unzip IS archive
 unzip -qq *.zip &
 wait
 ls -a
-echo "${GREEN}==> Unzipped ${2} zip${RESET}"
+echo "${GREEN}==> Unzipped $2 zip${RESET}"
 
 # Download migration client
 #wget -qq "$LINK_TO_MIGRATION_CLIENT" &
