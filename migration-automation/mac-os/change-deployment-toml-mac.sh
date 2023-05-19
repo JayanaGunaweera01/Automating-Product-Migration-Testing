@@ -10,6 +10,7 @@ database=$5
 os=$6
 
 # Source env file
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation
 chmod +x env.sh
 source ./env.sh
 echo "==> ${GREEN}Env file sourced successfully${RESET}"
