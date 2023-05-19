@@ -201,7 +201,7 @@ done
 echo "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
 
 # Start wso2IS
-echo "${GREEN}==> Identity server $1 started running!${RESET}"
+echo "${GREEN}==> Identity server $3 started running!${RESET}"
 
 # Starting downloaded identity server
 sh start-server-is-old.sh
@@ -247,13 +247,13 @@ cd "$IS_HOME_NEW"
 # Download needed (latest) wso2IS zip                                                            
 wget -qq --waitretry=5 --retry-connrefused ${2}
 ls -a
-echo "${GREEN}==> Downloaded $2 zip${RESET}"
+echo "${GREEN}==> Downloaded $4 zip${RESET}"
 
 # Unzip IS archive
 unzip -qq *.zip &
 wait
 ls -a
-echo "${GREEN}==> Unzipped $2 zip${RESET}"
+echo "${GREEN}==> Unzipped $4 zip${RESET}"
 
 # Download migration client
 #wget -qq "$LINK_TO_MIGRATION_CLIENT" &
@@ -288,8 +288,9 @@ cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Diverted to home successfully${RESET}"
 
 # Needed changes in migration-config.yaml                                                                        
-cd "$MIGRATION_YAML_UBUNTU"
-sh migration-configyaml.sh
+cd "$UBUNTU_HOME"
+chmod +x change-migration-config-yaml-ubuntu.sh
+sh change-migration-config-yaml-ubuntu.sh
 echo "${GREEN}==> Did needed changes in migration-config.yaml file successfully${RESET}"
                      
 # Copy userstores, tenants,jar files,.jks files from oldIS to newIS

@@ -322,11 +322,12 @@ cp -r "$MIGRATION_RESOURCES_MAC" "$IS_NEW_ROOT_MAC" &
 sleep 5
 echo "\033[0;32m\033[1mMigration-resources from migration client have been copied to IS_HOME_NEW root folder successfully!\033[0;m"
                                                                
-cd "$MIGRATION_YAML_MAC"
-echo "\033[0;32m\033[1mDiverted to POC-Macos successfully\033[0;m"
+cd "$MAC_HOME"
+echo "\033[0;32m\033[1mDiverted to Macos folder successfully\033[0;m"
 
 # Needed changes in migration-config.yaml
-sh migration-configyaml-mac.sh
+chmod +x change-migration-config-yaml-mac.sh
+sh change-migration-config-yaml-mac.sh
 echo "\033[0;32m\033[1mDid needed changes in migration-config.yaml file successfully\033[0;m" 
                      
 # Copy userstores, tenants,jar files,.jks files from oldIS to newIS

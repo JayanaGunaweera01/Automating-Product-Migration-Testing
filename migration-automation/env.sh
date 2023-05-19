@@ -146,8 +146,7 @@ export MIGRATION_RESOURCES_NEW_IS_UBUNTU="/home/runner/work/Automating-Product-M
 export MIGRATION_CONFIG_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/migration-resources/migration-config.yaml"
 
 # Absolute path to change migration config yaml file
-export MIGRATION_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/ubuntu-os
-/change-migration-config-yaml-ubuntu.sh"
+export MIGRATION_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/ubuntu-os/change-migration-config-yaml-ubuntu.sh"
 
 # Absolute path to ubuntu folder
 export UBUNTU_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/ubuntu-os"
