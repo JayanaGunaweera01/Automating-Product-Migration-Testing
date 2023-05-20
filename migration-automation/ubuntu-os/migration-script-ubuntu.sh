@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# THIS IS THE SHELL SCRIPT FOR LINUX - MYSQL MIGRATIONS INSIDE GITHUB ACTIONS - [POC]
+# THIS IS THE SHELL SCRIPT FOR LINUX - MYSQL/MSSQL/POSTGRE MIGRATIONS INSIDE GITHUB ACTIONS - [POC]
 
 # Define color variables
 CYAN='\033[0;36m\033[1m'   # cyan color
@@ -10,15 +10,6 @@ YELLOW='\033[0;33m\033[1m' # yellow color
 ORANGE='\033[0;91m\033[1m' # orange color
 RESET='\033[0m'            # reset color
 
-# Define the message in a variable for easier modification
-echo
-echo "${ORANGE}"WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING!"${RESET}"
-
-# Print instructions with different colors and formatting using echo command
-echo "${ORANGE}*${RESET} ${CYAN}1.Before proceeding make sure you have done needed changes in env.sh file${RESET} ${ORANGE}${RESET}"
-echo "${ORANGE}*${RESET} ${CYAN}2.If you need to add any new feature like Data population or a Verification add them in data-population-and-validation directory ${RESET} ${ORANGE}${RESET}"
-echo "${ORANGE}*${RESET} ${CYAN}3.Check whether deployment.toml in migration-automation matches your database configs${RESET} ${ORANGE}${RESET}"
-echo
 # Update the system before downloading packages
 sudo apt-get -qq update
 
@@ -49,6 +40,17 @@ combinedMigratingVersion="wso2is-${migratingVersion}"
 
 # Replace all instances of "MigratingVersion" with the value of the "migratingVersion" input, without spaces
 sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh
+
+# Define the message in a variable for easier modification
+echo
+echo "${ORANGE}"WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING!"${RESET}"
+echo "${ORANGE}"THIS TIME WE DO A MIGRATION FROM "${YELLOW}" $3 "${RESET}" TO "${YELLOW}" $4 "${RESET}" IN "${YELLOW}" $5 "${RESET}" OS AND "${YELLOW}" $6 "${RESET}" DATABASE "${RESET}"
+
+# Print instructions with different colors and formatting using echo command
+echo "${ORANGE}*${RESET} ${CYAN}1.Before proceeding make sure you have done needed changes in env.sh file${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}*${RESET} ${CYAN}2.If you need to add any new feature like Data population or a Verification add them in data-population-and-validation directory ${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}*${RESET} ${CYAN}3.Check whether deployment.toml in migration-automation matches your database configs${RESET} ${ORANGE}${RESET}"
+echo
 
 # Source env file
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
