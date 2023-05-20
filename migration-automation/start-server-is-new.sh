@@ -8,7 +8,7 @@ echo "\033[0;32m\033[1mEnv file sourced successfully\033[0;m"
 GREEN='\033[0;32m\033[1m' # green color
 
 cd "$BIN_ISNEW"
-toilet -f term -F border --gay 'Starting Migrated Identity Server'
+echo "\033[0;32m\033[1mStarting Migrated Identity Server\033[0;m"
 
 echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
 chmod +x start.sh && chmod 777 start.sh
