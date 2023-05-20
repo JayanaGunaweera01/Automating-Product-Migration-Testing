@@ -206,12 +206,12 @@ jobs:
       - name: 🪄 Run migration automation script - postgres
         run: sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
-      #- name: 🚨 Print errors in logs.txt in red color
-      #run: |
-      # if [ -f "migration-automation/logs.txt" ]; then
-      #  chmod +x migration-automation/logs.txt
-      #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
-      # fi
+      - name: 🚨 Print errors in logs.txt in red color
+        run: |
+          if [ -f "migration-automation/logs.txt" ]; then
+            chmod +x migration-automation/logs.txt
+            sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
+          fi
       - name: 📦 Upload artifact
         uses: actions/upload-artifact@v3
         if: always()
@@ -260,8 +260,12 @@ jobs:
         if: github.event.inputs.database == 'mssql'
         run: sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
-      #- name: 🚨 Print errors in logs.txt in red color
-      # run: sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
+      - name: 🚨 Print errors in logs.txt in red color
+        run: |
+          if [ -f "migration-automation/logs.txt" ]; then
+            chmod +x migration-automation/logs.txt
+            sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
+          fi
       - name: 📦 Upload artifact
         uses: actions/upload-artifact@v3
         if: always()
