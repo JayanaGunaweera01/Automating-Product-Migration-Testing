@@ -119,11 +119,13 @@ echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Setup mysql
 cd "$AUTOMATION_HOME"
-chmod +x setup-mysql.sh
-sh setup-mysql.sh &
-wait $!
+#chmod +x setup-mysql.sh
+#sh setup-mysql.sh &
+#wait $!
 
 # Copy Jars 
+chmod +x copy-jar-file.sh
+sh copy-jar-file.sh
 
 
 # Start wso2IS
