@@ -124,9 +124,9 @@ cd "$AUTOMATION_HOME"
 #wait $!
 
 # Copy Jars 
+cd "$UBUNTU_HOME"
 chmod +x copy-jar-file.sh
 sh copy-jar-file.sh
-
 
 # Start wso2IS
 echo "${GREEN}==> Identity server $3 started running!${RESET}"
