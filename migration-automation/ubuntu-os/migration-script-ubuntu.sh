@@ -291,11 +291,11 @@ wait_until_server_is_up() {
     local timeout=600
     local wait_time=0
     while ! is_server_up; do
-        echo "Waiting until server starts..." &&
+        echo "Migration is on going.Please wait..." &&
             sleep 10
         wait_time=$((wait_time + 10))
         if [ "$wait_time" -ge "$timeout" ]; then
-            echo "Timeout: server did not start within $timeout seconds"
+            echo "Timeout: migration did not complete within $timeout seconds"
             exit 1
         fi
     done
