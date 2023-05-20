@@ -121,6 +121,10 @@ echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 cd "$AUTOMATION_HOME"
 chmod +x setup-mysql.sh
 sh setup-mysql.sh 
+wait $
+
+# Copy Jars 
+
 
 # Start wso2IS
 echo "${GREEN}==> Identity server $3 started running!${RESET}"
