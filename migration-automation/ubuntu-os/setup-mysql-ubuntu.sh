@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Define color variables
 GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
@@ -11,7 +10,7 @@ database=$5
 # Source env file
 cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation
 chmod +x env.sh
-source ./env.sh
+. ./env.sh
 
 # Stop mysql running inside github actions and wait for the MySQL container to start
 sudo systemctl stop mysql &
