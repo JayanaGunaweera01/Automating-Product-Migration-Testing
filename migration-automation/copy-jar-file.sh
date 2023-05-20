@@ -43,25 +43,25 @@ copy_jdbc_driver() {
   if [ "$os" == "ubuntu-latest" ]; then
     case "$database" in
       "mysql")
-        driver_file="$LIB/$JAR_MYSQL"
+        driver_file="$JAR_MYSQL"
         ;;
       "mssql")
-        driver_file="$LIB/$JAR_MSSQL"
+        driver_file="$JAR_MSSQL"
         ;;
       "postgres")
-        driver_file="$LIB/$JAR_POSTGRE"
+        driver_file="$JAR_POSTGRE"
         ;;
     esac
   elif [ "$os" == "macos-latest" ]; then
     case "$database" in
       "mysql")
-        driver_file="$LIB_MAC/$JAR_MYSQL_MAC"
+        driver_file="$JAR_MYSQL_MAC"
         ;;
       "mssql")
-        driver_file="$LIB_MAC/$JAR_MSSQL_MAC"
+        driver_file="$JAR_MSSQL_MAC"
         ;;
       "postgres")
-        driver_file="$LIB_MAC/$JAR_POSTGRE_MAC"
+        driver_file="$JAR_POSTGRE_MAC"
         ;;
     esac
   elif [ "$os" == "windows-latest" ]; then
