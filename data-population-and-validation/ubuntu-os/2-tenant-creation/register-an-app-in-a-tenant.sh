@@ -9,8 +9,6 @@
 #--header 'Content-Type: application/json' \
 #--data-raw '{"name":"'$APP_NAME'","description":"Manually configure the inbound authentication protocol, authentication flow, etc.","templateId":"custom-application"}'
 
-
-
 # set the server url
 server_url=https://localhost:9443
 
@@ -20,7 +18,7 @@ tenant_domain=iit@iit.com
 # set the application name
 application_name=MigrationApp
 
-# Get the tenant Id 
+# Get the tenant Id
 tenant_id=$(curl -k -X GET -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" ${server_url}/api/identity/user/v0.9/tenants?tenantDomain=${tenant_domain} | jq -r '.tenantId')
 
 # create the service provider

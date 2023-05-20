@@ -10,7 +10,8 @@ admin_username="admin"
 admin_password="admin"
 
 # Create the SOAP request XML
-soap_request=$(cat <<EOF
+soap_request=$(
+   cat <<EOF
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.mgt.tenant.carbon.wso2.org" xmlns:xsd="http://beans.common.stratos.carbon.wso2.org/xsd">
    <soapenv:Header/>
    <soapenv:Body>
@@ -46,10 +47,10 @@ soap_response=$(curl -k -s -u "${admin_username}:${admin_password}" -H "Content-
 
 # Check the SOAP response for errors
 if echo "${soap_response}" | grep -q "<ns:addTenantResponse>"; then
-    echo "Tenant created successfully."
+   echo "Tenant created successfully."
 else
-    echo "Failed to create tenant. Error response:"
-    echo "${soap_response}"
+   echo "Failed to create tenant. Error response:"
+   echo "${soap_response}"
 fi
 
 sleep 15

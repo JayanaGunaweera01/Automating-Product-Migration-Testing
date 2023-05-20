@@ -1,7 +1,7 @@
 curl -k --location --request POST "$SP_USER_REGISTER_EP" \
---header 'Authorization: Basic YWRtaW46YWRtaW4=' \
---header 'Content-Type: application/json' \
---data-raw '{
+    --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
 "schemas": [],
 "name": {
 "givenName": "'$SP_USER_NAME'",
@@ -30,4 +30,3 @@ curl -k --location --request POST "$SP_USER_REGISTER_EP" \
 '
 echo "\033[1;38;5;206mA user has been created in service provider.Name of user created in SP=$SP_USER_NAME\033[0m"
 echo
-

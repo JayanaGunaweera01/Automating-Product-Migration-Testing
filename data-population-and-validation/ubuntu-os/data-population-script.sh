@@ -1,5 +1,5 @@
 #!/bin/bash
-                                                            # relpace this file with      find /path/to/folder -name "*.sh" -type f -exec sh {} \;
+# relpace this file with      find /path/to/folder -name "*.sh" -type f -exec sh {} \;
 # Edit the env file to change parameters.
 # Source env file
 . ./env.sh
@@ -35,4 +35,3 @@ cd "$SP_CREATION"
 sh register-a-service-provider.sh
 sh create-user-in-a-service-provider.sh
 sh get-oauth-token.sh
-

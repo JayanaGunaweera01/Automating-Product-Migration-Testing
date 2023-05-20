@@ -13,10 +13,10 @@
 #  "password": 'Prabhanu123456789',
 #  "emails": [
 #    {
- #     "type": "home",
- #     "value": 'prabhanu@iit.ac.lk',
- #     "primary": true
- #   },
+#     "type": "home",
+#     "value": 'prabhanu@iit.ac.lk',
+#     "primary": true
+#   },
 #    {
 #      "type": "work",
 #      "value": 'prabhanu@iit2.ac.lk'
@@ -30,12 +30,11 @@
 #  }
 #}'
 
-
 # make the curl request and capture the response
 response=$(curl -k --location --request POST "$SCIM_USER_EP" \
---header 'Authorization: Basic YWRtaW46YWRtaW4=' \
---header 'Content-Type: application/json' \
---data-raw '{
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
   "schemas": [],
   "name": {
     "givenName": '$GIVEN_NAME',
@@ -74,4 +73,3 @@ fi
 
 echo "\033[1;33mA user has been created in Identity Server. User name=$GIVEN_USER_NAME\033[0m"
 echo
-

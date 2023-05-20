@@ -20,7 +20,7 @@ curl -k -X POST \
     "grantTypes": "password refresh_token",
     "saasApp": true
   }' \
-  "https://${HOSTNAME}:${PORT}/oauth2/client/register" | jq -r '.clientId + ":" + .clientSecret' > sp_credentials.txt
+  "https://${HOSTNAME}:${PORT}/oauth2/client/register" | jq -r '.clientId + ":" + .clientSecret' >sp_credentials.txt
 
 # get client id and secret
 SP_CREDENTIALS=$(cat sp_credentials.txt)

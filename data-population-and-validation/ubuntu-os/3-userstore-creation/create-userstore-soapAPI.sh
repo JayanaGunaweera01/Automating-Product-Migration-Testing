@@ -30,7 +30,8 @@ userstore_properties="
 "
 
 # Create the SOAP request XML
-soap_request=$(cat <<EOF
+soap_request=$(
+   cat <<EOF
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.mgt.user.carbon.wso2.org" xmlns:xsd="http://beans.common.stratos.carbon.wso2.org/xsd">
    <soapenv:Header/>
    <soapenv:Body>
@@ -54,8 +55,8 @@ soap_response=$(curl -k -s -u "${admin_username}:${admin_password}" -H "Content-
 
 # Check the SOAP response for errors
 if echo "${soap_response}" | grep -q "<ns:addUserStoreResponse>"; then
-    echo "User store created successfully."
+   echo "User store created successfully."
 else
-    echo "Failed to create user store. Error response:"
-    echo "${soap_response}"
+   echo "Failed to create user store. Error response:"
+   echo "${soap_response}"
 fi

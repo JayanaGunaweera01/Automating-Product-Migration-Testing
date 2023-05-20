@@ -6,7 +6,8 @@ username="admin"
 password="admin"
 
 # Set the SOAP request body
-soap_request=$(cat <<EOF
+soap_request=$(
+   cat <<EOF
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.mgt.tenant.carbon.wso2.org" xmlns:xsd="http://beans.common.stratos.carbon.wso2.org/xsd">
    <soapenv:Header>
       <ser:AuthHeader>

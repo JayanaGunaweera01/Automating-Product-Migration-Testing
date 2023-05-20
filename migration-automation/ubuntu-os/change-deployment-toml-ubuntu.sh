@@ -2,7 +2,7 @@
 
 # Define color variables
 GREEN='\033[0;32m\033[1m' # green color
-RESET='\033[0m' # reset color
+RESET='\033[0m'           # reset color
 
 # Get the value of the inputs
 currentVersion=$3
@@ -21,13 +21,13 @@ perform_cat() {
     deployment_file=$2
 
     if [ "$database" = "mysql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_${cat_file}" > "$deployment_file"
+        cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
         echo "Deployment file '$deployment_file' replaced."
     elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_${cat_file}" > "$deployment_file"
+        cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
         echo "Deployment file '$deployment_file' replaced."
     elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_${cat_file}" > "$deployment_file"
+        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_${cat_file}" >"$deployment_file"
         echo "Deployment file '$deployment_file' replaced."
     fi
 }

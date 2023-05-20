@@ -1,7 +1,7 @@
 curl -k --location --request POST "$USERSTORE_EP" \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic YWRtaW46YWRtaW4=' \
---data-raw '{
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --data-raw '{
   "typeId": "SkRCQ1VzZXJTdG9yZU1hbmFnZXI",
   "description": "Sample JDBC user store to add.",
   "name": "'$USERSTORE_NAME'",

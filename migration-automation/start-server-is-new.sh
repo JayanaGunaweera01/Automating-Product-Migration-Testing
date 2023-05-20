@@ -10,9 +10,9 @@ GREEN='\033[0;32m\033[1m' # green color
 cd "$BIN_ISNEW"
 toilet -f term -F border --gay 'Starting Migrated Identity Server'
 
-echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300"  > start.sh
+echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
 chmod +x start.sh && chmod 777 start.sh
-    
+
 nohup ./start.sh &
 # Wait until server is up
 is_server_up() {
@@ -33,15 +33,14 @@ wait_until_server_is_up() {
     local wait_time=0
     while ! is_server_up; do
         echo "Waiting until server starts..." &&
-        sleep 10
-        wait_time=$((wait_time+10))
+            sleep 10
+        wait_time=$((wait_time + 10))
         if [ "$wait_time" -ge "$timeout" ]; then
             echo "Timeout: server did not start within $timeout seconds"
             exit 1
         fi
     done
 }
-
 
 wait_until_server_is_up
 echo "${GREEN}Migrated WSO2 Identity Server has started successfully${RESET}"

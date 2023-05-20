@@ -1,12 +1,10 @@
-# THIS SHELL SCRIPT COMPRISES OF ENV CONFIGS RELATED TO POC - LINUX & MACOS 
+# THIS SHELL SCRIPT COMPRISES OF ENV CONFIGS RELATED TO POC - LINUX & MACOS
 # ISOLD = version of WSO2 IS that is presently installed in your environment.
 # ISNEW = version of WSO2 IS that you want to migrate.
 
-
 ###############################################################################################################################
-#                                                    ENV CONFIGS RELATED TO LINUX                                            #                                               
+#                                                    ENV CONFIGS RELATED TO LINUX                                            #
 ###############################################################################################################################
-
 
 # Absolute path to root directory
 export DIRECTORY_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing"
@@ -26,10 +24,10 @@ export UBUNTU_PATH="/home/runner/work/Automating-Product-Migration-Testing/Autom
 # Absolute path to the deployment file to replace
 export DEPLOYMENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
 
-# Absolute path to the oldIS deployment file 
+# Absolute path to the oldIS deployment file
 export DEPLOYMENT_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf"
 
-# Absolute path to the newIS deployment file 
+# Absolute path to the newIS deployment file
 export DEPLOYMENT_PATH_NEW="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/repository/conf"
 
 # Absolute path to the mysql deployment files in migration-automation folder
@@ -56,7 +54,6 @@ export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0="/home/runner/work/Automating-P
 export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mssql.toml"
 export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mssql.toml"
 
-
 # Absolute path to IS old deployment.toml
 export PATH_IS_OLD="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
 
@@ -81,7 +78,7 @@ export DB_SCRIPT_IDENTITY="/home/runner/work/Automating-Product-Migration-Testin
 export DB_SCRIPT_UMA="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/uma/mysql.sql"
 export DB_SCRIPT_CONSENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mysql.sql"
 export DB_SCRIPT_METRICS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mysql.sql"
-     
+
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
 export LIB="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
 
@@ -151,10 +148,8 @@ export MIGRATION_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Tes
 # Absolute path to ubuntu folder
 export UBUNTU_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/ubuntu-os"
 
-
-
 ###############################################################################################################################
-#                                                      ENV CONFIGS RELATED TO MACOS                                           #                                               
+#                                                      ENV CONFIGS RELATED TO MACOS                                           #
 ###############################################################################################################################
 
 # ISOLD = version of WSO2 IS that is presently installed in your environment.
@@ -187,7 +182,6 @@ export DEPLOYMENT_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Test
 # Absolute path to the newIS conf folder
 export DEPLOYMENT_PATH_NEW_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/repository/conf"
 
-
 # Absolute paths to the mysql deployment files in migration-automation folder
 export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.9/deployment-mysql.toml"
 export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.10/deployment-mysql.toml"
@@ -211,7 +205,6 @@ export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11="/Users/runner/work/Automating-Pr
 export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-mssql.toml"
 export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mssql.toml"
 export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mssql.toml"
-
 
 # Absolute path to IS old deployment.toml
 export PATH_IS_OLD_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
@@ -240,7 +233,7 @@ export DB_SCRIPT_IDENTITY_MAC="/Users/runner/work/Automating-Product-Migration-T
 export DB_SCRIPT_UMA_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/uma/mysql.sql"
 export DB_SCRIPT_CONSENT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mysql.sql"
 export DB_SCRIPT_METRICS_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mysql.sql"
-     
+
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
 export LIB_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
 
@@ -316,12 +309,9 @@ export MIGRATION_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testi
 # Absolute path to macos folder
 export MAC_HOME="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/mac-os"
 
-
-
 ###############################################################################################################################
-#                   ENV CONFIGS RELATED TO data-population-and-validation FOLDER - COMMON TO LINUX & MACOS                                #                                               
+#                   ENV CONFIGS RELATED TO data-population-and-validation FOLDER - COMMON TO LINUX & MACOS                                #
 ###############################################################################################################################
-
 
 export TOKEN_EP=https://localhost:9443/oauth2/token
 
@@ -354,8 +344,6 @@ export USERSTORE_EP=https://localhost:9443/t/carbon.super/api/server/v1/userstor
 export SP_USER_REGISTER_EP=https://localhost:9443/t/carbon.super/scim2/Users
 
 export TENANT_EP=https://localhost:9443/t/carbon.super/api/server/v1/tenants
-
-
 
 # Client id
 export CLIENTID=sVgtdpO1c5UL83TFtfLJfkkdMmka
@@ -408,7 +396,7 @@ export TENANT_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testi
 export USERSTORE_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/3-userstore-creation
 export USERSTORE_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/3-userstore-creation
 
-# Given userstore name 
+# Given userstore name
 export USERSTORE_NAME=NewUserStore1
 
 # Given use name to add to userstore
@@ -419,37 +407,37 @@ export USERSTORE_GROUP_NAME=Engineering
 
 # Given user's userstore password
 export USERSTORE_USER_PASSWORD=Wso2@123
- 
+
 # Absolute path to create a group using shell files
 export GROUP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/5-group-creation
 export GROUP_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/5-group-creation
 
-# Given group name 
+# Given group name
 export GROUP_NAME=ManagingGroup
 
-# Given group name with users 
+# Given group name with users
 export GROUP_DISPLAY_NAME=SalesGroup
 
-# User's ID to add to the group 
+# User's ID to add to the group
 export GROUP_USER_ID=30ee7b3e-4b07-4931-81a7-830874f76aa2
 
 # Absolute path to service provider creation shell files
 export SP_CREATION=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/4-service-provider-creation
 export SP_CREATION_MAC=/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation
 
-# User's First name to register in a Service Provider 
+# User's First name to register in a Service Provider
 export SP_USER_NAME=Lanka
 
-# User's Family name to register in a Service Provider 
+# User's Family name to register in a Service Provider
 export SP_USER_FAMILY_NAME=Hewapathirana
 
-# User's password to register in a Service Provider 
+# User's password to register in a Service Provider
 export SP_USER_PASSWORD=Test123
 
-# User's home email to register in a Service Provider 
+# User's home email to register in a Service Provider
 export SP_USER_HOME_EMAIL=lanka@gmail.com
 
-# User's work email to register in a Service Provider 
+# User's work email to register in a Service Provider
 export SP_USER_WORK_EMAIL=lankawork@gmail.com
 
 # Specific tenant url to create the service provider
@@ -470,20 +458,14 @@ export APP_NAME=Demoapp4
 # Oauth 2.0 redirect_uri used in authorization code and implicit grant types.
 export REDIRECTURI=https://localhost:8080/callback
 
-
-
-
-
 ###############################################################################################################################
-#                             ENV CONFIGS RELATED TO DATABASE BACKUP - COMMON TO LINUX & MACOS                                #                                               
+#                             ENV CONFIGS RELATED TO DATABASE BACKUP - COMMON TO LINUX & MACOS                                #
 ###############################################################################################################################
 
 export BACKUP_PATH=/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/backup_db.sql
 
-
-
 ###############################################################################################################################
-#                             DOCKER MYSQL CONFIGS - COMMON TO LINUX & MACOS                                                  #                                               
+#                             DOCKER MYSQL CONFIGS - COMMON TO LINUX & MACOS                                                  #
 ###############################################################################################################################
 
 export CONTAINER_NAME=amazing_feynman
@@ -493,21 +475,13 @@ export ROOT_PASSWORD=root
 export MYSQL_VERSION=5.7.38
 export DATABASE_NAME=mydb
 
-
 ###############################################################################################################################
-#                             END OF ENV CONFIGS RELATED TO POC - LINUX & MACOS                                               #                                               
-###############################################################################################################################
-
-
-
-
-
-
-###############################################################################################################################
-#                                                    ENV CONFIGS RELATED TO WINDOWS                                           #                                               
+#                             END OF ENV CONFIGS RELATED TO POC - LINUX & MACOS                                               #
 ###############################################################################################################################
 
-
+###############################################################################################################################
+#                                                    ENV CONFIGS RELATED TO WINDOWS                                           #
+###############################################################################################################################
 
 # Absolute path to the mysql deployment files in migration-automation folder
 export DEPLOYMENT_AUTOMATION_MYSQL_WINDOWS_IS_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.9/deployment-mysql.toml"
@@ -532,5 +506,3 @@ export DEPLOYMENT_AUTOMATION_MYSQL_WINDOWS_IS_5_11="/home/runner/work/Automating
 export DEPLOYMENT_AUTOMATION_MYSQL_WINDOWS_IS_6_0="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-mssql.toml"
 export DEPLOYMENT_AUTOMATION_MYSQL_WINDOWS_IS_6_1="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mssql.toml"
 export DEPLOYMENT_AUTOMATION_MYSQL_WINDOWS_IS_6_2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mssql.toml"
-
-
