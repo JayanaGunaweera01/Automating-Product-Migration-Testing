@@ -4,10 +4,6 @@
 GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
 
-# Get the values of the inputs
-database="$5"
-os="$6"
-
 # Method to source the relevant env file based on the OS input
 source_env_file() {
   local os="$1"
@@ -52,7 +48,7 @@ copy_jdbc_driver() {
   esac
 
   # Wait for the JDBC driver to be copied to the lib folder
-  while [ ! -f "$JAR_MYSQL" ]; do
+  while [ ! -f "$LIB/$database-jdbc-driver.jar" ]; do
     echo -e "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
     sleep 5
   done
@@ -61,11 +57,12 @@ copy_jdbc_driver() {
 }
 
 
+# Get the values of the inputs
+database="$5"
+os="$6"
+
 # Source the relevant env file based on the OS input
 source_env_file "$os"
 
 # Copy the relevant JDBC driver to the target directory based on the database input
 copy_jdbc_driver "$database"
-
-
-
