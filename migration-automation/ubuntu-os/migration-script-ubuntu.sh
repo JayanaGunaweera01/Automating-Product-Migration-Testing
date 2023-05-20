@@ -44,7 +44,7 @@ sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Auto
 # Define the message in a variable for easier modification
 echo
 echo "${ORANGE}"WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING!"${RESET}"
-echo "${ORANGE}"THIS TIME WE DO A MIGRATION FROM "${YELLOW}" $3 "${RESET}" TO "${YELLOW}" $4 "${RESET}" IN "${YELLOW}" $5 "${RESET}" OS AND "${YELLOW}" $6 "${RESET}" DATABASE "${RESET}"
+echo "${ORANGE}"THIS TIME WE DO A MIGRATION FROM IS "${RESET}" "${YELLOW}" $3 "${RESET}" "${ORANGE}" TO IS "${RESET}" "${YELLOW}" $4 "${RESET}" "${ORANGE}" IN "${RESET}" "${YELLOW}" $5 "${RESET}" "${ORANGE}" DATABASE AND "${RESET}" "${YELLOW}" $6 "${RESET}" "${ORANGE}" OS "${RESET}"
 
 # Print instructions with different colors and formatting using echo command
 echo "${ORANGE}*${RESET} ${CYAN}1.Before proceeding make sure you have done needed changes in env.sh file${RESET} ${ORANGE}${RESET}"
