@@ -33,7 +33,7 @@ copy_jdbc_driver() {
 
   # Determine the JDBC driver file path based on the database and OS
   driver_file=""
-  if [ "$os" == "ubuntu-latest" ]; then
+  if "$os" == "ubuntu-latest"; then
     case "$database" in
       "mysql")
         driver_file="$JAR_MYSQL"
@@ -45,7 +45,7 @@ copy_jdbc_driver() {
         driver_file="$JAR_POSTGRE"
         ;;
     esac
-  elif [ "$os" == "macos-latest" ]; then
+  elif "$os" == "macos-latest"; then
     case "$database" in
       "mysql")
         driver_file="$JAR_MYSQL_MAC"
