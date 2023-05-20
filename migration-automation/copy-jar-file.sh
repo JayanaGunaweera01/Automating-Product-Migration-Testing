@@ -52,7 +52,7 @@ copy_jdbc_driver() {
   esac
 
   # Wait for the JDBC driver to be copied to the lib folder
-  while [ ! -f "$LIB/$database-jdbc-driver.jar" ]; do
+  while [ ! -f "$JAR_MYSQL" ]; do
     echo -e "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
     sleep 5
   done
