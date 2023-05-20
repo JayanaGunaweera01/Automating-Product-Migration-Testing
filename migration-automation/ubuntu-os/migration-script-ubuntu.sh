@@ -8,6 +8,7 @@ GREEN='\033[0;32m\033[1m'  # green color
 BLUE='\033[0;34m\033[1m'   # blue color
 YELLOW='\033[0;33m\033[1m' # yellow color
 ORANGE='\033[0;91m\033[1m' # orange color
+RED='\033[0;31m\033[1m'    # red color
 RESET='\033[0m'            # reset color
 
 # Update the system before downloading packages
@@ -300,7 +301,7 @@ wait_until_server_is_up
 
 # Check logs for errors
 if grep -qiE "error" logs.txt; then
-    echo "\033[0;31mMigration process completed with some errors. Please check logs.\033[0m"
+    echo "${RED}==>Migration process completed with some errors. Please check logs.${RESET}"
 else
     echo "${GREEN}==> Yay!Migration executed successfully!\U0001F389${RESET}"
 fi
