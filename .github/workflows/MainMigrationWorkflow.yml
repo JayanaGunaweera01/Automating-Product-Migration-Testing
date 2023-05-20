@@ -69,7 +69,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-ce
 
-      - name: 🐘 Setup PostgreSQL Ubuntu Os
+      - name: Setup 🐘POSTGRESQL 🐧UBUNTU
         if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'ubuntu-latest' }}
         run: |
           # Create the PostgreSQL container if it doesn't already exist
@@ -96,21 +96,7 @@ jobs:
           docker exec -i postgres psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'postgres';"
           echo "Password for role 'postgres' changed successfully!"
 
-      - name: 🌐 Setup MSSQL Ubuntu Os
-        if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }}
-        run: |
-          # Start the MSSQL container if it doesn't already exist
-          if ! docker ps -a | grep sqlserver-test; then
-            echo "Creating the MSSQL container..."
-            docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrongPassw0rd" -p 1433:1433 --name sqlserver-test -d mcr.microsoft.com/mssql/server:2019-latest
-            sleep 30
-            echo "MSSQL container created successfully."
-          fi
-          # Create a new database 'testdb'
-          /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -Q 'CREATE DATABASE testdb'
-          echo "Database created successfully!"
-
-      - name: 🚚 Copy SQL files to container Postgres Ubuntu
+      - name: 🚚 Copy SQL Files To Docker Container 🐘POSTGRESQL 🐧UBUNTU
         if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'ubuntu-latest' }}
         run: |
           docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql postgres:/
@@ -128,8 +114,22 @@ jobs:
           docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/postgresfive.sql postgres:/
           docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
           echo "All postgre scripts executed successfully!"
+          
+      - name: Setup 🌐MSSQL 🐧UBUNTU
+        if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }}
+        run: |
+          # Start the MSSQL container if it doesn't already exist
+          if ! docker ps -a | grep sqlserver-test; then
+            echo "Creating the MSSQL container..."
+            docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrongPassw0rd" -p 1433:1433 --name sqlserver-test -d mcr.microsoft.com/mssql/server:2019-latest
+            sleep 30
+            echo "MSSQL container created successfully."
+          fi
+          # Create a new database 'testdb'
+          /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -Q 'CREATE DATABASE testdb'
+          echo "Database created successfully!"
 
-      - name: 🚚 Copy SQL files to container Mssql Ubuntu
+      - name: 🚚 Copy SQL Files To Docker Container 🌐MSSQL 🐧UBUNTU
         if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }}
         run: |
           docker cp ./utils/db-scripts/IS-5.11/mssql.sql sqlserver-test:/mssql.sql
@@ -149,7 +149,7 @@ jobs:
 
           echo "Copied mssql scripts to docker container"
 
-      - name: 🔧 Set up PostgreSQL Mac Os
+      - name: Setup 🐘POSTGRESQL 🍎MACOS
         if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }}
         env:
           PGDATA: /usr/local/var/postgres
@@ -163,7 +163,7 @@ jobs:
           createdb $PGDATABASE
           psql -c "GRANT ALL PRIVILEGES ON DATABASE $PGDATABASE TO postgres;"
 
-      - name: 🐘 Execute Postgres SQL scripts
+      - name: Execute 🐘POSTGRESQL Scripts 🍎MACOS
         if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }}
         run: |
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql
@@ -172,20 +172,18 @@ jobs:
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/uma/postgresthree.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/postgresfive.sql
 
-      - name: ✅ Verify PostgreSQL script execution
+      - name: Verify 🐘POSTGRESQL Script Execution 🍎MACOS
         if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }}
         run: psql -d testdb -c 'SHOW server_version'
         shell: bash
 
-      - name: 🌐 Setup MS SQL Database Mac Os
+      - name: Setup 🌐MSSQL 🍎MACOS
         if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -Q 'CREATE DATABASE testdb'
+        run: |
+          sqlcmd -U SA -P 'YourStrongPassw0rd' -Q 'CREATE DATABASE testdb'
+          sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
 
-      - name: 🏗️ Run query
-        if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
-        run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-
-      - name: 🚀 Run MS SQL scripts
+      - name: Execute 🌐MSSQL Scripts 🍎MACOS
         if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
         run: |
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/mssql.sql
@@ -194,43 +192,44 @@ jobs:
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mssql.sql
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mssql.sql
 
-      - name: ✅ Verify MS SQL script execution
+      - name: Verify 🌐MSSQL Script Execution 🍎MACOS
         if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
 
-      - name: 🗝️ Grant permission to run migration automation script Ubuntu
+      - name: 🗝️ Grant Permission To Execute Migration Automation Script 🐧UBUNTU
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
         run: chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh
-      - name: 🗝️ Grant permission to run migration automation script Mac
+      - name: 🗝️ Grant Permission To Execute Migration Automation Script 🍎MACOS
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
         run: chmod +x migration-automation/mac-os/migration-script-mac.sh
-      - name: 🗝️ Grant permission to run migration automation script Windows
+      - name: 🗝️ Grant Permission To Execute Migration Automation Script 🪟Windows
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'windows-latest' }}
         run: chmod +x migration-automation/windows-os/migration-script-windows.sh
 
-      - name: 🪄 Run migration automation scripts Ubuntu
+      - name: 🚀 Execute Migration Automation Script 🐧UBUNTU
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
         run: |
           sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
-      - name: 🪄 Run migration automation scripts Mac
+      
+      - name: 🚀 Execute Migration Automation Script 🍎MACOS
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
         run: |
           sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
-      - name: 🪄 Run migration automation scripts Windows
+      - name: 🚀 Execute Migration Automation Script 🪟Windows
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'windows-latest' }}
         run: |
           sh migration-automation/windows-os/migration-script-windows.ps1 "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
 
-      - name: 🚨 Print errors in logs.txt in red color
+      - name: 💥 Print Errors In Logs
         run: |
           if [ -f "migration-automation/logs.txt" ]; then
             chmod +x migration-automation/logs.txt
             sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
           fi
-      - name: 📦 Upload artifact
+      - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v3
         if: always()
         with:
