@@ -15,15 +15,15 @@ chmod +x env.sh
 # Stop mysql running inside github actions and wait for the MySQL container to start
 sudo systemctl stop mysql &
 sleep 10
-echo "${GREEN}==> Local mysql stopped successfully${RESET}"  
+echo "${GREEN}==> Local mysql stopped successfully${RESET}"
 
 # Start running docker container
 docker run --name "$CONTAINER_NAME" -p "$HOST_PORT":"$CONTAINER_PORT" -e MYSQL_ROOT_PASSWORD="$ROOT_PASSWORD" -d mysql:"$MYSQL_VERSION"
 
 # Wait for container to start up
 while [ "$(docker inspect -f '{{.State.Status}}' "$CONTAINER_NAME")" != "running" ]; do
-    printf "${GREEN}==> Waiting for container to start up...${RESET}\n"
-    sleep 1
+  printf "${GREEN}==> Waiting for container to start up...${RESET}\n"
+  sleep 1
 done
 echo "${GREEN}==> Container is up and running.${RESET}"
 
@@ -32,8 +32,8 @@ CONTAINER_ID=$(docker ps -aqf "name=$CONTAINER_NAME")
 DB_HOST=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$CONTAINER_ID")
 
 while ! mysqladmin ping -h"$DB_HOST" --silent; do
-     printf "${GREEN}==> Waiting for mysql server to be healthy...${RESET}\n"
-    sleep 1
+  printf "${GREEN}==> Waiting for mysql server to be healthy...${RESET}\n"
+  sleep 1
 done
 
 # Connect to MySQL server
@@ -41,7 +41,7 @@ echo "${GREEN}==> MySQL server is available on $DB_HOST${RESET}"
 
 # MySQL is available
 echo "${GREEN}==> MySQL is now available!${RESET}"
-                                                                                                   
+
 # Check docker status
 docker ps
 
@@ -66,14 +66,14 @@ fi
 
 # Create database
 chmod +x "$DATABASE_CREATION_SCRIPT"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD'' < "$DATABASE_CREATION_SCRIPT"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD'' <"$DATABASE_CREATION_SCRIPT"
 echo "${GREEN}==> Database created successfully!${RESET}"
 
 # Execute SQL scripts
 chmod +x ~/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/database-create-scripts/mysql.sql
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_MYSQL"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_IDENTITY"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_UMA"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_CONSENT"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_METRICS"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_MYSQL"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_IDENTITY"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_UMA"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_CONSENT"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_METRICS"
 echo "${GREEN}==> Database scripts executed and created tables successfully!${RESET}"
