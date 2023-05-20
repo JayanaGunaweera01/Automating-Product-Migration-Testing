@@ -125,9 +125,9 @@ echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 # Setup mysql
 cd "$UBUNTU_HOME"
 chmod +x setup-mysql-ubuntu.sh
-sh setup-mysql-ubuntu.sh 
+sh setup-mysql-ubuntu.sh
 
-# Copy Jars 
+# Copy Jars
 chmod +x copy-jar-file-ubuntu.sh
 sh copy-jar-file-ubuntu.sh
 
