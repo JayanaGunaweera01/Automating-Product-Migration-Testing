@@ -113,7 +113,6 @@ jobs:
       - name: 🚚 Copy SQL files to container
         run: |
           if [[ ${{ github.event.inputs.database }} == 'postgres' && ${{ github.event.inputs.os }} == 'ubuntu-latest' ]]; then
-
             docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresone.sql'
             echo "Postgre database created successfully!"
@@ -129,9 +128,7 @@ jobs:
             docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/postgresfive.sql postgres:/
             docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
             echo "All postgre scripts executed successfully!"
-            
-          elif [ ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' ]; then
-            
+          elif [[ ${{ github.event.inputs.database }} == 'mssql' && ${{ github.event.inputs.os }} == 'ubuntu-latest' ]]; then
             docker cp ./utils/db-scripts/IS-5.11/mssql.sql sqlserver-test:/mssql.sql
             docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /mssql.sql
 
