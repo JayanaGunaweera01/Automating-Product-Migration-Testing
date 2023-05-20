@@ -119,8 +119,8 @@ echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Setup mysql
 cd "$AUTOMATION_HOME"
-chmod +x setup-mysql.sh
-sh setup-mysql.sh $5 $6
+#chmod +x setup-mysql.sh
+#sh setup-mysql.sh $5 $6
 
 # Copy the JDBC driver to the target directory
 
