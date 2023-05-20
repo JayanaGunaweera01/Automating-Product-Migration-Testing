@@ -123,12 +123,13 @@ chmod +x setup-mysql.sh
 sh setup-mysql.sh
 
 # Copy the JDBC driver to the target directory
+
 # Get the values of the inputs
 database=$5
 
 # Method to copy the relevant JDBC driver to the target directory based on the database input
 copy_jdbc_driver() {
-  local database=$1
+  local database=$5
 
   case $database in
     "mysql")
