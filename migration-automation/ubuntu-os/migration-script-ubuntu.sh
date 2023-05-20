@@ -297,7 +297,13 @@ wait_until_server_is_up() {
 }
 
 wait_until_server_is_up
-echo "${GREEN}==> Yay!Migration executed successfully.${RESET}"
+
+# Check logs for errors
+if grep -qiE "error" logs.txt; then
+    echo "\033[0;31mMigration process completed with some errors. Please check logs.\033[0m"
+else
+    echo "${GREEN}==> Yay!Migration executed successfully!\U0001F389${RESET}"
+fi
 
 # Stop wso2IS migration server
 cd "$BIN_ISNEW"
