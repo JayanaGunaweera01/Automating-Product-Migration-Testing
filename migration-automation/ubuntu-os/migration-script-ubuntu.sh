@@ -81,7 +81,7 @@ chmod +x server-stop.sh
 # Setup Java
 sudo apt-get install -y openjdk-11-jdk &
 wait $!
-echo "${GREEN}==>Installed Java successfully!${RESET}"
+echo "${GREEN}==> Installed Java successfully!${RESET}"
 
 # Set the JAVA_HOME environment variable
 export JAVA_HOME=$(readlink -f $(which java)) &
@@ -91,7 +91,7 @@ cd "$AUTOMATION_HOME"
 
 # Create directory for placing wso2IS
 mkdir IS_HOME_OLD
-echo "${GREEN}==>Created a directory to place wso2IS${RESET}"
+echo "${GREEN}==> Created a directory to place wso2IS${RESET}"
 
 # Navigate to folder
 cd IS_HOME_OLD
@@ -100,13 +100,13 @@ echo "${GREEN}==> Navigated to bin folder successfully${RESET}"
 # Download needed wso2IS zip
 wget -qq --waitretry=5 --retry-connrefused $1
 ls -a
-echo "${GREEN}==>Downloaded needed wso2IS zip${RESET}"
+echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
 
 # Unzip IS archive
 unzip -qq *.zip &
 wait
 ls -a
-echo "${GREEN}==>Unzipped downloaded Identity Server zip${RESET}"
+echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
 cd "$AUTOMATION_HOME"
 
