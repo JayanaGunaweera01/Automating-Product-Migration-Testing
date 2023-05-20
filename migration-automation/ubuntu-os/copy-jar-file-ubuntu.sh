@@ -21,10 +21,8 @@ fi
 cp -r "$jdbc_driver" "$LIB"
 
 # Wait for the JDBC driver to be copied to the lib folder
-while [ ! -f "$jdbc_driver" ]
-do
+while [ ! -f "$jdbc_driver" ]; do
   echo "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
   sleep 5
 done
 echo "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
-
