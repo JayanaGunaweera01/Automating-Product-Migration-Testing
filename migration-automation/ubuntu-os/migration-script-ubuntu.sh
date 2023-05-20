@@ -122,10 +122,15 @@ chmod +x change-deployment-toml-ubuntu.sh
 sh change-deployment-toml-ubuntu.sh
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
-# Setup mysql
-cd "$UBUNTU_HOME"
-chmod +x setup-mysql-ubuntu.sh
-sh setup-mysql-ubuntu.sh
+# Check if database is set to mysql
+if [ "$5" = "mysql" ]; then
+  # Setup mysql
+  cd "$UBUNTU_HOME"
+  chmod +x setup-mysql-ubuntu.sh
+  sh setup-mysql-ubuntu.sh
+else
+  echo "Skipping MySQL setup as database is not set to mysql."
+fi
 
 # Copy Jars
 chmod +x copy-jar-file-ubuntu.sh
