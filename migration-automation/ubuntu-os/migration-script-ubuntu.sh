@@ -11,6 +11,10 @@ ORANGE='\033[0;91m\033[1m' # orange color
 RED='\033[0;31m\033[1m'    # red color
 RESET='\033[0m'            # reset color
 
+# Define emojis
+SAD_FACE="\U0001F614"
+PARTY_POPPER="\U0001F389"
+
 # Update the system before downloading packages
 sudo apt-get -qq update
 
@@ -301,9 +305,9 @@ wait_until_server_is_up
 
 # Check logs for errors
 if grep -qiE "error" logs.txt; then
-    echo "${RED}==>Migration process completed with some errors. Please check logs.${RESET}"
+    echo "${RED}==>Migration process completed with some errors. Please check logs.${SAD_FACE}${RESET}"
 else
-    echo "${GREEN}==> Yay!Migration executed successfully!\U0001F389${RESET}"
+    echo "${GREEN}==> Yay!Migration executed successfully!${PARTY_POPPER}${RESET}"
 fi
 
 # Stop wso2IS migration server
