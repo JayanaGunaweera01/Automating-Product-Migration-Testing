@@ -123,8 +123,36 @@ chmod +x setup-mysql.sh
 sh setup-mysql.sh
 
 # Copy the JDBC driver to the target directory
-chmod +x copy-jar-file.sh
-sh copy-jar-file.sh "$5" "$6"
+# Get the values of the inputs
+database=$5
+
+# Method to copy the relevant JDBC driver to the target directory based on the database input
+copy_jdbc_driver() {
+  local database=$1
+
+  case $database in
+    "mysql")
+      cp -r "$JAR_MYSQL" "$LIB"
+      ;;
+    "mssql")
+      cp -r "$JAR_MSSQL" "$LIB"
+      ;;
+    "postgres")
+      cp -r "$JAR_POSTGRE" "$LIB"
+      ;;
+  esac
+
+  # Wait for the JDBC driver to be copied to the lib folder
+  while [ ! -f "$LIB/$database-jdbc-driver.jar" ]; do
+    echo "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
+    sleep 5
+  done
+
+  echo "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
+}
+
+# Copy the relevant JDBC driver to the target directory based on the database input
+copy_jdbc_driver $database
 
 # Start wso2IS
 echo "${GREEN}==> Identity server $3 started running!${RESET}"
