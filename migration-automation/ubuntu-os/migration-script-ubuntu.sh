@@ -118,15 +118,15 @@ sh change-deployment-toml-ubuntu.sh
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Setup mysql
-cd "$AUTOMATION_HOME"
-#chmod +x setup-mysql.sh
-#sh setup-mysql.sh &
-#wait $!
+cd "$UBUNTU_HOME"
+chmod +x setup-mysql-ubuntu.sh
+sh setup-mysql-ubuntu.sh 
 
 # Copy Jars 
-cd "$UBUNTU_HOME"
-chmod +x copy-jar-file.sh
-sh copy-jar-file.sh
+chmod +x copy-jar-file-ubuntu.sh
+sh copy-jar-file-ubuntu.sh
+
+cd "$AUTOMATION_HOME"
 
 # Start wso2IS
 echo "${GREEN}==> Identity server $3 started running!${RESET}"

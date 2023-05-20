@@ -1,20 +1,24 @@
 #!/bin/bash
 
+# Define color variables
+GREEN='\033[0;32m\033[1m' # green color
+RESET='\033[0m'           # reset color
+
 # Get the value of the inputs
 database=$5
 os=$6
 
 # Modify the JDBC driver path based on the database
 if [ "$database" = "mssql" ]; then
-  jdbc_driver="$JAR_MSSQL"
+  jdbc_driver="$JAR_MSSQL_MAC"
 elif [ "$database" = "postgres" ]; then
-  jdbc_driver="$JAR_POSTGRE"
+  jdbc_driver="$JAR_POSTGRE_MAC"
 else
-  jdbc_driver="$JAR_MYSQL"
+  jdbc_driver="$JAR_MYSQL_MAC"
 fi
 
 # Copy the JDBC driver to the target directory
-cp -r "$jdbc_driver" "$LIB"
+cp -r "$jdbc_driver" "$LIB_MAC"
 
 # Wait for the JDBC driver to be copied to the lib folder
 while [ ! -f "$jdbc_driver" ]
