@@ -39,13 +39,14 @@ combinedMigratingVersion="wso2is-${migratingVersion}"
 sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh
 
 # Define the message in a variable for easier modification
+echo
 echo "${ORANGE}"WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING!"${RESET}"
-echo "${ORANGE}"THIS TIME WE DO A MIGRATION FROM IS "${RESET}" "${YELLOW}" $3 "${RESET}" "${ORANGE}" TO IS "${RESET}" "${YELLOW}" $4 "${RESET}" "${ORANGE}" IN "${RESET}" "${YELLOW}" $5 "${RESET}" "${ORANGE}" DATABASE AND "${RESET}" "${YELLOW}" $6 "${RESET}" "${ORANGE}" OS "${RESET}"
+echo "${ORANGE}THIS TIME WE DO A MIGRATION FROM IS ${RESET}${YELLOW}$3${RESET}${ORANGE} TO IS ${RESET}${YELLOW}$4${RESET}${ORANGE} IN ${RESET}${YELLOW}$5${RESET}${ORANGE} DATABASE AND ${RESET}${YELLOW}$6${RESET}${ORANGE} OS ${RESET}"
 
 # Print instructions with different colors and formatting using echo command
-echo "${ORANGE}${RESET} ${CYAN}1.Before proceeding make sure you have done needed changes in env.sh file${RESET} ${ORANGE}${RESET}"
-echo "${ORANGE}${RESET} ${CYAN}2.If you need to add any new feature like Data population or a Verification add them in data-population-and-validation directory ${RESET} ${ORANGE}${RESET}"
-echo "${ORANGE}${RESET} ${CYAN}3.Check whether deployment.toml in migration-automation matches your database configs${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}${RESET} ${CYAN}1. PRIOR TO PROCEEDING, ENSURE THAT YOU HAVE MADE THE NECESSARY MODIFICATIONS IN THE env.sh FILE TO ALIGN WITH YOUR REQUIREMENTS.${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}${RESET} ${CYAN}2. IF YOU REQUIRE THE INCLUSION OF ADDITIONAL FEATURES, SUCH AS DATA POPULATION OR VERIFICATION, PLEASE INCORPORATE THEM WITHIN THE APPROPRIATE DIRECTORY NAMED data-population-and-validation.${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}${RESET} ${CYAN}3. DOUBLE-CHECK THE CONTENTS OF THE deployment.toml FILES IN THE deployment-tomls FOLDER TO ENSURE THAT IT CORRESPONDS TO YOUR SPECIFIC DATABASE CONFIGURATIONS.${RESET} ${ORANGE}${RESET}"
 echo
 
 # Print welcome message in terminal
