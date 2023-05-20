@@ -33,7 +33,7 @@ copy_jdbc_driver() {
 
   # Determine the JDBC driver file path based on the database and OS
   driver_file=""
-  if [[ "$os" == "ubuntu-latest" ]]; then
+  if test "$os" = "ubuntu-latest"; then
     case "$database" in
       "mysql")
         driver_file="$JAR_MYSQL"
@@ -45,7 +45,7 @@ copy_jdbc_driver() {
         driver_file="$JAR_POSTGRE"
         ;;
     esac
-  elif [[ "$os" == "macos-latest" ]]; then
+  elif test "$os" = "macos-latest"; then
     case "$database" in
       "mysql")
         driver_file="$JAR_MYSQL_MAC"
@@ -60,7 +60,7 @@ copy_jdbc_driver() {
   fi
 
   # Wait for the JDBC driver to be copied to the lib folder
-  while [[ ! -f "$driver_file" ]]; do
+  while ! test -f "$driver_file"; do
     echo "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
     sleep 5
   done
@@ -70,3 +70,4 @@ copy_jdbc_driver() {
 
 # Copy the relevant JDBC driver to the target directory based on the database and OS input
 copy_jdbc_driver
+
