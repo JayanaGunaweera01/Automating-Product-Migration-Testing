@@ -10,29 +10,31 @@ os=$6
 
 # Method to source the relevant env file based on the OS input
 source_env_file() {
+  local os=$6
   
   case $os in
     "ubuntu-latest")
       cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
       chmod +x env.sh
       . ./env.sh
+      echo "${GREEN}==> Env file sourced successfully${RESET}"
       ;;
     "macos-latest")
       cd "/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation"
       source ./env.sh
-      echo -e "${GREEN}==> Env file sourced successfully${RESET}"
+      echo "${GREEN}==> Env file sourced successfully${RESET}"
       ;;
     "windows-latest")
       cd "D:\a\Automating-Product-Migration-Testing\Automating-Product-Migration-Testing\migration-automation"
       . ./env.sh
-      echo -e "${GREEN}==> Env file sourced successfully${RESET}"
+      echo "${GREEN}==> Env file sourced successfully${RESET}"
       ;;
   esac
 }
 
 # Method to copy the relevant JDBC driver to the target directory based on the database input
 copy_jdbc_driver() {
-  local database=$1
+  local database=$5
 
   case $database in
     "mysql")
@@ -48,11 +50,11 @@ copy_jdbc_driver() {
 
   # Wait for the JDBC driver to be copied to the lib folder
   while [ ! -f "$LIB/$database-jdbc-driver.jar" ]; do
-    echo -e "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
+    echo "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
     sleep 5
   done
 
-  echo -e "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
+  echo "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
 }
 
 

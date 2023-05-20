@@ -6,7 +6,7 @@ RESET='\033[0m'           # reset color
 
 # Method to source the relevant env file based on the OS input
 source_env_file() {
-  local os=$1
+  local os=$6
 
   case $os in
     "ubuntu-latest")
