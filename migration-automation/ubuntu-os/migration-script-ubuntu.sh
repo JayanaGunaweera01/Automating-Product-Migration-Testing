@@ -3,12 +3,12 @@
 # THIS IS THE SHELL SCRIPT FOR LINUX - MYSQL MIGRATIONS INSIDE GITHUB ACTIONS - [POC]
 
 # Define color variables
-CYAN='\033[0;36m\033[1m' # cyan color
-GREEN='\033[0;32m\033[1m' # green color
-BLUE='\033[0;34m\033[1m' # blue color
+CYAN='\033[0;36m\033[1m'   # cyan color
+GREEN='\033[0;32m\033[1m'  # green color
+BLUE='\033[0;34m\033[1m'   # blue color
 YELLOW='\033[0;33m\033[1m' # yellow color
 ORANGE='\033[0;91m\033[1m' # orange color
-RESET='\033[0m' # reset color
+RESET='\033[0m'            # reset color
 
 # Define the message in a variable for easier modification
 echo
@@ -62,11 +62,11 @@ chmod +x copy-jar-file.sh
 chmod +x server-start.sh
 chmod +x enter-login-credentials.sh
 chmod +x copy-data-to-new-IS.sh
-chmod +x change-migration-configyaml.sh 
+chmod +x change-migration-configyaml.sh
 chmod +x copy-data-to-new-IS.sh
 chmod +x change-deployment-toml.sh
 chmod +x backup-database.sh
-chmod +x create-new-database.sh                                                              
+chmod +x create-new-database.sh
 chmod +x check-cpu-health.sh
 chmod +x start-server-is-new.sh
 chmod +x start-server-is-old.sh
@@ -83,7 +83,7 @@ wait $!
 
 cd "$AUTOMATION_HOME"
 
-# Create directory for placing wso2IS 
+# Create directory for placing wso2IS
 mkdir IS_HOME_OLD
 echo "${GREEN}==>Created a directory to place wso2IS${RESET}"
 
@@ -114,14 +114,14 @@ cd "$AUTOMATION_HOME"
 cd "$UBUNTU_PATH"
 chmod +x change-deployment-toml-ubuntu.sh
 sh change-deployment-toml-ubuntu.sh
-echo "${GREEN}==> Deployment.toml changed successfully${RESET}"   
+echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 cd "$AUTOMATION_HOME"
 
 # Stop mysql running inside github actions and wait for the MySQL container to start
 sudo systemctl stop mysql &
 sleep 10
-echo "${GREEN}==> Local mysql stopped successfully${RESET}"  
+echo "${GREEN}==> Local mysql stopped successfully${RESET}"
 
 # Start running docker container
 #docker run --name "$CONTAINER_NAME" -p "$HOST_PORT":"$CONTAINER_PORT" -e MYSQL_ROOT_PASSWORD="$ROOT_PASSWORD" -d mysql:"$MYSQL_VERSION"
@@ -142,7 +142,7 @@ CONTAINER_ID=$(docker ps -aqf "name=$CONTAINER_NAME")
 DB_HOST=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$CONTAINER_ID")
 
 while ! mysqladmin ping -h"$DB_HOST" --silent; do
-     printf "${GREEN}==> Waiting for mysql server to be healthy...${RESET}\n"
+    printf "${GREEN}==> Waiting for mysql server to be healthy...${RESET}\n"
     sleep 1
 done
 
@@ -151,7 +151,7 @@ echo "${GREEN}==> MySQL server is available on $DB_HOST${RESET}"
 
 # MySQL is available
 echo "${GREEN}==> MySQL is now available!${RESET}"
-                                                                                                       # time validation _ Add a health check here 
+# time validation _ Add a health check here
 # Check docker status
 docker ps
 
@@ -160,43 +160,42 @@ MYSQL_CONTAINER_ID=$(docker ps | grep mysql | awk '{print $1}')
 
 # Start the MySQL container
 if [ -n "$MYSQL_CONTAINER_ID" ]; then
-  docker start $MYSQL_CONTAINER_ID
-  echo "${GREEN}==> MySQL container started successfully${RESET}"
+    docker start $MYSQL_CONTAINER_ID
+    echo "${GREEN}==> MySQL container started successfully${RESET}"
 else
-  echo "${GREEN}==> No running MySQL container found${RESET}"
+    echo "${GREEN}==> No running MySQL container found${RESET}"
 fi
 
 # Check if MySQL is listening on the default MySQL port (3306)
 if netstat -ln | grep ':3306'; then
-  echo "${GREEN}==> MySQL is listening on port 3306${RESET}"
+    echo "${GREEN}==> MySQL is listening on port 3306${RESET}"
 
 else
-  echo "${GREEN}==> MySQL is not listening on port 3306${RESET}"
+    echo "${GREEN}==> MySQL is not listening on port 3306${RESET}"
 fi
 
 # Create database
 
 chmod +x "$DATABASE_CREATION_SCRIPT"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD'' < "$DATABASE_CREATION_SCRIPT"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD'' <"$DATABASE_CREATION_SCRIPT"
 echo "${GREEN}==> Database created successfully!${RESET}"
 
 # Execute SQL scripts
 chmod +x ~/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/mysql.sql
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_MYSQL"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_IDENTITY"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_UMA"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_CONSENT"
-docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' < "$DB_SCRIPT_METRICS"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_MYSQL"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_IDENTITY"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_UMA"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_CONSENT"
+docker exec -i "$CONTAINER_NAME" sh -c 'exec mysql -uroot -p'$ROOT_PASSWORD' -D '$DATABASE_NAME'' <"$DB_SCRIPT_METRICS"
 echo "${GREEN}==> Database scripts executed and created tables successfully!${RESET}"
 
 # Copy the JDBC driver to the target directory
 cp -r "$JAR_MYSQL" "$LIB"
 
 # Wait for the JDBC driver to be copied to the lib folder
-while [ ! -f "$JAR_MYSQL" ]
-do
-  echo "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
-  sleep 5
+while [ ! -f "$JAR_MYSQL" ]; do
+    echo "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
+    sleep 5
 done
 echo "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
 
@@ -212,8 +211,8 @@ cd "$AUTOMATION_HOME"
 sh enter-login-credentials.sh &
 wait $!
 echo "${GREEN}==> Entered to Management console home page successfully${RESET}"
- 
-cd "$DATA_POPULATION" 
+
+cd "$DATA_POPULATION"
 echo "${GREEN}==> Entered the data population directory successfully.${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
@@ -225,12 +224,12 @@ cd "$IS_OLD_BIN"
 echo "${GREEN}==> Entered bin successfully${RESET}"
 
 # Stop wso2IS
-sh wso2server.sh stop		
+sh wso2server.sh stop
 
 # Wait until server fully stops
 while pgrep -f 'wso2server' >/dev/null; do
-  sleep 1
-done	
+    sleep 1
+done
 echo "${GREEN}==> Halted the wso2IS server successfully${RESET}"
 echo
 
@@ -241,10 +240,10 @@ echo "${GREEN}==> Directed to home successfully${RESET}"
 mkdir IS_HOME_NEW
 echo "${GREEN}==> Created a directory for placing latest wso2IS${RESET}"
 
-# Navigate to folder 
+# Navigate to folder
 cd "$IS_HOME_NEW"
 
-# Download needed (latest) wso2IS zip                                                            
+# Download needed (latest) wso2IS zip
 wget -qq --waitretry=5 --retry-connrefused ${2}
 ls -a
 echo "${GREEN}==> Downloaded $4 zip${RESET}"
@@ -263,19 +262,19 @@ echo "${GREEN}==> Unzipped $4 zip${RESET}"
 cd "$utils"
 
 #Unzip migration client archive
-unzip -qq wso2is-migration-1.0.225.zip &                                                            # add credentials to download migration client here
+unzip -qq wso2is-migration-1.0.225.zip & # add credentials to download migration client here
 sleep 5
 echo "${GREEN}==> Unzipped migration client archive${RESET}"
 
-# Navigate to dropins folder 
+# Navigate to dropins folder
 cd "$DROPINS_PATH_HOME"
 
-# Copy droipns folder to wso2IS (latest) dropins folder                                               
+# Copy droipns folder to wso2IS (latest) dropins folder
 cp -r "$DROPINS_PATH" "$COMPONENTS_PATH" &
 cp_pid=$!
 
 wait $cp_pid
-echo "${GREEN}==> Jar files from migration client have been copied to IS_HOME_NEW/repository/components/dropins folder successfully!${RESET}"                                            
+echo "${GREEN}==> Jar files from migration client have been copied to IS_HOME_NEW/repository/components/dropins folder successfully!${RESET}"
 
 # Copy migration resources folder to wso2IS (latest) root folder
 cp -r "$MIGRATION_RESOURCES" "$IS_NEW_ROOT" &
@@ -287,25 +286,25 @@ echo "${GREEN}==> Migration-resources from migration client have been copied to 
 cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Diverted to home successfully${RESET}"
 
-# Needed changes in migration-config.yaml                                                                        
+# Needed changes in migration-config.yaml
 cd "$UBUNTU_HOME"
 chmod +x change-migration-config-yaml-ubuntu.sh
 sh change-migration-config-yaml-ubuntu.sh
 echo "${GREEN}==> Did needed changes in migration-config.yaml file successfully${RESET}"
-                     
+
 # Copy userstores, tenants,jar files,.jks files from oldIS to newIS
-cp -r "$LIB" "$LIB_NEW" 
+cp -r "$LIB" "$LIB_NEW"
 echo "${BLUE}==> Jar files fromfrom IS $3 to IS $4 copied successfully!${RESET}"
 
 cp -r "$TENANT_OLD_PATH" "$TENANT_NEW_PATH"
 echo "${BLUE}==> Tenants from from IS $3 to IS $4 copied successfully!${RESET}"
 
-cp -r "$RESOURCES_OLD_PATH" "$RESOURCES_NEW_PATH" 
+cp -r "$RESOURCES_OLD_PATH" "$RESOURCES_NEW_PATH"
 echo "${BLUE}==> .jks files from from IS $3 to IS $4 copied successfully!${RESET}"
 
 cp -r "$USERSTORE_OLD_PATH" "$USERSTORE_NEW_PATH"
 echo "${BLUE}==> Userstores from IS $3 to IS $4 copied successfully!${RESET}"
- 
+
 # Deployment toml changes in new is version
 cd "$UBUNTU_PATH"
 chmod +x change-deployment-toml-ubuntu-new.sh
@@ -319,7 +318,7 @@ else
     echo "${BLUE}==> Error: Some files could not be copied.${RESET}"
 fi
 echo "${BLUE}==> Copied userstores, tenants,jar files,.jks files from oldIS to newIS successfully${RESET}"
- 
+
 #Divert to bin folder
 cd "$BIN_ISNEW"
 echo "${GREEN}==> Diverted to bin folder successfully${RESET}"
@@ -336,7 +335,7 @@ echo "${YELLOW}Time and date: $time_and_date${RESET}"
 echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
-echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" > start.sh
+echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
 chmod +x start.sh && chmod 777 start.sh
 nohup ./start.sh &
 
@@ -359,8 +358,8 @@ wait_until_server_is_up() {
     local wait_time=0
     while ! is_server_up; do
         echo "Waiting until server starts..." &&
-        sleep 10
-        wait_time=$((wait_time+10))
+            sleep 10
+        wait_time=$((wait_time + 10))
         if [ "$wait_time" -ge "$timeout" ]; then
             echo "Timeout: server did not start within $timeout seconds"
             exit 1
@@ -417,7 +416,7 @@ cd "$AUTOMATION_HOME"
 sh enter-login-credentials.sh &
 wait $!
 echo "${GREEN}==> Entered to Management console home page successfully${RESET}"
- 
+
 cd "$SERVICE_PROVIDER_PATH"
 echo "${GREEN}==> Entered to data population directory-service provider creation${RESET}"
 
@@ -461,4 +460,3 @@ while [ "$is_running" != true ]; do
 done
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"
-

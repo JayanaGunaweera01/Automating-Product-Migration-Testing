@@ -1,55 +1,54 @@
-name:  Main Migration Workflow 🐧🍎🪟
+name: Main Migration Workflow 🐧🍎🪟
 
-on: 
+on:
   workflow_dispatch:
     inputs:
-        currentVersion:
-          description: '🖥️ Specify the version of WSO2 IS that is presently installed in your environment.'
-          default: '5.11.0'
-          type: choice
-          options: 
-                - '5.9.0'
-                - '5.10.0'    
-                - '5.11.0'
-                - '6.0.0'
-                - '6.1.0'
-                - '6.2.0'  
-        migratingVersion:
-          description: '💻 Specify the version of WSO2 IS that you want to migrate.'
-          default: '6.0.0'
-          type: choice
-          options:
-                - '5.10.0'    
-                - '5.11.0'
-                - '6.0.0'
-                - '6.1.0'
-                - '6.2.0'      
-        database:
-          description: '🐘 Select the database.'
-          default: 'mysql'
-          type: choice
-          options: 
-                - 'mysql'
-                - 'mssql'
-                - 'postgres'
-        os:
-          description: '🐧 Select the OS.'
-          default: 'ubuntu-latest'
-          type: choice
-          options: 
-                - 'ubuntu-latest'
-                - 'macos-latest'
-                - 'windows-latest'
-        urlOld:
-          description: '🔗 Provide the URL to download the old version of WSO2 IS.'
-          default: https://github.com/wso2/product-is/releases/download/v5.11.0/wso2is-5.11.0.zip
-          required: true
-        urlNew:
-          description: '🔗🆕 Provide the URL to download the version you want to upgrade WSO2 IS.'
-          default: https://github.com/wso2/product-is/releases/download/v6.0.0-rc2/wso2is-6.0.0-rc2.zip
-          required: true
+      currentVersion:
+        description: "🖥️ Specify the version of WSO2 IS that is presently installed in your environment."
+        default: "5.11.0"
+        type: choice
+        options:
+          - "5.9.0"
+          - "5.10.0"
+          - "5.11.0"
+          - "6.0.0"
+          - "6.1.0"
+          - "6.2.0"
+      migratingVersion:
+        description: "💻 Specify the version of WSO2 IS that you want to migrate."
+        default: "6.0.0"
+        type: choice
+        options:
+          - "5.10.0"
+          - "5.11.0"
+          - "6.0.0"
+          - "6.1.0"
+          - "6.2.0"
+      database:
+        description: "🐘 Select the database."
+        default: "mysql"
+        type: choice
+        options:
+          - "mysql"
+          - "mssql"
+          - "postgres"
+      os:
+        description: "🐧 Select the OS."
+        default: "ubuntu-latest"
+        type: choice
+        options:
+          - "ubuntu-latest"
+          - "macos-latest"
+          - "windows-latest"
+      urlOld:
+        description: "🔗 Provide the URL to download the old version of WSO2 IS."
+        default: https://github.com/wso2/product-is/releases/download/v5.11.0/wso2is-5.11.0.zip
+        required: true
+      urlNew:
+        description: "🔗🆕 Provide the URL to download the version you want to upgrade WSO2 IS."
+        default: https://github.com/wso2/product-is/releases/download/v6.0.0-rc2/wso2is-6.0.0-rc2.zip
+        required: true
 jobs:
-  
   migration:
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -149,7 +148,7 @@ jobs:
 
             echo "Copied mssql scripts to docker container"
           fi
-          
+
       - name: 🗝️ Grant permission to run migration automation scripts
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres') && github.event.inputs.os == 'ubuntu-latest' }}
         run: chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh
@@ -175,15 +174,15 @@ jobs:
 
   macos_postgres_setup:
     runs-on: ${{ github.event.inputs.os }}
-    if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }} 
+    if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }}
     steps:
-       - name: 💾 Checkout code
-         uses: actions/checkout@v2
-       - name: 🔧 Set up PostgreSQL
-         env:
-            PGDATA: /usr/local/var/postgres
-            PGDATABASE: testdb
-         run: |
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
+      - name: 🔧 Set up PostgreSQL
+        env:
+          PGDATA: /usr/local/var/postgres
+          PGDATABASE: testdb
+        run: |
           brew update
           brew install postgresql
           initdb $PGDATA
@@ -191,39 +190,39 @@ jobs:
           createuser -s postgres
           createdb $PGDATABASE
           psql -c "GRANT ALL PRIVILEGES ON DATABASE $PGDATABASE TO postgres;"
-       - name: 🐘 Execute Postgres SQL scripts
-         run: |
+      - name: 🐘 Execute Postgres SQL scripts
+        run: |
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql/consent/postgresfour.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql/identity/postgrestwo.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql/identity/uma/postgresthree.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql/metrics/postgresfive.sql
-       - name: ✅ Verify script execution
-         run: psql -d testdb -c 'SHOW server_version'
-         shell: bash
-       - uses: actions/checkout@v3
-       - name: 🗝️ Grant permission to run script - postgres 
-         run: chmod +x migration-automation/mac-os/migration-script-mac.sh
-       - name: 🪄 Run migration automation script - postgres
-         run: sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt 
-         continue-on-error: true
-       #- name: 🚨 Print errors in logs.txt in red color
-         #run: |
-           # if [ -f "migration-automation/logs.txt" ]; then
-            #  chmod +x migration-automation/logs.txt
-            #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
-           # fi
-       - name: 📦 Upload artifact
-         uses: actions/upload-artifact@v3
-         if: always() 
-         with:
+      - name: ✅ Verify script execution
+        run: psql -d testdb -c 'SHOW server_version'
+        shell: bash
+      - uses: actions/checkout@v3
+      - name: 🗝️ Grant permission to run script - postgres
+        run: chmod +x migration-automation/mac-os/migration-script-mac.sh
+      - name: 🪄 Run migration automation script - postgres
+        run: sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
+        continue-on-error: true
+      #- name: 🚨 Print errors in logs.txt in red color
+      #run: |
+      # if [ -f "migration-automation/logs.txt" ]; then
+      #  chmod +x migration-automation/logs.txt
+      #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
+      # fi
+      - name: 📦 Upload artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
           name: "migration-logs-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
           if-no-files-found: ignore
-          
+
   macos_mssql_setup:
-    if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }} 
+    if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 💾 Checkout code
@@ -233,12 +232,12 @@ jobs:
           install: sqlengine, sqlclient, sqlpackage, localdb
           version: 2019
           SA-password: YourStrongPassw0rd
-          
+
       - name: 🏗️ Create MS SQL Database
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -Q 'CREATE DATABASE testdb'
       - name: Run query
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-          
+
       - name: 🚀 Run script1
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/mssql.sql
       - name: 🚀 Run script2
@@ -249,7 +248,7 @@ jobs:
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mssql.sql
       - name: 🚀 Run script5
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mssql.sql
-      
+
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
       - uses: actions/checkout@v3
@@ -259,40 +258,40 @@ jobs:
         continue-on-error: true
       - name: 🪄 Run migration automation script - mssql
         if: github.event.inputs.database == 'mssql'
-        run: sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt 
+        run: sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
       #- name: 🚨 Print errors in logs.txt in red color
-       # run: sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
+      # run: sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
       - name: 📦 Upload artifact
         uses: actions/upload-artifact@v3
-        if: always() 
+        if: always()
         with:
           name: "migration-logs-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
           if-no-files-found: ignore
-  
+
   macos_mysql_setup:
-    if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'macos-latest' }} 
+    if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'macos-latest' }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
-       - name: 💾 Checkout code
-         uses: actions/checkout@v3 
-       - name: 🗝️ Grant permission to run script - mysql
-         run: chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh
-       - name: 🪄 Run migration automation script - mysql     
-         run: sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt 
-         continue-on-error: true
-       #- name: 🚨 Print errors in logs.txt in red color
-         #run: |
-          #  if [ -f "migration-automation/logs.txt" ]; then
-           #   chmod +x migration-automation/logs.txt
-            #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
-           # fi
-       - name: 📦 Upload artifact
-         uses: actions/upload-artifact@v3
-         if: always() 
-         with:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v3
+      - name: 🗝️ Grant permission to run script - mysql
+        run: chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh
+      - name: 🪄 Run migration automation script - mysql
+        run: sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}"  "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
+        continue-on-error: true
+      #- name: 🚨 Print errors in logs.txt in red color
+      #run: |
+      #  if [ -f "migration-automation/logs.txt" ]; then
+      #   chmod +x migration-automation/logs.txt
+      #  sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
+      # fi
+      - name: 📦 Upload artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
           name: "migration-logs-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
