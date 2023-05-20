@@ -4,10 +4,13 @@
 GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
 
+# Get the values of the inputs
+database=$5
+os=$6
+
 # Method to source the relevant env file based on the OS input
 source_env_file() {
-  local os=$1
-
+  
   case $os in
     "ubuntu-latest")
       cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
@@ -52,9 +55,6 @@ copy_jdbc_driver() {
   echo -e "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
 }
 
-# Get the values of the inputs
-database=$5
-os=$6
 
 # Source the relevant env file based on the OS input
 source_env_file $os

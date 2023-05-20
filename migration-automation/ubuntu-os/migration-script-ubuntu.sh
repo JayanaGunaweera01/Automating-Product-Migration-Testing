@@ -124,7 +124,7 @@ sh setup-mysql.sh
 
 # Copy the JDBC driver to the target directory
 chmod +x copy-jar-file.sh
-sh copy-jar-file.sh
+sh copy-jar-file.sh "$5" "$6"
 
 # Start wso2IS
 echo "${GREEN}==> Identity server $3 started running!${RESET}"
