@@ -18,9 +18,6 @@ source_env_file() {
     "windows-latest")
       source_env_file_windows
       ;;
-    *)
-      echo -e "${GREEN}==> Unknown OS: $os${RESET}"
-      ;;
   esac
 }
 
@@ -187,9 +184,4 @@ case $os in
   "windows-latest")
     windows_method
     ;;
-  *)
-    echo -e "${GREEN}==> Unknown OS: $os${RESET}"
-    ;;
 esac
-
-
