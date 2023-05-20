@@ -40,23 +40,7 @@ sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Auto
 
 # Define the message in a variable for easier modification
 echo
-# Function to print a line with terminal pattern
-print_terminal_line() {
-    local length=${#1}
-    local line=""
-    for ((i = 0; i < length + 4; i++)); do
-        line="${line}-"
-    done
-    echo "${ORANGE}${line}${RESET}"
-}
-
-# Welcome message
-echo "${ORANGE}"
-print_terminal_line "WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING!"
-echo "${RESET}THIS TIME WE WILL PERFORM A MIGRATION FROM IS VERSION ${YELLOW}$3${RESET} TO IS VERSION ${YELLOW}$4${RESET} IN THE ${YELLOW}$5${RESET} DATABASE, RUNNING ON THE ${YELLOW}$6${RESET} OPERATING SYSTEM."
-echo "${ORANGE}"
-print_terminal_line ""
-echo "${RESET}"
+echo "${ORANGE}WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING! THIS TIME WE WILL PERFORM A MIGRATION FROM IS VERSION ${RESET}${YELLOW}$3${RESET}${ORANGE} TO IS VERSION ${RESET}${YELLOW}$4${RESET}${ORANGE} IN THE ${RESET}${YELLOW}$5${RESET}${ORANGE} DATABASE, RUNNING ON THE ${RESET}${YELLOW}$6${RESET}${ORANGE} OPERATING SYSTEM.${RESET}"
 
 # Print instructions with different colors and formatting using echo command
 echo "${ORANGE}${RESET} ${CYAN}1. PRIOR TO PROCEEDING, ENSURE THAT YOU HAVE MADE THE NECESSARY MODIFICATIONS IN THE env.sh FILE TO ALIGN WITH YOUR REQUIREMENTS.${RESET} ${ORANGE}${RESET}"
