@@ -14,6 +14,7 @@ RESET='\033[0m'            # reset color
 sudo apt-get -qq update
 
 # Print welcome message in terminal
+echo
 echo "${ORANGE}"PROCESS STARTED!"${RESET}"
 
 cd "$AUTOMATION_HOME"
@@ -42,14 +43,13 @@ combinedMigratingVersion="wso2is-${migratingVersion}"
 sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh
 
 # Define the message in a variable for easier modification
-echo
 echo "${ORANGE}"WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING!"${RESET}"
 echo "${ORANGE}"THIS TIME WE DO A MIGRATION FROM IS "${RESET}" "${YELLOW}" $3 "${RESET}" "${ORANGE}" TO IS "${RESET}" "${YELLOW}" $4 "${RESET}" "${ORANGE}" IN "${RESET}" "${YELLOW}" $5 "${RESET}" "${ORANGE}" DATABASE AND "${RESET}" "${YELLOW}" $6 "${RESET}" "${ORANGE}" OS "${RESET}"
 
 # Print instructions with different colors and formatting using echo command
-echo "${ORANGE}*${RESET} ${CYAN}1.Before proceeding make sure you have done needed changes in env.sh file${RESET} ${ORANGE}${RESET}"
-echo "${ORANGE}*${RESET} ${CYAN}2.If you need to add any new feature like Data population or a Verification add them in data-population-and-validation directory ${RESET} ${ORANGE}${RESET}"
-echo "${ORANGE}*${RESET} ${CYAN}3.Check whether deployment.toml in migration-automation matches your database configs${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}${RESET} ${CYAN}1.Before proceeding make sure you have done needed changes in env.sh file${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}${RESET} ${CYAN}2.If you need to add any new feature like Data population or a Verification add them in data-population-and-validation directory ${RESET} ${ORANGE}${RESET}"
+echo "${ORANGE}${RESET} ${CYAN}3.Check whether deployment.toml in migration-automation matches your database configs${RESET} ${ORANGE}${RESET}"
 echo
 
 # Source env file
