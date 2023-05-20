@@ -13,10 +13,6 @@ RESET='\033[0m'            # reset color
 # Update the system before downloading packages
 sudo apt-get -qq update
 
-# Print welcome message in terminal
-echo
-echo "${ORANGE}"PROCESS STARTED!"${RESET}"
-
 cd "$AUTOMATION_HOME"
 cd migration-automation
 
@@ -51,6 +47,9 @@ echo "${ORANGE}${RESET} ${CYAN}1.Before proceeding make sure you have done neede
 echo "${ORANGE}${RESET} ${CYAN}2.If you need to add any new feature like Data population or a Verification add them in data-population-and-validation directory ${RESET} ${ORANGE}${RESET}"
 echo "${ORANGE}${RESET} ${CYAN}3.Check whether deployment.toml in migration-automation matches your database configs${RESET} ${ORANGE}${RESET}"
 echo
+
+# Print welcome message in terminal
+echo "${ORANGE}"PROCESS STARTED!"${RESET}"
 
 # Source env file
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
