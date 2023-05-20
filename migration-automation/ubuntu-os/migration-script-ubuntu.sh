@@ -123,15 +123,14 @@ cd "$AUTOMATION_HOME"
 #sh setup-mysql.sh $5 $6
 
 # Copy the JDBC driver to the target directory
-
 # Get the values of the inputs
-database=$5
+database="$5"
 
 # Method to copy the relevant JDBC driver to the target directory based on the database input
 copy_jdbc_driver() {
-  local database=$5
+  local database="$1"
 
-  case $database in
+  case "$database" in
     "mysql")
       cp -r "$JAR_MYSQL" "$LIB"
       ;;
@@ -145,15 +144,15 @@ copy_jdbc_driver() {
 
   # Wait for the JDBC driver to be copied to the lib folder
   while [ ! -f "$LIB/$database-jdbc-driver.jar" ]; do
-    echo "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
+    echo -e "${GREEN}==> JDBC driver not found in lib folder, waiting...${RESET}"
     sleep 5
   done
 
-  echo "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
+  echo -e "${GREEN}==> JDBC driver found in lib folder, continuing...${RESET}"
 }
 
 # Copy the relevant JDBC driver to the target directory based on the database input
-copy_jdbc_driver $database
+copy_jdbc_driver "$database"
 
 # Start wso2IS
 echo "${GREEN}==> Identity server $3 started running!${RESET}"
