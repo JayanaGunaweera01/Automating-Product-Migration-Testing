@@ -43,16 +43,16 @@ mysql -u root -proot -e "CREATE DATABASE testdb CHARACTER SET latin1;"
 cd $UTILS_MAC
 
 # specify the path to the MySQL script
-script_path1="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/mysql.sql"
-script_path2="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/mysql.sql"
-script_path3="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/identity/uma/mysql.sql"
-script_path4="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/consent/mysql.sql"
-script_path5="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts/metrics/mysql.sql"
+script_path1="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/db-scripts/IS-5.11/mysql.sql"
+script_path2="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/mysql.sql"
+script_path3="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/uma/mysql.sql"
+script_path4="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mysql.sql"
+script_path5="/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mysql.sql"
 
 # specify the database name
 database="testdb"
 
-cd "/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/dbscripts"
+cd "/Users/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/utils/db-scripts/IS-5.11"
 # execute the script against the specified database
 mysql -u root -proot -D testdb < $script_path1
 mysql -u root -proot -D testdb < $script_path2
@@ -60,4 +60,4 @@ mysql -u root -proot -D testdb < $script_path3
 mysql -u root -proot -D testdb < $script_path4
 mysql -u root -proot -D testdb < $script_path5
 
-echo "\033[0;32m\033[1mCreated database and run needed sql scripts against it - for current IS"   
+echo "${GREEN}Created database and ran needed SQL scripts against it - for current IS${RESET}"
