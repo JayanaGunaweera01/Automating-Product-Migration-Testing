@@ -208,27 +208,64 @@ Execute the migration automation scripts:
 
 ## Technologies and Tools Used
 
-- wso2 Identity Server versions - 5.9.0, 5.10.0, 5.11.0, 6.0.0, 6.1.0, 6.2.0
-- wso2 migration client version - wso2is-migration-1.0.225.zip
-- wso2 REST APIs
-- wso2 SOAP APIs
-- Bash Scripting
-- Docker
-- Git
-- Github Actions
-- Curl
-- Powershell
-- Home Brew
-- Java 11 Temurin
-- Dbeaver
-- Meld
-- VsCode
-- SoapUI 5.7.0.desktop
-- Keystore Explorer
-- Postman
-- Mysql version - 8  (JAR - mysql-connector-java-8.0.29.jar)
-- Mssql version - 12 (JAR - mssql-jdbc-12.2.0.jre11.jar)
-- Posgresql version - 42 (JAR - postgresql-42.5.3.jar)
+This project utilizes the following technologies and tools:
+
+- **wso2 Identity Server Versions**:
+  - 5.9.0
+  - 5.10.0
+  - 5.11.0
+  - 6.0.0
+  - 6.1.0
+  - 6.2.0
+
+- **wso2 Migration Client**:
+  - Version: wso2is-migration-1.0.225.zip
+
+- **wso2 REST APIs**
+
+- **wso2 SOAP APIs**
+
+- **Bash Scripting**
+
+- **Docker**
+
+- **Git**
+
+- **Github Actions**
+
+- **Curl**
+
+- **Powershell**
+
+- **Home Brew**
+
+- **Java 11 Temurin**
+
+- **Dbeaver**
+
+- **Meld**
+
+- **VSCode**
+
+- **SoapUI 5.7.0.desktop**
+
+- **Keystore Explorer**
+
+- **Postman**
+
+- **MySQL Version**:
+  - 8
+  - JAR: mysql-connector-java-8.0.29.jar
+
+- **MSSQL Version**:
+  - 12
+  - JAR: mssql-jdbc-12.2.0.jre11.jar
+
+- **PostgreSQL Version**:
+  - 42
+  - JAR: postgresql-42.5.3.jar
+
+Feel free to explore the repository and leverage these technologies and tools for the project.
 
 
 ## License
