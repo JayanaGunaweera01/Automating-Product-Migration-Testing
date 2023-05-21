@@ -79,8 +79,6 @@ deployment_files["postgres_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0
 deployment_files["postgres_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1
 deployment_files["postgres_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2
 
-
-
 # Function to handle deployment based on database, OS, and version
 handle_deployment() {
     local database=$1
