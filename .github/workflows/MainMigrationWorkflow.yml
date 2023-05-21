@@ -227,7 +227,10 @@ jobs:
         run: |
           if [ -f "migration-automation/logs.txt" ]; then
             chmod +x migration-automation/logs.txt
-            sed -i 's/.*\(Error\|failed\|cannot\|Permission denied\).*/\o033[31m&\o033[0m/' migration-automation/logs.txt
+            sed -i -e 's/Error/\o033[31m&\o033[0m/g' \
+                  -e 's/failed/\o033[31m&\o033[0m/g' \
+                  -e 's/cannot/\o033[31m&\o033[0m/g' \
+                  -e 's/Permission denied/\o033[31m&\o033[0m/g' migration-automation/logs.txt
           fi
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v3
@@ -236,3 +239,4 @@ jobs:
           name: "migration-logs-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
+
