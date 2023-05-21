@@ -11,20 +11,9 @@
 [![Workflow Status](https://github.com/JayanaGunaweera01/Automating-Product-Migration-Testing/actions/workflows/.github/workflows/MainMigrationWorkflow.yml/badge.svg)](https://github.com/JayanaGunaweera01/Automating-Product-Migration-Testing/actions)
 
 
-## Repository Structure
+## Directory Structure
 
 This repository contains automation scripts and tools for automating product migration testing.
-
-It is organized into the following directories:
-
-- .github/workflows: Contains GitHub Actions workflows for CI/CD.
-- data-population-and-validation: Scripts for data population and validation.
-- documents: Documentation files related to the project.
-- local-setups: Scripts and configurations for setting up the local environment.
-- migration-automation: Scripts and utilities for automating product migration testing.
-- utils: Utility scripts and helper functions.
-
-## Directory Structure
 
 ```
 
@@ -173,6 +162,8 @@ Automating-Product-Migration-Testing
   - Each OS directory includes scripts specific to that operating system for migration automation, such as changing deployment toml files, changing migration configuration YAML files, copying jar files, migration scripts, and MySQL setup scripts.
   - The `deployment-tomls` directory includes subdirectories for different versions of the migration target (e.g., IS-5.10, IS-5.11) and respective deployment toml files for MSSQL, MySQL, and Postgre databases.
 
+ `utils`:
+ - Cintains utility scripts and helper tools.
 - `db-scripts`:
   - Contains subdirectories for different versions of the migration target (e.g., IS-5.11, IS-5.9) and respective subdirectories for database create scripts.
   - Additionally, the directory includes deployment toml files for MSSQL databases.
