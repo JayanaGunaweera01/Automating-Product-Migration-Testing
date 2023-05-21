@@ -33,6 +33,7 @@ if [ "$database" = "mysql" ] && [ "$os" = "ubuntu-latest" ]; then
     elif [ "$currentVersion" = "5.11.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11" >"$file"
+            echo "Deployment file for $currentVersion replaced successfully."
         done
     elif [ "$currentVersion" = "6.0.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
