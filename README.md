@@ -21,7 +21,7 @@ It is organized into the following directories:
 - local-setups: Scripts and configurations for setting up the local environment.
 - migration-automation: Scripts and utilities for automating product migration testing.
 - utils: Utility scripts and helper functions.
-- Feel free to explore each directory to find more details about the specific components and scripts.
+Feel free to explore each directory to find more details about the specific components and scripts.
 
 ## Getting Started
 
