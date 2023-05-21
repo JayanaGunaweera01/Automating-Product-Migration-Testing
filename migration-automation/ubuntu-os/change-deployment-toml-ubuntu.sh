@@ -6,7 +6,7 @@ RESET='\033[0m'           # reset color
 
 # Source env file
 ENV_FILE_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if "$OSTYPE" == "darwin"*; then
     ENV_FILE_PATH="./env.sh"
 fi
 
@@ -91,7 +91,7 @@ handle_deployment() {
         echo "Replacing deployment file for $database $os $version..."
         replace_deployment_file "$version" "$DEPLOYMENT_PATH" "$deployment_file"
     else
-        echo "Deployment file not found for $database $os $version."
+        echo "Deployment file not found for $database $os $version." 2>/dev/null
     fi
 }
 
