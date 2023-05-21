@@ -15,15 +15,8 @@ RESET='\033[0m'            # reset color
 SAD_FACE="\U0001F614"
 PARTY_POPPER="\U0001F389"
 
-
 # Update the system before downloading packages
 sudo apt-get -qq update
-
-# Source env file
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-chmod +x env.sh
-. ./env.sh
-echo "${GREEN}==> Env file sourced successfully${RESET}"
 
 cd "$AUTOMATION_HOME"
 cd migration-automation
@@ -63,6 +56,11 @@ echo
 # Print welcome message in terminal
 echo "${ORANGE}"PROCESS STARTED!"${RESET}"
 
+# Source env file
+cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+chmod +x env.sh
+. ./env.sh
+echo "${GREEN}==> Env file sourced successfully${RESET}"
 
 # Grant permission to execute sub sh files
 chmod +x create-new-database.sh
