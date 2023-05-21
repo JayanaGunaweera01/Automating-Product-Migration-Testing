@@ -34,6 +34,9 @@ perform_cat() {
 
 # Iterate over deployment files
 find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml' -exec bash -c '
+    source "$1"
+    shift
+
     for file do
         perform_cat "5_9" "$file"
         perform_cat "5_10" "$file"
@@ -42,7 +45,6 @@ find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml' -exec bash -c '
         perform_cat "6_1" "$file"
         perform_cat "6_2" "$file"
     done
-' bash {} +
-
+' bash "$sourceFile" {} +
 
 
