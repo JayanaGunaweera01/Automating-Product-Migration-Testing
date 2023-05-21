@@ -19,13 +19,13 @@ perform_cat() {
     cat_file=$1
 
     if [ "$database" = "mysql" ] && [ "$os" = "ubuntu-latest" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MYSQL_IS_${cat_file}" > "$DEPLOYMENT_PATH_NEW"
+        cat "$DEPLOYMENT_AUTOMATION_MYSQL_IS_${cat_file}" > "$DEPLOYMENT_PATH"
         echo "Content in 'DEPLOYMENT_AUTOMATION_MYSQL_IS_${cat_file}' catenated to 'DEPLOYMENT_AUTOMATION'."
     elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu-latest" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MSSQL_IS_${cat_file}" > "$DEPLOYMENT_PATH_NEW"
+        cat "$DEPLOYMENT_AUTOMATION_MSSQL_IS_${cat_file}" > "$DEPLOYMENT_PATH"
         echo "Content in 'DEPLOYMENT_AUTOMATION_MSSQL_IS_${cat_file}' catenated to 'DEPLOYMENT_AUTOMATION'."
     elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu-latest" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_IS_${cat_file}" > "$DEPLOYMENT_PATH_NEW"
+        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_IS_${cat_file}" > "$DEPLOYMENT_PATH"
         echo "Content in 'DEPLOYMENT_AUTOMATION_POSTGRE_IS_${cat_file}' catenated to 'DEPLOYMENT_AUTOMATION'."
     fi
 }
