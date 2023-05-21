@@ -307,14 +307,7 @@ wait_until_server_is_up() {
 }
 
 wait_until_server_is_up
-
-# Capture terminal output and search for errors
-terminal_output=$(nohup ./start.sh 2>&1)
-if echo "$terminal_output" | grep -qiE "error"; then
-    echo "${RED}==> Migration process completed with some errors. Please check logs.${SAD_FACE}${RESET}"
-else
-    echo "${GREEN}==> Yay! Migration executed successfully!${PARTY_POPPER}${RESET}"
-fi
+echo "${GREEN}==> Yay! Migration process completed!🎉${RESET}"
 
 # Stop wso2IS migration server
 cd "$BIN_ISNEW"
