@@ -117,22 +117,23 @@ echo "${GREEN}==> Given read write access to deployment.toml${RESET}"
 cd "$AUTOMATION_HOME"
 
 # Needed changes in deployment.toml
-#cd "$UBUNTU_PATH"
-#chmod +x change-deployment-toml-ubuntu.sh
-#sh change-deployment-toml-ubuntu.sh
-#echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
+cd "$UBUNTU_PATH"
+chmod +x change-deployment-toml-ubuntu.sh
+sh change-deployment-toml-ubuntu.sh
+echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Check if database is set to mysql
 if [ "$5" = "mysql" ]; then
-  # Setup mysql
-  cd "$UBUNTU_HOME"
-  chmod +x setup-mysql-ubuntu.sh
-  sh setup-mysql-ubuntu.sh
+    # Setup mysql
+    cd "$UBUNTU_HOME"
+    chmod +x setup-mysql-ubuntu.sh
+    sh setup-mysql-ubuntu.sh
 else
-  echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
+    echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
 fi
 
 # Copy Jars
+cd "$UBUNTU_HOME"
 chmod +x copy-jar-file-ubuntu.sh
 sh copy-jar-file-ubuntu.sh
 
