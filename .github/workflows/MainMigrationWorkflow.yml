@@ -49,7 +49,7 @@ on:
         default: https://github.com/wso2/product-is/releases/download/v6.0.0-rc2/wso2is-6.0.0-rc2.zip
         required: true
 jobs:
-  migration:
+  Migration-Testing-Automation:
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 💾 Checkout Code
