@@ -32,52 +32,28 @@ echo -e "${GREEN}==> Env file sourced successfully${RESET}"
 declare -A deployment_files
 
 # MySQL deployment files
-deployment_files["mysql_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9
-deployment_files["mysql_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10
-deployment_files["mysql_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11
-deployment_files["mysql_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0
-deployment_files["mysql_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1
-deployment_files["mysql_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2
+deployment_files["mysql_ubuntu_5.9.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9
+deployment_files["mysql_ubuntu_5.10.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10
+deployment_files["mysql_ubuntu_5.11.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11
+deployment_files["mysql_ubuntu_6.0.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0
+deployment_files["mysql_ubuntu_6.1.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1
+deployment_files["mysql_ubuntu_6.2.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2
 
 # MSSQL deployment files
-deployment_files["mssql_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9
-deployment_files["mssql_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10
-deployment_files["mssql_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11
-deployment_files["mssql_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0
-deployment_files["mssql_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1
-deployment_files["mssql_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2
+deployment_files["mssql_ubuntu_5.9.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_9
+deployment_files["mssql_ubuntu_5.10.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_10
+deployment_files["mssql_ubuntu_5.11.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_11
+deployment_files["mssql_ubuntu_6.0.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0
+deployment_files["mssql_ubuntu_6.1.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1
+deployment_files["mssql_ubuntu_6.2.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2
 
 # Postgres deployment files
-deployment_files["postgres_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9
-deployment_files["postgres_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10
-deployment_files["postgres_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_11
-deployment_files["postgres_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0
-deployment_files["postgres_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1
-deployment_files["postgres_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2
-
-# MySQL deployment files
-deployment_files["mysql_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9
-deployment_files["mysql_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10
-deployment_files["mysql_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11
-deployment_files["mysql_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0
-deployment_files["mysql_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1
-deployment_files["mysql_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2
-
-# MSSQL deployment files
-deployment_files["mssql_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9
-deployment_files["mssql_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10
-deployment_files["mssql_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11
-deployment_files["mssql_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0
-deployment_files["mssql_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1
-deployment_files["mssql_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2
-
-# Postgres deployment files
-deployment_files["postgres_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9
-deployment_files["postgres_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10
-deployment_files["postgres_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_11
-deployment_files["postgres_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0
-deployment_files["postgres_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1
-deployment_files["postgres_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2
+deployment_files["postgres_ubuntu_5.9.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9
+deployment_files["postgres_ubuntu_5.10.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10
+deployment_files["postgres_ubuntu_5.11.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11
+deployment_files["postgres_ubuntu_6.0.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0
+deployment_files["postgres_ubuntu_6.1.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1
+deployment_files["postgres_ubuntu_6.2.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2
 
 # Function to handle deployment based on database, OS, and version
 handle_deployment() {
