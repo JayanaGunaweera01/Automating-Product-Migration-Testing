@@ -196,13 +196,13 @@ jobs:
         if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
 
-      - name: 🗝️ Grant Permission to Execute Migration Automation Script 🐧 Ubuntu
+      - name: 🗝️ Grant Permission To Execute Migration Automation Script 🐧 Ubuntu
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
         run: chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh
-      - name: 🗝️ Grant Permission to Execute Migration Automation Script 🍎 MacOS
+      - name: 🗝️ Grant Permission To Execute Migration Automation Script 🍎 MacOS
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
         run: chmod +x migration-automation/mac-os/migration-script-mac.sh
-      - name: 🗝️ Grant Permission to Execute Migration Automation Script 🪟 Windows
+      - name: 🗝️ Grant Permission To Execute Migration Automation Script 🪟 Windows
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'windows-latest' }}
         run: chmod +x migration-automation/windows-os/migration-script-windows.sh
 
