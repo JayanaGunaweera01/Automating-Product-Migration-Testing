@@ -16,23 +16,23 @@ chmod +x env.sh
 echo "${GREEN}==> Env file sourced successfully${RESET}"
 
 
-if $database = "mysql" && $os = "ubuntu-latest" ; then
-    if $currentVersion = "5.9.0"; then
+if $database == "mysql" && $os == "ubuntu-latest" ; then
+    if $currentVersion == "5.9.0"; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9" >"$file"
         done
         echo "Deployment file for $currentVersion replaced successfully."
-    elif $currentVersion" = "5.10.0"; then
+    elif $currentVersion" == "5.10.0"; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10" >"$file"
         done
         echo "Deployment file for $currentVersion replaced successfully."
-    elif $currentVersion = "5.11.0"; then
+    elif $currentVersion == "5.11.0"; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11" >"$file"
         done
         echo "Deployment file for $currentVersion replaced successfully."
-    elif [ "$currentVersion" = "6.0.0" ]; then
+    elif [ "$currentVersion" == "6.0.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0" >"$file"
         done
@@ -41,7 +41,7 @@ if $database = "mysql" && $os = "ubuntu-latest" ; then
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1" >"$file"
         done
          echo "Deployment file for $currentVersion replaced successfully."
-    elif $currentVersion" = "6.2.0"; then
+    elif $currentVersion" == "6.2.0"; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2" >"$file"
         done
