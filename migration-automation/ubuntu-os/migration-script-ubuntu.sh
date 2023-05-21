@@ -193,6 +193,36 @@ if [ "$database" = "postgres" ] && [ "$os" = "ubuntu-latest" ]; then
     fi
 fi
 
+if [ "$database" = "mysql" ] && [ "$os" = "ubuntu-latest" ]; then
+    if [ "$currentVersion" = "5.9.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.10.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.11.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11" >"$file"
+        done
+    elif [ "$currentVersion" = "6.0.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0" >"$file"
+        done
+    elif [ "$currentVersion" = "6.1.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1" >"$file"
+        done
+    elif [ "$currentVersion" = "6.2.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2" >"$file"
+        done
+    fi
+fi
+
 if [ "$5" = "mysql" ] && [ "$6" = "macos-latest" ]; then
     if [ "$3" = "5.9.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
