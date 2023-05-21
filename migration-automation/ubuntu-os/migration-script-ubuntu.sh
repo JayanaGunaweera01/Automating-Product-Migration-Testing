@@ -194,31 +194,32 @@ if [ "$database" = "postgres" ] && [ "$os" = "ubuntu-latest" ]; then
 fi
 
 if [ "$5" = "mysql" ] && [ "$6" = "macos-latest" ]; then
-    if [ "$5" = "5.9.0" ]; then
+    if [ "$3" = "5.9.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9" >"$file"
         done
-        echo "Deployment file for $5 replaced successfully."
-    elif [ "$5" = "5.10.0" ]; then
+        echo "Deployment file for $3 replaced successfully."
+    elif [ "$3" = "5.10.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10" >"$file"
         done
-        echo "Deployment file for $5replaced successfully."
-    elif [ "$5" = "5.11.0" ]; then
+        echo "Deployment file for $3replaced successfully."
+    elif [ "$3" = "5.11.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11" >"$file"
+            echo "Deployment file for $3 replaced successfully."
         done
-        echo "Deployment file for $5 replaced successfully."
-    elif [ "$5" = "6.0.0" ]; then
+        echo "Deployment file for $3 replaced successfully."
+    elif [ "$3" = "6.0.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0" >"$file"
-            echo "Deployment file for $5replaced successfully."
+            echo "Deployment file for $3 replaced successfully."
         done
-    elif [ "$5" = "6.1.0" ]; then
+    elif [ "$3" = "6.1.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1" >"$file"
         done
-    elif [ "$5" = "6.2.0" ]; then
+    elif [ "$3" = "6.2.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2" >"$file"
         done
