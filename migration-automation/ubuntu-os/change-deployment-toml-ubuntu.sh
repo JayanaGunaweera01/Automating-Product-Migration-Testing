@@ -33,11 +33,11 @@ perform_cat() {
 }
 
 # Iterate over deployment files
-find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml' | while read -r file; do
+while IFS= read -r file; do
     perform_cat "5_9" "$file"
     perform_cat "5_10" "$file"
     perform_cat "5_11" "$file"
     perform_cat "6_0" "$file"
     perform_cat "6_1" "$file"
     perform_cat "6_2" "$file"
-done
+done < <(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml')
