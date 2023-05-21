@@ -10,34 +10,30 @@ database=$5
 os=$6
 
 # Source env file
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
 chmod +x env.sh
 . ./env.sh
-echo "${GREEN}==> Env file sourced successfully${RESET}"
+echo "==> ${GREEN}Env file sourced successfully${RESET}"
 
 # Function to perform cat operation based on conditions
 perform_cat() {
     cat_file=$1
-    deployment_file=$2
 
     if [ "$database" = "mysql" ] && [ "$os" = "ubuntu-latest" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
-        echo "Deployment file '$deployment_file' replaced."
+        cat "$DEPLOYMENT_AUTOMATION_MYSQL_IS_${cat_file}" > "$DEPLOYMENT_PATH_NEW"
+        echo "Content in 'DEPLOYMENT_AUTOMATION_MYSQL_IS_${cat_file}' catenated to 'DEPLOYMENT_AUTOMATION'."
     elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu-latest" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
-        echo "Deployment file '$deployment_file' replaced."
+        cat "$DEPLOYMENT_AUTOMATION_MSSQL_IS_${cat_file}" > "$DEPLOYMENT_PATH_NEW"
+        echo "Content in 'DEPLOYMENT_AUTOMATION_MSSQL_IS_${cat_file}' catenated to 'DEPLOYMENT_AUTOMATION'."
     elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu-latest" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_${cat_file}" >"$deployment_file"
-        echo "Deployment file '$deployment_file' replaced."
+        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_IS_${cat_file}" > "$DEPLOYMENT_PATH_NEW"
+        echo "Content in 'DEPLOYMENT_AUTOMATION_POSTGRE_IS_${cat_file}' catenated to 'DEPLOYMENT_AUTOMATION'."
     fi
 }
 
-# Iterate over deployment files
-find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml' | while read -r file; do
-    perform_cat "5_9" "$file"
-    perform_cat "5_10" "$file"
-    perform_cat "5_11" "$file"
-    perform_cat "6_0" "$file"
-    perform_cat "6_1" "$file"
-    perform_cat "6_2" "$file"
-done
+# Perform cat operation based on conditions
+perform_cat "5.9.0"
+perform_cat "5.10.0"
+perform_cat "5.11.0"
+perform_cat "6.0.0"
+perform_cat "6.1.0"
+perform_cat "6.2.0"
