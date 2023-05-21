@@ -4,7 +4,9 @@
 
 :small_blue_diamond: The client needs to be tested manually when we do a new release with different infrastructure combinations such as database and OS.
 
-:dart: We can reduce that overhead by automating the migration client test execution.:v:
+:small_blue_diamond: We can reduce that overhead by automating the migration client test execution.:v:
+
+## Workflow Status
 
 [![Workflow Status](https://github.com/JayanaGunaweera01/Automating-Product-Migration-Testing/actions/workflows/.github/workflows/MainMigrationWorkflow.yml/badge.svg)](https://github.com/JayanaGunaweera01/Automating-Product-Migration-Testing/actions)
 
