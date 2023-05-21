@@ -4,131 +4,196 @@
 GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
 
+# Get the value of the inputs
+currentVersion=$3
+database=$5
+os=$6
+
 # Source env file
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
 chmod +x env.sh
 . ./env.sh
 echo "${GREEN}==> Env file sourced successfully${RESET}"
 
-# Function to replace deployment file
-replace_deployment_file() {
-    local version=$1
-    local file_path=$2
-    local deployment_file=$3
-
-    for file in $(find "$file_path" -type f -name 'deployment.toml'); do
-        cat "$deployment_file" >"$file"
-    done
-
-    echo "Deployment file for $version replaced successfully."
-}
-
-# Source env file
 chmod +x "$ENV_FILE_PATH"
 source "$ENV_FILE_PATH"
 echo -e "${GREEN}==> Env file sourced successfully${RESET}"
 
-# Associative array to store deployment file paths
-declare -A deployment_files
-
-# MySQL deployment files
-deployment_files["mysql_ubuntu_5.9.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9
-deployment_files["mysql_ubuntu_5.10.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10
-deployment_files["mysql_ubuntu_5.11.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11
-deployment_files["mysql_ubuntu_6.0.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0
-deployment_files["mysql_ubuntu_6.1.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1
-deployment_files["mysql_ubuntu_6.2.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2
-
-# MSSQL deployment files
-deployment_files["mssql_ubuntu_5.9.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_9
-deployment_files["mssql_ubuntu_5.10.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_10
-deployment_files["mssql_ubuntu_5.11.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_11
-deployment_files["mssql_ubuntu_6.0.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0
-deployment_files["mssql_ubuntu_6.1.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1
-deployment_files["mssql_ubuntu_6.2.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2
-
-# Postgres deployment files
-deployment_files["postgres_ubuntu_5.9.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9
-deployment_files["postgres_ubuntu_5.10.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10
-deployment_files["postgres_ubuntu_5.11.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11
-deployment_files["postgres_ubuntu_6.0.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0
-deployment_files["postgres_ubuntu_6.1.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1
-deployment_files["postgres_ubuntu_6.2.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2
-
-# MySQL deployment files
-deployment_files["mysql_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9
-deployment_files["mysql_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10
-deployment_files["mysql_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11
-deployment_files["mysql_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0
-deployment_files["mysql_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1
-deployment_files["mysql_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2
-
-# MSSQL deployment files
-deployment_files["mssql_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9
-deployment_files["mssql_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10
-deployment_files["mssql_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11
-deployment_files["mssql_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0
-deployment_files["mssql_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1
-deployment_files["mssql_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2
-
-# Postgres deployment files
-deployment_files["postgres_mac_5.9.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9
-deployment_files["postgres_mac_5.10.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10
-deployment_files["postgres_mac_5.11.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_11
-deployment_files["postgres_mac_6.0.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0
-deployment_files["postgres_mac_6.1.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1
-deployment_files["postgres_mac_6.2.0"]=$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2
-
-# Function to handle deployment based on database, OS, and version
-handle_deployment() {
-    local database=$1
-    local os=$2
-    local version=$3
-
-    local deployment_file=${deployment_files["$database"_"$os"_"$version"]}
-
-    if [ -n "$deployment_file" ]; then
-        echo "Replacing deployment file for $database $os $version..."
-        replace_deployment_file "$version" "$DEPLOYMENT_PATH" "$deployment_file"
-    else
-        echo "Deployment file not found for $database $os $version." 2>/dev/null
-    fi
-}
-
-# Handle deployment for MySQL on Ubuntu
 if [ "$database" = "mysql" ] && [ "$os" = "ubuntu-latest" ]; then
-    echo "Handling deployment for MySQL on Ubuntu..."
-    handle_deployment "$database" "$os" "$currentVersion"
+    if [ "$currentVersion" = "5.9.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.10.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.11.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11" >"$file"
+        done
+    elif [ "$currentVersion" = "6.0.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0" >"$file"
+        done
+    elif [ "$currentVersion" = "6.1.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1" >"$file"
+        done
+    elif [ "$currentVersion" = "6.2.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2" >"$file"
+        done
+    fi
 fi
 
-# Handle deployment for MSSQL on Ubuntu
 if [ "$database" = "mssql" ] && [ "$os" = "ubuntu-latest" ]; then
-    echo "Handling deployment for MSSQL on Ubuntu..."
-    handle_deployment "$database" "$os" "$currentVersion"
+    if [ "$currentVersion" = "5.9.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_9" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.10.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_10" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.11.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_11" >"$file"
+        done
+    elif [ "$currentVersion" = "6.0.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0" >"$file"
+        done
+    elif [ "$currentVersion" = "6.1.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1" >"$file"
+        done
+    elif [ "$currentVersion" = "6.2.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2" >"$file"
+        done
+    fi
 fi
 
-# Handle deployment for Postgres on Ubuntu
 if [ "$database" = "postgres" ] && [ "$os" = "ubuntu-latest" ]; then
-    echo "Handling deployment for Postgres on Ubuntu..."
-    handle_deployment "$database" "$os" "$currentVersion"
+    if [ "$currentVersion" = "5.9.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.10.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.11.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11" >"$file"
+        done
+    elif [ "$currentVersion" = "6.0.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0" >"$file"
+        done
+    elif [ "$currentVersion" = "6.1.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1" >"$file"
+        done
+    elif [ "$currentVersion" = "6.2.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2" >"$file"
+        done
+    fi
 fi
 
-# Handle deployment for MySQL on macOS
 if [ "$database" = "mysql" ] && [ "$os" = "macos-latest" ]; then
-    echo "Handling deployment for MySQL on macOS..."
-    handle_deployment "$database" "$os" "$currentVersion"
+    if [ "$currentVersion" = "5.9.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.10.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.11.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11" >"$file"
+        done
+    elif [ "$currentVersion" = "6.0.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0" >"$file"
+        done
+    elif [ "$currentVersion" = "6.1.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1" >"$file"
+        done
+    elif [ "$currentVersion" = "6.2.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2" >"$file"
+        done
+    fi
 fi
 
-# Handle deployment for MSSQL on macOS
 if [ "$database" = "mssql" ] && [ "$os" = "macos-latest" ]; then
-    echo "Handling deployment for MSSQL on macOS..."
-    handle_deployment "$database" "$os" "$currentVersion"
+    if [ "$currentVersion" = "5.9.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.10.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.11.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11" >"$file"
+        done
+    elif [ "$currentVersion" = "6.0.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0" >"$file"
+        done
+    elif [ "$currentVersion" = "6.1.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1" >"$file"
+        done
+    elif [ "$currentVersion" = "6.2.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2" >"$file"
+        done
+    fi
 fi
-
-# Handle deployment for Postgres on macOS
 if [ "$database" = "postgres" ] && [ "$os" = "macos-latest" ]; then
-    echo "Handling deployment for Postgres on macOS..."
-    handle_deployment "$database" "$os" "$currentVersion"
+    if [ "$currentVersion" = "5.9.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.10.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10" >"$file"
+        done
+        echo "Deployment file for $currentVersion replaced successfully."
+    elif [ "$currentVersion" = "5.11.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_11" >"$file"
+        done
+    elif [ "$currentVersion" = "6.0.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0" >"$file"
+        done
+    elif [ "$currentVersion" = "6.1.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1" >"$file"
+        done
+    elif [ "$currentVersion" = "6.2.0" ]; then
+        for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2" >"$file"
+        done
+    fi
 fi
-
-echo "Deployment completed."
