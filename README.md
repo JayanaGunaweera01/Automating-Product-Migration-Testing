@@ -163,7 +163,7 @@ Automating-Product-Migration-Testing
   - The `deployment-tomls` directory includes subdirectories for different versions of the migration target (e.g., IS-5.10, IS-5.11) and respective deployment toml files for MSSQL, MySQL, and Postgre databases.
 
  `utils`:
- - Cintains utility scripts and helper tools.
+ - Contains utility scripts and helper tools.
 - `db-scripts`:
   - Contains subdirectories for different versions of the migration target (e.g., IS-5.11, IS-5.9) and respective subdirectories for database create scripts.
   - Additionally, the directory includes deployment toml files for MSSQL databases.
