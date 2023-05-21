@@ -24,6 +24,159 @@ It is organized into the following directories:
 - migration-automation: Scripts and utilities for automating product migration testing.
 - utils: Utility scripts and helper functions.
 
+Directory Structure
+==============================================
+
+Automating-Product-Migration-Testing
+├── .github
+│   └── workflows
+│       └── MainMigrationWorkflow.yml
+├── data-population-and-validation
+│   ├── mac-os
+│   │   ├── 1-user-creation
+│   │   ├── 2-tenant-creation
+│   │   ├── 3-userstore-creation
+│   │   ├── 4-service-provider-creation
+│   │   ├── 5-group-creation
+│   │   └── data-population-script.sh
+│   ├── ubuntu-os
+│   │   ├── 1-user-creation
+│   │   ├── 2-tenant-creation
+│   │   ├── 3-userstore-creation
+│   │   ├── 4-service-provider-creation
+│   │   ├── 5-group-creation
+│   │   └── data-population-script.sh
+│   └── windows-os
+│       ├── 1-user-creation
+│       ├── 2-tenant-creation
+│       ├── 3-userstore-creation
+│       ├── 4-service-provider-creation
+│       ├── 5-group-creation
+│       └── data-population-script.sh
+├── documents
+│   └── Automating Product Migration Testing.word
+├── local-setups
+│   ├── mac-os
+│   │   ├── change-deployment-toml-mac.sh
+│   │   ├── change-migration-config-yaml-mac.sh
+│   │   ├── copy-jar-file-mac.sh
+│   │   ├── migration-script-mac.sh
+│   │   └── setup-mysql-mac.sh
+│   ├── ubuntu-os
+│   │   ├── change-deployment-toml-ubuntu-new.sh
+│   │   ├── change-deployment-toml-ubuntu.sh
+│   │   ├── change-migration-config-yaml-ubuntu.sh
+│   │   ├── copy-jar-file-ubuntu.sh
+│   │   ├── migration-script-ubuntu.sh
+│   │   └── setup-mysql-ubuntu.sh
+│   └── windows-os
+│       ├── change-deployment-toml-windows.ps1
+│       ├── change-migration-config-yaml-windows.ps1
+│       ├── migration-script-windows.ps1
+│       ├── enter-login-credentials.sh
+│       ├── env.sh
+│       ├── logs.txt
+│       ├── setup-mysql.sh
+│       ├── start-server-is-new.sh
+│       └── start-server-is-old.sh
+├── migration-automation
+│   ├── deployment-tomls
+│   │   ├── IS-5.10
+│   │   │   ├── deployment-mssql.toml
+│   │   │   ├── deployment-mysql.toml
+│   │   │   └── deployment-postgre.toml
+│   │   ├── IS-5.11
+│   │   │   ├── deployment-mssql.toml
+│   │   │   ├── deployment-mysql.toml
+│   │   │   └── deployment-postgre.toml
+│   │   └── IS-5.9
+│   │       ├── deployment-mssql.toml
+│   │       ├── deployment-mysql.toml
+│   │       └── deployment-postgre.toml
+│   ├── mac-os
+│   │   ├── change-deployment-toml-mac.sh
+│   │   ├── change-migration-config-yaml-mac.sh
+│   │   ├── copy-jar-file-mac.sh
+│   │   ├── migration-script-mac.sh
+│   │   └── setup-mysql-mac.sh
+│   ├── ubuntu-os
+│   │   ├── change-deployment-toml-ubuntu-new.sh
+│   │   ├── change-deployment-toml-ubuntu.sh
+│   │   ├── change-migration-config-yaml-ubuntu.sh
+│   │   ├── copy-jar-file-ubuntu.sh
+│   │   ├── migration-script-ubuntu.sh
+│   │   └── setup-mysql-ubuntu.sh
+│   └── windows-os
+│       ├── change-deployment-toml-windows.ps1
+│       ├── change-migration-config-yaml-windows.ps1
+│       ├── migration-script-windows.ps1
+│       ├── enter-login-credentials.sh
+│       ├── env.sh
+│       ├── logs.txt
+│       ├── setup-mysql.sh
+│       ├── start-server-is-new.sh
+│       └── start-server-is-old.sh
+├── db-scripts
+│   ├── IS-5.11
+│   │   ├── database-create-scripts
+│   │   └── deployment-mssql.toml
+│   └── IS-5.9
+│       ├── database-create-scripts
+│       └── deployment-mssql.toml
+├── jars
+│   ├── mssql
+│   │   ├── mssql-jdbc-12.2.0.jre11.jar
+│   │   ├── mssql-jdbc-12.2.0.jre8.jar
+│   │   └── mssql-jdbc-9.2.0.jre8.jar
+│   ├── mysql
+│   │   └── mysql-connector-java-8.0.29.jar
+│   └── postgresql
+│       └── postgresql-42.5.3.jar
+└── migration-client
+    └── wso2is-migration-1.0.225.zip
+├── LICENSE
+└── README.md
+
+.github/workflows:
+
+Contains the workflow file MainMigrationWorkflow.yml, which defines the main migration workflow for the repository.
+data-population-and-validation:
+
+Contains subdirectories for different operating systems: mac-os, ubuntu-os, and windows-os.
+Each OS directory includes scripts for data population and validation, such as user creation, tenant creation, user store creation, service provider creation, and group creation.
+Additionally, the directory includes a common script named data-population-script.sh for data population.
+documents:
+
+Contains the document file Automating Product Migration Testing.word, which likely provides documentation or instructions related to automating product migration testing.
+local-setups:
+
+Contains subdirectories for different operating systems: mac-os, ubuntu-os, and windows-os.
+Each OS directory includes setup scripts specific to that operating system, such as changing deployment toml files, migration configuration YAML files, copying jar files, migration scripts, and MySQL setup scripts.
+migration-automation:
+
+Contains subdirectories for different operating systems: mac-os, ubuntu-os, and windows-os.
+Each OS directory includes scripts specific to that operating system for migration automation, such as changing deployment toml files, changing migration configuration YAML files, copying jar files, migration scripts, and MySQL setup scripts.
+The deployment-tomls directory includes subdirectories for different versions of the migration target (e.g., IS-5.10, IS-5.11) and respective deployment toml files for MSSQL, MySQL, and Postgre databases.
+db-scripts:
+
+Contains subdirectories for different versions of the migration target (e.g., IS-5.11, IS-5.9) and respective subdirectories for database create scripts.
+Additionally, the directory includes deployment toml files for MSSQL databases.
+jars:
+
+Contains subdirectories for different database types: mssql, mysql, and postgresql.
+The mssql directory includes multiple jar files for MSSQL database connectivity.
+The mysql directory includes the mysql-connector-java-8.0.29.jar file for MySQL database connectivity.
+The postgresql directory includes the postgresql-42.5.3.jar file for PostgreSQL database connectivity.
+migration-client:
+
+Contains the wso2is-migration-1.0.225.zip file, which represents a migration client for performing specific migration tasks.
+LICENSE:
+
+Represents the license file (LICENSE) for the repository, which is Apache License 2.0.
+README.md:
+
+Represents the readme file (README.md) for the repository, which provides information about the project, its purpose, and instructions for usage or contribution.
+
 Feel free to explore each directory to find more details about the specific components and scripts.
 
 ## Getting Started
