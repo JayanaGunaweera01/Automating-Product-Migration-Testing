@@ -15,10 +15,6 @@ cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Mi
 source ./env.sh
 echo "\033[0;32m\033[1mEnv file sourced successfully\033[0;m"
 
-currentVersion=$3
-database=$5
-os=$6
-
 if [ "$5" = "mysql" ] && [ "$6" = "ubuntu-latest" ]; then
     if [ "$currentVersion" = "5.9.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
