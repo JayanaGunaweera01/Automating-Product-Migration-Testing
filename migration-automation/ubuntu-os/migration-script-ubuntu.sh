@@ -62,6 +62,7 @@ chmod +x env.sh
 . ./env.sh
 echo "${GREEN}==> Env file sourced successfully${RESET}"
 
+
 # Grant permission to execute sub sh files
 chmod +x create-new-database.sh
 chmod +x copy-jar-file.sh
