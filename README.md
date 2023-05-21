@@ -38,7 +38,7 @@ Execute the migration automation scripts:
 
 - Execute the main migration workflow with your inputs.
 
-- Get urls of wso2 identity server releases from : 
+- Get urls of wso2 identity server releases from : https://github.com/wso2/product-is/releases
 
 - Follow the on-screen prompts to proceed with the migration testing.
 
