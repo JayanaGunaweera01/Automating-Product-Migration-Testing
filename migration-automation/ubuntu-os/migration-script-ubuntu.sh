@@ -60,7 +60,7 @@ echo "${ORANGE}"PROCESS STARTED!"${RESET}"
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
 chmod +x env.sh
 . ./env.sh
-echo "==> ${GREEN}Env file sourced successfully${RESET}"
+echo "${GREEN}==> Env file sourced successfully${RESET}"
 
 # Grant permission to execute sub sh files
 chmod +x create-new-database.sh
