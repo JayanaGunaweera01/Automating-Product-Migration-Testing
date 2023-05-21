@@ -170,7 +170,7 @@ Automating-Product-Migration-Testing
 
 - `jars`:
   - Contains subdirectories for different database types: `mssql`, `mysql`, and `postgresql`.
-  - The `mssql` directory includes multiple jar files for MSSQL database connectivity.
+  - The `mssql` directory includes `mssql-jdbc-12.2.0.jre11.jar` file for MSSQL database connectivity.
   - The `mysql` directory includes the `mysql-connector-java-8.0.29.jar` file for MySQL database connectivity.
   - The `postgresql` directory includes the `postgresql-42.5.3.jar` file for PostgreSQL database connectivity.
 
