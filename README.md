@@ -25,8 +25,8 @@ It is organized into the following directories:
 - utils: Utility scripts and helper functions.
 
 ## Directory Structure
-==============================================
-```plaintext
+
+```
 
 Automating-Product-Migration-Testing
 ├── .github
@@ -151,7 +151,7 @@ Automating-Product-Migration-Testing
 ├── LICENSE
 └── README.md
 
-```plaintext
+```
 
 - `.github/workflows`:
   - Contains the workflow file `MainMigrationWorkflow.yml`, which defines the main migration workflow for the repository.
