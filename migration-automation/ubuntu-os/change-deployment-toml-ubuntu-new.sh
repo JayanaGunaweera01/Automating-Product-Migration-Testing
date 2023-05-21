@@ -20,13 +20,13 @@ perform_cat() {
     cat_file=$1
     deployment_file=$2
 
-    if [ "$database" = "mysql" ] && [ "$os" = "ubuntu" ] && [ "$migratingVersion" = "$cat_file" ]; then
+    if [ "$database" = "mysql" ] && [ "$os" = "ubuntu-latest" ] && [ "$migratingVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
         echo "Deployment file '$deployment_file' replaced."
-    elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu" ] && [ "$migratingVersion" = "$cat_file" ]; then
+    elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu-latest" ] && [ "$migratingVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
         echo "Deployment file '$deployment_file' replaced."
-    elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu" ] && [ "$migratingVersion" = "$cat_file" ]; then
+    elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu-latest" ] && [ "$migratingVersion" = "$cat_file" ]; then
         cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_${cat_file}" >"$deployment_file"
         echo "Deployment file '$deployment_file' replaced."
     fi
