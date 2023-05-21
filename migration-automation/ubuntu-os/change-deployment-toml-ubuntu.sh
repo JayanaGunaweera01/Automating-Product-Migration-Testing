@@ -20,7 +20,7 @@ cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Mi
 source ./env.sh
 echo "\033[0;32m\033[1mEnv file sourced successfully\033[0;m"
 
-if [ "database" = "mysql" ] && [ "os" = "ubuntu-latest" ]; then
+if [ database = "mysql" ] && [ os = "ubuntu-latest" ]; then
     if [ "currentVersion" = "5.9.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9" >"$file"
@@ -31,7 +31,7 @@ if [ "database" = "mysql" ] && [ "os" = "ubuntu-latest" ]; then
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10" >"$file"
         done
         echo "Deployment file for $currentVersion replaced successfully."
-    elif [ "currentVersion" = "5.11.0" ]; then
+    elif [ currentVersion = "5.11.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11" >"$file"
             echo "Deployment file for currentVersion replaced successfully."
