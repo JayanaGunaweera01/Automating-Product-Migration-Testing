@@ -4,11 +4,6 @@
 GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
 
-# Get the value of the inputs
-currentVersion=$3
-database=$5
-os=$6
-
 # Source env file
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
 chmod +x env.sh
@@ -20,7 +15,7 @@ cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Mi
 source ./env.sh
 echo "\033[0;32m\033[1mEnv file sourced successfully\033[0;m"
 
-if [ "$5"  = "mysql" ] && [ "$6" = "ubuntu-latest" ]; then
+if [ $5  = "mysql" ] && [ $6 = "ubuntu-latest" ]; then
     if [ $3 = "5.9.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9" >"$file"
@@ -31,10 +26,10 @@ if [ "$5"  = "mysql" ] && [ "$6" = "ubuntu-latest" ]; then
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10" >"$file"
         done
         echo "Deployment file for $currentVersion replaced successfully."
-    elif [ "$3" = "5.11.0" ]; then
+    elif [ $3 = "5.11.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11" >"$file"
-            echo "Deployment file for "$3"replaced successfully."
+            echo "Deployment file for $3 replaced successfully."
         done
     elif [ "$currentVersion" = "6.0.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
