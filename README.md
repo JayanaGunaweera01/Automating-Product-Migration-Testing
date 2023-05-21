@@ -36,9 +36,9 @@ Configure the necessary environment variables:
 
 Execute the migration automation scripts:
 
-- Navigate to https://github.com/JayanaGunaweera01/Automating-Product-Migration-Testing/actions/workflows/MainMigrationWorkflow.yml 
-
 - Get urls of wso2 identity server releases from : https://github.com/wso2/product-is/releases
+
+- Navigate to https://github.com/JayanaGunaweera01/Automating-Product-Migration-Testing/actions/workflows/MainMigrationWorkflow.yml 
 
 - Execute the main migration workflow with your inputs.
 
