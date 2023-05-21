@@ -15,25 +15,24 @@ chmod +x env.sh
 . ./env.sh
 echo "${GREEN}==> Env file sourced successfully${RESET}"
 
-# Function to perform cat operation based on conditions
-perform_cat() {
-    cat_file=$1
-    deployment_file=$2
-
-    if [ "$database" = "mysql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
-        echo "Deployment file '$deployment_file' replaced."
-    elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
-        echo "Deployment file '$deployment_file' replaced."
-    elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
-        cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_${cat_file}" >"$deployment_file"
-        echo "Deployment file '$deployment_file' replaced."
-    fi
-}
-
 # Iterate over deployment files
 find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml' -exec bash -c '
+    perform_cat() {
+        cat_file=$1
+        deployment_file=$2
+    
+        if [ "$database" = "mysql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
+            cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
+            echo "Deployment file '$deployment_file' replaced."
+        elif [ "$database" = "mssql" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
+            cat "$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_${cat_file}" >"$deployment_file"
+            echo "Deployment file '$deployment_file' replaced."
+        elif [ "$database" = "postgres" ] && [ "$os" = "ubuntu" ] && [ "$currentVersion" = "$cat_file" ]; then
+            cat "$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_${cat_file}" >"$deployment_file"
+            echo "Deployment file '$deployment_file' replaced."
+        fi
+    }
+
     for file do
         perform_cat "5_9" "$file"
         perform_cat "5_10" "$file"
@@ -43,4 +42,5 @@ find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml' -exec bash -c '
         perform_cat "6_2" "$file"
     done
 ' bash {} +
+
 
