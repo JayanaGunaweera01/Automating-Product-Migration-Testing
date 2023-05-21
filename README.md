@@ -187,23 +187,30 @@ Feel free to explore each directory to find more details about the specific comp
 
 ## Getting Started
 
-Configure the necessary environment variables:
+To get started with the migration process, follow the steps below:
 
-- Open the .env file in the root directory.
+### 1. Configure Environment Variables
 
-- Update the required environment variables according to your setup.
+- Open the `.env` file located in the root directory of the project.
 
-Execute the migration automation scripts:
+- Update the necessary environment variables based on your specific setup and requirements.
 
-- Get urls of wso2 identity server releases from : https://github.com/wso2/product-is/releases
+### 2. Execute Migration Automation Scripts
 
-- Navigate to https://github.com/JayanaGunaweera01/Automating-Product-Migration-Testing/actions/workflows/MainMigrationWorkflow.yml 
+- Obtain the URLs of the WSO2 Identity Server releases from the [WSO2 Identity Server Releases](https://github.com/wso2/product-is/releases) page.
 
-- Execute the main migration workflow with your inputs.
+- Navigate to the [MainMigrationWorkflow](https://github.com/JayanaGunaweera01/Automating-Product-Migration-Testing/actions/workflows/MainMigrationWorkflow.yml) workflow on GitHub.
 
-- Follow the on-screen prompts to proceed with the migration testing.
+- Execute the main migration workflow by providing your inputs and following the on-screen prompts.
 
-- Get the artifacts and test the migration.
+- Once the workflow starts, the migration automation scripts will be triggered to automate the migration process.
+
+### 3. Test Migration and Evaluate Artifacts
+
+- After the migration process completes, you will receive the necessary artifacts.
+
+- Use these artifacts to test the migrated setup and validate the migration.
+
 
 
 ## Technologies and Tools Used
