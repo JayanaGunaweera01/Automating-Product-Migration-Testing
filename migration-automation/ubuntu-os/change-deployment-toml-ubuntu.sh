@@ -9,6 +9,11 @@ currentVersion=$3
 database=$5
 os=$6
 
+# Source env file
+cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+chmod +x env.sh
+. ./env.sh
+echo "${GREEN}==> Env file sourced successfully${RESET}"
 
 if [ "$database" = "mysql" ] && [ "$os" = "ubuntu-latest" ]; then
     if [ "$currentVersion" = "5.9.0" ]; then
