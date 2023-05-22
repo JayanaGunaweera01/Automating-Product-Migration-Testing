@@ -75,43 +75,43 @@ elif [ "$database" = "postgres" ]; then
     if [ "$os" = "ubuntu-latest" ]; then
         case "$currentVersion" in
             "5.9.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_UBUNTU_IS_5_9"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9"
                 ;;
             "5.10.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_UBUNTU_IS_5_10"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10"
                 ;;
             "5.11.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_UBUNTU_IS_5_11"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11"
                 ;;
             "6.0.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_UBUNTU_IS_6_0"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0"
                 ;;
             "6.1.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_UBUNTU_IS_6_1"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1"
                 ;;
             "6.2.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_UBUNTU_IS_6_2"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2"
                 ;;
         esac
     elif [ "$os" = "macos-latest" ]; then
         case "$currentVersion" in
             "5.9.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_MAC_IS_5_9"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9"
                 ;;
             "5.10.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_MAC_IS_5_10"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10"
                 ;;
             "5.11.0")
                 deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_MAC_IS_5_11"
                 ;;
             "6.0.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_MAC_IS_6_0"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0"
                 ;;
             "6.1.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_MAC_IS_6_1"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1"
                 ;;
             "6.2.0")
-                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_MAC_IS_6_2"
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2"
                 ;;
         esac
     fi
