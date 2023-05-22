@@ -128,7 +128,7 @@ if [ "$5" = "mysql" ]; then
     # Setup mysql
     cd "$UBUNTU_HOME"
     chmod +x setup-mysql-ubuntu.sh
-    sh setup-mysql-ubuntu.sh
+    sh setup-mysql-ubuntu.sh 
 else
     echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
 fi
@@ -137,7 +137,7 @@ cd "$AUTOMATION_HOME"
 
 # Copy Jars
 chmod +x copy-jar-file.sh
-sh copy-jar-file.sh
+sh copy-jar-file.sh "$5" "$6"
 
 cd "$AUTOMATION_HOME"
 
