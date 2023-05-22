@@ -25,7 +25,7 @@ if os == "ubuntu-latest"; then
     . ./env.sh
     echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 
-elif "$os" == "macos-latest"; then
+elif os" == "macos-latest"; then
     deployment_file="$DEPLOYMENT_PATH_MAC/deployment.toml"
 
     # Source env file Mac
@@ -39,20 +39,20 @@ replace_deployment_file() {
 
     if [[ -f "$automation_file" ]]; then
         cp "$automation_file" "$deployment_file"
-        echo "${GREEN}==> Deployment toml file for WSO2 IS $currentVersion and $database database replaced successfully.${RESET}"
+        echo "${GREEN}==> Deployment toml file for WSO2 IS currentVersion and database database replaced successfully.${RESET}"
     else
-        echo "${GREEN}==> Deployment toml file not found for WSO2 IS $currentVersion and $database database.${RESET}"
+        echo "${GREEN}==> Deployment toml file not found for WSO2 IS currentVersion and database database.${RESET}"
     fi
 }
 
-if "$os" == "ubuntu-latest" || "$os" == "macos-latest" ; then
-    if "$database" == "mysql" || "$database" == "mssql" || "$database" == "postgres"; then
-        case "$currentVersion" in
-        $version1 | $version2 | $version3 | $version4 | $version5 | $version6)
-            version_with_underscores="${currentVersion//./_}"
-            version_major_minor="${version_with_underscores%_*}"
-            automation_file="$DEPLOYMENT_AUTOMATION_${database^^}_${os^^}_IS_$version_major_minor"
-            replace_deployment_file "$automation_file"
+if os == "ubuntu-latest" || os == "macos-latest" ; then
+    if database == "mysql" || database == "mssql" || database == "postgres"; then
+        case currentVersion in
+        version1 | version2 | version3 | version4 | version5 | version6)
+            version_with_underscores=currentVersion//./_
+            version_major_minor=version_with_underscores%_*
+            automation_file="$DEPLOYMENT_AUTOMATION_database^^_os^^_IS_$version_major_minor"
+            replace_deployment_file automation_file
             ;;
         esac
     fi
