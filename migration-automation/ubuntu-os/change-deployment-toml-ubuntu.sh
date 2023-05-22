@@ -34,26 +34,41 @@ elif [ "$os" = "macos-latest" ]; then
     echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 fi
 
-replace_deployment_file() {
-    local automation_file="$1"
 
-    if [ -f "$automation_file" ]; then
-        cp "$automation_file" "$deployment_file"
-        echo "${GREEN}==> Deployment toml file for WSO2 IS $currentVersion and $database database replaced successfully.${RESET}"
-    else
-        echo "${GREEN}==> Deployment toml file not found for WSO2 IS $currentVersion and $database database.${RESET}"
-    fi
-}
+if [[ "$database" == "mysql" && "$os" == "ubuntu-latest" ]]; then
+    case "$currentVersion" in
+        "5.9.0" | "5.10.0" | "5.11.0" | "6.0.0" | "6.1.0" | "6.2.0")
+            deployment_file="$DEPLOYMENT_PATH/deployment.toml"
+            automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_$currentVersion"
+            
+            if [[ -f "$automation_file" ]]; then
+                find "$deployment_file" -type f -name 'deployment.toml' -exec sh -c "cat '$automation_file' > {}" \;
+                echo "Deployment file for $currentVersion replaced successfully."
+            else
+                echo "Deployment automation file not found for version $currentVersion."
+            fi
+            ;;
+        *)
+            echo "Deployment file for version $currentVersion not supported."
+            ;;
+    esac
+fi
 
-if [ "$os" = "ubuntu-latest" ] || [ "$os" = "macos-latest" ]; then
-    if [ "$database" = "mysql" ] || [ "$database" = "mssql" ] || [ "$database" = "postgres" ]; then
-        case "$currentVersion" in
-            $version1|$version2|$version3|$version4|$version5|$version6)
-                version_with_underscores="${currentVersion//./_}"
-                version_major_minor="${version_with_underscores%_*}"
-                automation_file="$DEPLOYMENT_AUTOMATION_${database^^}_${os^^}_IS_$version_major_minor"
-                replace_deployment_file "$automation_file"
-                ;;
-        esac
-    fi
+if [[ "$database" == "mssql" && "$os" == "ubuntu-latest" ]]; then
+    case "$currentVersion" in
+        "5.9.0" | "5.10.0" | "5.11.0" | "6.0.0" | "6.1.0" | "6.2.0")
+            deployment_file="$DEPLOYMENT_PATH/deployment.toml"
+            automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_$currentVersion"
+            
+            if [[ -f "$automation_file" ]]; then
+                find "$deployment_file" -type f -name 'deployment.toml' -exec sh -c "cat '$automation_file' > {}" \;
+                echo "Deployment file for $currentVersion replaced successfully."
+            else
+                echo "Deployment automation file not found for version $currentVersion."
+            fi
+            ;;
+        *)
+            echo "Deployment file for version $currentVersion not supported."
+            ;;
+    esac
 fi
