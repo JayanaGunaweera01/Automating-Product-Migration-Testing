@@ -14,8 +14,8 @@ if [ "$os" = "ubuntu-latest" ]; then
     deployment_file="$DEPLOYMENT_PATH/deployment.toml"
     deployment_path="$DEPLOYMENT_PATH"
     cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
-    chmod +x env.sh
-    source ./env.sh
+   chmod +x env.sh
+   . ./env.sh
     echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 elif [ "$os" = "macos-latest" ]; then
     deployment_file="$DEPLOYMENT_PATH_MAC/deployment.toml"
