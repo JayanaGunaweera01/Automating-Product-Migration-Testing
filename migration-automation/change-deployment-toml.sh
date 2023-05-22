@@ -164,5 +164,5 @@ fi
 # Replace deployment file if deployment automation file exists
 if [ -n "$deployment_automation_file" ]; then
     find "$deployment_path" -type f -name 'deployment.toml' -exec sh -c "cat '$deployment_automation_file' > '{}'" \;
-    echo "${GREEN}==> Deployment file for IS version "$1" "$2" replaced successfully.${RESET}"
+    echo "${GREEN}==> Did needed changes of deployment toml file of IS version "$1" relevant to "$2" database successfully.${RESET}"
 fi
