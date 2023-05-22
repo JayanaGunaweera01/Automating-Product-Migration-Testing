@@ -247,9 +247,9 @@ cp -r "$USERSTORE_OLD_PATH" "$USERSTORE_NEW_PATH"
 echo "${BLUE}==> Userstores from IS $3 to IS $4 copied successfully!${RESET}"
 
 # Deployment toml changes in new is version
-cd "$UBUNTU_PATH"
-chmod +x change-deployment-toml-ubuntu-new.sh
-sh change-deployment-toml-ubuntu-new.sh
+chmod +x change-deployment-toml-migrating-IS.sh
+sh change-deployment-toml-migrating-IS.sh "$4" "$5" "$6"
+echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 echo "${BLUE}==> Copied deployment toml of $3 to $4 successfully!${RESET}"
 
 # Check if all files are copied successfully
