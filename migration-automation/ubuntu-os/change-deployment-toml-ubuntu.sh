@@ -27,9 +27,9 @@ elif [ "$os" = "macos-latest" ]; then
 fi
 
 # Set deployment automation file based on database and OS
-if [ "$2" = "mysql" ]; then
-    if [ "$3" = "ubuntu-latest" ]; then
-        case "$1" in
+if [ "$database" = "mysql" ]; then
+    if [ "$os" = "ubuntu-latest" ]; then
+        case "$currentVersion" in
             "5.9.0")
                 deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9"
                 ;;
