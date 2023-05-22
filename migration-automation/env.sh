@@ -92,7 +92,7 @@ export IS_OLD_BIN="/home/runner/work/Automating-Product-Migration-Testing/Automa
 export JAR_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/mysql/mysql-connector-java-8.0.29.jar"
 
 # Absolute path for the mssql jar connector
-export JAR_MSSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/mssql-jdbc-9.2.0.jre8.jar"
+export JAR_MSSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/mssql/mssql-jdbc-9.2.0.jre8.jar"
 
 # Absolute path for the postgres jar connector
 export JAR_POSTGRE="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/jars/postgresql/postgresql-42.5.3.jar"
