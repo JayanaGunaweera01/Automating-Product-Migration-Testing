@@ -16,7 +16,7 @@ version4="6.0.0"
 version5="6.1.0"
 version6="6.2.0"
 
-if "$os" == "ubuntu-latest" ; then
+if os == "ubuntu-latest"; then
     deployment_file="$DEPLOYMENT_PATH/deployment.toml"
 
     # Source env file Ubuntu
