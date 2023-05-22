@@ -123,7 +123,7 @@ cd "$AUTOMATION_HOME"
 #sh change-deployment-toml-ubuntu.sh "$3" "$5" "$6"
 
 chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh
+sh change-deployment-toml.sh "$3" "$5" "$6"
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Check if database is set to mysql

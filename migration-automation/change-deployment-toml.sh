@@ -5,9 +5,9 @@ GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
 
 # Get the value of the inputs
-#currentVersion=$1
-#database=$2
-#os=$3
+currentVersion=$1
+database=$2
+os=$3
 
 # Set deployment file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
