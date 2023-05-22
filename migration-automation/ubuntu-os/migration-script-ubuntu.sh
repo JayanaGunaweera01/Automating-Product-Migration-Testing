@@ -120,7 +120,7 @@ cd "$AUTOMATION_HOME"
 # Needed changes in deployment.toml
 #cd "$UBUNTU_PATH"
 chmod +x change-deployment-toml-current-IS.sh
-bash change-deployment-toml-current-IS.sh "$3" "$5" "$6"
+sh change-deployment-toml-current-IS.sh "$3" "$5" "$6"
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Check if database is set to mysql
@@ -137,7 +137,7 @@ cd "$AUTOMATION_HOME"
 
 # Copy Jars
 chmod +x copy-jar-file.sh
-bash copy-jar-file.sh "$5" "$6"
+sh copy-jar-file.sh "$5" "$6"
 
 cd "$AUTOMATION_HOME"
 
