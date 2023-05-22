@@ -62,7 +62,6 @@ chmod +x env.sh
 . ./env.sh
 echo "${GREEN}==> Env file sourced successfully${RESET}"
 
-
 # Grant permission to execute sub sh files
 chmod +x create-new-database.sh
 chmod +x copy-jar-file.sh
@@ -126,9 +125,11 @@ echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 # Check if database is set to mysql
 if [ "$5" = "mysql" ]; then
     # Setup mysql
-    cd "$UBUNTU_HOME"
-    chmod +x setup-mysql-ubuntu.sh
-    sh setup-mysql-ubuntu.sh 
+    #cd "$UBUNTU_HOME"
+    #chmod +x setup-mysql-ubuntu.sh
+    #sh setup-mysql-ubuntu.sh "$5"
+    chmod +x setup-mysql.sh
+    sh setup-mysql.sh "$5"
 else
     echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
 fi

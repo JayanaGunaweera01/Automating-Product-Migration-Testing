@@ -8,11 +8,11 @@ RESET='\033[0m'           # reset color
 database=$1
 os=$2
 
-# Set deployment file and path based on OS
+# Setup file and path based on OS
 if [ "$os" == "ubuntu-latest" ]; then
   cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
   chmod +x env.sh
-  source ./env.sh
+   . ./env.sh
   echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 
 elif [ "$os" == "macos-latest" ]; then
