@@ -129,7 +129,7 @@ if [ "$5" = "mysql" ]; then
     #chmod +x setup-mysql-ubuntu.sh
     #sh setup-mysql-ubuntu.sh "$5"
     chmod +x setup-mysql.sh
-    sh setup-mysql.sh "$6"
+    bash setup-mysql.sh "$6"
 else
     echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
 fi
