@@ -27,9 +27,9 @@ elif [ "$os" = "macos-latest" ]; then
 fi
 
 # Set deployment automation file based on database and OS
-if [ "$database" = "mysql" ]; then
-    if [ "$os" = "ubuntu-latest" ]; then
-        case "$currentVersion" in
+if [ database = "mysql" ]; then
+    if [ os = "ubuntu-latest" ]; then
+        case currentVersion in
             "5.9.0")
                 deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9"
                 ;;
@@ -164,5 +164,5 @@ fi
 # Replace deployment file if deployment automation file exists
 if [ -n "$deployment_automation_file" ]; then
     find "$deployment_path" -type f -name 'deployment.toml' -exec sh -c "cat '$deployment_automation_file' > '{}'" \;
-    echo "${GREEN}==> Deployment file for IS version $currentVersion $database database replaced successfully.${RESET}"
+    echo "${GREEN}==> Deployment file for IS version currentVersion database replaced successfully.${RESET}"
 fi
