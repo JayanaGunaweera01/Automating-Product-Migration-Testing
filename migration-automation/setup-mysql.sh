@@ -9,24 +9,17 @@ os=$1
 
 # Setup file and path based on OS
 if [ "$os" == "ubuntu-latest" ]; then
-  migration_dir="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  deployment_file="$DEPLOYMENT_PATH_NEW/deployment.toml"
-  deployment_path="$DEPLOYMENT_PATH_NEW"
-  source_path="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing"
-elif [ "$os" == "macos-latest" ]; then
-  migration_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  deployment_file="$DEPLOYMENT_PATH_NEW_MAC/deployment.toml"
-  deployment_path="$DEPLOYMENT_PATH_NEW_MAC"
-  source_path="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing"
-else
-  echo "Unsupported OS: $os"
-  exit 1
-fi
+  cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
+  chmod +x env.sh
+   . ./env.sh
+  echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 
-cd "$migration_dir" || exit 1
-chmod +x env.sh
-source ./env.sh
-echo "${GREEN}==> Env file sourced successfully${RESET}"
+elif [ "$os" == "macos-latest" ]; then
+  cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
+  chmod +x env.sh
+  source ./env.sh
+  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+fi
 
 # Method Ubuntu
 ubuntu_method() {
