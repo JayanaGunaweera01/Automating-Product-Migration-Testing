@@ -133,10 +133,11 @@ else
     echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
 fi
 
+cd "$AUTOMATION_HOME"
+
 # Copy Jars
-cd "$UBUNTU_HOME"
-chmod +x copy-jar-file-ubuntu.sh
-sh copy-jar-file-ubuntu.sh
+chmod +x copy-jar-file.sh
+sh copy-jar-file.sh
 
 cd "$AUTOMATION_HOME"
 
