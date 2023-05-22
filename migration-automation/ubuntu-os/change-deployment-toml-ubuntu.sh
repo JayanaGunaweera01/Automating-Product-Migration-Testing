@@ -15,34 +15,37 @@ cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Mi
 source ./env.sh
 echo "\033[0;32m\033[1mEnv file sourced successfully\033[0;m"
 
-if [ "$5" = "mysql" ] && [ "$6" = "ubuntu-latest" ]; then
-    if [ "$currentVersion" = "5.9.0" ]; then
+if [ "$2" = "mysql" ] && [ "$3" = "ubuntu-latest" ]; then
+    if [ "$1" = "5.9.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9" >"$file"
         done
-        echo "Deployment file for $currentVersion replaced successfully."
-    elif [ "$currentVersion" = "5.10.0" ]; then
+        echo "Deployment file for $2 replaced successfully."
+    elif [ "$2" = "5.10.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10" >"$file"
         done
-        echo "Deployment file for $currentVersion replaced successfully."
-    elif [ "$3" = "5.11.0" ]; then
+        echo "Deployment file for $2 replaced successfully."
+    elif [ "$1" = "5.11.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11" >"$file"
-            echo "Deployment file for "$3" replaced successfully."
         done
-    elif [ "$currentVersion" = "6.0.0" ]; then
+        echo "Deployment file for $1 replaced successfully."
+    elif [ "$2" = "6.0.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0" >"$file"
         done
-    elif [ "$currentVersion" = "6.1.0" ]; then
+        echo "Deployment file for $2 replaced successfully."
+    elif [ "$2" = "6.1.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1" >"$file"
         done
-    elif [ "$currentVersion" = "6.2.0" ]; then
+        echo "Deployment file for $2 replaced successfully."
+    elif [ "$2" = "6.2.0" ]; then
         for file in $(find "$DEPLOYMENT_PATH" -type f -name 'deployment.toml'); do
             cat "$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2" >"$file"
         done
+        echo "Deployment file for $2 replaced successfully."
     fi
 fi
 
