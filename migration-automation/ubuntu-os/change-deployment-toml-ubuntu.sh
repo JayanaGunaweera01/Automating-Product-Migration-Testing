@@ -16,7 +16,7 @@ version4="6.0.0"
 version5="6.1.0"
 version6="6.2.0"
 
-if ["$os" == "ubuntu-latest" ]; then
+if "$os" == "ubuntu-latest" ; then
     deployment_file="$DEPLOYMENT_PATH/deployment.toml"
 
     # Source env file Ubuntu
@@ -25,7 +25,7 @@ if ["$os" == "ubuntu-latest" ]; then
     . ./env.sh
     echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 
-elif ["$os" == "macos-latest"]; then
+elif "$os" == "macos-latest"; then
     deployment_file="$DEPLOYMENT_PATH_MAC/deployment.toml"
 
     # Source env file Mac
@@ -45,8 +45,8 @@ replace_deployment_file() {
     fi
 }
 
-if ["$os" == "ubuntu-latest" || "$os" == "macos-latest" ]; then
-    if ["$database" == "mysql" || "$database" == "mssql" || "$database" == "postgres"]; then
+if "$os" == "ubuntu-latest" || "$os" == "macos-latest" ; then
+    if "$database" == "mysql" || "$database" == "mssql" || "$database" == "postgres"; then
         case "$currentVersion" in
         $version1 | $version2 | $version3 | $version4 | $version5 | $version6)
             version_with_underscores="${currentVersion//./_}"
