@@ -4,12 +4,11 @@
 GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
 
+# Get the value of the inputs
 os=$1
 version=$2
 currentVersion=$3
 migratingVersion=$4
-
-# Get the value of the inputs
 
 # Setup file and path based on OS and server number
 if [ "$os" = "ubuntu-latest" ]; then

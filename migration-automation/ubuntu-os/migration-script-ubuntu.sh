@@ -118,8 +118,11 @@ cd "$AUTOMATION_HOME"
 
 # Needed changes in deployment.toml
 #cd "$UBUNTU_PATH"
-chmod +x change-deployment-toml-current-IS.sh
-sh change-deployment-toml-current-IS.sh "$3" "$5" "$6"
+#chmod +x change-deployment-toml-current-IS.sh
+#sh change-deployment-toml-current-IS.sh "$3" "$5" "$6"
+
+chmod +x change-deployment-toml.sh
+sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 3
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Check if database is set to mysql
