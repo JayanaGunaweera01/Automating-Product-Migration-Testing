@@ -7,40 +7,41 @@ RESET='\033[0m'           # reset color
 os=$1
 version=$2
 currentVersion=$3
+migratingVersion=$4
 
 # Get the value of the inputs
 
 # Setup file and path based on OS and server number
 if [ "$os" = "ubuntu-latest" ]; then
   if [ "$version" = "3" ]; then
-   cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
-   chmod +x env.sh
-   . ./env.sh
+    cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+    chmod +x env.sh
+    . ./env.sh
     echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
     cd "$IS_OLD_BIN" 
     pwd
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Identity Server in Ubuntu OS${RESET}"
-  elif [ "$server_number" == "4" ]; then
-    cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
+  elif [ "$version" = "4" ]; then
+    cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
     chmod +x env.sh
-   . ./env.sh
+    . ./env.sh
     echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
     cd "$BIN_ISNEW"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrating Identity Server in Ubuntu OS${RESET}"
   fi
-elif [ "$1" == "macos-latest" ]; then
-  if [ "$2" == "3" ]; then
-    cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
+elif [ "$os" = "macos-latest" ]; then
+  if [ "$version" = "3" ]; then
+    cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
     chmod +x env.sh
     source ./env.sh
     echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Identity Server in macOS${RESET}"
-  elif [ "$server_number" == "4" ]; then
-    cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
+  elif [ "$version" = "4" ]; then
+    cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
     chmod +x env.sh
     source ./env.sh
     cd "$BIN_ISNEW_MAC"
