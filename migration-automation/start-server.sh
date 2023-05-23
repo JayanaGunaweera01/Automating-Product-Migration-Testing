@@ -9,7 +9,8 @@ os=$1
 server_number=$2
 
 # Setup file and path based on OS and server number
-if ["$os" == "ubuntu-latest"]; then
+# Setup file and path based on OS and server number
+if [ "$os" == "ubuntu-latest" ]; then
   if [ "$server_number" == "3" ]; then
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
@@ -19,7 +20,7 @@ if ["$os" == "ubuntu-latest"]; then
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrating Identity Server in Ubuntu OS${RESET}"
   fi
-elif ["$os" == "macos-latest"]; then
+elif [ "$os" == "macos-latest" ]; then
   if [ "$server_number" == "3" ]; then
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
