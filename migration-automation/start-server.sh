@@ -5,13 +5,11 @@ GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
 
 # Get the value of the inputs
-os=$1
-server_number=$2
 
 # Setup file and path based on OS and server number
 # Setup file and path based on OS and server number
-if [ "$os" == "ubuntu-latest" ]; then
-  if [ "$server_number" == "3" ]; then
+if [ "$1" == "ubuntu-latest" ]; then
+  if [ "$2" == "3" ]; then
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Identity Server in Ubuntu OS${RESET}"
@@ -20,8 +18,8 @@ if [ "$os" == "ubuntu-latest" ]; then
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrating Identity Server in Ubuntu OS${RESET}"
   fi
-elif [ "$os" == "macos-latest" ]; then
-  if [ "$server_number" == "3" ]; then
+elif [ "$1" == "macos-latest" ]; then
+  if [ "$2" == "3" ]; then
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Identity Server in macOS${RESET}"
