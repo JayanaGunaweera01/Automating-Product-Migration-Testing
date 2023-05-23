@@ -4,12 +4,14 @@
 GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
 
+os=$1
+version=$2
+
 # Get the value of the inputs
 
 # Setup file and path based on OS and server number
-# Setup file and path based on OS and server number
-if [ "$1" == "ubuntu-latest" ]; then
-  if [ "$2" == "3" ]; then
+if [ os == "ubuntu-latest" ]; then
+  if [ version == "3" ]; then
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Identity Server in Ubuntu OS${RESET}"
