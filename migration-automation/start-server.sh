@@ -9,13 +9,13 @@ os=$1
 server_number=$2
 
 # Setup file and path based on OS
-if "$os" == "ubuntu-latest"; then
+if "$1" == "ubuntu-latest"; then
   cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
   chmod +x env.sh
    . ./env.sh
   echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 
-elif "$os" == "macos-latest"; then
+elif "$1" == "macos-latest"; then
   cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"  1
   chmod +x env.sh
   source ./env.sh
@@ -23,22 +23,22 @@ elif "$os" == "macos-latest"; then
 fi
 
 # Setup file and path based on OS and server number
-if "$os" == "ubuntu-latest"; then
-  if [ "$server_number" == "3" ]; then
+if "$1" == "ubuntu-latest"; then
+  if [ "$2" == "3" ]; then
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Identity Server in Ubuntu OS${RESET}"
-  elif [ "$server_number" == "4" ]; then
+  elif [ "$2" == "4" ]; then
     cd "$BIN_ISNEW"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrating Identity Server in Ubuntu OS${RESET}"
   fi
 elif "$os" == "macos-latest"; then
-  if [ "$server_number" == "3" ]; then
+  if [ "$2" == "3" ]; then
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Identity Server in macOS${RESET}"
-  elif [ "$server_number" == "4" ]; then
+  elif [ "$2" == "4" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrating Identity Server in macOS${RESET}"
