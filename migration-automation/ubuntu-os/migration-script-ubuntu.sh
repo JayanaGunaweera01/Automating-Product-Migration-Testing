@@ -147,7 +147,7 @@ echo "${GREEN}==> Identity server $3 started running!${RESET}"
 # Starting downloaded identity server
 #sh start-server-is-old.sh
 chmod +x start-server.sh
-sh start-server.sh "$6" 3
+bash start-server.sh "$6" 3
 
 cd "$AUTOMATION_HOME"
 
