@@ -12,11 +12,11 @@ os=$2
 if [ "$os" = "ubuntu-latest" ]; then
   cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
   chmod +x env.sh
-   . ./env.sh
+  . ./env.sh
   echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 
 elif [ "$os" = "macos-latest" ]; then
-  cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"  1
+  cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" 1
   chmod +x env.sh
   source ./env.sh
   echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
@@ -24,7 +24,7 @@ fi
 
 # Modify the JDBC driver path based on the database and OS
 if [ "$database" = "mssql" ]; then
-  if ["$os" = "ubuntu-latest" ]; then
+  if [ "$os" = "ubuntu-latest" ]; then
     jdbc_driver="$JAR_MSSQL"
   elif [ "$os" = "macos-latest" ]; then
     jdbc_driver="$JAR_MSSQL_MAC"
