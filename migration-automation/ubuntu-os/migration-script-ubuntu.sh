@@ -146,7 +146,7 @@ echo "${GREEN}==> Identity server $3 started running!${RESET}"
 
 # Starting downloaded identity server
 #sh start-server-is-old.sh
-chmod +x start-server
+chmod +x start-server.sh
 sh start-server.sh "$6" 3
 
 cd "$AUTOMATION_HOME"
@@ -353,7 +353,7 @@ echo "${GREEN}==> Migrated WSO2 Identity Server - IS $4 is starting....${RESET}"
 
 # Starting migrated identity server
 #sh start-server-is-new.sh
-chmod +x start-server
+chmod +x start-server.sh
 sh start-server.sh "$6" 4
 
 cd "$AUTOMATION_HOME"
