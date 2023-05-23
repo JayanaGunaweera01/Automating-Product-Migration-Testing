@@ -24,7 +24,7 @@ fi
 
 # Modify the JDBC driver path based on the database and OS
 if [ "$database" = "mssql" ]; then
-  if [["$os" = "ubuntu-latest" ]; then
+  if ["$os" = "ubuntu-latest" ]; then
     jdbc_driver="$JAR_MSSQL"
   elif [ "$os" = "macos-latest" ]; then
     jdbc_driver="$JAR_MSSQL_MAC"
