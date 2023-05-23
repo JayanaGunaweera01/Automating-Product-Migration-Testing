@@ -2,6 +2,7 @@
 
 # Breakdown this script into several scripts and reuse those without having 2 scripts as old and new
 
+pwd
 # Source env file
 . ./env.sh
 echo "\033[0;32m\033[1mEnv file sourced successfully\033[0;m"
