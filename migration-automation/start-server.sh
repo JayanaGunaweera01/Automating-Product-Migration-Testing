@@ -19,7 +19,6 @@ if [ "$os" = "ubuntu-latest" ]; then
     . ./env.sh
     echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
     cd "$IS_OLD_BIN" 
-    pwd
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Identity Server in Ubuntu OS${RESET}"
   elif [ "$version" = "4" ]; then
