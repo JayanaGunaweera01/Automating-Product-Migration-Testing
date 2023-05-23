@@ -137,7 +137,7 @@ cd "$AUTOMATION_HOME"
 
 # Copy Jars
 chmod +x copy-jar-file.sh
-bash copy-jar-file.sh "$5" "$6"
+sh copy-jar-file.sh "$5" "$6"
 
 cd "$AUTOMATION_HOME"
 
