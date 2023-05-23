@@ -60,7 +60,7 @@ nohup ./start.sh >/dev/null 2>&1 &
 is_server_up() {
   local status
   status=$(curl -k -L -s -o /dev/null -w "%{http_code}" --request GET "https://localhost:9443/")
-  if [ "$status" -eq 200 ]; then
+  if "$status" -eq 200; then
     return 0
   fi
   return 1
