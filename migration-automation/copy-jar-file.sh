@@ -24,21 +24,21 @@ fi
 
 # Modify the JDBC driver path based on the database and OS
 if [ "$database" = "mssql" ]; then
-  if [[ "$os" = "ubuntu-latest" ]]; then
+  if [["$os" = "ubuntu-latest" ]; then
     jdbc_driver="$JAR_MSSQL"
-  elif [[ "$os" = "macos-latest" ]]; then
+  elif [ "$os" = "macos-latest" ]; then
     jdbc_driver="$JAR_MSSQL_MAC"
   fi
 elif [ "$database" = "postgres" ]; then
-  if [[ "$os" = "ubuntu-latest" ]]; then
+  if [ "$os" = "ubuntu-latest" ]; then
     jdbc_driver="$JAR_POSTGRE"
-  elif [[ "$os" = "macos-latest" ]]; then
+  elif [ "$os" = "macos-latest" ]; then
     jdbc_driver="$JAR_POSTGRE_MAC"
   fi
 else
   if [ "$os" = "ubuntu-latest" ]; then
     jdbc_driver="$JAR_MYSQL"
-  elif [ "$os" == "macos-latest" ]; then
+  elif [ "$os" = "macos-latest" ]; then
     jdbc_driver="$JAR_MYSQL_MAC"
   fi
 fi
@@ -54,8 +54,8 @@ fi
 
 # Wait for the JDBC driver to be copied to the lib folder
 while [ ! -f "$jdbc_driver" ]; do
-  echo "${GREEN}==> JDBC driver $jdbc_driver not found in lib folder, waiting...${RESET}"
+  echo "${GREEN}==> JDBC driver in $jdbc_driver not found in lib folder, waiting...${RESET}"
   sleep 5
 done
 
-echo "${GREEN}==> JDBC driver $jdbc_driver found in lib folder, continuing...${RESET}"
+echo "${GREEN}==> JDBC driver in $jdbc_driver found in lib folder, continuing...${RESET}"

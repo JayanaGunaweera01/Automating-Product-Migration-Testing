@@ -130,7 +130,7 @@ if [ "$5" = "mysql" ]; then
     # Setup mysql
     cd "$UBUNTU_HOME"
     chmod +x setup-mysql-ubuntu.sh
-    sh setup-mysql-ubuntu.sh 
+    sh setup-mysql-ubuntu.sh
 
 else
     echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
@@ -233,9 +233,11 @@ cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Diverted to home successfully${RESET}"
 
 # Needed changes in migration-config.yaml
-cd "$UBUNTU_HOME"
-chmod +x change-migration-config-yaml-ubuntu.sh
-sh change-migration-config-yaml-ubuntu.sh
+#cd "$UBUNTU_HOME"
+#chmod +x change-migration-config-yaml-ubuntu.sh
+#sh change-migration-config-yaml-ubuntu.sh
+chmod +x change-migration-config-yaml.sh
+sh change-migration-config-yaml.sh "$3" "$4" "$6"
 echo "${GREEN}==> Did needed changes in migration-config.yaml file successfully${RESET}"
 
 # Copy userstores, tenants,jar files,.jks files from oldIS to newIS
