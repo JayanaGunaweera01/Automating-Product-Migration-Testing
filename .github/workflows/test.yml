@@ -5,7 +5,7 @@ on:
     inputs:
       currentVersion:
         description: "🖥️ Specify the version of WSO2 IS that is presently installed in your environment."
-        default: "5.11.0"
+        default: "5.9.0"
         type: choice
         options:
           - "5.9.0"
@@ -42,7 +42,7 @@ on:
           - "windows-latest"
       urlOld:
         description: "🔗 Provide the URL to download the old version of WSO2 IS."
-        default: https://github.com/wso2/product-is/releases/download/v5.11.0/wso2is-5.11.0.zip
+        default: https://github.com/wso2/product-is/releases/download/v5.9.0-rc2/wso2is-5.9.0-rc2.zip
         required: true
       urlNew:
         description: "🔗🆕 Provide the URL to download the version you want to upgrade WSO2 IS."
