@@ -183,7 +183,11 @@ fi
 
 # Replace deployment file if deployment automation file exists
 if [ -n "$deployment_automation_file" ]; then
+    chmod +x "$deployment_automation_file"
+    # Display the content of the deployment automation file in the terminal
+    echo "${GREEN}==> Content of deployment automation file:${RESET}"
+    cat "$deployment_automation_file"
+    
     find "$deployment_path" -type f -name 'deployment.toml' -exec sh -c "cat '$deployment_automation_file' > '{}'" \;
-    echo "${GREEN}==> Did needed changes of deployment toml file to configure "$database" database successfully.${RESET}"
+    echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
 fi
-
