@@ -57,5 +57,7 @@ while [ ! -f "$jdbc_driver" ]; do
   echo "${GREEN}==> JDBC driver in $jdbc_driver not found in lib folder, waiting...${RESET}"
   sleep 5
 done
-
+cd "$LIB"
+pwd
+ls -a
 echo "${GREEN}==> JDBC driver in $jdbc_driver found in lib folder, continuing...${RESET}"
