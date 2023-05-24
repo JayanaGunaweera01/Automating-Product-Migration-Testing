@@ -121,8 +121,8 @@ cd "$AUTOMATION_HOME"
 #chmod +x change-deployment-toml-current-IS.sh
 #sh change-deployment-toml-current-IS.sh "$3" "$5" "$6"
 
-chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 3
+chmod +x change-deployment-toml-test.sh
+sh change-deployment-toml-test.sh "$3" "$4" "$5" "$6" 3
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Check if database is set to mysql
@@ -139,8 +139,8 @@ fi
 cd "$AUTOMATION_HOME"
 
 # Copy Jars
-chmod +x copy-jar-file.sh
-sh copy-jar-file.sh "$5" "$6"
+chmod +x copy-jar-file-test.sh
+sh copy-jar-file-test.sh "$5" "$6"
 
 cd "$AUTOMATION_HOME"
 
