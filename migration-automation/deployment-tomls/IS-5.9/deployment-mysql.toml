@@ -62,5 +62,3 @@ name = "wso2carbon.jks"
 password = "wso2carbon"
 
 #url = "jdbc:mysql://localhost:3306/mydb?useSSL=false"
-
-
