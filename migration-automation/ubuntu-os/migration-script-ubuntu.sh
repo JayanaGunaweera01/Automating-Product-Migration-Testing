@@ -254,8 +254,8 @@ cp -r "$USERSTORE_OLD_PATH" "$USERSTORE_NEW_PATH"
 echo "${BLUE}==> Userstores from IS $3 to IS $4 copied successfully!${RESET}"
 
 # Deployment toml changes in new is version
-chmod +x change-deployment-toml-migrating-IS.sh
-sh change-deployment-toml-migrating-IS.sh "$4" "$5" "$6"
+chmod +x change-deployment-toml.sh
+sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 4
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 echo "${BLUE}==> Copied deployment toml of $3 to $4 successfully!${RESET}"
 
