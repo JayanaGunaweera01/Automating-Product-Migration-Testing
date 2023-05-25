@@ -14,7 +14,7 @@ if [ "$os" = "ubuntu-latest" ]; then
   cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
   chmod +x env.sh
   . ./env.sh
-  echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
+  echo -e "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
   cd "$MIGRATION_RESOURCES_NEW_IS"
   chmod +x "$MIGRATION_CONFIG_YAML"
 
@@ -22,6 +22,12 @@ if [ "$os" = "ubuntu-latest" ]; then
     sed -i "s/\(.*migrationEnable:.*\)/migrationEnable: \"true\"/" "$file"
     sed -i "s/\(.*currentVersion: .*\)/currentVersion: \"$currentVersion\"/" "$file"
     sed -i "s/\(.*migrateVersion: .*\)/migrateVersion: \"$migratingVersion\"/" "$file"
+    
+    # Check conditions to modify transformToSymmetric (This is a special migration config change when migrating to IS 5.11.0)
+    if [[ "$currentVersion" == "5.9.0" || "$currentVersion" == "5.10.0" ]] && [ "$migratingVersion" = "5.11.0" ]; then
+      sed -i 's/transformToSymmetric:.*/transformToSymmetric: "true"/' "$file"
+      echo "${GREEN}==> Value of transformToSymmetric changed to true in migration-config.yaml which is a is a special migration config change when migrating to IS 5.11.0${RESET}"
+    fi
   done
 
 elif [ "$os" = "macos-latest" ]; then
@@ -36,5 +42,11 @@ elif [ "$os" = "macos-latest" ]; then
     sed -i "s/\(.*migrationEnable:.*\)/migrationEnable: \"true\"/" "$file"
     sed -i "s/\(.*currentVersion: .*\)/currentVersion: \"$currentVersion\"/" "$file"
     sed -i "s/\(.*migrateVersion: .*\)/migrateVersion: \"$migratingVersion\"/" "$file"
+    
+    # Check conditions to modify transformToSymmetric (This is a special migration config change when migrating to IS 5.11.0)
+    if [[ "$currentVersion" == "5.9.0" || "$currentVersion" == "5.10.0" ]] && [ "$migratingVersion" = "5.11.0" ]; then
+      sed -i 's/transformToSymmetric:.*/transformToSymmetric: "true"/' "$file"
+      echo "${GREEN}==> Value of transformToSymmetric changed to true in migration-config.yaml which is a is a special migration config change when migrating to IS 5.11.0${RESET}"
+    fi
   done
 fi
