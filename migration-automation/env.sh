@@ -72,12 +72,19 @@ export JDBC="/home/runner/work/Automating-Product-Migration-Testing/Automating-P
 # Absolute path for database creation mysql script
 export DATABASE_CREATION_SCRIPT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/database-create-scripts/mysql.sql"
 
-# Absolute paths for DB scripts
+# Absolute paths for DB scripts - IS 5.10 onwards
 export DB_SCRIPT_MYSQL="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/mysql.sql"
 export DB_SCRIPT_IDENTITY="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/mysql.sql"
 export DB_SCRIPT_UMA="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/uma/mysql.sql"
 export DB_SCRIPT_CONSENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mysql.sql"
 export DB_SCRIPT_METRICS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mysql.sql"
+
+# Absolute paths for DB scripts - IS 5.9 
+export DB_SCRIPT_MYSQL_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/mysql.sql"
+export DB_SCRIPT_IDENTITY_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/identity/mysql.sql"
+export DB_SCRIPT_UMA_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/identity/uma/mysql.sql"
+export DB_SCRIPT_CONSENT_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/consent/mysql.sql"
+export DB_SCRIPT_METRICS_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/metrics/mysql.sql"
 
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
 export LIB="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
@@ -233,6 +240,13 @@ export DB_SCRIPT_IDENTITY_MAC="/Users/runner/work/Automating-Product-Migration-T
 export DB_SCRIPT_UMA_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/uma/mysql.sql"
 export DB_SCRIPT_CONSENT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mysql.sql"
 export DB_SCRIPT_METRICS_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mysql.sql"
+
+# Absolute paths for DB scripts - IS 5.9 Mac
+export DB_SCRIPT_MYSQL_5_9_MAC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/mysql.sql"
+export DB_SCRIPT_IDENTITY_5_9_MAC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/identity/mysql.sql"
+export DB_SCRIPT_UMA_5_9_MAC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/identity/uma/mysql.sql"
+export DB_SCRIPT_CONSENT_5_9_MAC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/consent/mysql.sql"
+export DB_SCRIPT_METRICS_5_9_MAC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/metrics/mysql.sql"
 
 # Absolute path for the <IS_HOME_OLD>/repository/components/lib folder
 export LIB_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/components/lib"
