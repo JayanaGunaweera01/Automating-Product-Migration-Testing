@@ -9,6 +9,7 @@ os=$1
 version=$2
 currentVersion=$3
 migratingVersion=$4
+migration=$5
 
 # Setup file and path based on OS and server number
 if [ "$os" = "ubuntu-latest" ]; then
@@ -48,7 +49,12 @@ elif [ "$os" = "macos-latest" ]; then
   fi
 fi
 
-echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
+if [ "$migration" = "true" ]; then
+  echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
+else
+  echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
+fi
+
 chmod +x start.sh && chmod 777 start.sh
 nohup ./start.sh &
 
