@@ -130,7 +130,7 @@ if [ "$5" = "mysql" ]; then
     # Setup mysql
     cd "$UBUNTU_HOME"
     chmod +x setup-mysql-ubuntu.sh
-    sh setup-mysql-ubuntu.sh
+    sh setup-mysql-ubuntu.sh "$3"
 
 else
     echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
