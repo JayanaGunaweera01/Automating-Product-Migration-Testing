@@ -250,8 +250,6 @@ echo "${BLUE}==> .jks files from from IS $3 to IS $4 copied successfully!${RESET
 cp -r "$USERSTORE_OLD_PATH" "$USERSTORE_NEW_PATH"
 echo "${BLUE}==> Userstores from IS $3 to IS $4 copied successfully!${RESET}"
 
-
-
 # Deployment toml changes in new is version
 chmod +x change-deployment-toml.sh
 sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 4
@@ -266,6 +264,24 @@ else
 fi
 echo "${BLUE}==> Copied userstores, tenants,jar files,.jks files from oldIS to newIS successfully${RESET}"
 
+# Execute consent management db scripts for IS 5.11.0 - MySQL
+if [ "$4" = "5.11.0" && "$5" = "mysql" ]; then
+    docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D mydb' </home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/other-db-scripts/config-management-is-5-11.sql
+    echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - MySQL${RESET}"
+fi
+
+# Execute consent management db scripts for IS 5.11.0 - MSSQL
+if [ "$4" = "5.11.0" && "$5" = "mssql" ]; then
+    # Add the command for executing MSSQL script here
+    echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - MSSQL${RESET}"
+fi
+
+# Execute consent management db scripts for IS 5.11.0 - PostgreSQL (Ubuntu)
+if [ "$4" = "5.11.0" && "$5" = "postgres" ]; then
+    # Add the command for executing PostgreSQL script on Ubuntu here
+    echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - PostgreSQL (Ubuntu)${RESET}"
+fi
+
 #Divert to bin folder
 cd "$BIN_ISNEW"
 echo "${GREEN}==> Diverted to bin folder successfully${RESET}"
@@ -275,7 +291,9 @@ time_and_date=$(date +"%Y-%m-%d %H:%M:%S")
 
 # Display message with migration details, currentVersion and migrateVersion values, and time and date
 echo "${YELLOW}Migration details:${RESET}"
-echo "${YELLOW}Migrating from IS $3 to IS $4${RESET}"
+echo "${YELLOW}Migrating from IS: $3 to IS: $4${RESET}"
+echo "${YELLOW}Database: $5${RESET}"
+echo "${YELLOW}Operating System: $6${RESET}"
 echo "${YELLOW}Time and date: $time_and_date${RESET}"
 
 # Run the migration client
