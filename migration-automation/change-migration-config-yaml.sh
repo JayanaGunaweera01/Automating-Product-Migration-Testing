@@ -14,11 +14,11 @@ if [ "$os" = "ubuntu-latest" ]; then
   cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
   chmod +x env.sh
   . ./env.sh
-  echo -e "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
+  echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
   cd "$MIGRATION_RESOURCES_NEW_IS"
   chmod +x "$MIGRATION_CONFIG_YAML"
 
-  for file in $(find "$MIGRATION_RESOURCES_NEW_IS_MAC" -type f -name 'migration-config.yaml'); do
+  for file in $(find "$MIGRATION_RESOURCES_NEW_IS" -type f -name 'migration-config.yaml'); do
     sed -i "s/\(.*migrationEnable:.*\)/migrationEnable: \"true\"/" "$file"
     sed -i "s/\(.*currentVersion: .*\)/currentVersion: \"$currentVersion\"/" "$file"
     sed -i "s/\(.*migrateVersion: .*\)/migrateVersion: \"$migratingVersion\"/" "$file"
