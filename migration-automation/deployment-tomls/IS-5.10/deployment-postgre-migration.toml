@@ -12,55 +12,51 @@ create_admin_account = true
 type = "database"
 read_groups = true
 
-# MSSQL CONFIGS
+[user_store.properties]
+SCIMEnabled= true
 
+
+
+# POSTGRESQL CONFIGS
 [database.user]
-url = "jdbc:sqlserver://localhost:1433;databaseName=testdb;SendStringParametersAsUnicode=false"
-username = "SA"
-password = "YourStrongPassw0rd"
-driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+url = "jdbc:postgresql://localhost:5432/testdb"
+username = "postgres"
+password = "postgres"
+driver = "org.postgresql.Driver"
+
 [realm_manager]
 data_source = "WSO2USER_DB"
 
 [database.identity_db]
-url = "jdbc:sqlserver://localhost:1433;databaseName=testdb;SendStringParametersAsUnicode=false"
-username = "SA"
-password = "YourStrongPassw0rd"
-driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+#type = "Postgres" 
+url = "jdbc:postgresql://localhost:5432/testdb"
+username = "postgres"
+password = "postgres"
+driver = "org.postgresql.Driver"
 [database.identity_db.pool_options]
 maxActive = "80"
-maxWait="6000"
 minIdle ="5"
 testOnBorrow = true
-validationQuery="SELECT 1"
+validationQuery="SELECT 1; COMMIT"
 validationInterval="30000"
 defaultAutoCommit=false
 
 [database.shared_db]
-url = "jdbc:sqlserver://localhost:1433;databaseName=testdb;SendStringParametersAsUnicode=false"
-username = "SA"
-password = "YourStrongPassw0rd"
-driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+#type = "Postgres" 
+url = "jdbc:postgresql://localhost:5432/testdb"
+username = "postgres"
+password = "postgres"
+driver = "org.postgresql.Driver"
 [database.shared_db.pool_options]
 maxActive = "80"
-maxWait="6000"
 minIdle ="5"
 testOnBorrow = true
-validationQuery="SELECT 1"
+validationQuery="SELECT 1; COMMIT"
 validationInterval="30000"
 defaultAutoCommit=false
 
-[[datasource]]
-id="WSO2CONSENT_DB"
-url = "jdbc:sqlserver://localhost:1433;databaseName=testdb;SendStringParametersAsUnicode=false"
-username = "SA"
-password = "YourStrongPassw0rd"
-driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-jmx_enable=false
-
-
 #[bps_database.config]
-#url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"
+#url = "jdbc:mysql://localhost:3306/mydb?useSSL=false"
 #username = "root"
 #password = "root"
 #driver = "com.mysql.jdbc.Driver"

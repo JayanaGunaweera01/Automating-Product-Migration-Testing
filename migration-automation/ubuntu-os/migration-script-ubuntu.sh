@@ -233,9 +233,6 @@ cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Diverted to home successfully${RESET}"
 
 # Needed changes in migration-config.yaml
-#cd "$UBUNTU_HOME"
-#chmod +x change-migration-config-yaml-ubuntu.sh
-#sh change-migration-config-yaml-ubuntu.sh
 chmod +x change-migration-config-yaml.sh
 sh change-migration-config-yaml.sh "$3" "$4" "$6"
 echo "${GREEN}==> Did needed changes in migration-config.yaml file successfully${RESET}"
@@ -252,6 +249,8 @@ echo "${BLUE}==> .jks files from from IS $3 to IS $4 copied successfully!${RESET
 
 cp -r "$USERSTORE_OLD_PATH" "$USERSTORE_NEW_PATH"
 echo "${BLUE}==> Userstores from IS $3 to IS $4 copied successfully!${RESET}"
+
+
 
 # Deployment toml changes in new is version
 chmod +x change-deployment-toml.sh
