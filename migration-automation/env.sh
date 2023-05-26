@@ -54,6 +54,30 @@ export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0_MIGRATION="/home/runner/work/Au
 export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1_MIGRATION="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mssql-migration.toml"
 export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2_MIGRATION="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mssql-migration.toml"
 
+# Absolute path to the mysql deployment files in migration-automation folder
+export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.9/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.10/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.11/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mysql.toml"
+
+# Absolute path to the postgre deployment files in migration-automation folder
+export DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.9/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.10/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.11/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-postgre.toml"
+
+# Absolute path to the mssql deployment files in migration-automation folder
+export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.9/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_10="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.10/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_11="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.11/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mssql.toml"
+
 # Absolute path to IS old deployment.toml
 export PATH_IS_OLD="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
 
@@ -79,7 +103,7 @@ export DB_SCRIPT_UMA="/home/runner/work/Automating-Product-Migration-Testing/Aut
 export DB_SCRIPT_CONSENT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mysql.sql"
 export DB_SCRIPT_METRICS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mysql.sql"
 
-# Absolute paths for DB scripts - IS 5.9 
+# Absolute paths for DB scripts - IS 5.9
 export DB_SCRIPT_MYSQL_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/mysql.sql"
 export DB_SCRIPT_IDENTITY_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/identity/mysql.sql"
 export DB_SCRIPT_UMA_5_9="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.9/identity/uma/mysql.sql"
@@ -212,6 +236,30 @@ export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11_MIGRATION="/Users/runner/work/Aut
 export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0_MIGRATION="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-mssql-migration.toml"
 export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1_MIGRATION="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mssql-migration.toml"
 export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2_MIGRATION="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mssql-migration.toml"
+
+# Absolute paths to the mysql deployment files in migration-automation folder
+export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.9/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.10/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.11/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mysql.toml"
+export DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mysql.toml"
+
+# Absolute paths to the postgre deployment files in migration-automation folder
+export DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.9/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.10/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_11="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.11/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-postgre.toml"
+export DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-postgre.toml"
+
+# Absolute paths to the mssql deployment files in migration-automation folder
+export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.9/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.10/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-5.11/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.0/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.1/deployment-mssql.toml"
+export DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/deployment-tomls/IS-6.2/deployment-mssql.toml"
 
 # Absolute path to IS old deployment.toml
 export PATH_IS_OLD_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/CurrentVersion/repository/conf/deployment.toml"
