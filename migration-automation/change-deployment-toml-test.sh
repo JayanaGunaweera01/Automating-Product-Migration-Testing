@@ -323,11 +323,11 @@ if [ -n "$deployment_automation_file" ]; then
     if [ "$migratingVersion" = "5.11.0" || "$migratingVersion" = "6.0.0" || "$migratingVersion" == "6.1.0" || "$migratingVersion" = "6.2.0" ]; then
         # Generate the secret key
         secret_key=$(openssl rand -hex 32)
-        echo "Secret key is $secret_key"
+        echo "${GREEN}==> Secret key is $secret_key${RESET}"
 
         # Replace the placeholder with the generated secret key
         sed -i "s/<provide-your-key-here>/$secret_key/g" "$deployment_path"
-        echo "Secret key generated and replaced in deployment.toml"
+        echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
     fi
     # Display the content of the deployment automation file in the terminal
     echo "Content of deployment automation file:"
