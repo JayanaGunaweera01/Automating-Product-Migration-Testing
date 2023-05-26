@@ -168,6 +168,7 @@ echo "${GREEN}==> Created users, user stores, service providers, tenants, genera
 
 cd "$IS_OLD_BIN"
 echo "${GREEN}==> Entered bin successfully${RESET}"
+echo "${GREEN}==> Shutting down the current identity server${RESET}"
 
 # Stop wso2IS
 sh wso2server.sh stop
