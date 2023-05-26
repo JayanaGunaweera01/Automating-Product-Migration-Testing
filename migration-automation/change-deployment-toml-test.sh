@@ -47,272 +47,276 @@ elif [ "$os" = "macos-latest" ]; then
 fi
 
 # Set deployment automation file based on database and OS - Current Version
-if [ "$database" = "mysql" ]; then
-    if [ "$os" = "ubuntu-latest" ]; then
-        case "$currentVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2"
-            ;;
-        esac
-    elif [ "$os" = "macos-latest" ]; then
-        case "$currentVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2"
-            ;;
-        esac
-    fi
-elif [ "$database" = "postgres" ]; then
-    if [ "$os" = "ubuntu-latest" ]; then
-        case "$currentVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2"
-            ;;
-        esac
-    elif [ "$os" = "macos-latest" ]; then
-        case "$currentVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_MAC_IS_5_11"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2"
-            ;;
-        esac
-    fi
-elif [ "$database" = "mssql" ]; then
-    if [ "$os" = "ubuntu-latest" ]; then
-        case "$currentVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_9"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_10"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_11"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2"
-            ;;
-        esac
-    elif [ "$os" = "macos-latest" ]; then
-        case "$currentVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2"
-            ;;
-        esac
+if [ "$version" = "3" ]; then
+    if [ "$database" = "mysql" ]; then
+        if [ "$os" = "ubuntu-latest" ]; then
+            case "$currentVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2"
+                ;;
+            esac
+        elif [ "$os" = "macos-latest" ]; then
+            case "$currentVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2"
+                ;;
+            esac
+        fi
+    elif [ "$database" = "postgres" ]; then
+        if [ "$os" = "ubuntu-latest" ]; then
+            case "$currentVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2"
+                ;;
+            esac
+        elif [ "$os" = "macos-latest" ]; then
+            case "$currentVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_11"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2"
+                ;;
+            esac
+        fi
+    elif [ "$database" = "mssql" ]; then
+        if [ "$os" = "ubuntu-latest" ]; then
+            case "$currentVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_9"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_10"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_11"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2"
+                ;;
+            esac
+        elif [ "$os" = "macos-latest" ]; then
+            case "$currentVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2"
+                ;;
+            esac
+        fi
     fi
 fi
 
 # Set deployment automation file based on database and OS - Migrating Version
-if [ "$database" = "mysql" ]; then
-    if [ "$os" = "ubuntu-latest" ]; then
-        case "$migratingVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9_MIGRATION"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10_MIGRATION"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11_MIGRATION"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0_MIGRATION"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1_MIGRATION"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2_MIGRATION"
-            ;;
-        esac
-    elif [ "$os" = "macos-latest" ]; then
-        case "$migratingVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9_MIGRATION"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10_MIGRATION"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11_MIGRATION"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0_MIGRATION"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1_MIGRATION"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2_MIGRATION"
-            ;;
-        esac
-    fi
-elif [ "$database" = "postgres" ]; then
-    if [ "$os" = "ubuntu-latest" ]; then
-        case "$migratingVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9_MIGRATION"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10_MIGRATION"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11_MIGRATION"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0_MIGRATION"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1_MIGRATION"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2_MIGRATION"
-            ;;
-        esac
-    elif [ "$os" = "macos-latest" ]; then
-        case "$migratingVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9_MIGRATION"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10_MIGRATION"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRES_MAC_IS_5_11_MIGRATION"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0_MIGRATION"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1_MIGRATION"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2_MIGRATION"
-            ;;
-        esac
-    fi
-elif [ "$database" = "mssql" ]; then
-    if [ "$os" = "ubuntu-latest" ]; then
-        case "$migratingVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_9_MIGRATION"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_10_MIGRATION"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_11_MIGRATION"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0_MIGRATION"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1_MIGRATION"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2_MIGRATION"
-            ;;
-        esac
-    elif [ "$os" = "macos-latest" ]; then
-        case "$migratingVersion" in
-        "5.9.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9_MIGRATION"
-            ;;
-        "5.10.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10_MIGRATION"
-            ;;
-        "5.11.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11_MIGRATION"
-            ;;
-        "6.0.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0_MIGRATION"
-            ;;
-        "6.1.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1_MIGRATION"
-            ;;
-        "6.2.0")
-            deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2_MIGRATION"
-            ;;
-        esac
+if [ "$version" = "4" ]; then
+    if [ "$database" = "mysql" ]; then
+        if [ "$os" = "ubuntu-latest" ]; then
+            case "$migratingVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_9_MIGRATION"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_10_MIGRATION"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_5_11_MIGRATION"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_0_MIGRATION"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_1_MIGRATION"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_UBUNTU_IS_6_2_MIGRATION"
+                ;;
+            esac
+        elif [ "$os" = "macos-latest" ]; then
+            case "$migratingVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_9_MIGRATION"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_10_MIGRATION"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_5_11_MIGRATION"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_0_MIGRATION"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_1_MIGRATION"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MYSQL_MAC_IS_6_2_MIGRATION"
+                ;;
+            esac
+        fi
+    elif [ "$database" = "postgres" ]; then
+        if [ "$os" = "ubuntu-latest" ]; then
+            case "$migratingVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_9_MIGRATION"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_10_MIGRATION"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_5_11_MIGRATION"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_0_MIGRATION"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_1_MIGRATION"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_UBUNTU_IS_6_2_MIGRATION"
+                ;;
+            esac
+        elif [ "$os" = "macos-latest" ]; then
+            case "$migratingVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_9_MIGRATION"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_10_MIGRATION"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_5_11_MIGRATION"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_0_MIGRATION"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_1_MIGRATION"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_POSTGRE_MAC_IS_6_2_MIGRATION"
+                ;;
+            esac
+        fi
+    elif [ "$database" = "mssql" ]; then
+        if [ "$os" = "ubuntu-latest" ]; then
+            case "$migratingVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_9_MIGRATION"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_10_MIGRATION"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_5_11_MIGRATION"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_0_MIGRATION"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_1_MIGRATION"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_UBUNTU_IS_6_2_MIGRATION"
+                ;;
+            esac
+        elif [ "$os" = "macos-latest" ]; then
+            case "$migratingVersion" in
+            "5.9.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_9_MIGRATION"
+                ;;
+            "5.10.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_10_MIGRATION"
+                ;;
+            "5.11.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_5_11_MIGRATION"
+                ;;
+            "6.0.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_0_MIGRATION"
+                ;;
+            "6.1.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_1_MIGRATION"
+                ;;
+            "6.2.0")
+                deployment_automation_file="$DEPLOYMENT_AUTOMATION_MSSQL_MAC_IS_6_2_MIGRATION"
+                ;;
+            esac
+        fi
     fi
 fi
 
@@ -321,13 +325,15 @@ if [ -n "$deployment_automation_file" ]; then
     chmod +x "$deployment_automation_file"
     # Check if migratingVersion is in the specified list
     if [ "$migratingVersion" = "5.11.0" || "$migratingVersion" = "6.0.0" || "$migratingVersion" == "6.1.0" || "$migratingVersion" = "6.2.0" ]; then
-        # Generate the secret key
-        secret_key=$(openssl rand -hex 32)
-        echo "${GREEN}==> Secret key is $secret_key${RESET}"
+        if [ "$version" = "3" ]; then
+            # Generate the secret key
+            secret_key=$(openssl rand -hex 32)
+            echo "${GREEN}==> Secret key is $secret_key${RESET}"
 
-        # Replace the placeholder with the generated secret key
-        sed -i "s/<provide-your-key-here>/$secret_key/g" "$deployment_path"
-        echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
+            # Replace the placeholder with the generated secret key
+            sed -i "s/<provide-your-key-here>/$secret_key/g" "$deployment_path"
+            echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
+        fi
     fi
     # Display the content of the deployment automation file in the terminal
     echo "Content of deployment automation file:"
