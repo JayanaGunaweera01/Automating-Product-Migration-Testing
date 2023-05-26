@@ -301,7 +301,7 @@ echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
 sh start-server.sh "$6" "3" $3 $4 "true"
-echo "${GREEN}==> Yay! Migration process completed!🎉${RESET}"
+echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
 # Stop wso2IS migration server
 cd "$BIN_ISNEW"
