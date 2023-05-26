@@ -15,7 +15,8 @@ read_groups = true
 [user_store.properties]
 SCIMEnabled= true
 
-
+[admin_service.wsdl]
+enable = true
 
 # POSTGRESQL CONFIGS
 [database.user]
@@ -124,3 +125,4 @@ app_password= "dashboard"
 #password= "xxxx"
 #hostname= "smtp.gmail.com"
 #port= 587
+

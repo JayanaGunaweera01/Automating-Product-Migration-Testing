@@ -19,6 +19,7 @@ url = "jdbc:sqlserver://localhost:1433;databaseName=testdb;SendStringParametersA
 username = "SA"
 password = "YourStrongPassw0rd"
 driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+
 [realm_manager]
 data_source = "WSO2USER_DB"
 
@@ -79,6 +80,10 @@ hash= "66cd9688a2ae068244ea01e70f0e230f5623b7fa4cdecb65070a09ec06452262"
 
 [identity.auth_framework.endpoint]
 app_password= "dashboard"
+
+[admin_service.wsdl]
+enable = true
+
 
 #Remove Unused Tokens from the Database
 

@@ -15,6 +15,9 @@ read_groups = true
 [user_store.properties]
 SCIMEnabled= true
 
+[admin_service.wsdl]
+enable = true
+
 # MYSQL CONFIGS
 
 [admin_service.wsdl]

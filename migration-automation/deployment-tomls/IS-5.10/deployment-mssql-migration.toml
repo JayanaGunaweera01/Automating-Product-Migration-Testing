@@ -49,6 +49,9 @@ password = "YourStrongPassw0rd"
 driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 jmx_enable=false
 
+[admin_service.wsdl]
+enable = true
+
 
 #[bps_database.config]
 #url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"

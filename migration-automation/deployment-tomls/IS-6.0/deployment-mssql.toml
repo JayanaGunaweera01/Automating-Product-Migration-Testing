@@ -9,7 +9,8 @@ password = "admin"
 create_admin_account = true
 
 [user_store]
-type = "database"
+type = "database_unique_id"
+read_groups = true
 
 # MSSQL CONFIGS
 
@@ -18,13 +19,8 @@ url = "jdbc:sqlserver://localhost:1433;databaseName=testdb;SendStringParametersA
 username = "SA"
 password = "YourStrongPassw0rd"
 driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-
-[configuration.store.query_length]
-max="4194304"
-
 [realm_manager]
 data_source = "WSO2USER_DB"
-
 
 [database.identity_db]
 url = "jdbc:sqlserver://localhost:1433;databaseName=testdb;SendStringParametersAsUnicode=false"
@@ -84,31 +80,10 @@ hash= "66cd9688a2ae068244ea01e70f0e230f5623b7fa4cdecb65070a09ec06452262"
 [identity.auth_framework.endpoint]
 app_password= "dashboard"
 
-[encryption]
-key = "<provide-your-key-here>"
-internal_crypto_provider = "org.wso2.carbon.crypto.provider.KeyStoreBasedInternalCryptoProvider"
-
-[system_applications]
-read_only_apps = []
-
-[system.parameter]
-"org.wso2.CipherTransformation"="RSA/ECB/OAEPwithSHA1andMGF1Padding"
-
-
-[authorization_manager.properties]
-GroupAndRoleSeparationEnabled = false
-
-[system_applications]
-read_only_apps = []
-
 #Remove Unused Tokens from the Database
 
 #[oauth.token_cleanup]
 #enable = false
-
-[system.parameter]
-"org.wso2.CipherTransformation"="RSA/ECB/OAEPwithSHA1andMGF1Padding"
-
 
 #### Depending on your database, select the appropriate token cleanup script based on the links mentioned in the link below ### 
 #https://is.docs.wso2.com/en/latest/deploy/remove-unused-tokens-from-the-database/#use-the-store-procedure-for-token-cleanup

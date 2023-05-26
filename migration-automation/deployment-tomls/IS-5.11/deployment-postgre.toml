@@ -12,20 +12,6 @@ create_admin_account = true
 type = "database_unique_id"
 read_groups = true
 
-[configuration.store.query_length]
-max="4194304"
-
-[encryption]
-key = "<provide-your-key-here>"
-internal_crypto_provider = "org.wso2.carbon.crypto.provider.KeyStoreBasedInternalCryptoProvider"
-
-[system_applications]
-read_only_apps = []
-
-[system.parameter]
-"org.wso2.CipherTransformation"="RSA/ECB/OAEPwithSHA1andMGF1Padding"
-
-
 # POSTGRESQL CONFIGS
 [database.user]
 url = "jdbc:postgresql://localhost:5432/testdb"

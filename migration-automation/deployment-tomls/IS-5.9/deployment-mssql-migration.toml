@@ -1,3 +1,12 @@
+[server]
+hostname = "localhost"
+node_ip = "127.0.0.1"
+base_path = "https://$ref{server.hostname}:${carbon.management.port}"
+
+[super_admin]
+username = "admin"
+password = "admin"
+create_admin_account = true
 
 [user_store]
 type = "database"
@@ -49,6 +58,8 @@ password = "YourStrongPassw0rd"
 driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 jmx_enable=false
 
+[admin_service.wsdl]
+enable = true
 
 #[bps_database.config]
 #url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"
