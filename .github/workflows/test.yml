@@ -220,6 +220,5 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: "migration-logs-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: migration-automation/logs.txt
+          name: "migration-logs-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           retention-days: 7

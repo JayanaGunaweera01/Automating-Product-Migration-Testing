@@ -282,7 +282,7 @@ if [ "$4" = "5.11.0" && "$5" = "postgres" ]; then
     echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - PostgreSQL (Ubuntu)${RESET}"
 fi
 
-#Divert to bin folder
+# Divert to bin folder
 cd "$BIN_ISNEW"
 echo "${GREEN}==> Diverted to bin folder successfully${RESET}"
 
