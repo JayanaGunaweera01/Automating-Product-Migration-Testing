@@ -320,6 +320,22 @@ if [ "$version" = "4" ]; then
     fi
 fi
 
+# Special config change when migrating from IS 5.9: doing migration with database type as "database" and starting migrated server as "database-unique-id"
+if [ -n "$deployment_automation_file" ]; then
+    if [ "$currentVersion" = "5.9.0" ]; then
+        if [ "$version" = "4" ]; then
+            deployment_directory=$(dirname "$deployment_automation_file")
+            chmod +x "$deployment_automation_file"
+            # Search for the code block in deployment_automation_file
+            for file in "$deployment_automation_file"; do
+                sed -i '/\[user_store\]/,/^$/ s/#type = "database"/type = "database"/' "$file"
+                sed -i '/\[user_store\]/,/^$/ s/type = "database_unique_id"/#type = "database_unique_id"/' "$file"
+            done
+            echo "${GREEN}==> Done special config change when migrating from IS 5.9: doing migration with database type as database${RESET}"
+        fi
+    fi
+fi
+
 # Replace deployment file if deployment automation file exists
 if [ -n "$deployment_automation_file" ]; then
     chmod +x "$deployment_automation_file"
