@@ -261,7 +261,7 @@ echo "${BLUE}==> Copied userstores, tenants,jar files,.jks files from oldIS to n
 
 # Deployment toml changes in new is version
 chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 4
+sh change-deployment-toml.sh "$3" "$4" "$5" "$6" "4"
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 echo "${BLUE}==> Copied deployment toml of $3 to $4 successfully!${RESET}"
 wait $!
