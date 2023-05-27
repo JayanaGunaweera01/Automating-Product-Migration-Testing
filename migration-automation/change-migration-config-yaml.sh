@@ -38,20 +38,27 @@ if [ "$os" = "ubuntu-latest" ]; then
 
   # Define the search pattern for the block of text
   if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+    cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
+    chmod +x migration-config.yaml
+
     for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
       search_pattern='version: "5.11.0"\n   migratorConfigs:\n   -\n     name: "EncryptionAdminFlowMigrator"\n     order: 1\n     parameters:\n       currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
 
       # Define the replacement line
       replacement_line='       currentEncryptionAlgorithm: "RSA"'
-
-      # Find and replace the line within the block of text
-      sed -i "s~$search_pattern~$replacement_line~" "$file"
+      for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
+        # Find and replace the line within the block of text
+        sed -i "s~$search_pattern~$replacement_line~" "$file"
+      done
     done
     echo "${GREEN}==> CurrentEncryptionAlgorithm changed to \"RSA\" which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
   fi
 
   # Check conditions to modify transformToSymmetric (This is a special migration config change when migrating to IS 5.11.0)
   if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+    cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
+    chmod +x migration-config.yaml
+
     for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
       sed -i 's~transformToSymmetric:.*~transformToSymmetric: "true"~' "$file"
     done
@@ -63,7 +70,7 @@ if [ "$os" = "macos-latest" ]; then
   cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
   chmod +x env.sh
   source ./env.sh
-  echo -e "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
   cd "$MIGRATION_RESOURCES_NEW_IS_MAC"
   chmod +x "$MIGRATION_CONFIG_YAML_MAC"
 
@@ -76,20 +83,26 @@ if [ "$os" = "macos-latest" ]; then
 
   # Define the search pattern for the block of text
   if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+    cd "$MIGRATION_RESOURCES_NEW_IS_MAC"
+    chmod +x migration-config.yaml
+
     for file in $(find "$MIGRATION_RESOURCES_NEW_IS_MAC" -type f -name 'migration-config.yaml'); do
       search_pattern='version: "5.11.0"\n   migratorConfigs:\n   -\n     name: "EncryptionAdminFlowMigrator"\n     order: 1\n     parameters:\n       currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
 
       # Define the replacement line
       replacement_line='       currentEncryptionAlgorithm: "RSA"'
-
-      # Find and replace the line within the block of text
-      sed -i "s~$search_pattern~$replacement_line~" "$file"
+      for file in $(find "$MIGRATION_RESOURCES_NEW_IS_MAC" -type f -name 'migration-config.yaml'); do
+        # Find and replace the line within the block of text
+        sed -i "s~$search_pattern~$replacement_line~" "$file"
+      done
     done
     echo "${GREEN}==> CurrentEncryptionAlgorithm changed to \"RSA\" which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
   fi
 
   # Check conditions to modify transformToSymmetric (This is a special migration config change when migrating to IS 5.11.0)
   if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+    cd "$MIGRATION_RESOURCES_NEW_IS_MAC"
+    chmod +x migration-config.yaml
     for file in $(find "$MIGRATION_RESOURCES_NEW_IS_MAC" -type f -name 'migration-config.yaml'); do
       sed -i 's~transformToSymmetric:.*~transformToSymmetric: "true"~' "$file"
     done
