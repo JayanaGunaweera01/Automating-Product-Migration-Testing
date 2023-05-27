@@ -347,7 +347,10 @@ fi
                 # Replace the placeholder with the generated secret key
                 sed -i "s/<provide-your-key-here>/$secret_key/g" "$deployment_path/deployment.toml"
                 echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
+                echo "Content of deployment automation file:"
+                cat "deployment.toml" 
                 echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
+            
             done
         fi
     fi
