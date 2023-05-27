@@ -251,12 +251,6 @@ echo "${BLUE}==> .jks files from from IS $3 to IS $4 copied successfully!${RESET
 cp -r "$USERSTORE_OLD_PATH" "$USERSTORE_NEW_PATH"
 echo "${BLUE}==> Userstores from IS $3 to IS $4 copied successfully!${RESET}"
 
-# Deployment toml changes in new is version
-chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 4
-echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
-echo "${BLUE}==> Copied deployment toml of $3 to $4 successfully!${RESET}"
-
 # Check if all files are copied successfully
 if [ $? -eq 0 ]; then
     echo "${BLUE}==> All files are copied successfully!${RESET}"
@@ -264,6 +258,12 @@ else
     echo "${BLUE}==> Error: Some files could not be copied.${RESET}"
 fi
 echo "${BLUE}==> Copied userstores, tenants,jar files,.jks files from oldIS to newIS successfully${RESET}"
+
+# Deployment toml changes in new is version
+chmod +x change-deployment-toml.sh
+sh change-deployment-toml.sh "$3" "$4" "$5" "$6" "4"
+echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
+echo "${BLUE}==> Copied deployment toml of $3 to $4 successfully!${RESET}"
 
 # Execute consent management db scripts for IS 5.11.0 - MySQL
 if [ "$4" = "5.11.0" && "$5" = "mysql" ]; then
