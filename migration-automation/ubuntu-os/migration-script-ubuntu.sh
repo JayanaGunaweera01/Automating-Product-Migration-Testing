@@ -283,7 +283,7 @@ else
     echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
 fi
 
-# Execute consent management db scripts for IS 5.11.0 - PostgreSQL (Ubuntu)
+# Execute consent management db scripts for IS 5.11.0 - PostgreSQL
 if [ "$4" = "5.11.0" && "$5" = "postgres" ]; then
     # Add the command for executing PostgreSQL script on Ubuntu here
     echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - PostgreSQL (Ubuntu)${RESET}"
@@ -345,6 +345,23 @@ while [ "$is_running" != true ]; do
 done
 
 echo "${GREEN}==> Stopped migration terminal successfully!${RESET}"
+
+# Special config change when migrating from IS 5.9 changing userstore type to database unique id
+if [ "$3" = "5.9.0" ]; then
+    cd "$DEPLOYMENT_PATH_NEW"
+    chmod +x deployment.toml
+    for file in $(find "$DEPLOYMENT_PATH_NEW" -type f -name 'deployment.toml'); do
+        sed -i 's/type = "database"/#type = "database"/' "$file"
+        sed -i 's/#type = "database_unique_id"/type = "database_unique_id"/' "$file"
+        echo "Content of $file:"
+        cat "$file"
+        wait $!
+    done
+    echo "${GREEN}==> Changes made to deployment toml file - special config change when migrating from IS 5.9 changing userstore type to database unique id${RESET}"
+
+else
+    echo "${GREEN}==> Skipping this step since thecurrent version was not IS 5.9.0$5 ${RESET}"
+fi
 
 cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Migrated WSO2 Identity Server - IS $4 is starting....${RESET}"
