@@ -261,11 +261,11 @@ echo "${BLUE}==> Copied userstores, tenants,jar files,.jks files from oldIS to n
 
 # Deployment toml changes in new is version
 chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh "$3" "$4" "$5" "$6" "4"
+sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 4
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 echo "${BLUE}==> Copied deployment toml of $3 to $4 successfully!${RESET}"
 wait $!
- 
+
 # Execute consent management db scripts for IS 5.11.0 - MySQL
 if [ "$4" = "5.11.0" && "$5" = "mysql" ]; then
     docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D mydb' </home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/other-db-scripts/config-management-is-5-11.sql

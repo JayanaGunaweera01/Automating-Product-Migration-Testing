@@ -324,7 +324,8 @@ fi
 if [ -n "$deployment_automation_file" ]; then
     chmod +x "$deployment_automation_file"
     # Check if migratingVersion is in the specified list
-    if [ "$migratingVersion" = "5.11.0" || "$migratingVersion" = "6.0.0" || "$migratingVersion" = "6.1.0" || "$migratingVersion" = "6.2.0" ]; then
+    if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+
         if [ "$version" = "4" ]; then
             for file in $(find "$deployment_automation_file" -type f -name 'migration-config.yaml'); do
                 # Generate the secret key
