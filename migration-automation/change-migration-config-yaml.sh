@@ -25,7 +25,7 @@ if [ "$os" = "ubuntu-latest" ]; then
     echo "${GREEN}==> Versions Changed.${RESET}"
 
     # Define the search pattern for the block of text
-    if [ "$migratingVersion" = "6.0.0" || "$migratingVersion" = "6.1.0" || "$migratingVersion" = "6.2.0" ]; then
+    if [ "$migratingVersion" == "6.0.0" || "$migratingVersion" == "6.1.0" || "$migratingVersion" == "6.2.0" ]; then
       search_pattern='version: "5.11.0"\n   migratorConfigs:\n   -\n     name: "EncryptionAdminFlowMigrator"\n     order: 1\n     parameters:\n       currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
 
       # Define the replacement line
