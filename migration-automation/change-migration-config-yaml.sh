@@ -22,6 +22,7 @@ if [ "$os" = "ubuntu-latest" ]; then
     sed -i "s/\(.*migrationEnable:.*\)/migrationEnable: \"true\"/" "$file"
     sed -i "s/\(.*currentVersion: .*\)/currentVersion: \"$currentVersion\"/" "$file"
     sed -i "s/\(.*migrateVersion: .*\)/migrateVersion: \"$migratingVersion\"/" "$file"
+    echo "${GREEN}==> Versions Changed.${RESET}"
 
     # Define the search pattern for the block of text
     if [ "$currentVersion" = "5.9.0" || "$currentVersion" = "5.10.0" || "$currentVersion" = "5.11.0" || "$currentVersion" = "6.0.0" || "$currentVersion" = "6.1.0" || "$currentVersion" = "6.2.0" ] && [ "$migratingVersion" = "6.0.0" || "$migratingVersion" = "6.1.0" || "$migratingVersion" = "6.2.0" ]; then
@@ -32,7 +33,7 @@ if [ "$os" = "ubuntu-latest" ]; then
 
       # Find and replace the line within the block of text
       sed -i "/$search_pattern/{n;n;n;n;n;s/.*/$replacement_line/}" "$file"
-      echo "${GREEN}==> CurrentEncryptionAlgorithm changed to \"RSA\" which is a special migration config change when migrating to to versions above IS 5.11.0${RESET}"
+      echo "${GREEN}==> CurrentEncryptionAlgorithm changed to \"RSA\" which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
     fi
 
     # Check conditions to modify transformToSymmetric (This is a special migration config change when migrating to IS 5.11.0)
@@ -41,6 +42,7 @@ if [ "$os" = "ubuntu-latest" ]; then
       echo "${GREEN}==> Value of transformToSymmetric changed to true in migration-config.yaml which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
     fi
   done
+fi
 
 elif [ "$os" = "macos-latest" ]; then
   cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
