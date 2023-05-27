@@ -325,7 +325,7 @@ if [ -n "$deployment_automation_file" ]; then
     chmod +x "$deployment_automation_file"
     # Check if migratingVersion is in the specified list
     if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
-        if [ "$version" = "3" ]; then
+        if [ "$version" = "4" ]; then
             for file in $(find "$deployment_automation_file" -type f -name 'migration-config.yaml'); do
                 # Generate the secret key
                 secret_key=$(openssl rand -hex 32)
@@ -340,7 +340,9 @@ if [ -n "$deployment_automation_file" ]; then
     # Display the content of the deployment automation file in the terminal
     echo "Content of deployment automation file:"
     cat "$deployment_automation_file"
+    wait $!
 
     find "$deployment_path" -type f -name 'deployment.toml' -exec sh -c "cat '$deployment_automation_file' > '{}'" \;
+    wait $!
     echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
 fi
