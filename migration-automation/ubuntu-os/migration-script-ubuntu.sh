@@ -360,7 +360,7 @@ if [ "$3" = "5.9.0" ]; then
     echo "${GREEN}==> Changes made to deployment toml file - special config change when migrating from IS 5.9 changing userstore type to database unique id${RESET}"
 
 else
-    echo "${GREEN}==> Skipping this step since thecurrent version was not IS 5.9.0$5 ${RESET}"
+    echo "${GREEN}==> Skipping this step since the current version was not IS 5.9.0$5 ${RESET}"
 fi
 
 cd "$AUTOMATION_HOME"
