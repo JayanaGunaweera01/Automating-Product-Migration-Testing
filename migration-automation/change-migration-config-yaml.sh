@@ -61,8 +61,13 @@ if [ "$os" = "ubuntu-latest" ]; then
 
     for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
       sed -i 's~transformToSymmetric:.*~transformToSymmetric: "true"~' "$file"
+      echo "Content of migration-config-yaml file:"
+      cat "migration-config.yaml"
+      echo "${GREEN}==> Did all the needed changes to migration-config.yaml  successfully.${RESET}"
+      echo "${GREEN}==> Value of transformToSymmetric changed to true in migration-config.yaml which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
+
     done
-    echo "${GREEN}==> Value of transformToSymmetric changed to true in migration-config.yaml which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
+
   fi
 fi
 
@@ -105,7 +110,12 @@ if [ "$os" = "macos-latest" ]; then
     chmod +x migration-config.yaml
     for file in $(find "$MIGRATION_RESOURCES_NEW_IS_MAC" -type f -name 'migration-config.yaml'); do
       sed -i 's~transformToSymmetric:.*~transformToSymmetric: "true"~' "$file"
+      echo "${GREEN}==> Value of transformToSymmetric changed to true in migration-config.yaml which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
+      echo "Content of migration-config-yaml file:"
+      cat "migration-config.yaml"
+      echo "${GREEN}==> Did all the needed changes to migration-config.yaml  successfully.${RESET}"
+
     done
-    echo "${GREEN}==> Value of transformToSymmetric changed to true in migration-config.yaml which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
+
   fi
 fi
