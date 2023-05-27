@@ -323,7 +323,7 @@ fi
 # Replace deployment file if deployment automation file exists
 if [ -n "$deployment_automation_file" ]; then
     chmod +x "$deployment_automation_file"
-   
+
     # Display the content of the deployment automation file in the terminal
     echo "Content of deployment automation file:"
     cat "$deployment_automation_file"
@@ -331,26 +331,27 @@ if [ -n "$deployment_automation_file" ]; then
 
     find "$deployment_path" -type f -name 'deployment.toml' -exec sh -c "cat '$deployment_automation_file' > '{}'" \;
     wait $!
-    
+
 fi
 
+# Check if migratingVersion is in the specified list
+if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+    if [ "$version" = "4" ]; then
+        for file in $(find "$deployment_path" -type f -name 'deployment.toml'); do
+            # Generate the secret key
+            secret_key=$(openssl rand -hex 32)
+            wait $!
+            echo "${GREEN}==> Secret key is $secret_key${RESET}"
 
- # Check if migratingVersion is in the specified list
-    if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
-       if [ "$version" = "4" ]; then
-            for file in $(find "$deployment_path" -type f -name 'deployment.toml'); do
-                # Generate the secret key
-                secret_key=$(openssl rand -hex 32)
-                wait $!
-                echo "${GREEN}==> Secret key is $secret_key${RESET}"
+            # Replace the placeholder with the generated secret key
+            sed -i "s/<provide-your-key-here>/$secret_key/g" "$deployment_path/deployment.toml"
+            echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
+        done
+        for file in $(find "$deployment_path" -type f -name 'deployment.toml'); do
+            echo "Content of deployment automation file:"
+            cat "deployment.toml"
+            echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
 
-                # Replace the placeholder with the generated secret key
-                sed -i "s/<provide-your-key-here>/$secret_key/g" "$deployment_path/deployment.toml"
-                echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
-                echo "Content of deployment automation file:"
-                cat "deployment.toml" 
-                echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
-            
-            done
-        fi
+        done
     fi
+fi
