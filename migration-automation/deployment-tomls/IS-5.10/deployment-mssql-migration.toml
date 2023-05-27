@@ -1,6 +1,7 @@
 
 [user_store]
-type = "database"
+#type = "database"
+type = "database_unique_id"
 read_groups = true
 
 # MSSQL CONFIGS

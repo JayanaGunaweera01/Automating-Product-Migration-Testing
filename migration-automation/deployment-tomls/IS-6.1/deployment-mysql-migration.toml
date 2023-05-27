@@ -9,8 +9,8 @@ password = "admin"
 create_admin_account = true
 
 [user_store]
-type = "database"
-#type = "database_unique_id"
+#type = "database"
+type = "database_unique_id"
 read_groups = true
 
 [database.user]
