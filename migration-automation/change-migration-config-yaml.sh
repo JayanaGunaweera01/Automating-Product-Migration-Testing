@@ -42,8 +42,6 @@ if [ "$os" = "ubuntu-latest" ]; then
       echo "${GREEN}==> Value of transformToSymmetric changed to true in migration-config.yaml which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
     fi
   done
-fi
-
 elif [ "$os" = "macos-latest" ]; then
   cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
   chmod +x env.sh
@@ -58,7 +56,7 @@ elif [ "$os" = "macos-latest" ]; then
     sed -i "s/\(.*migrateVersion: .*\)/migrateVersion: \"$migratingVersion\"/" "$file"
 
     # Define the search pattern for the block of text
-    if [ "$migratingVersion" = "6.0.0" || "$migratingVersion" = "6.1.0" || "$migratingVersion" = "6.2.0" ]; then
+    if ["$migratingVersion" = "6.0.0" || "$migratingVersion" = "6.1.0" || "$migratingVersion" = "6.2.0" ]; then
       search_pattern='version: "5.11.0"\n   migratorConfigs:\n   -\n     name: "EncryptionAdminFlowMigrator"\n     order: 1\n     parameters:\n       currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
 
       # Define the replacement line
