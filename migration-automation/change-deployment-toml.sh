@@ -324,14 +324,14 @@ fi
 if [ -n "$deployment_automation_file" ]; then
     chmod +x "$deployment_automation_file"
 
-    # Display the content of the deployment automation file in the terminal
-    echo "Content of deployment automation file:"
-    cat "$deployment_automation_file"
-    wait $!
-
     find "$deployment_path" -type f -name 'deployment.toml' -exec sh -c "cat '$deployment_automation_file' > '{}'" \;
     wait $!
-
+    if [ "$migratingVersion" = "5.9.0" ] || [ "$migratingVersion" = "5.10.0" ]; then
+        # Display the content of the deployment automation file in the terminal
+        echo "Content of deployment toml file before migration:"
+        cat "$deployment_automation_file"
+        wait $!
+    fi
 fi
 
 # Check if migratingVersion is in the specified list
