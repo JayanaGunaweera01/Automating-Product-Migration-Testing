@@ -11,10 +11,6 @@ ORANGE='\033[0;91m\033[1m' # orange color
 RED='\033[0;31m\033[1m'    # red color
 RESET='\033[0m'            # reset color
 
-# Define emojis
-SAD_FACE="\U0001F614"
-PARTY_POPPER="\U0001F389"
-
 # Update the system before downloading packages
 sudo apt-get -qq update
 
