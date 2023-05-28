@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Enable debugging mode
+set -x
+
 # Execute scripts in order
 for script in \
   "1-user-creation/create-user.sh" \
@@ -18,7 +21,8 @@ for script in \
   if [ -f "$script" ] && [ -x "$script" ]; then
     chmod +x "$script"
     echo "Running script: $script"
-    eval "./$script"
+    # Execute script
+    "./$script"
   fi
 done
 
@@ -32,12 +36,17 @@ for dir in */; do
       # Check if script exists and is executable
       if [ -f "$script" ] && [ -x "$script" ]; then
         echo "Running script: $script"
-        eval "./$script"
+        # Execute script
+        "./$script"
       fi
     done
     cd ..
   fi
 done
+
+# Disable debugging mode
+set +x
+
 
 
 
