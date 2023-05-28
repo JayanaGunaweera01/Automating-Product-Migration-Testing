@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Define color variables
+ORANGE='\033[0;33m\033[1m' # orange color
+RESET='\033[0m'            # reset color
+GREEN='\033[0;32m\033[1m'  # green color
+
 data_population_dir="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os"
 
 echo "Running data population scripts"
@@ -29,15 +34,16 @@ if [ -d "$data_population_dir" ]; then
     # check if script exists and is executable
     if [ -f "$script_path" ]; then
       chmod +x "$script_path" # make the script executable
-      printf "Running script: %s\n" "$script_path"
+      printf "${ORANGE}Running script: %s${RESET}\n" "$script_path"
       # execute script and redirect output to stdout
       "$script_path" >&1
     else
-      echo "Script '$script_path' does not exist."
+      echo "${GREEN}==> Script '$script_path' does not exist.${RESET}"
     fi
   done
 else
-  echo "Directory '$data_population_dir' does not exist."
+
+  echo "${GREEN}==> Directory '$data_population_dir' does not exist.${RESET}"
 fi
 
 # execute scripts in any other subdirectories
@@ -50,9 +56,8 @@ for dir in */; do
       # check if script exists and is executable
       if [ -f "$script"; then
         chmod +x "$script" # make the script executable
-        printf "Running script: %s\n" "$script"
         # execute script and redirect output to stdout
-
+        printf "${ORANGE}Running script: %s${RESET}\n" "$script"
         "./$script" >&1
       fi
     done
