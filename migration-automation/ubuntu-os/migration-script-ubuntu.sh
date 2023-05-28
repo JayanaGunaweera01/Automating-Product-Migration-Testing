@@ -183,6 +183,7 @@ echo "${GREEN}==> Diverted to utils folder${RESET}"
 # Download migration client
 wget -qq "$LINK_TO_MIGRATION_CLIENT" &
 wait $!
+ls -a
 echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
 
 # Unzip migration client archive
@@ -222,7 +223,7 @@ echo "${GREEN}==> Did needed changes in migration-config.yaml file successfully$
 
 # Copy userstores, tenants,jar files,.jks files from oldIS to newIS
 cp -r "$LIB" "$LIB_NEW"
-echo "${BLUE}==> Jar files fromfrom IS $3 to IS $4 copied successfully!${RESET}"
+echo "${BLUE}==> Jar files from IS $3 to IS $4 copied successfully!${RESET}"
 
 cp -r "$TENANT_OLD_PATH" "$TENANT_NEW_PATH"
 echo "${BLUE}==> Tenants from from IS $3 to IS $4 copied successfully!${RESET}"
@@ -273,9 +274,9 @@ else
     echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
 fi
 
-# Divert to home
-cd "$AUTOMATION_HOME"
-echo "${GREEN}==> Diverted to home successfully${RESET}"
+# Divert to bin folder
+cd "$BIN_ISNEW"
+echo "${GREEN}==> Diverted to bin folder successfully${RESET}"
 
 # Get the existing time and date
 time_and_date=$(date +"%Y-%m-%d %H:%M:%S")
