@@ -1,18 +1,5 @@
 #!/bin/bash
 
-# Define the log file path
-log_file="script_execution.log"
-
-# Function to execute a script and log the output
-execute_script() {
-  local script="$1"
-  echo "Running script: $script"
-  "./$script" 2>&1 | tee -a "$log_file"
-}
-
-# Clear the log file before execution
-> "$log_file"
-
 # Execute scripts in order
 for script in \
   "1-user-creation/create-user.sh" \
@@ -30,7 +17,8 @@ for script in \
   # Check if script exists and is executable
   if [ -f "$script" ] && [ -x "$script" ]; then
     chmod +x "$script"
-    execute_script "$script"
+    echo "Running script: $script"
+    eval "./$script"
   fi
 done
 
@@ -43,12 +31,14 @@ for dir in */; do
     for script in *.sh; do
       # Check if script exists and is executable
       if [ -f "$script" ] && [ -x "$script" ]; then
-        execute_script "$script"
+        echo "Running script: $script"
+        eval "./$script"
       fi
     done
     cd ..
   fi
 done
+
 
 
 
