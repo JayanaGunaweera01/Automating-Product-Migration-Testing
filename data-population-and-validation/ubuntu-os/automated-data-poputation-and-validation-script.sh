@@ -4,7 +4,10 @@ data_population_dir="/home/runner/work/Automating-Product-Migration-Testing/Auto
 
 echo "Running data population scripts"
 if [ -d "$data_population_dir" ]; then
-  cd "$data_population_dir" || { echo "Failed to change directory."; exit 1; }
+  cd "$data_population_dir" || {
+    echo "Failed to change directory."
+    exit 1
+  }
 
   # execute scripts in order
   for script in \
@@ -25,7 +28,7 @@ if [ -d "$data_population_dir" ]; then
 
     # check if script exists and is executable
     if [ -f "$script_path" ]; then
-      chmod +x "$script_path"  # make the script executable
+      chmod +x "$script_path" # make the script executable
       printf "Running script: %s\n" "$script_path"
       # execute script and redirect output to stdout
       "$script_path" >&1
@@ -45,10 +48,12 @@ for dir in */; do
     cd "$dir" || exit
     for script in *.sh; do
       # check if script exists and is executable
-      if [ -f "$script" ] && [ -x "$script" ]; then
-        echo "Running script: $script"
-        # execute script and redirect output to console
-        "./$script" >/dev/tty
+      if [ -f "$script"; then
+        chmod +x "$script" # make the script executable
+        printf "Running script: %s\n" "$script"
+        # execute script and redirect output to stdout
+
+        "./$script" >&1
       fi
     done
     cd ..
