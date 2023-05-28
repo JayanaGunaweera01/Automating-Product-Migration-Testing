@@ -16,11 +16,17 @@ for script in \
   "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/1-user-creation/ubuntu-os/create-group.sh" \
   "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/1-user-creation/ubuntu-os/create-groups-with-users.sh"; do
   # check if script exists and is executable
-  if [ -f "$script" ] && [ -x "$script" ]; then
-    chmod +x "$script"
-    printf "Running script: %s\n" "$script"
-    # execute script and redirect output to stdout
-    "./$script" >&1
+  if [ -f "$script" ]; then
+    if [ -x "$script" ]; then
+      chmod +x "$script"
+      printf "Running script: %s\n" "$script"
+      # execute script and redirect output to stdout
+      "./$script" >&1
+    else
+      echo "Script '$script' is not executable."
+    fi
+  else
+    echo "Script '$script' does not exist."
   fi
 done
 
