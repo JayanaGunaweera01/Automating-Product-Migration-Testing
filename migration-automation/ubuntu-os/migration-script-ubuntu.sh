@@ -182,7 +182,8 @@ echo "${GREEN}==> Diverted to utils folder${RESET}"
 pwd
 
 # Download migration client
-wget -qq "$LINK_TO_MIGRATION_CLIENT" &
+#wget -qq "$LINK_TO_MIGRATION_CLIENT" &
+wget -qq https://github.com/wso2-enterprise/identity-migration-resources/releases/download/v1.0.231/wso2is-migration-1.0.231.zip
 wait $!
 ls -a
 echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
