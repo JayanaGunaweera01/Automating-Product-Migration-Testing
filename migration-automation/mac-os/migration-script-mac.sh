@@ -31,8 +31,8 @@ currentVersion=$(echo $currentVersion | xargs)
 combinedCurrentVersion="wso2is-${currentVersion}"
 
 # Replace all instances of "CurrentVersion" with the combined version value
-sed "s/CurrentVersion/${combinedCurrentVersion}/g" /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh >temp_env.sh
-mv temp_env.sh /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh
+sed "s/CurrentVersion/${combinedCurrentVersion}/g" "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh" >temp_env.sh
+mv temp_env.sh "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
 
 # Remove spaces from the beginning and end of the migratingVersion variable
 migratingVersion=$(echo $migratingVersion | xargs)
@@ -41,8 +41,8 @@ migratingVersion=$(echo $migratingVersion | xargs)
 combinedMigratingVersion="wso2is-${migratingVersion}"
 
 # Replace all instances of "MigratingVersion" with the value of the "migratingVersion" input, without spaces
-sed "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh >temp_env.sh
-mv temp_env.sh /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh
+sed "s/MigratingVersion/${combinedMigratingVersion}/g" "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh" >temp_env.sh
+mv temp_env.sh "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
 
 # Define the message in a variable for easier modification
 echo
