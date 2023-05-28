@@ -16,9 +16,10 @@ for script in \
   "5-group-creation/create-groups-with-users.sh"; do
   # check if script exists and is executable
   if [ -f "$script" ] && [ -x "$script" ]; then
+    chmod +x "$script"
     echo "Running script: $script"
     # execute script and redirect output to console and file
-    "./$script" | tee -a /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/logs.txt
+    "./$script"
   fi
 done
 
@@ -33,7 +34,7 @@ for dir in */; do
       if [ -f "$script" ] && [ -x "$script" ]; then
         echo "Running script: $script"
         # execute script and redirect output to console and file
-        "./$script" | tee -a /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/logs.txt
+        "./$script"
       fi
     done
     cd ..
