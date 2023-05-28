@@ -19,7 +19,7 @@ for script in \
     chmod +x "$script"
     echo "Running script: $script"
     # execute script and redirect output to console
-    "./$script" >/dev/tty
+    "./$script" >/dev/stdout
   fi
 done
 
@@ -34,9 +34,10 @@ for dir in */; do
       if [ -f "$script" ] && [ -x "$script" ]; then
         echo "Running script: $script"
         # execute script and redirect output to console
-        "./$script" >/dev/tty
+        "./$script" >/dev/stdout
       fi
     done
     cd ..
   fi
 done
+
