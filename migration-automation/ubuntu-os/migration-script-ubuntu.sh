@@ -291,23 +291,23 @@ box_width=50
 
 # Function to print a line with stars
 print_star_line() {
-  printf "%s\n" "$(printf "%${box_width}s" | tr ' ' "$STAR")"
+    printf "%s\n" "$(printf "%${box_width}s" | tr ' ' "$STAR")"
 }
 
 # Print the box with migration details
 print_star_line
-echo "${YELLOW}${STAR}${SPACE}Migration details:${SPACE}${STAR}${RESET}"
-echo "${YELLOW}${STAR}${SPACE}Migrating from IS: $3 to IS: $4${SPACE}${STAR}${RESET}"
-echo "${YELLOW}${STAR}${SPACE}Database: $5${SPACE}${STAR}${RESET}"
-echo "${YELLOW}${STAR}${SPACE}Operating System: $6${SPACE}${STAR}${RESET}"
-echo "${YELLOW}${STAR}${SPACE}Time and date: $time_and_date${SPACE}${STAR}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Migration details:${SPACE}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Migrating from IS: $3 to IS: $4${SPACE}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Database: $5${SPACE}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Operating System: $6${SPACE}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Time and date: $time_and_date${SPACE}${RESET}"
 print_star_line
 
 # Run the migration client
 echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
-sh start-server.sh "$6" "3" $3 $4 "true"
+sh start-server.sh "$6" "3" "$3" "$4" "true"
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
 # Stop wso2IS migration server
