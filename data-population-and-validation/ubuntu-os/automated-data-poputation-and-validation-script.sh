@@ -1,9 +1,19 @@
 #!/bin/bash
 
-# Redirect output to the standard output stream
-exec > /dev/stdout
+# Define the log file path
+log_file="script_execution.log"
 
-# execute scripts in order
+# Function to execute a script and log the output
+execute_script() {
+  local script="$1"
+  echo "Running script: $script"
+  "./$script" | tee -a "$log_file"
+}
+
+# Clear the log file before execution
+> "$log_file"
+
+# Execute scripts in order
 for script in \
   "1-user-creation/create-user.sh" \
   "1-user-creation/create-bulk-users.sh" \
@@ -17,31 +27,28 @@ for script in \
   "4-service-provider-creation/get-oauth-token.sh" \
   "5-group-creation/create-group.sh" \
   "5-group-creation/create-groups-with-users.sh"; do
-  # check if script exists and is executable
+  # Check if script exists and is executable
   if [ -f "$script" ] && [ -x "$script" ]; then
     chmod +x "$script"
-    echo "Running script: $script"
-    # execute script
-    "./$script"
+    execute_script "$script"
   fi
 done
 
-# execute scripts in any other subdirectories
+# Execute scripts in any other subdirectories
 for dir in */; do
-  # check if directory is not one of the specified ones and exists
+  # Check if directory is not one of the specified ones and exists
   if [ "$dir" != "1-user-creation/" ] && [ "$dir" != "2-tenant-creation/" ] && [ "$dir" != "3-userstore-creation/" ] && [ "$dir" != "4-service-provider-creation/" ] && [ "$dir" != "5-group-creation/" ] && [ -d "$dir" ]; then
-    # execute scripts in subdirectory
+    # Execute scripts in subdirectory
     cd "$dir" || exit
     for script in *.sh; do
-      # check if script exists and is executable
+      # Check if script exists and is executable
       if [ -f "$script" ] && [ -x "$script" ]; then
-        echo "Running script: $script"
-        # execute script
-        "./$script"
+        execute_script "$script"
       fi
     done
     cd ..
   fi
 done
+
 
 
