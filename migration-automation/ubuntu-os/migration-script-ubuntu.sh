@@ -85,7 +85,6 @@ echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
 # Unzip IS archive
 unzip -qq *.zip &
 wait
-ls -a
 echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
 cd "$AUTOMATION_HOME"
