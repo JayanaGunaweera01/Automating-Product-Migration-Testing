@@ -284,11 +284,26 @@ echo "${GREEN}==> Diverted to bin folder successfully${RESET}"
 time_and_date=$(date +"%Y-%m-%d %H:%M:%S")
 
 # Display message with migration details, currentVersion and migrateVersion values, and time and date
-echo "${YELLOW}Migration details:${RESET}"
-echo "${YELLOW}Migrating from IS: $3 to IS: $4${RESET}"
-echo "${YELLOW}Database: $5${RESET}"
-echo "${YELLOW}Operating System: $6${RESET}"
-echo "${YELLOW}Time and date: $time_and_date${RESET}"
+# Define box characters
+STAR='*'
+SPACE=' '
+
+# Define box width
+box_width=50
+
+# Function to print a line with stars
+print_star_line() {
+  printf "%s\n" "$(printf "%${box_width}s" | tr ' ' "$STAR")"
+}
+
+# Print the box with migration details
+print_star_line
+echo "${YELLOW}${STAR}${SPACE}Migration details:${SPACE}${STAR}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Migrating from IS: $3 to IS: $4${SPACE}${STAR}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Database: $5${SPACE}${STAR}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Operating System: $6${SPACE}${STAR}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Time and date: $time_and_date${SPACE}${STAR}${RESET}"
+print_star_line
 
 # Run the migration client
 echo "${GREEN}==> Started running migration client${RESET}"
