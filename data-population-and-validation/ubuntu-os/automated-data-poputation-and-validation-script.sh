@@ -18,8 +18,8 @@ for script in \
   if [ -f "$script" ] && [ -x "$script" ]; then
     chmod +x "$script"
     echo "Running script: $script"
-    # execute script and redirect output to console and file
-    "./$script"
+    # execute script and redirect output to console
+    "./$script" >/dev/tty
   fi
 done
 
@@ -33,8 +33,8 @@ for dir in */; do
       # check if script exists and is executable
       if [ -f "$script" ] && [ -x "$script" ]; then
         echo "Running script: $script"
-        # execute script and redirect output to console and file
-        "./$script"
+        # execute script and redirect output to console
+        "./$script" >/dev/tty
       fi
     done
     cd ..
