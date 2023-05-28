@@ -91,7 +91,7 @@ export BIN_ISNEW="/home/runner/work/Automating-Product-Migration-Testing/Automat
 export IS_HOME_NEW="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW"
 
 # Absolute path for the relevant JDBC driver for the version you are using
-export JDBC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils"
+export JDBC="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
 
 # Absolute path for database creation mysql script
 export DATABASE_CREATION_SCRIPT="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/database-create-scripts/mysql.sql"
