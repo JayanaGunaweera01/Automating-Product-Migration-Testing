@@ -7,7 +7,7 @@ log_file="script_execution.log"
 execute_script() {
   local script="$1"
   echo "Running script: $script"
-  "./$script" | tee -a "$log_file"
+  "./$script" 2>&1 | tee -a "$log_file"
 }
 
 # Clear the log file before execution
@@ -49,6 +49,7 @@ for dir in */; do
     cd ..
   fi
 done
+
 
 
 
