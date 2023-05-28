@@ -59,6 +59,5 @@ while [ ! -f "$jdbc_driver" ]; do
 done
 echo "${GREEN}==> Validating the JDBC drivers inside "$LIB"...${RESET}"
 cd "$LIB"
-pwd
 ls -a
 echo "${GREEN}==> JDBC driver in $jdbc_driver found in lib folder, continuing...${RESET}"
