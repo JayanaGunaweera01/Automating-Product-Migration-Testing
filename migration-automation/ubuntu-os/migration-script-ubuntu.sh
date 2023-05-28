@@ -75,7 +75,7 @@ echo "${GREEN}==> Created a directory to place wso2IS${RESET}"
 
 # Navigate to folder
 cd IS_HOME_OLD
-echo "${GREEN}==> Navigated to bin folder successfully${RESET}"
+echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 # Download needed wso2IS zip
 wget -qq --waitretry=5 --retry-connrefused $1
@@ -95,6 +95,7 @@ echo "${GREEN}==> Given read write access to deployment.toml${RESET}"
 
 cd "$AUTOMATION_HOME"
 
+# Needed changes in deployment.toml
 chmod +x change-deployment-toml.sh
 sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 3
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
@@ -168,25 +169,24 @@ cd "$IS_HOME_NEW"
 
 # Download needed (latest) wso2IS zip
 wget -qq --waitretry=5 --retry-connrefused ${2}
+wait $!
 ls -a
 echo "${GREEN}==> Downloaded $4 zip${RESET}"
 
 # Unzip IS archive
 unzip -qq *.zip &
-wait
+wait $!
 echo "${GREEN}==> Unzipped $4 zip${RESET}"
 
 # Divert to utils folder
 cd "$UTILS"
 echo "${GREEN}==> Diverted to utils folder${RESET}"
-pwd
 
 # Download migration client
-#wget -qq "$LINK_TO_MIGRATION_CLIENT" &
-wget -qq https://github.com/wso2-enterprise/identity-migration-resources/releases/download/v1.0.231/wso2is-migration-1.0.231.zip
-wait $!
-ls -a
-echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
+# wget -qq "$LINK_TO_MIGRATION_CLIENT" &
+# wait $!
+# ls -a
+# echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
 
 # Unzip migration client archive
 migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
@@ -308,7 +308,7 @@ print_star_line
 echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
-chmod +x start-server.sh 
+chmod +x start-server.sh
 sh start-server.sh "$6" "3" "$3" "$4" "true"
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
