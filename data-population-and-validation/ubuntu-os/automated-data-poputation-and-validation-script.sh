@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Redirect output to the standard output stream
+exec > /dev/stdout
+
 # execute scripts in order
 for script in \
   "1-user-creation/create-user.sh" \
@@ -18,8 +21,8 @@ for script in \
   if [ -f "$script" ] && [ -x "$script" ]; then
     chmod +x "$script"
     echo "Running script: $script"
-    # execute script and redirect output to console
-    "./$script" >/dev/stdout
+    # execute script
+    "./$script"
   fi
 done
 
@@ -33,11 +36,12 @@ for dir in */; do
       # check if script exists and is executable
       if [ -f "$script" ] && [ -x "$script" ]; then
         echo "Running script: $script"
-        # execute script and redirect output to console
-        "./$script" >/dev/stdout
+        # execute script
+        "./$script"
       fi
     done
     cd ..
   fi
 done
+
 
