@@ -144,9 +144,9 @@ echo "${GREEN}==> Created users, user stores, service providers, tenants, genera
 # Divert to bin folder
 cd "$IS_OLD_BIN"
 echo "${GREEN}==> Entered bin successfully${RESET}"
-echo "${GREEN}==> Shutting down the current identity server${RESET}"
 
 # Stop wso2IS
+echo "${GREEN}==> Shutting down the current identity server${RESET}"
 sh wso2server.sh stop
 
 # Wait until server fully stops
@@ -190,7 +190,6 @@ migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
 if [ -n "$migration_archive" ]; then
     unzip -qq "$migration_archive" &
     wait $!
-    ls -a
     echo "${GREEN}==> Unzipped migration client archive${RESET}"
 else
     echo "${RED}==> Migration client archive not found!${RESET}"
