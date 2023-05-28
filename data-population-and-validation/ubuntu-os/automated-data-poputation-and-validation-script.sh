@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Running data population scripts"
 # execute scripts in order
 for script in \
   "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/1-user-creation/ubuntu-os/create-user.sh" \
