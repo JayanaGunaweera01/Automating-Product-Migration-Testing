@@ -158,7 +158,9 @@ cd "$DATA_POPULATION"
 echo "${GREEN}==> Entered the data population directory successfully.${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
-sh data-population-script.sh &
+#sh data-population-script.sh &
+chmod +x automated-data-poputation-and-validation-script.sh
+sh automated-data-poputation-and-validation-script.sh
 wait $!
 echo "${GREEN}==> Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully${RESET}"
 
