@@ -56,9 +56,10 @@ echo
 echo "${ORANGE}"PROCESS STARTED!"${RESET}"
 
 # Source env file
-cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/01-Migration-Automation
-. ./env.sh
-echo "\033[0;32m\033[1mEnv file sourced successfully\033[0;m"
+cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation
+chmod +x env.sh
+source ./env.sh
+echo "${GREEN}==> Env file sourced successfully!${RESET}"
 
 # Set up Java
 brew install openjdk@11 &
