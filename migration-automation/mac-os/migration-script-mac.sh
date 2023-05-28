@@ -119,13 +119,13 @@ else
     echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
 fi
 
-cd "$AUTOMATION_HOME"
+cd "$AUTOMATION_HOME_MAC"
 
 # Copy Jars
 chmod +x copy-jar-file.sh
 sh copy-jar-file.sh "$5" "$6"
 
-cd "$AUTOMATION_HOME"
+cd "$AUTOMATION_HOME_MAC"
 
 # Start wso2IS
 echo "${GREEN}==> Identity server $3 started running!${RESET}"
@@ -134,7 +134,7 @@ echo "${GREEN}==> Identity server $3 started running!${RESET}"
 chmod +x start-server.sh
 sh start-server.sh "$6" "3" $3 $4
 
-cd "$AUTOMATION_HOME"
+cd "$AUTOMATION_HOME_MAC"
 
 # Run the .sh script to enter login credentials(admin) and divert to management console home page
 sh enter-login-credentials.sh &
