@@ -273,9 +273,9 @@ else
     echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
 fi
 
-# Divert to bin folder
-cd "$BIN_ISNEW"
-echo "${GREEN}==> Diverted to bin folder successfully${RESET}"
+# Divert to home
+cd "$AUTOMATION_HOME"
+echo "${GREEN}==> Diverted to home successfully${RESET}"
 
 # Get the existing time and date
 time_and_date=$(date +"%Y-%m-%d %H:%M:%S")
