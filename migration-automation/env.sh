@@ -147,7 +147,7 @@ export USERSTORE_OLD_PATH="/home/runner/work/Automating-Product-Migration-Testin
 export USERSTORE_NEW_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_NEW/MigratingVersion/repository/deployment/server/"
 
 # Link to download migration client
-export LINK_TO_MIGRATION_CLIENT="https://github.com/wso2-enterprise/identity-migration-resources/releases/download/v1.0.230/wso2is-migration-1.0.230.zip"
+export LINK_TO_MIGRATION_CLIENT="https://github.com/wso2-enterprise/identity-migration-resources/releases/download/v1.0.231/wso2is-migration-1.0.231.zip"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins home folder
 export DROPINS_PATH_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.225"

@@ -58,22 +58,6 @@ chmod +x env.sh
 . ./env.sh
 echo "${GREEN}==> Env file sourced successfully${RESET}"
 
-# Grant permission to execute sub sh files
-chmod +x create-new-database.sh
-chmod +x copy-jar-file.sh
-chmod +x server-start.sh
-chmod +x enter-login-credentials.sh
-chmod +x copy-data-to-new-IS.sh
-chmod +x change-migration-configyaml.sh
-chmod +x copy-data-to-new-IS.sh
-chmod +x change-deployment-toml.sh
-chmod +x backup-database.sh
-chmod +x create-new-database.sh
-chmod +x check-cpu-health.sh
-chmod +x start-server-is-new.sh
-chmod +x start-server-is-old.sh
-chmod +x server-stop.sh
-
 # Setup Java
 sudo apt-get install -y openjdk-11-jdk &
 wait $!
@@ -111,11 +95,6 @@ chmod +x "$DEPLOYMENT"
 echo "${GREEN}==> Given read write access to deployment.toml${RESET}"
 
 cd "$AUTOMATION_HOME"
-
-# Needed changes in deployment.toml
-#cd "$UBUNTU_PATH"
-#chmod +x change-deployment-toml-current-IS.sh
-#sh change-deployment-toml-current-IS.sh "$3" "$5" "$6"
 
 chmod +x change-deployment-toml.sh
 sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 3
@@ -158,12 +137,12 @@ cd "$DATA_POPULATION"
 echo "${GREEN}==> Entered the data population directory successfully.${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
-#sh data-population-script.sh &
 chmod +x automated-data-poputation-and-validation-script.sh
 sh automated-data-poputation-and-validation-script.sh
 wait $!
 echo "${GREEN}==> Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully${RESET}"
 
+# Divert to bin folder
 cd "$IS_OLD_BIN"
 echo "${GREEN}==> Entered bin successfully${RESET}"
 echo "${GREEN}==> Shutting down the current identity server${RESET}"
@@ -199,17 +178,24 @@ wait
 ls -a
 echo "${GREEN}==> Unzipped $4 zip${RESET}"
 
-# Download migration client
-#wget -qq "$LINK_TO_MIGRATION_CLIENT" &
-#sleep 30
-#echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
-
+# Divert to utils folder
 cd "$utils"
+echo "${GREEN}==> Diverted to utils folder${RESET}"
 
-#Unzip migration client archive
-unzip -qq wso2is-migration-1.0.225.zip & # add credentials to download migration client here
-sleep 5
-echo "${GREEN}==> Unzipped migration client archive${RESET}"
+# Download migration client
+wget -qq "$LINK_TO_MIGRATION_CLIENT" &
+wait $!
+echo -e "${GREEN}==> Downloaded migration client successfully!${RESET}"
+
+# Unzip migration client archive
+migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
+if [ -n "$migration_archive" ]; then
+    unzip -qq "$migration_archive" &
+    wait $!
+    echo "${GREEN}==> Unzipped migration client archive${RESET}"
+else
+    echo "${RED}==> Migration client archive not found!${RESET}"
+fi
 
 # Navigate to dropins folder
 cd "$DROPINS_PATH_HOME"
