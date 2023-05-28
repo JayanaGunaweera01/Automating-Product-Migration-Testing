@@ -185,13 +185,14 @@ echo "${GREEN}==> Diverted to utils folder${RESET}"
 # Download migration client
 wget -qq "$LINK_TO_MIGRATION_CLIENT" &
 wait $!
-echo -e "${GREEN}==> Downloaded migration client successfully!${RESET}"
+echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
 
 # Unzip migration client archive
 migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
 if [ -n "$migration_archive" ]; then
     unzip -qq "$migration_archive" &
     wait $!
+    ls -a
     echo "${GREEN}==> Unzipped migration client archive${RESET}"
 else
     echo "${RED}==> Migration client archive not found!${RESET}"
