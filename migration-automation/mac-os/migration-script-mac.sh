@@ -58,7 +58,7 @@ echo
 echo "${ORANGE}"PROCESS STARTED!"${RESET}"
 
 # Source env file
-cd /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation
+cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
 chmod +x env.sh
 source ./env.sh
 echo "${GREEN}==> Env file sourced successfully!${RESET}"
@@ -96,7 +96,7 @@ echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 cd $AUTOMATION_HOME_MAC
 
 # Given read write access to deployment.toml
-chmod +x $DEPLOYMENT_MAC
+chmod +x "$DEPLOYMENT_MAC"
 echo "${GREEN}==> Given read write access to deployment.toml${RESET}"
 
 cd $AUTOMATION_HOME_MAC
