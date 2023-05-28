@@ -282,7 +282,6 @@ echo "${GREEN}==> Diverted to bin folder successfully${RESET}"
 time_and_date=$(date +"%Y-%m-%d %H:%M:%S")
 
 # Display message with migration details, currentVersion and migrateVersion values, and time and date
-# Define box characters
 STAR='*'
 SPACE=' '
 
@@ -307,6 +306,7 @@ print_star_line
 echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
+chmod +x start-server.sh 
 sh start-server.sh "$6" "3" "$3" "$4" "true"
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
