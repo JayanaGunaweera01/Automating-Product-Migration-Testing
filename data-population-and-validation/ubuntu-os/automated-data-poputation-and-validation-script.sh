@@ -18,9 +18,9 @@ for script in \
   # check if script exists and is executable
   if [ -f "$script" ] && [ -x "$script" ]; then
     chmod +x "$script"
-    echo "Running script: $script"
-    # execute script and redirect output to console
-    "./$script" >/dev/tty
+    printf "Running script: %s\n" "$script"
+    # execute script and redirect output to stdout
+    "./$script" >&1
   fi
 done
 
