@@ -1,11 +1,8 @@
 #!/bin/bash
 
-# Enable debugging mode
-set -x
-
-# Execute scripts in order
+# execute scripts in order
 for script in \
-  "1-user-creation/create-user.sh" \
+  "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/1-user-creation/ubuntu-os/create-user.sh" \
   "1-user-creation/create-bulk-users.sh" \
   "2-tenant-creation/create-tenant.sh" \
   "2-tenant-creation/register-an-app-in-a-tenant.sh" \
@@ -17,38 +14,29 @@ for script in \
   "4-service-provider-creation/get-oauth-token.sh" \
   "5-group-creation/create-group.sh" \
   "5-group-creation/create-groups-with-users.sh"; do
-  # Check if script exists and is executable
+  # check if script exists and is executable
   if [ -f "$script" ] && [ -x "$script" ]; then
     chmod +x "$script"
     echo "Running script: $script"
-    # Execute script
-    "./$script"
+    # execute script and redirect output to console
+    "./$script" >/dev/tty
   fi
 done
 
-# Execute scripts in any other subdirectories
+# execute scripts in any other subdirectories
 for dir in */; do
-  # Check if directory is not one of the specified ones and exists
+  # check if directory is not one of the specified ones and exists
   if [ "$dir" != "1-user-creation/" ] && [ "$dir" != "2-tenant-creation/" ] && [ "$dir" != "3-userstore-creation/" ] && [ "$dir" != "4-service-provider-creation/" ] && [ "$dir" != "5-group-creation/" ] && [ -d "$dir" ]; then
-    # Execute scripts in subdirectory
+    # execute scripts in subdirectory
     cd "$dir" || exit
     for script in *.sh; do
-      # Check if script exists and is executable
+      # check if script exists and is executable
       if [ -f "$script" ] && [ -x "$script" ]; then
         echo "Running script: $script"
-        # Execute script
-        "./$script"
+        # execute script and redirect output to console
+        "./$script" >/dev/tty
       fi
     done
     cd ..
   fi
 done
-
-# Disable debugging mode
-set +x
-
-
-
-
-
-
