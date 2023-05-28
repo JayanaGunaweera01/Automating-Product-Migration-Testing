@@ -174,7 +174,6 @@ echo "${GREEN}==> Downloaded $4 zip${RESET}"
 # Unzip IS archive
 unzip -qq *.zip &
 wait
-ls -a
 echo "${GREEN}==> Unzipped $4 zip${RESET}"
 
 # Divert to utils folder
