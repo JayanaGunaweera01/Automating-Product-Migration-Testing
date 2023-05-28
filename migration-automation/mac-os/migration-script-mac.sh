@@ -69,7 +69,7 @@ wait $!
 echo "${GREEN}==> Installed Java successfully!${RESET}"
 
 # Set the JAVA_HOME environment variable
-export JAVA_HOME=$(/usr/libexec/java_Users -v 11) &
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 wait $!
 
 cd "$AUTOMATION_HOME_MAC"
