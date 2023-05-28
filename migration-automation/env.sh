@@ -277,7 +277,7 @@ export IS_HOME_NEW_MAC="/Users/runner/work/Automating-Product-Migration-Testing/
 export LINK_TO_IS_OLD_MAC="https://github.com/wso2/product-is/releases/download/v5.11.0/wso2is-5.11.0.zip"
 
 # Absolute path for the utils folder to have relevant JDBC driver
-export JDBC_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils"
+export JDBC_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
 
 # Absolute path for database creation mysql script
 export DATABASE_CREATION_SCRIPT_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/database-create-scripts/mysql.sql"
