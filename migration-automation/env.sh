@@ -153,7 +153,7 @@ export LINK_TO_MIGRATION_CLIENT="https://github.com/wso2-enterprise/identity-mig
 export DROPINS_PATH_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.231"
 
 # Absolute path to utils folder
-export utils="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
+export UTILS="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
 
 # Absolute path to IS_MIGRATION_TOOL_HOME/dropins folder
 export DROPINS_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/wso2is-migration-1.0.231/dropins"

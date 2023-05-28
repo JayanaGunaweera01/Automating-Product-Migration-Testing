@@ -177,8 +177,9 @@ wait
 echo "${GREEN}==> Unzipped $4 zip${RESET}"
 
 # Divert to utils folder
-cd "$utils"
+cd "$UTILS"
 echo "${GREEN}==> Diverted to utils folder${RESET}"
+pwd
 
 # Download migration client
 wget -qq "$LINK_TO_MIGRATION_CLIENT" &
