@@ -41,7 +41,7 @@ if [ "$os" = "ubuntu-latest" ]; then
           sed -i "${line_number}s~^~#~" "$migration_config_file"
           for ((next_line = line_number + 1; ; next_line++)); do
             line=$(sed -n "${next_line}p" "$migration_config_file")
-            if [ ! $line =~ [:alpha:] ]; then
+            if [[ ! $line =~ [[:alpha:]] ]]; then
               break
             fi
             sed -i "${next_line}s~^~#~" "$migration_config_file"
