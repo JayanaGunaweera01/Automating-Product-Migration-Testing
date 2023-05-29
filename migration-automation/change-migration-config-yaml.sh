@@ -35,12 +35,20 @@ if [ "$os" = "ubuntu-latest" ]; then
       line_numbers=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
 
       if [ -n "$line_numbers" ]; then
-        # Loop through each line number and delete the line, as well as the three lines below it
-        for line_number in $line_numbers; do
-          sed -i "${line_number},${line_number}d; $((line_number + 1)),$((line_number + 3))d" "$migration_config_file"
+        # Loop through each line number and comment the line, as well as the lines below it until a line without any letter
+        IFS=$'\n' read -d '' -r -a line_number_array <<<"$line_numbers"
+        for line_number in "${line_number_array[@]}"; do
+          sed -i "${line_number}s~^~#~" "$migration_config_file"
+          for ((next_line = line_number + 1; ; next_line++)); do
+            line=$(sed -n "${next_line}p" "$migration_config_file")
+            if [ ! $line =~ [:alpha:] ]; then
+              break
+            fi
+            sed -i "${next_line}s~^~#~" "$migration_config_file"
+          done
         done
 
-        echo "${GREEN}==> Deleted all occurrences of UserStorePasswordMigrator and the three lines below it in the migration-config.yaml file.${RESET}"
+        echo "${GREEN}==> Commented all occurrences of UserStorePasswordMigrator and the lines below them until a line without any letter in the migration-config.yaml file.${RESET}"
       else
         echo "${RED}==> Failed to find any occurrences of UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
       fi
