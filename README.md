@@ -15,6 +15,7 @@ Click on the badge above to view the current status of the main migration workfl
 
 This repository contains automation scripts and tools for automating product migration testing.
 
+```
 .
 ├── Automating-Product-Migration-Testing
 │   ├── .github
@@ -170,6 +171,7 @@ This repository contains automation scripts and tools for automating product mig
 ├── LICENSE
 └── README.md
 
+```
 
 - `.github/workflows`:
   - Contains the workflow file `MainMigrationWorkflow.yml`, which defines the main migration workflow for the repository.
