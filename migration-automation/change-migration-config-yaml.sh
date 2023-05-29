@@ -50,7 +50,7 @@ if [ "$os" = "ubuntu-latest" ]; then
         # Find and replace the line within the block of text
         sed -i "s~$search_pattern~$replacement_line~" "$file"
       done
-    done
+  
     echo "${GREEN}==> CurrentEncryptionAlgorithm changed to \"RSA\" which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
   fi
 
