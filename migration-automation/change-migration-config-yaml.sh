@@ -31,7 +31,7 @@ if [ "$os" = "ubuntu-latest" ]; then
     migration_config_file="$MIGRATION_RESOURCES_NEW_IS_UBUNTU/migration-config.yaml"
 
     if [ -f "$migration_config_file" ]; then
-      # Find the line number of the first occurrence of "UserStorePasswordMigrator"
+      # Find the line numbers of the occurrences of "UserStorePasswordMigrator"
       line_numbers=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
 
       if [ -n "$line_numbers" ]; then
