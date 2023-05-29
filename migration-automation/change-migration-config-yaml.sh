@@ -37,6 +37,9 @@ if [ "$os" = "ubuntu-latest" ]; then
   done
 
   if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+    cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
+    chmod +x "$MIGRATION_CONFIG_YAML_UBUNTU"
+
     # Define the search pattern for the block of text
     search_pattern='currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
 
