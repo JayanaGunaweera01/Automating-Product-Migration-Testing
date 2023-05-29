@@ -193,6 +193,7 @@ migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
 if [ -n "$migration_archive" ]; then
     unzip -qq "$migration_archive" &
     wait $!
+    ls -a
     echo "${GREEN}==> Unzipped migration client archive${RESET}"
 else
     echo "${RED}==> Migration client archive not found!${RESET}"
@@ -310,36 +311,17 @@ echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after co
 
 # Stop wso2IS migration server
 cd "$BIN_ISNEW"
+echo "${GREEN}==> Entered bin successfully${RESET}"
 
-# Execute the server stop command
-./wso2server.sh stop
+# Stop wso2IS
+echo "${GREEN}==> Shutting down the migration terminal${RESET}"
+sh wso2server.sh stop
 
-# Wait for the server to fully stop
-is_stopped=false
-while [ "$is_stopped" != true ]; do
-    # Check if the server is still running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_stopped=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
+# Wait until server fully stops
+while pgrep -f 'wso2server' >/dev/null; do
+    sleep 1
 done
-
-# Verify that the server is fully stopped
-is_running=false
-while [ "$is_running" != true ]; do
-    # Check if the server is running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_running=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-done
-
+echo "${GREEN}==> Halted the wso2IS server successfully${RESET}"
 echo "${GREEN}==> Stopped migration terminal successfully!${RESET}"
 
 # Special config change when migrating from IS 5.9 changing userstore type to database unique id
@@ -384,35 +366,16 @@ echo "${GREEN}==> Validated database successfully${RESET}"
 
 # Stop wso2IS migration server
 cd "$BIN_ISNEW"
+echo "${GREEN}==> Entered bin successfully${RESET}"
+
+# Stop wso2IS
 echo "${GREEN}==> Shutting down updated identity server${RESET}"
+sh wso2server.sh stop
 
-# Execute the server stop command
-./wso2server.sh stop
-
-# Wait for the server to fully stop
-is_stopped=false
-while [ "$is_stopped" != true ]; do
-    # Check if the server is still running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_stopped=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
+# Wait until server fully stops
+while pgrep -f 'wso2server' >/dev/null; do
+    sleep 1
 done
-
-# Verify that the server is fully stopped
-is_running=false
-while [ "$is_running" != true ]; do
-    # Check if the server is running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_running=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-done
+echo "${GREEN}==> Halted the wso2IS server successfully${RESET}"
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"
