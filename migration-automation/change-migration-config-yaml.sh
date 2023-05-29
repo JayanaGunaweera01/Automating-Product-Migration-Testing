@@ -25,37 +25,40 @@ if [ "$os" = "ubuntu-latest" ]; then
     echo "${GREEN}==> Versions Changed.${RESET}"
   done
 
-  if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
-    cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
+if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+  cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
 
-    migration_config_file="$MIGRATION_RESOURCES_NEW_IS_UBUNTU/migration-config.yaml"
+  migration_config_file="$MIGRATION_RESOURCES_NEW_IS_UBUNTU/migration-config.yaml"
 
-    if [ -f "$migration_config_file" ]; then
-      # Find the line numbers of the occurrences of "UserStorePasswordMigrator"
-      line_numbers=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
+  if [ -f "$migration_config_file" ]; then
+    # Find the line numbers of the occurrences of "UserStorePasswordMigrator"
+    line_numbers=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
 
-      if [ -n "$line_numbers" ]; then
-        # Loop through each line number and comment the line, as well as the lines below it until a line without any letter
-        IFS=$'\n' read -d '' -r -a line_number_array <<<"$line_numbers"
-        for line_number in "${line_number_array[@]}"; do
-          sed -i "${line_number}s~^~#~" "$migration_config_file"
-          for ((next_line = line_number + 1; ; next_line++)); do
-            line=$(sed -n "${next_line}p" "$migration_config_file")
-            if [[ ! $line =~ [[:alpha:]] ]]; then
-              break
-            fi
-            sed -i "${next_line}s~^~#~" "$migration_config_file"
-          done
+    if [ -n "$line_numbers" ]; then
+      # Loop through each line number and comment the line, as well as the lines below it until a line without any letter
+      IFS=$'\n' read -r -d '' -a line_number_array <<<"$line_numbers"
+      for line_number in "${line_number_array[@]}"; do
+        sed -i.bak "${line_number}s~^~#~" "$migration_config_file"
+        for ((next_line = line_number + 1; ; next_line++)); do
+          line=$(sed -n "${next_line}p" "$migration_config_file")
+          if [[ ! $line =~ [[:alpha:]] ]]; then
+            break
+          fi
+          sed -i.bak "${next_line}s~^~#~" "$migration_config_file"
         done
+      done
+      rm "$migration_config_file.bak"
 
-        echo "${GREEN}==> Commented all occurrences of UserStorePasswordMigrator and the lines below them until a line without any letter in the migration-config.yaml file.${RESET}"
-      else
-        echo "${RED}==> Failed to find any occurrences of UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
-      fi
+      echo "${GREEN}==> Commented all occurrences of UserStorePasswordMigrator and the lines below them until a line without any letter in the migration-config.yaml file.${RESET}"
     else
-      echo "${RED}==> migration-config.yaml file not found.${RESET}"
+      echo "${RED}==> Failed to find any occurrences of UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
     fi
+  else
+    echo "${RED}==> migration-config.yaml file not found.${RESET}"
   fi
+fi
+
+
 
   # Check conditions to modify transformToSymmetric (This is a special migration config change when migrating to IS 5.11.0)
   if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
