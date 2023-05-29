@@ -62,8 +62,7 @@ if [ "$os" = "ubuntu-latest" ]; then
       if [[ -n "$line_number" ]]; then
         # Delete the line, the line below it, and the line below that line
         sed -i "${line_number},${line_number+2}d" "$migration_config_file"
-
-        echo "${GREEN}==> Deleted 4 lines starting from line $line_number in the migration-config.yaml file.${RESET}"
+        
       else
         echo "${RED}==> Failed to find the line with UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
       fi
