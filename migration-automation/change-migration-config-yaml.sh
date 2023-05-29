@@ -49,8 +49,9 @@ if [ "$os" = "ubuntu-latest" ]; then
       for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
         # Find and replace the line within the block of text
         sed -i "s~$search_pattern~$replacement_line~" "$file"
+        cat "migration-config.yaml"
       done
-  
+    
     echo "${GREEN}==> CurrentEncryptionAlgorithm changed to \"RSA\" which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
   fi
 
