@@ -9,17 +9,6 @@ currentVersion="$1"
 migratingVersion="$2"
 os="$3"
 
-#!/bin/bash
-
-# Define color variables
-GREEN='\033[0;32m\033[1m' # green color
-RESET='\033[0m'           # reset color
-
-# Get the value of the inputs
-currentVersion="$1"
-migratingVersion="$2"
-os="$3"
-
 # Setup file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
   cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
@@ -43,11 +32,14 @@ if [ "$os" = "ubuntu-latest" ]; then
 
     if [ -f "$migration_config_file" ]; then
       # Find the line number of the first occurrence of "UserStorePasswordMigrator"
-      line_number=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
+      line_numbers=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
 
-      if [ -n "$line_number" ]; then
-        # Delete the line, the line below it, and the line below that line
-        sed -i "${line_number},${line_number+2}d" "$migration_config_file"
+      if [ -n "$line_numbers" ]; then
+        # Loop through each line number and delete the line, the line below it, and the line below that line
+        while IFS= read -r line_number; do
+          sed -i "${line_number},${line_number+3}d" "$migration_config_file"
+        done <<<"$line_numbers"
+
         echo "${GREEN}==> Deleted 4 lines containing UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
       else
         echo "${RED}==> Failed to find the line with UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
