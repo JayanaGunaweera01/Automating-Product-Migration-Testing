@@ -40,16 +40,16 @@ if [ "$os" = "ubuntu-latest" ]; then
     cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
     chmod +x migration-config.yaml
 
-    # Define the search pattern for the block of text
-    search_pattern='currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
+    # Define the line number to replace
+    line_number=394
 
-    # Define the replacement line for the currentEncryptionAlgorithm
+    # Define the replacement line
     replacement_line='currentEncryptionAlgorithm: "RSA"'
 
-    # Find and replace the line within the block of text in each migration-config.yaml file
-    for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
-      sed -i "s~$search_pattern~$replacement_line~" "$file"
-    done
+    # Replace the line in the file
+    sed -i "${line_number}s/.*/${replacement_line}/" migration-config.yaml
+
+    echo "${GREEN}==> Replaced line 394 in the file with currentEncryptionAlgorithm: \"RSA\".${RESET}"
 
     echo "${GREEN}==> Replaced the currentEncryptionAlgorithm line in the specified code block.${RESET}"
   fi
