@@ -41,15 +41,15 @@ if [ "$os" = "ubuntu-latest" ]; then
     chmod +x migration-config.yaml
 
     # Define the line number to replace
-    line_number=394
+    line_number=393
 
     # Define the replacement line
-    replacement_line='currentEncryptionAlgorithm: "RSA"'
+    replacement_line='       currentEncryptionAlgorithm: "RSA"'
 
     # Replace the line in the file
-    sed -i "${line_number}s/.*/${replacement_line}/" migration-config.yaml
+    sed -i "${line_number}s~.*~$replacement_line~" migration-config.yaml
 
-    echo "${GREEN}==> Replaced line 394 in the file with currentEncryptionAlgorithm: \"RSA\".${RESET}"
+    echo "${GREEN}==> Replaced line $line_number in the file with currentEncryptionAlgorithm: \"RSA\".${RESET}"
 
     echo "${GREEN}==> Replaced the currentEncryptionAlgorithm line in the specified code block.${RESET}"
   fi
