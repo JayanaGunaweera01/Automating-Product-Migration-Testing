@@ -15,8 +15,7 @@ Click on the badge above to view the current status of the main migration workfl
 
 This repository contains automation scripts and tools for automating product migration testing.
 
-```
-
+.
 ├── Automating-Product-Migration-Testing
 │   ├── .github
 │   │   └── workflows
@@ -47,16 +46,9 @@ This repository contains automation scripts and tools for automating product mig
 │   │   └── Automating Product Migration Testing.word
 │   ├── local-setups
 │   │   ├── mac-os
-│   │   │   ├── change-deployment-toml-mac.sh
-│   │   │   ├── change-migration-config-yaml-mac.sh
-│   │   │   ├── copy-jar-file-mac.sh
 │   │   │   ├── migration-script-mac.sh
 │   │   │   └── setup-mysql-mac.sh
 │   │   ├── ubuntu-os
-│   │   │   ├── change-deployment-toml-ubuntu-new.sh
-│   │   │   ├── change-deployment-toml-ubuntu.sh
-│   │   │   ├── change-migration-config-yaml-ubuntu.sh
-│   │   │   ├── copy-jar-file-ubuntu.sh
 │   │   │   ├── migration-script-ubuntu.sh
 │   │   │   └── setup-mysql-ubuntu.sh
 │   │   └── windows-os
@@ -69,38 +61,99 @@ This repository contains automation scripts and tools for automating product mig
 │   │   │   │   ├── deployment-mssql.toml
 │   │   │   │   ├── deployment-mysql.toml
 │   │   │   │   └── deployment-postgre.toml
+│   │   │   │   ├── deployment-mssql-migration.toml
+│   │   │   │   ├── deployment-mysql-migration.toml
+│   │   │   │   └── deployment-postgre-migration.toml
 │   │   │   ├── IS-5.11
 │   │   │   │   ├── deployment-mssql.toml
 │   │   │   │   ├── deployment-mysql.toml
 │   │   │   │   └── deployment-postgre.toml
+│   │   │   │   ├── deployment-mssql-migration.toml
+│   │   │   │   ├── deployment-mysql-migration.toml
+│   │   │   │   └── deployment-postgre-migration.toml
 │   │   │   ├── IS-5.9
 │   │   │   │   ├── deployment-mssql.toml
 │   │   │   │   ├── deployment-mysql.toml
 │   │   │   │   └── deployment-postgre.toml
+│   │   │   │   ├── deployment-mssql-migration.toml
+│   │   │   │   ├── deployment-mysql-migration.toml
+│   │   │   │   └── deployment-postgre-migration.toml
 │   │   │   ├── IS-6.0
 │   │   │   │   ├── deployment-mssql.toml
 │   │   │   │   ├── deployment-mysql.toml
 │   │   │   │   └── deployment-postgre.toml
+│   │   │   │   ├── deployment-mssql-migration.toml
+│   │   │   │   ├── deployment-mysql-migration.toml
+│   │   │   │   └── deployment-postgre-migration.toml
 │   │   │   ├── IS-6.1
 │   │   │   │   ├── deployment-mssql.toml
 │   │   │   │   ├── deployment-mysql.toml
 │   │   │   │   └── deployment-postgre.toml
+│   │   │   │   ├── deployment-mssql-migration.toml
+│   │   │   │   ├── deployment-mysql-migration.toml
+│   │   │   │   └── deployment-postgre-migration.toml
 │   │   │   └── IS-6.2
 │   │   │       ├── deployment-mssql.toml
 │   │   │       ├── deployment-mysql.toml
 │   │   │       └── deployment-postgre.toml
+│   │   │       ├── deployment-mssql-migration.toml
+│   │   │       ├── deployment-mysql-migration.toml
+│   │   │       └── deployment-postgre-migration.toml
 │   │   ├── enter-login-credentials.sh
 │   │   ├── env.sh
 │   │   ├── logs.txt
-│   │   ├── setup-mysql.sh
-│   │   └── start-server-is-old.sh
+│   │   ├── change-deployment-toml.sh
+│   │   └── change-migration-config-yaml.sh
+│   │   ├── copy-jar-file.sh
+│   │   └── start-server.sh
+│   │   └── stop-server.sh
 │   ├── db-scripts
 │   │   ├── IS-5.11
-│   │   │   ├── database-create-scripts
-│   │   │   └── deployment-mssql.toml
-│   │   └── IS-5.9
-│   │       ├── database-create-scripts
-│   │       └── deployment-mssql.toml
+│   │   │    ├── Bps
+│   │   │    ├── consent
+│   │   │    │   ├── mysql.sql
+│   │   │    │   ├── mssql.sql
+│   │   │    │   ├── postgresfour.sql
+│   │   │    ├── identity
+│   │   │    │   ├── uma
+│   │   │    │   │   ├── mysql.sql
+│   │   │    │   │   ├── mssql.sql
+│   │   │    │   │   ├── postgresthree.sql   
+│   │   │    │   ├── mysql.sql
+│   │   │    │   ├── mssql.sql
+│   │   │    │   ├── postgrestwo.sql
+│   │   │    ├── metrics
+│   │   │    │   ├── mysql.sql
+│   │   │    │   ├── mssql.sql
+│   │   │    │   ├── postgresfive.sql
+│   │   │    ├── mssql.sql
+│   │   │    ├── mysql.sql
+│   │   │    ├── postgresone.sql
+│   │   ├── IS-5.9
+│   │   │    ├── Bps
+│   │   │    ├── consent
+│   │   │    │   ├── mysql.sql
+│   │   │    │   ├── mssql.sql
+│   │   │    │   ├── postgresfour.sql
+│   │   │    ├── identity
+│   │   │    │   ├── uma
+│   │   │    │   │   ├── mysql.sql
+│   │   │    │   │   ├── mssql.sql
+│   │   │    │   │   ├── postgresthree.sql   
+│   │   │    │   ├── mysql.sql
+│   │   │    │   ├── mssql.sql
+│   │   │    │   ├── postgrestwo.sql
+│   │   │    ├── metrics
+│   │   │    │   ├── mysql.sql
+│   │   │    │   ├── mssql.sql
+│   │   │    │   ├── postgresfive.sql
+│   │   │    ├── mssql.sql
+│   │   │    ├── mysql.sql
+│   │   │    ├── postgresone.sql
+│   │   ├── database-create-scripts
+│   │   │   ├── mysql.sql
+│   │   │   ├── mssql.sql
+│   │   │   ├── postgressql.sql
 │   ├── jars
 │   │   ├── mssql
 │   │   │   ├── mssql-jdbc-12.2.0.jre11.jar
@@ -112,11 +165,11 @@ This repository contains automation scripts and tools for automating product mig
 │   │       └── postgresql-42.5.3.jar
 │   └── migration-client
 │       └── wso2is-migration-1.0.225.zip
+│   └── other-db-scripts
+│       └── config-management-is-5-11.sql
 ├── LICENSE
 └── README.md
 
-
-```
 
 - `.github/workflows`:
   - Contains the workflow file `MainMigrationWorkflow.yml`, which defines the main migration workflow for the repository.
