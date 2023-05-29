@@ -35,14 +35,14 @@ if [ "$os" = "ubuntu-latest" ]; then
       line_numbers=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
 
       if [ -n "$line_numbers" ]; then
-        # Loop through each line number and delete the line, the line below it, and the line below that line
+        # Loop through each line number and delete the corresponding line and the three lines below it
         while IFS= read -r line_number; do
           sed -i "${line_number},${line_number+3}d" "$migration_config_file"
-        done <<<"$line_numbers"
+        done < <(echo "$line_numbers")
 
-        echo "${GREEN}==> Deleted 4 lines containing UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
+        echo "${GREEN}==> Deleted all occurrences of UserStorePasswordMigrator and the three lines below it in the migration-config.yaml file.${RESET}"
       else
-        echo "${RED}==> Failed to find the line with UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
+        echo "${RED}==> Failed to find any occurrences of UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
       fi
     else
       echo "${RED}==> migration-config.yaml file not found.${RESET}"
