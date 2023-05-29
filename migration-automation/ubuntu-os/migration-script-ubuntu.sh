@@ -307,6 +307,10 @@ echo "${GREEN}==> Started running migration client${RESET}"
 # Start the migration server
 #chmod +x start-server.sh
 #sh start-server.sh "$6" "3" "$3" "$4" "true"
+
+# Stop wso2IS migration server
+cd "$BIN_ISNEW"
+echo "${GREEN}==> Entered bin successfully${RESET}"
 # Start the migration server
 echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
 chmod +x start.sh && chmod 777 start.sh
