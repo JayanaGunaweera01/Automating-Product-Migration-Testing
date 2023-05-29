@@ -35,11 +35,8 @@ if [ "$os" = "ubuntu-latest" ]; then
       line_numbers=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
 
       if [ -n "$line_numbers" ]; then
-        # Read the line numbers into an array
-        IFS=$'\n' read -r -d '' -a line_number_array <<<"$line_numbers"
-
-        # Loop through each line number in the array and delete the corresponding line and the three lines below it
-        for line_number in "${line_number_array[@]}"; do
+        # Loop through each line number and delete the line, as well as the three lines below it
+        for line_number in $line_numbers; do
           sed -i "${line_number},${line_number}d; $((line_number + 1)),$((line_number + 3))d" "$migration_config_file"
         done
 
