@@ -36,20 +36,19 @@ if [ "$os" = "ubuntu-latest" ]; then
     echo "${GREEN}==> Versions Changed.${RESET}"
   done
 
-  # Define the search pattern for the block of text
   if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
-    cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
-    chmod +x migration-config.yaml
+    # Define the search pattern for the block of text
+    search_pattern='currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
 
-    search_pattern='name: "EncryptionAdminFlowMigrator"\n     order: 1\n     parameters:\n       currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"'
-    replacement_line='     parameters:\n       currentEncryptionAlgorithm: "RSA"'
+    # Define the replacement line for the currentEncryptionAlgorithm
+    replacement_line='currentEncryptionAlgorithm: "RSA"'
 
-    # Find and replace the line within the block of text using a for loop
+    # Find and replace the line within the block of text in each migration-config.yaml file
     for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
       sed -i "s~$search_pattern~$replacement_line~" "$file"
     done
 
-    echo "${GREEN}==> currentEncryptionAlgorithm changed to \"RSA\" in the migration-config.yaml file.${RESET}"
+    echo "${GREEN}==> Replaced the currentEncryptionAlgorithm line in the specified code block.${RESET}"
   fi
 
   # Check conditions to modify transformToSymmetric (This is a special migration config change when migrating to IS 5.11.0)
