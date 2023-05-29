@@ -63,8 +63,6 @@ if [ "$os" = "ubuntu-latest" ]; then
         # Delete the line, the line below it, and the line below that line
         for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
           sed -i "${line_number},${line_number+2}d" "$migration_config_file"
-
-          else
           echo "${RED}==> Failed to find the line with UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
         done
       fi
