@@ -41,7 +41,7 @@ if [ "$os" = "ubuntu-latest" ]; then
     cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
     chmod +x migration-config.yaml
 
-    for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
+    #for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
       search_pattern='version: "5.11.0"\n   migratorConfigs:\n   -\n     name: "EncryptionAdminFlowMigrator"\n     order: 1\n     parameters:\n       currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
 
       # Define the replacement line
