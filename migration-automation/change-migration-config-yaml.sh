@@ -41,30 +41,16 @@ if [ "$os" = "ubuntu-latest" ]; then
 
     migration_config_file="$MIGRATION_RESOURCES_NEW_IS_UBUNTU/migration-config.yaml"
 
-    # Ensure the migration-config.yaml file exists and has the necessary permissions
-    if [-f "$migration_config_file" ]; then
-      chmod +x "$migration_config_file"
-
-      # Define the line number to replace
-      line_number=393
-
-      # Define the replacement line
-      replacement_line='       currentEncryptionAlgorithm: "RSA"'
-
-      # Replace the line in the file
-      sed -i "${line_number}s~.*~$replacement_line~" "$migration_config_file"
-
-      echo "${GREEN}==> Replaced line $line_number in the file with currentEncryptionAlgorithm: \"RSA\".${RESET}"
-
+    if [ -f "$migration_config_file" ]; then
       # Find the line number of the first occurrence of "UserStorePasswordMigrator"
       line_number=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
 
       if [ -n "$line_number" ]; then
         # Delete the line, the line below it, and the line below that line
-        for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
-          sed -i "${line_number},${line_number+2}d" "$migration_config_file"
-          echo "${RED}==> Failed to find the line with UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
-        done
+        sed -i "${line_number},${line_number+2}d" "$migration_config_file"
+        echo "${GREEN}==> Deleted 4 lines containing UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
+      else
+        echo "${RED}==> Failed to find the line with UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
       fi
     else
       echo "${RED}==> migration-config.yaml file not found.${RESET}"
