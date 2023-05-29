@@ -473,7 +473,7 @@ export CONTAINER_NAME=amazing_feynman
 export HOST_PORT=3306
 export CONTAINER_PORT=3306
 export ROOT_PASSWORD=root
-export MYSQL_VERSION=5.7.38
+export MYSQL_VERSION=8
 export DATABASE_NAME=mydb
 
 ###############################################################################################################################
