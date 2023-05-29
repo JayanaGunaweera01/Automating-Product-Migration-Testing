@@ -36,7 +36,7 @@ if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "
 
     if [ -n "$line_numbers" ]; then
       # Loop through each line number and comment the line, as well as the lines below it until a line without any letter
-      IFS=$'\n' read -r -d '' -a line_number_array <<<"$line_numbers"
+      IFS=$'\n' read -d '' -r -a line_number_array <<<"$line_numbers"
       for line_number in "${line_number_array[@]}"; do
         sed -i.bak "${line_number}s~^~#~" "$migration_config_file"
         for ((next_line = line_number + 1; ; next_line++)); do
@@ -57,6 +57,7 @@ if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "
     echo "${RED}==> migration-config.yaml file not found.${RESET}"
   fi
 fi
+
 
 
 
