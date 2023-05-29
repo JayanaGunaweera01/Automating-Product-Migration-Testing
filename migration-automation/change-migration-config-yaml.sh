@@ -56,16 +56,17 @@ if [ "$os" = "ubuntu-latest" ]; then
 
       echo "${GREEN}==> Replaced line $line_number in the file with currentEncryptionAlgorithm: \"RSA\".${RESET}"
 
-      # Remove lines 86-89
-      sed -i '86,89d' "$migration_config_file"
+      # Find the line number of the first occurrence of "UserStorePasswordMigrator"
+      line_number=$(grep -n "UserStorePasswordMigrator" "$migration_config_file" | cut -d ":" -f 1)
 
-      # Remove lines 141-144
-      sed -i '141,144d' "$migration_config_file"
+      if [[ -n "$line_number" ]]; then
+        # Delete the line, the line below it, and the line below that line
+        sed -i "${line_number},${line_number+2}d" "$migration_config_file"
 
-      # Remove lines 188-191
-      sed -i '188,191d' "$migration_config_file"
-
-      echo "${GREEN}==> Removed lines 86-89, 141-144, and 188-191 from the migration-config.yaml file.${RESET}"
+        echo "${GREEN}==> Deleted 4 lines starting from line $line_number in the migration-config.yaml file.${RESET}"
+      else
+        echo "${RED}==> Failed to find the line with UserStorePasswordMigrator in the migration-config.yaml file.${RESET}"
+      fi
     else
       echo "${RED}==> migration-config.yaml file not found.${RESET}"
     fi
