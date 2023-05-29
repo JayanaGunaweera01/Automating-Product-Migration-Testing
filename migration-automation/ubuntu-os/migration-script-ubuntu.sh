@@ -397,7 +397,7 @@ cd "$SERVICE_PROVIDER_PATH"
 echo "${GREEN}==> Entered to data population directory-service provider creation${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
-sh generate-oauth-token-linux.sh
+#sh generate-oauth-token-linux.sh
 sh get-oauth-token.sh
 wait $!
 echo "${GREEN}==> Validated database successfully${RESET}"
