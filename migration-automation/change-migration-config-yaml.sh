@@ -38,20 +38,37 @@ if [ "$os" = "ubuntu-latest" ]; then
 
   if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
     cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
-    chmod +x migration-config.yaml
 
-    # Define the line number to replace
-    line_number=393
+    migration_config_file="$MIGRATION_RESOURCES_NEW_IS_UBUNTU/migration-config.yaml"
 
-    # Define the replacement line
-    replacement_line='       currentEncryptionAlgorithm: "RSA"'
+    # Ensure the migration-config.yaml file exists and has the necessary permissions
+    if [[-f "$migration_config_file" ]; then
+      chmod +x "$migration_config_file"
 
-    # Replace the line in the file
-    sed -i "${line_number}s~.*~$replacement_line~" migration-config.yaml
+      # Define the line number to replace
+      line_number=393
 
-    echo "${GREEN}==> Replaced line $line_number in the file with currentEncryptionAlgorithm: \"RSA\".${RESET}"
+      # Define the replacement line
+      replacement_line='       currentEncryptionAlgorithm: "RSA"'
 
-    echo "${GREEN}==> Replaced the currentEncryptionAlgorithm line in the specified code block.${RESET}"
+      # Replace the line in the file
+      sed -i "${line_number}s~.*~$replacement_line~" "$migration_config_file"
+
+      echo "${GREEN}==> Replaced line $line_number in the file with currentEncryptionAlgorithm: \"RSA\".${RESET}"
+
+      # Remove lines 86-89
+      sed -i '86,89d' "$migration_config_file"
+
+      # Remove lines 141-144
+      sed -i '141,144d' "$migration_config_file"
+
+      # Remove lines 188-191
+      sed -i '188,191d' "$migration_config_file"
+
+      echo "${GREEN}==> Removed lines 86-89, 141-144, and 188-191 from the migration-config.yaml file.${RESET}"
+    else
+      echo "${RED}==> migration-config.yaml file not found.${RESET}"
+    fi
   fi
 
   # Check conditions to modify transformToSymmetric (This is a special migration config change when migrating to IS 5.11.0)
