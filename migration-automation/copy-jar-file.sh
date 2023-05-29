@@ -57,7 +57,14 @@ while [ ! -f "$jdbc_driver" ]; do
   echo "${GREEN}==> JDBC driver in $jdbc_driver not found in lib folder, waiting...${RESET}"
   sleep 5
 done
+
+if [ "$os" = "ubuntu-latest" ]; then
 echo "${GREEN}==> Validating the JDBC drivers inside "$LIB"...${RESET}"
 cd "$LIB"
 ls -a
+else [ "$os" = "macos-latest" ]; then
+echo "${GREEN}==> Validating the JDBC drivers inside "$LIB_MAC"...${RESET}"
+cd "$LIB_MAC"
+ls -a
+fi
 echo "${GREEN}==> JDBC driver in $jdbc_driver found in lib folder, continuing...${RESET}"
