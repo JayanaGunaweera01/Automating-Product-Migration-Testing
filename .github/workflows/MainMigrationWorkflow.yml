@@ -176,26 +176,40 @@ jobs:
         if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }}
         run: psql -d testdb -c 'SHOW server_version'
         shell: bash
-
-      - name: 🌐 Setup MSSQL 🍎 Mac
-        if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
+      
+  macos_mssql_setup:
+    if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }} 
+    runs-on: ${{ github.event.inputs.os }}
+    steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
+      - uses: potatoqualitee/mssqlsuite@v1.7
+        with:
+          install: sqlengine, sqlclient, sqlpackage, localdb
+          version: 2019
+          SA-password: YourStrongPassw0rd
+          
+      - name: 🌐 Create MSSQL Database 🍎 Mac
+        run: |
+             sqlcmd -U SA -P 'YourStrongPassw0rd' -Q 'CREATE DATABASE testdb'
+             sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
+          
+      - name: 🌐 Execute MSSQL Scripts 🍎 Mac
         run: |
           sqlcmd -U SA -P 'YourStrongPassw0rd' -Q 'CREATE DATABASE testdb'
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-
-      - name: 🌐 Execute MSSQL Scripts 🍎 Mac
-        if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
-        run: |
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/mssql.sql
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/mssql.sql
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/uma/mssql.sql
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/mssql.sql
           sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -i /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mssql.sql
-
+      
       - name: 🌐 Verify MSSQL Script Execution 🍎 Mac
-        if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
 
+  maco_mssql_setup:
+    runs-on: ${{ github.event.inputs.os }}
+    steps:
       - name: 🗝️ Grant Permission To Execute Migration Automation Script 🐧 Ubuntu
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
         run: chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh
@@ -236,3 +250,4 @@ jobs:
           name: "migration-logs-of-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
+
