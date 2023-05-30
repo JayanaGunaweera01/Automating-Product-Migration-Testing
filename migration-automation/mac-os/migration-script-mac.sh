@@ -198,7 +198,7 @@ echo "${GREEN}==> Created a directory for placing latest wso2IS${RESET}"
 cd "$IS_HOME_NEW_MAC"
 
 # Download needed (latest) wso2IS zip
-wget -qq --waitretry=5 --retry-connrefused ${2}
+wget -qq --waitretry=5 --retry-connrefused ${2} &
 wait $!
 ls -a
 echo "${GREEN}==> Downloaded $4 zip${RESET}"
