@@ -213,6 +213,9 @@ jobs:
     if: ${{ always() }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
+      - name: 💾 Checkout Code
+        uses: actions/checkout@v3
+        
       - name: 🗝️ Grant Permission To Execute Migration Automation Script 🐧 Ubuntu
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
         run: chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh
