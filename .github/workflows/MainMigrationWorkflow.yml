@@ -207,48 +207,10 @@ jobs:
       
       - name: 🌐 Verify MSSQL Script Execution 🍎 Mac
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-
-  Build-Artifacts:
-    needs: [Migration-Testing-Automation,Macos-Mssql-Setup]
-    if: ${{ always() }}
-    runs-on: ${{ github.event.inputs.os }}
-    steps:
-      - name: 💾 Checkout Code
-        uses: actions/checkout@v3
-        
-      - name: 🗝️ Grant Permission To Execute Migration Automation Script 🐧 Ubuntu
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
-        run: chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh
       - name: 🗝️ Grant Permission To Execute Migration Automation Script 🍎 Mac
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
-        run: chmod +x migration-automation/mac-os/migration-script-mac.sh
-      - name: 🗝️ Grant Permission To Execute Migration Automation Script 🪟 Windows
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres'|| github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'windows-latest' }}
-        run: chmod +x migration-automation/windows-os/migration-script-windows.sh
-
-      - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
-        run: sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
-        continue-on-error: true
-
-      - name: 🚀 Execute Migration Automation Script 🍎 Mac
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
-        run: sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
-        continue-on-error: true
-      - name: 🚀 Execute Migration Automation Script 🪟 Windows
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'windows-latest' }}
-        run: sh migration-automation/windows-os/migration-script-windows.ps1 "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
-        continue-on-error: true
-
-      # - name: 💥 Print Errors In Logs
-      #run: |
-      #if [ -f "migration-automation/logs.txt" ]; then
-      #   chmod +x migration-automation/logs.txt
-      #sed -i -e 's/Error/\o033[31m&\o033[0m/g' \
-      #-e 's/failed/\o033[31m&\o033[0m/g' \
-      #-e 's/cannot/\o033[31m&\o033[0m/g' \
-      #          -e 's/Permission denied/\o033[31m&\o033[0m/g' migration-automation/logs.txt
-      #   fi
+        run: |
+            chmod +x migration-automation/mac-os/migration-script-mac.sh
+            sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v3
         if: always()
@@ -256,4 +218,6 @@ jobs:
           name: "migration-logs-of-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
+
+  
 
