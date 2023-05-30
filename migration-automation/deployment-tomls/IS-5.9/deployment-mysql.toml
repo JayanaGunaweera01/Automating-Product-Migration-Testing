@@ -21,7 +21,7 @@ SCIMEnabled= true
 enable = true
 
 [database.user]
-url = "jdbc:mysql://localhost:3306/mydb?useSSL=false&amp;allowPublicKeyRetrieval=true"
+url = "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
 username = "root"
 password = "root"
 driver = "com.mysql.jdbc.Driver"
@@ -31,7 +31,7 @@ data_source = "WSO2USER_DB"
 
 [database.identity_db]
 type = "mysql"
-url = "jdbc:mysql://localhost:3306/mydb?useSSL=false&amp;allowPublicKeyRetrieval=true"
+url = "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
 username = "root"
 password = "root"
 driver = "com.mysql.jdbc.Driver"
@@ -45,7 +45,7 @@ defaultAutoCommit=false
 
 [database.shared_db]
 type = "mysql"
-url = "jdbc:mysql://localhost:3306/mydb?useSSL=false&amp;allowPublicKeyRetrieval=true"
+url = "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
 username = "root"
 password = "root"
 driver = "com.mysql.jdbc.Driver"
@@ -61,4 +61,4 @@ defaultAutoCommit=false
 name = "wso2carbon.jks"
 password = "wso2carbon"
 
-#url = "jdbc:mysql://localhost:3306/mydb?useSSL=false"
+#url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"

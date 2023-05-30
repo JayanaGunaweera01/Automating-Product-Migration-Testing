@@ -474,7 +474,7 @@ export HOST_PORT=3306
 export CONTAINER_PORT=3306
 export ROOT_PASSWORD=root
 export MYSQL_VERSION=8
-export DATABASE_NAME=mydb
+export DATABASE_NAME=testdb
 
 ###############################################################################################################################
 #                             END OF ENV CONFIGS RELATED TO POC - LINUX & MACOS                                               #

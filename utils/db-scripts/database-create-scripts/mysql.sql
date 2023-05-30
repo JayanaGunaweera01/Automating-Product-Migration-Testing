@@ -1,3 +1,3 @@
-create database mydb character set latin1;
+create database testdb character set latin1;
 
 

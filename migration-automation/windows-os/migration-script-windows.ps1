@@ -403,11 +403,11 @@ $userstore_body = @{
     "properties" = @(
         @{
             "name" = "userName"
-            "value" = "mydb"
+            "value" = "testdb"
         },
         @{
             "name" = "password"
-            "value" = "mydb"
+            "value" = "testdb"
         },
         @{
             "name" = "driverName"
@@ -415,7 +415,7 @@ $userstore_body = @{
         },
         @{
             "name" = "url"
-            "value" = "jdbc:mysql://localhost:3306/mydb?useSSL=false"
+            "value" = "jdbc:mysql://localhost:3306/testdb?useSSL=false"
         },
         @{
             "name" = "disabled"

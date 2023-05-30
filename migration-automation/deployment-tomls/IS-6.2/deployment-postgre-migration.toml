@@ -52,7 +52,7 @@ validationInterval="30000"
 defaultAutoCommit=false
 
 #[bps_database.config]
-#url = "jdbc:mysql://localhost:3306/mydb?useSSL=false"
+#url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"
 #username = "root"
 #password = "root"
 #driver = "com.mysql.jdbc.Driver"

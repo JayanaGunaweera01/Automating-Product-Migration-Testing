@@ -8,18 +8,18 @@ curl -k --location --request POST "$USERSTORE_EP" \
   "properties": [
     {
       "name": "userName",
-      "value": "mydb"
+      "value": "testdb"
     },
     {
       "name": "password",
-      "value": "mydb"
+      "value": "testdb"
     },
     {"name": "driverName",
       "value": "com.mysql.jdbc.Driver"
     },
     {
       "name":"url",
-      "value":"jdbc:mysql://localhost:3306/mydb?useSSL=false"
+      "value":"jdbc:mysql://localhost:3306/testdb?useSSL=false"
     },
     {
       "name":"disabled",

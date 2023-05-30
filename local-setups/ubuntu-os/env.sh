@@ -255,4 +255,4 @@ export LOCAL_SETUP=/home/wso2/Downloads/Automating-Product-Migration-Testing/loc
 
 export DOCKER_CONTAINER_ID=c64bc93f7d28
 
-export DATABASE=mydb
+export DATABASE=testdb

@@ -284,7 +284,7 @@ wait $!
 
 # Execute consent management db scripts for IS 5.11.0 - MySQL
 if [ "$4" = "5.11.0" && "$5" = "mysql" ]; then
-    docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D mydb' </Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/other-db-scripts/config-management-is-5-11.sql
+    docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' </Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/other-db-scripts/config-management-is-5-11.sql
     echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - MySQL${RESET}"
 else
     echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
