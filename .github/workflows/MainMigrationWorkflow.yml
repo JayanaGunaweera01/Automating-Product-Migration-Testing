@@ -207,7 +207,8 @@ jobs:
       - name: 🌐 Verify MSSQL Script Execution 🍎 Mac
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
 
-  maco_mssql_setup:
+  build_artifacts:
+    needs: macos_mssql_setup
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 🗝️ Grant Permission To Execute Migration Automation Script 🐧 Ubuntu
