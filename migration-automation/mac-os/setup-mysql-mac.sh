@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Define color variables
 GREEN='\033[0;32m\033[1m' # green color
 RESET='\033[0m'           # reset color
@@ -20,25 +19,22 @@ wait $!
 brew install mysql &
 wait $!
 
-sudo chown -R _mysql:mysql /usr/local/var/mysql
-sudo mysql.server start
-
 # wait for MySQL to start
+sudo chown -R _mysql:mysql /usr/local/var/mysql
+sudo mysql.server start &
 wait $!
 
 mysql -u root
 mysqladmin -u root password root
 
-
 # Check if MySQL is running
-if ! pgrep mysql &> /dev/null; then
+if ! pgrep mysql &>/dev/null; then
   echo "MySQL is not running"
   exit 1
 fi
 
 # create the database
 mysql -u root -proot -e "CREATE DATABASE mydb CHARACTER SET latin1;"
-
 
 cd $UTILS_MAC
 
@@ -54,10 +50,10 @@ database="mydb"
 
 cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11"
 # execute the script against the specified database
-mysql -u root -proot -D mydb < $script_path1
-mysql -u root -proot -D mydb < $script_path2
-mysql -u root -proot -D mydb < $script_path3
-mysql -u root -proot -D mydb < $script_path4
-mysql -u root -proot -D mydb < $script_path5
+mysql -u root -proot -D mydb <$script_path1
+mysql -u root -proot -D mydb <$script_path2
+mysql -u root -proot -D mydb <$script_path3
+mysql -u root -proot -D mydb <$script_path4
+mysql -u root -proot -D mydb <$script_path5
 
 echo "${GREEN}Created database and ran needed SQL scripts against it - for current IS${RESET}"
