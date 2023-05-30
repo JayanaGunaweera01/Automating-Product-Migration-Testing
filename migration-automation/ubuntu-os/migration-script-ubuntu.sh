@@ -222,6 +222,7 @@ echo "${GREEN}==> Diverted to home successfully${RESET}"
 # Needed changes in migration-config.yaml
 chmod +x change-migration-config-yaml.sh
 sh change-migration-config-yaml.sh "$3" "$4" "$6"
+wait $!
 echo "${GREEN}==> Did needed changes in migration-config.yaml file successfully${RESET}"
 
 # Copy userstores, tenants,jar files,.jks files from oldIS to newIS
