@@ -211,13 +211,18 @@ jobs:
         run: |
             chmod +x migration-automation/mac-os/migration-script-mac.sh
             sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
+  Upload-Artifacts:
+    needs: Macos-Mssql-Setup
+    runs-on: ${{ github.event.inputs.os }}
+    steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: "migration-logs-of-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
-          retention-days: 7
 
   
 
