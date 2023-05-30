@@ -100,17 +100,6 @@ read_only_apps = []
 [authorization_manager.properties]
 GroupAndRoleSeparationEnabled = false
 
-[system_applications]
-read_only_apps = []
-
-#Remove Unused Tokens from the Database
-
-#[oauth.token_cleanup]
-#enable = false
-
-[system.parameter]
-"org.wso2.CipherTransformation"="RSA/ECB/OAEPwithSHA1andMGF1Padding"
-
 
 #### Depending on your database, select the appropriate token cleanup script based on the links mentioned in the link below ### 
 #https://is.docs.wso2.com/en/latest/deploy/remove-unused-tokens-from-the-database/#use-the-store-procedure-for-token-cleanup
