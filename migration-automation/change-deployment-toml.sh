@@ -361,7 +361,7 @@ if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ 
         echo "${GREEN}==> Secret key is $secret_key${RESET}"
         for file in $(find "$deployment_path" -type f -name 'deployment.toml'); do
             # Replace the placeholder with the generated secret key
-            sed -i "s/<provide-your-key-here>/$secret_key/g" "$deployment_path/deployment.toml"
+            sed -i "" "s~<provide-your-key-here>~$secret_key~g" "$deployment_path/deployment.toml"
             echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
             echo "Content of deployment automation file:"
             cat "deployment.toml"
