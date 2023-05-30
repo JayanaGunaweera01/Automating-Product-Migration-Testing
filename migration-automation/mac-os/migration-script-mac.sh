@@ -69,7 +69,7 @@ wait $!
 echo "${GREEN}==> Installed Java successfully!${RESET}"
 
 # Set the JAVA_HOME environment variable
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+export JAVA_HOME=$(/usr/libexec/java_home -v 11) &
 wait $!
 
 cd "$AUTOMATION_HOME_MAC"
@@ -141,9 +141,7 @@ sh enter-login-credentials.sh &
 wait $!
 echo "${GREEN}==> Entered to Management console home page successfully${RESET}"
 
-cd "$DATA_POPULATION_MAC"
-pwd
-ls -a
+cd "$DATA_POPULATION_MAC_HOME"
 echo "${GREEN}==> Entered the data population directory successfully.${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
