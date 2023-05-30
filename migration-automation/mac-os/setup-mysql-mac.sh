@@ -15,16 +15,16 @@ source ./env.sh
 
 # Stop mysql running inside github actions and wait for the MySQL container to start
 brew services stop mysql &
-sleep 20
+wait $!
 
-brew install mysql
-sleep 20
+brew install mysql &
+wait $!
 
 sudo chown -R _mysql:mysql /usr/local/var/mysql
 sudo mysql.server start
 
 # wait for MySQL to start
-sleep 20
+wait $!
 
 mysql -u root
 mysqladmin -u root password root
@@ -37,7 +37,7 @@ if ! pgrep mysql &> /dev/null; then
 fi
 
 # create the database
-mysql -u root -proot -e "CREATE DATABASE testdb CHARACTER SET latin1;"
+mysql -u root -proot -e "CREATE DATABASE mydb CHARACTER SET latin1;"
 
 
 cd $UTILS_MAC
@@ -50,14 +50,14 @@ script_path4="/Users/runner/work/Automating-Product-Migration-Testing/Automating
 script_path5="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/mysql.sql"
 
 # specify the database name
-database="testdb"
+database="mydb"
 
 cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11"
 # execute the script against the specified database
-mysql -u root -proot -D testdb < $script_path1
-mysql -u root -proot -D testdb < $script_path2
-mysql -u root -proot -D testdb < $script_path3
-mysql -u root -proot -D testdb < $script_path4
-mysql -u root -proot -D testdb < $script_path5
+mysql -u root -proot -D mydb < $script_path1
+mysql -u root -proot -D mydb < $script_path2
+mysql -u root -proot -D mydb < $script_path3
+mysql -u root -proot -D mydb < $script_path4
+mysql -u root -proot -D mydb < $script_path5
 
 echo "${GREEN}Created database and ran needed SQL scripts against it - for current IS${RESET}"
