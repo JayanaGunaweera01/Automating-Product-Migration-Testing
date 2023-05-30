@@ -178,6 +178,7 @@ jobs:
         shell: bash
       
   Macos-Mssql-Setup:
+    needs: Migration-Testing-Automation
     if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
