@@ -210,7 +210,7 @@ ls -a
 echo "${GREEN}==> Unzipped $4 zip${RESET}"
 
 # Divert to utils folder
-cd "$UTILS_MAC"
+cd "$UTILS_MAC_PATH"
 echo "${GREEN}==> Diverted to utils folder${RESET}"
 
 # Download migration client
