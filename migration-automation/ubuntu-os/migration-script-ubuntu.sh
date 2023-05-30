@@ -309,7 +309,7 @@ echo "${GREEN}==> Started running migration client${RESET}"
 #chmod +x start-server.sh
 #sh start-server.sh "$6" "3" "$3" "$4" "true"
 
-# Stop wso2IS migration server
+# Start wso2IS migration server
 cd "$BIN_ISNEW"
 echo "${GREEN}==> Entered bin successfully${RESET}"
 # Start the migration server
