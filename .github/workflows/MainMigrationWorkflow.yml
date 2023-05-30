@@ -177,7 +177,7 @@ jobs:
         run: psql -d testdb -c 'SHOW server_version'
         shell: bash
       
-  macos_mssql_setup:
+  Macos-Mssql-Setup:
     if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -207,8 +207,9 @@ jobs:
       - name: 🌐 Verify MSSQL Script Execution 🍎 Mac
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
 
-  build_artifacts:
-    needs: macos_mssql_setup
+  Build-Artifacts:
+    needs: [Migration-Testing-Automation,Macos-Mssql-Setup]
+    if: ${{ always() }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 🗝️ Grant Permission To Execute Migration Automation Script 🐧 Ubuntu
