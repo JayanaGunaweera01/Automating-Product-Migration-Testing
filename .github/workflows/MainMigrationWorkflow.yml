@@ -114,7 +114,7 @@ jobs:
           docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/postgresfive.sql postgres:/
           docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
           echo "All postgre scripts executed successfully!"
-          
+
       - name: 🌐 Setup MSSQL 🐧 Ubuntu
         if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }}
         run: |
@@ -208,9 +208,9 @@ jobs:
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
-        run: sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt  
+        run: sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
-      
+
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
         run: sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
@@ -220,15 +220,15 @@ jobs:
         run: sh migration-automation/windows-os/migration-script-windows.ps1 "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
 
-      - name: 💥 Print Errors In Logs
-        run: |
-          if [ -f "migration-automation/logs.txt" ]; then
-            chmod +x migration-automation/logs.txt
-            sed -i -e 's/Error/\o033[31m&\o033[0m/g' \
-                  -e 's/failed/\o033[31m&\o033[0m/g' \
-                  -e 's/cannot/\o033[31m&\o033[0m/g' \
-                  -e 's/Permission denied/\o033[31m&\o033[0m/g' migration-automation/logs.txt
-          fi
+      # - name: 💥 Print Errors In Logs
+      #run: |
+      #if [ -f "migration-automation/logs.txt" ]; then
+      #   chmod +x migration-automation/logs.txt
+      #sed -i -e 's/Error/\o033[31m&\o033[0m/g' \
+      #-e 's/failed/\o033[31m&\o033[0m/g' \
+      #-e 's/cannot/\o033[31m&\o033[0m/g' \
+      #          -e 's/Permission denied/\o033[31m&\o033[0m/g' migration-automation/logs.txt
+      #   fi
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v3
         if: always()
@@ -236,4 +236,3 @@ jobs:
           name: "migration-logs-of-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
-
