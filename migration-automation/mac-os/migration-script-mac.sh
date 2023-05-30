@@ -141,9 +141,7 @@ sh enter-login-credentials.sh &
 wait $!
 echo "${GREEN}==> Entered to Management console home page successfully${RESET}"
 
-cd "$DATA_POPULATION_MAC_HOME"
-pwd
-ls -a
+cd "$DATA_POPULATION_MAC"
 echo "${GREEN}==> Entered the data population directory successfully.${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.

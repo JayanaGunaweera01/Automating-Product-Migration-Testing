@@ -193,7 +193,7 @@ export DIRECTORY_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testi
 export IS_HOME_OLD_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD"
 
 # Absolute path to data population script
-export DATA_POPULATION_MAC_="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os"
+export DATA_POPULATION_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os"
 
 # Absolute path to service provider creation directory
 export SERVICE_PROVIDER_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation"
