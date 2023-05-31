@@ -342,32 +342,45 @@ if [ -n "$deployment_automation_file" ]; then
 
     find "$deployment_path" -type f -name 'deployment.toml' -exec sh -c "cat '$deployment_automation_file' > '{}'" \;
     wait $!
-    if [ "$migratingVersion" = "5.9.0" ] || [ "$migratingVersion" = "5.10.0" ]; then
-        # Display the content of the deployment automation file in the terminal
-        echo "Content of deployment toml file before migration:"
-        cat "$deployment_automation_file"
-        wait $!
-    fi
 fi
 
-# Check if migratingVersion is in the specified list
-if [ "$migratingVersion" = "5.11.0" ] || [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
-    if [ "$version" = "4" ]; then
-        cd "$deployment_path"
-        chmod +x deployment.toml
-        # Generate the secret key
-        secret_key=$(openssl rand -hex 32)
-        wait $!
-        echo "${GREEN}==> Secret key is $secret_key${RESET}"
+if [ "$version" = "4" ]; then
+    cd "$deployment_path"
+    chmod +x deployment.toml
+    # Generate the secret key
+    secret_key=$(openssl rand -hex 32)
+    wait $!
+    echo "${GREEN}==> Secret key is $secret_key${RESET}"
+    if [ "$os" = "ubuntu-latest" ]; then
+        if { [ "$currentVersion" = "5.9.0" ] || [ "$currentVersion" = "5.10.0" ]; } &&
+            { [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; }; then
+            for file in $(find "$deployment_path" -type f -name 'deployment.toml'); do
+                # Replace the placeholder with the generated secret key
+                sed -i "s/<provide-your-key-here>/$secret_key/g" "$file"
+                echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
+                echo "Content of deployment automation file before migration:"
+                cat "$file"
+                echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
+            done
+        else
+            for file in $(find "$deployment_path" -type f -name 'deployment.toml'); do
+                # Comment out the lines if present
+                sed -i 's/^\[encryption\]/#&/' "$file"
+                sed -i 's/^key = "<provide-your-key-here>"/#&/' "$file"
+                sed -i 's/^internal_crypto_provider = "org.wso2.carbon.crypto.provider.KeyStoreBasedInternalCryptoProvider"/#&/' "$file"
+                echo "Content of deployment automation file before migration:"
+                cat "$file"
+                echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
+            done
+        fi
+    else
         for file in $(find "$deployment_path" -type f -name 'deployment.toml'); do
             # Replace the placeholder with the generated secret key
-            sed -i "" "s~<provide-your-key-here>~$secret_key~g" "$deployment_path/deployment.toml"
+            sed -i "" "s~<provide-your-key-here>~$secret_key~g" "$file"
             echo "${GREEN}==> Secret key generated and replaced in deployment.toml${RESET}"
-            echo "Content of deployment automation file:"
-            cat "deployment.toml"
+            echo "Content of deployment automation file before migration:"
+            cat "$file"
             echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
-
         done
-
     fi
 fi
