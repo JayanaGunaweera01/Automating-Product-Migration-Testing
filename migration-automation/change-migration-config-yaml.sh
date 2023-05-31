@@ -27,15 +27,15 @@ if [ "$os" = "ubuntu-latest" ]; then
 
   # Define the search pattern for the block of text
   if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
-    cd "$MIGRATION_RESOURCES_NEW_IS_MAC"
+    cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
     chmod +x migration-config.yaml
 
-    for file in $(find "$MIGRATION_RESOURCES_NEW_IS_MAC" -type f -name 'migration-config.yaml'); do
+    for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
       search_pattern='version: "5.11.0"\n   migratorConfigs:\n   -\n     name: "EncryptionAdminFlowMigrator"\n     order: 1\n     parameters:\n       currentEncryptionAlgorithm: "RSA/ECB/OAEPwithSHA1andMGF1Padding"\n       migratedEncryptionAlgorithm: "AES/GCM/NoPadding"\n       schema: "identity"'
 
       # Define the replacement line
       replacement_line='       currentEncryptionAlgorithm: "RSA"'
-      for file in $(find "$MIGRATION_RESOURCES_NEW_IS_MAC" -type f -name 'migration-config.yaml'); do
+      for file in $(find "$MIGRATION_RESOURCES_NEW_IS_UBUNTU" -type f -name 'migration-config.yaml'); do
         # Find and replace the line within the block of text
         sed -i "s~$search_pattern~$replacement_line~" "$file"
       done
