@@ -149,6 +149,9 @@ sh automated-data-population-and-validation-script.sh &
 wait $!
 echo "${GREEN}==> Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully${RESET}"
 
+cd "$AUTOMATION_HOME_MAC"
+echo "${GREEN}==> Directed to home successfully${RESET}"
+
 # Stop wso2IS
 chmod +x stop-server.sh
 sh stop-server.sh "$6" "3"
@@ -350,6 +353,9 @@ wait_until_server_is_up() {
 
 wait_until_server_is_up
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
+
+cd "$AUTOMATION_HOME_MAC"
+echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
 chmod +x stop-server.sh
