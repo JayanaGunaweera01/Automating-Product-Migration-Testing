@@ -254,6 +254,7 @@ else
     echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
 
 fi
+wait $!
 
 # Execute consent management db scripts for IS 5.11.0 - MSSQL
 if [ "$4" = "5.11.0" && "$5" = "mssql" ]; then
@@ -262,6 +263,7 @@ if [ "$4" = "5.11.0" && "$5" = "mssql" ]; then
 else
     echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
 fi
+wait $!
 
 # Execute consent management db scripts for IS 5.11.0 - PostgreSQL
 if [ "$4" = "5.11.0" && "$5" = "postgres" ]; then
@@ -270,6 +272,7 @@ if [ "$4" = "5.11.0" && "$5" = "postgres" ]; then
 else
     echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
 fi
+wait $!
 
 # Get the existing time and date
 time_and_date=$(date +"%Y-%m-%d %H:%M:%S")
