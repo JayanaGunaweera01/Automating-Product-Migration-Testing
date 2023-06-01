@@ -2,9 +2,9 @@
 
 # Register service provider
 response=$(curl -k --location --request POST 'https://localhost:9443/api/identity/oauth2/dcr/v1.1/register' \
-  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{  "client_name": "Migration Application", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Content-Type: application/json' \
+--data-raw '{  "client_name": "Migration Application", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
 # Extract client_name from response
 client_name=$(echo $response | jq -r '.client_name')
@@ -25,11 +25,11 @@ client_secret=$(echo $response | jq -r '.client_secret')
 
 # Store client_id and client_secret in a file
 if [ -f "client_credentials" ]; then
-  echo "client_id=$client_id" >>client_credentials
-  echo "client_secret=$client_secret" >>client_credentials
+  echo "client_id=$client_id" >> client_credentials
+  echo "client_secret=$client_secret" >> client_credentials
 else
-  echo "client_id=$client_id" >client_credentials
-  echo "client_secret=$client_secret" >>client_credentials
+  echo "client_id=$client_id" > client_credentials
+  echo "client_secret=$client_secret" >> client_credentials
 fi
 
 # Print client_id and client_secret
@@ -46,7 +46,7 @@ access_token_response=$(curl -k -X POST https://localhost:9443/oauth2/token -H "
 access_token=$(echo $access_token_response | jq -r '.access_token')
 
 # Store access token in a file
-echo "access_token=$access_token" >>client_credentials
+echo "access_token=$access_token" >> client_credentials
 
 # Print client credentials and access token in file
 echo "${YELLOW}Client Credentials and Access Token:${NC}"
