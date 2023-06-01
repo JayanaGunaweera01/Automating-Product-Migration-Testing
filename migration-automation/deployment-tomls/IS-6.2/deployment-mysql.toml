@@ -16,7 +16,7 @@ read_groups = true
 # MYSQL CONFIGS
 
 [database.user]
-url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"
+url = "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
 username = "root"
 password = "root"
 driver = "com.mysql.jdbc.Driver"
@@ -26,7 +26,7 @@ data_source = "WSO2USER_DB"
 
 [database.identity_db]
 type = "mysql"
-url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"
+url = "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
 username = "root"
 password = "root"
 driver = "com.mysql.jdbc.Driver"
@@ -40,7 +40,7 @@ defaultAutoCommit=false
 
 [database.shared_db]
 type = "mysql"
-url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"
+url = "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
 username = "root"
 password = "root"
 driver = "com.mysql.jdbc.Driver"
