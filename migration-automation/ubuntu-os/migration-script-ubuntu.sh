@@ -397,7 +397,7 @@ echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
 chmod +x stop-server.sh
-sh stop-server.sh "$6" "4"
+sh stop-server.sh "$6" "5"
 echo
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"

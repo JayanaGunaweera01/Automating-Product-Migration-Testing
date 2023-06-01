@@ -12,11 +12,11 @@ server_number=$2
 if [ "$os" = "ubuntu-latest" ]; then
   cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
   chmod +x env.sh
-   . ./env.sh
+  . ./env.sh
   echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 
 elif [ "$os" = "macos-latest" ]; then
-  cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" 
+  cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
   chmod +x env.sh
   source ./env.sh
   echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
@@ -32,6 +32,10 @@ if [ "$os" = "ubuntu-latest" ]; then
     cd "$BIN_ISNEW"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Shutting down Migrating Identity Server in Ubuntu OS${RESET}"
+  elif [ "$server_number" = "5" ]; then
+    cd "$BIN_ISNEW"
+    echo "${GREEN}Diverted to bin${RESET}"
+    echo "${GREEN}Shutting down Migrated Identity Server in Ubuntu OS${RESET}"
   fi
 elif [ "$os" = "macos-latest" ]; then
   if [ "$server_number" = "3" ]; then
@@ -42,6 +46,10 @@ elif [ "$os" = "macos-latest" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Shutting down Migrating Identity Server in macOS${RESET}"
+  elif [ "$server_number" = "5" ]; then
+    cd "$BIN_ISNEW_MAC"
+    echo "${GREEN}Diverted to bin${RESET}"
+    echo "${GREEN}Shutting down Migrated Identity Server in macOS${RESET}"
   fi
 fi
 
@@ -51,27 +59,27 @@ fi
 # Wait for the server to fully stop
 is_stopped=false
 while [ "$is_stopped" != true ]; do
-    # Check if the server is still running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_stopped=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-        echo "${GREEN}==> Shutting down the current identity server${RESET}"
-    fi
+  # Check if the server is still running
+  status=$(ps -ef | grep "wso2server" | grep -v "grep")
+  if [ -z "$status" ]; then
+    is_stopped=true
+  else
+    # Sleep for a few seconds and check again
+    sleep 5
+    echo "${GREEN}==> Shutting down the current identity server${RESET}"
+  fi
 done
 
 # Verify that the server is fully stopped
 is_running=false
 while [ "$is_running" != true ]; do
-    # Check if the server is running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_running=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-    echo "${GREEN}==> Halted the wso2 IS server successfully${RESET}"
+  # Check if the server is running
+  status=$(ps -ef | grep "wso2server" | grep -v "grep")
+  if [ -z "$status" ]; then
+    is_running=true
+  else
+    # Sleep for a few seconds and check again
+    sleep 5
+  fi
+  echo "${GREEN}==> Halted the wso2 IS server successfully${RESET}"
 done
