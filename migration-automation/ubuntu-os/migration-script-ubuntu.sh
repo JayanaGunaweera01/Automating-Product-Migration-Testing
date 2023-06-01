@@ -142,19 +142,12 @@ sh automated-data-population-and-validation-script.sh
 wait $!
 echo "${GREEN}==> Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully${RESET}"
 
-# Divert to bin folder
-cd "$IS_OLD_BIN"
-echo "${GREEN}==> Entered bin successfully${RESET}"
+cd "$AUTOMATION_HOME"
+echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
-echo "${GREEN}==> Shutting down the current identity server${RESET}"
-sh wso2server.sh stop
-
-# Wait until server fully stops
-while pgrep -f 'wso2server' >/dev/null; do
-    sleep 1
-done
-echo "${GREEN}==> Halted the wso2IS server successfully${RESET}"
+chmod +x stop-server.sh
+sh stop-server.sh "$6" "3"
 echo
 
 cd "$AUTOMATION_HOME"
@@ -348,20 +341,13 @@ wait_until_server_is_up() {
 wait_until_server_is_up
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
-# Stop wso2IS migration server
-cd "$BIN_ISNEW"
-echo "${GREEN}==> Entered bin successfully${RESET}"
+cd "$AUTOMATION_HOME"
+echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
-echo "${GREEN}==> Shutting down the migration terminal${RESET}"
-sh wso2server.sh stop
-
-# Wait until server fully stops
-while pgrep -f 'wso2server' >/dev/null; do
-    sleep 1
-done
-echo "${GREEN}==> Halted the wso2IS server successfully${RESET}"
-echo "${GREEN}==> Stopped migration terminal successfully!${RESET}"
+chmod +x stop-server.sh
+sh stop-server.sh "$6" "4"
+echo
 
 # Special config change when migrating from IS 5.9 changing userstore type to database unique id
 if [ "$3" = "5.9.0" ]; then
@@ -403,18 +389,12 @@ sh generate-oauth-token-linux.sh
 wait $!
 echo "${GREEN}==> Validated database successfully${RESET}"
 
-# Stop wso2IS migration server
-cd "$BIN_ISNEW"
-echo "${GREEN}==> Entered bin successfully${RESET}"
+cd "$AUTOMATION_HOME"
+echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
-echo "${GREEN}==> Shutting down updated identity server${RESET}"
-sh wso2server.sh stop
-
-# Wait until server fully stops
-while pgrep -f 'wso2server' >/dev/null; do
-    sleep 1
-done
-echo "${GREEN}==> Halted the wso2IS server successfully${RESET}"
+chmod +x stop-server.sh
+sh stop-server.sh "$6" "3"
+echo
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"

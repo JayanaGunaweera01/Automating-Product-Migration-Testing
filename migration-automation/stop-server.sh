@@ -30,7 +30,7 @@ if [ "$os" == "ubuntu-latest" ]; then
   elif [ "$server_number" == "4" ]; then
     cd "$BIN_ISNEW"
     echo "${GREEN}Diverted to bin${RESET}"
-    echo "${GREEN}Stopping Migrating Identity Server in Ubuntu OS${RESET}"
+    echo "${GREEN}Shutting down Migrating Identity Server in Ubuntu OS${RESET}"
   fi
 elif [ "$os" == "macos-latest" ]; then
   if [ "$server_number" == "3" ]; then
@@ -40,7 +40,7 @@ elif [ "$os" == "macos-latest" ]; then
   elif [ "$server_number" == "4" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
-    echo "${GREEN}Stopping Migrated Identity Server in macOS${RESET}"
+    echo "${GREEN}Shutting down Migrating Identity Server in macOS${RESET}"
   fi
 fi
 
@@ -57,6 +57,7 @@ while [ "$is_stopped" != true ]; do
     else
         # Sleep for a few seconds and check again
         sleep 5
+        echo "${GREEN}==> Shutting down the current identity server${RESET}"
     fi
 done
 
@@ -71,4 +72,5 @@ while [ "$is_running" != true ]; do
         # Sleep for a few seconds and check again
         sleep 5
     fi
+    echo "${GREEN}==> Halted the wso2 IS server successfully${RESET}"
 done
