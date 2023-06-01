@@ -7,9 +7,6 @@ GREEN='\033[1;38;5;206m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
-pwd
-cd  /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation
-pwd
 ls -a
 chmod +x client_credentials
 # Load client_id and client_secret from file
