@@ -24,13 +24,16 @@ client_id=$(echo $response | jq -r '.client_id')
 client_secret=$(echo $response | jq -r '.client_secret')
 
 # Store client_id and client_secret in a file
-if [ -f "client_credentials" ]; then
-  echo "client_id=$client_id" >> client_credentials
-  echo "client_secret=$client_secret" >> client_credentials
+client_credentials_file="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/4-service-provider-creation/client_credentials"
+
+if [ -f "$client_credentials_file" ]; then
+  echo "client_id=$client_id" >> "$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
 else
-  echo "client_id=$client_id" > client_credentials
-  echo "client_secret=$client_secret" >> client_credentials
+  echo "client_id=$client_id" > "$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
 fi
+
 
 # Print client_id and client_secret
 echo "${YELLOW}Client ID: $client_id${NC}"
@@ -46,11 +49,11 @@ access_token_response=$(curl -k -X POST https://localhost:9443/oauth2/token -H "
 access_token=$(echo $access_token_response | jq -r '.access_token')
 
 # Store access token in a file
-echo "access_token=$access_token" >> client_credentials
+echo "access_token=$access_token" >> "$client_credentials_file"
 
 # Print client credentials and access token in file
 echo "${YELLOW}Client Credentials and Access Token:${NC}"
-cat client_credentials
+cat "$client_credentials_file"
 
 # Print access token
 echo "${GREEN}An access token generated successfully from the registered service provider: $access_token${NC}"

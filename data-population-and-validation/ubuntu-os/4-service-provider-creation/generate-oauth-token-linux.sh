@@ -9,10 +9,13 @@ NC='\033[0m' # No Color
 
 ls -a
 chmod +x client_credentials
+
+# Get the directory of the script
+script_dir="$(dirname "$(realpath "$0")")"
+
 # Load client_id and client_secret from file
-if [ -f "client_credentials" ]; then
-   . /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation/client_credentials
-  
+if [ -f "$script_dir/client_credentials" ]; then
+   . "$script_dir/client_credentials"
 else
   echo "${RED}Error: client_credentials file not found.${NC}"
   exit 1
