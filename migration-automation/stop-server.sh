@@ -6,6 +6,7 @@ RESET='\033[0m'           # reset color
 
 # Get the value of the inputs
 os=$1
+server_number=$2
 
 # Setup file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
@@ -15,7 +16,7 @@ if [ "$os" = "ubuntu-latest" ]; then
   echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
 
 elif [ "$os" = "macos-latest" ]; then
-  cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"  1
+  cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" 
   chmod +x env.sh
   source ./env.sh
   echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
