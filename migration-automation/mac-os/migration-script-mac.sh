@@ -396,6 +396,9 @@ sh generate-oauth-token-macos-POC.sh
 sleep 5
 echo "${GREEN}==> Validated database successfully${RESET}"
 
+cd "$AUTOMATION_HOME_MAC"
+echo "${GREEN}==> Directed to home successfully${RESET}"
+
 # Stop wso2IS
 chmod +x stop-server.sh
 sh stop-server.sh "$6" "5"
