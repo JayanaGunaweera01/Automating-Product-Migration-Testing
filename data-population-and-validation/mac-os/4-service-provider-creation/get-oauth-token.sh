@@ -15,8 +15,8 @@ GREEN='\033[1;38;5;206m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
-echo -e "${YELLOW}Response: $response${NC}"
-echo -e "${GREEN}Service provider '$client_name' registered successfully${NC}"
+echo "${YELLOW}Response: $response${NC}"
+echo "${GREEN}Service provider '$client_name' registered successfully${NC}"
 echo
 
 # Extract client_id and client_secret
@@ -24,17 +24,19 @@ client_id=$(echo $response | jq -r '.client_id')
 client_secret=$(echo $response | jq -r '.client_secret')
 
 # Store client_id and client_secret in a file
-if [ -f "client_credentials" ]; then
-  echo "client_id=$client_id" >> client_credentials
-  echo "client_secret=$client_secret" >> client_credentials
+client_credentials_file="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation/client_credentials"
+
+if [ -f "$client_credentials_file" ]; then
+  echo "client_id=$client_id" >> "$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
 else
-  echo "client_id=$client_id" > client_credentials
-  echo "client_secret=$client_secret" >> client_credentials
+  echo "client_id=$client_id" > "$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
 fi
 
 # Print client_id and client_secret
-echo -e "${YELLOW}Client ID: $client_id${NC}"
-echo -e "${YELLOW}Client Secret: $client_secret${NC}"
+echo "${YELLOW}Client ID: $client_id${NC}"
+echo "${YELLOW}Client Secret: $client_secret${NC}"
 
 # Encode client_id:client_secret as base64
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
@@ -46,11 +48,11 @@ access_token_response=$(curl -k -X POST https://localhost:9443/oauth2/token -H "
 access_token=$(echo $access_token_response | jq -r '.access_token')
 
 # Store access token in a file
-echo "access_token=$access_token" >> client_credentials
+echo "access_token=$access_token" >> "$client_credentials_file"
 
 # Print client credentials and access token in file
-echo -e "${YELLOW}Client Credentials and Access Token:${NC}"
-cat client_credentials
+echo "${YELLOW}Client Credentials and Access Token:${NC}"
+cat "$client_credentials_file"
 
 # Print access token
-echo -e "${GREEN}An access token generated successfully from the registered service provider: $access_token${NC}"
+echo "${GREEN}An access token generated successfully from the registered service provider: $access_token${NC}"

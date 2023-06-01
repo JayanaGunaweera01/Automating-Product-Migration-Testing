@@ -7,9 +7,6 @@ GREEN='\033[1;38;5;206m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
-ls -a
-chmod +x client_credentials
-
 # Get the directory of the script
 script_dir="$(dirname "$(realpath "$0")")"
 

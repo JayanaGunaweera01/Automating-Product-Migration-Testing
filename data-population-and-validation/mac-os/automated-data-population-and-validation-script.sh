@@ -28,19 +28,21 @@ if [ -d "$data_population_dir" ]; then
     "4-service-provider-creation/get-oauth-token.sh" \
     "5-group-creation/create-group.sh" \
     "5-group-creation/create-groups-with-users.sh"; do
+  
     # construct the full path of the script
-    script_path="$data_population_dir/$script"
+  script_path="$data_population_dir/$script"
 
-    # check if script exists and is executable
-    if [ -f "$script_path" ]; then
-      chmod +x "$script_path" # make the script executable
-      printf "${ORANGE}Running script: %s${RESET}\n" "$script_path"
-      # execute script and redirect output to stdout
-      "$script_path" >&1
-    else
-      echo "${GREEN}==> Script '$script_path' does not exist.${RESET}"
-    fi
-  done
+  # check if script exists and is executable
+  if [ -f "$script_path" ]; then
+    chmod +x "$script_path" # make the script executable
+    printf "${ORANGE}Running script: %s${RESET}\n" "$script_path"
+    # execute script 
+    "$script_path" 
+  else
+    echo "${GREEN}==> Script '$script_path' does not exist.${RESET}"
+  fi
+done
+
 else
 
   echo "${GREEN}==> Directory '$data_population_dir' does not exist.${RESET}"
