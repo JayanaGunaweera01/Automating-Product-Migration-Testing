@@ -42,13 +42,13 @@ if [ -n "$access_token" ] && [ -n "$refresh_token" ]; then
   if grep -q "access_token" client_credentials; then
     sed -i "s/access_token=.*/access_token=$access_token/" client_credentials
   else
-    echo "access_token=$access_token" >>client_credentials
+    echo "access_token=$access_token" >> client_credentials
   fi
 
   if grep -q "refresh_token" client_credentials; then
     sed -i "s/refresh_token=.*/refresh_token=$refresh_token/" client_credentials
   else
-    echo "refresh_token=$refresh_token" >>client_credentials
+    echo "refresh_token=$refresh_token" >> client_credentials
   fi
 
   # Print success message
