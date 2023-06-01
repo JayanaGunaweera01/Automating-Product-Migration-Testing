@@ -383,4 +383,6 @@ if [ "$version" = "4" ]; then
             echo "${GREEN}==> Did needed changes of deployment toml file to configure \"$database\" database successfully.${RESET}"
         done
     fi
+else
+    echo "${GREEN}==> Skipping the execution of consent management db scripts.${RESET}"
 fi
