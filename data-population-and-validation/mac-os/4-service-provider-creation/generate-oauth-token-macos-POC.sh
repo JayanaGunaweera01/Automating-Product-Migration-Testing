@@ -6,10 +6,12 @@ GREEN='\033[1;38;5;206m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
+# Get the directory of the script
+script_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation"
+
 # Load client_id and client_secret from file
-if [ -f "client_credentials" ]; then
-  . "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation/client_credentials"
-  
+if [ -f "$script_dir/client_credentials" ]; then
+   source "$script_dir/client_credentials"
 else
   echo "${RED}Error: client_credentials file not found.${NC}"
   exit 1
