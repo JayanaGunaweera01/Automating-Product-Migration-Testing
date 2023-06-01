@@ -12,6 +12,7 @@ script_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-P
 # Load client_id and client_secret from file
 if [ -f "$script_dir/client_credentials" ]; then
    . "$script_dir/client_credentials"
+   echo "${GREEN}Client_credentials sourced.${NC}"
 else
   echo "${RED}Error: client_credentials file not found.${NC}"
   exit 1
