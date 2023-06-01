@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Define color variables
 ORANGE='\033[0;33m\033[1m' # orange color
 RESET='\033[0m'            # reset color
