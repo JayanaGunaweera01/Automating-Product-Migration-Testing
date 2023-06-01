@@ -28,21 +28,21 @@ This repository contains automation scripts and tools for automating product mig
 │   │   │   ├── 3-userstore-creation
 │   │   │   ├── 4-service-provider-creation
 │   │   │   ├── 5-group-creation
-│   │   │   └── data-population-script.sh
+│   │   │   └── automated-data-poputation-and-validation-script.sh
 │   │   ├── ubuntu-os
 │   │   │   ├── 1-user-creation
 │   │   │   ├── 2-tenant-creation
 │   │   │   ├── 3-userstore-creation
 │   │   │   ├── 4-service-provider-creation
 │   │   │   ├── 5-group-creation
-│   │   │   └── data-population-script.sh
+│   │   │   └── automated-data-poputation-and-validation-script.sh
 │   │   └── windows-os
 │   │       ├── 1-user-creation
 │   │       ├── 2-tenant-creation
 │   │       ├── 3-userstore-creation
 │   │       ├── 4-service-provider-creation
 │   │       ├── 5-group-creation
-│   │       └── data-population-script.sh
+│   │       └── automated-data-poputation-and-validation-script.ps1
 │   ├── documents
 │   │   └── Automating Product Migration Testing.word
 │   ├── local-setups
