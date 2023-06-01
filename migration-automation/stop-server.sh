@@ -46,8 +46,6 @@ elif [ "$os" = "macos-latest" ]; then
 fi
 
 # Execute the server stop command
-pwd
-ls -a
 ./wso2server.sh stop
 
 # Wait for the server to fully stop
