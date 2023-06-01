@@ -37,7 +37,7 @@ for script in \
     chmod +x "$script_path" # make the script executable
     printf "${ORANGE}Running script: %s${RESET}\n" "$script_path"
     # execute script and redirect output to stdout and client_credentials file
-    "$script_path" | tee -a client_credentials
+    "$script_path" 
   else
     echo "${GREEN}==> Script '$script_path' does not exist.${RESET}"
   fi
