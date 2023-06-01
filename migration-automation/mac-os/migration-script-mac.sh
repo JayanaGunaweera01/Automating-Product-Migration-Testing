@@ -69,7 +69,7 @@ wait $!
 echo "${GREEN}==> Installed Java successfully!${RESET}"
 
 # Set the JAVA_HOME environment variable
-export JAVA_HOME=$(/usr/libexec/java_home -v 11) 
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
 cd "$AUTOMATION_HOME_MAC"
 
@@ -149,39 +149,9 @@ sh automated-data-population-and-validation-script.sh &
 wait $!
 echo "${GREEN}==> Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully${RESET}"
 
-# Divert to bin folder
-cd "$BIN_ISOLD_MAC"
-echo "${GREEN}==> Entered bin successfully${RESET}"
-
-# Execute the server stop command
-echo "${GREEN}==> Shutting down the current identity server${RESET}"
-./wso2server.sh stop
-
-# Wait for the server to fully stop
-is_stopped=false
-while [ "$is_stopped" != true ]; do
-    # Check if the server is still running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_stopped=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-done
-
-# Verify that the server is fully stopped
-is_running=false
-while [ "$is_running" != true ]; do
-    # Check if the server is running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_running=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-done
+# Stop wso2IS
+chmod +x stop-server.sh
+sh stop-server.sh "$6" "3"
 
 echo "${GREEN}==> Halted the wso2IS server successfully${RESET}"
 echo
@@ -381,38 +351,9 @@ wait_until_server_is_up() {
 wait_until_server_is_up
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
-# Stop wso2IS migration server
-cd "$BIN_ISNEW_MAC"
-
-# Execute the server stop command
-./wso2server.sh stop
-
-# Wait for the server to fully stop
-is_stopped=false
-while [ "$is_stopped" != true ]; do
-    # Check if the server is still running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_stopped=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-done
-
-# Verify that the server is fully stopped
-is_running=false
-while [ "$is_running" != true ]; do
-    # Check if the server is running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_running=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-done
-
+# Stop wso2IS
+chmod +x stop-server.sh
+sh stop-server.sh "$6" "4"
 echo "${GREEN}==> Stopped migration terminal successfully!${RESET}"
 
 # Special config change when migrating from IS 5.9 changing userstore type to database unique id
@@ -455,36 +396,9 @@ sh generate-oauth-token-macos-POC.sh
 sleep 5
 echo "${GREEN}==> Validated database successfully${RESET}"
 
-cd "$BIN_ISNEW_MAC"
-echo "${GREEN}==> Shutting down updated identity server${RESET}"
-
-# Execute the server stop command
-./wso2server.sh stop
-
-# Wait for the server to fully stop
-is_stopped=false
-while [ "$is_stopped" != true ]; do
-    # Check if the server is still running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_stopped=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-done
-
-# Verify that the server is fully stopped
-is_running=false
-while [ "$is_running" != true ]; do
-    # Check if the server is running
-    status=$(ps -ef | grep "wso2server" | grep -v "grep")
-    if [ -z "$status" ]; then
-        is_running=true
-    else
-        # Sleep for a few seconds and check again
-        sleep 5
-    fi
-done
+# Stop wso2IS
+chmod +x stop-server.sh
+sh stop-server.sh "$6" "5"
+echo
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"
