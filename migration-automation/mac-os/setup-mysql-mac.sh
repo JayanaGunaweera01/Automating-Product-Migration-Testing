@@ -20,9 +20,33 @@ brew install mysql &
 wait $!
 
 # wait for MySQL to start
+#sudo chown -R _mysql:mysql /usr/local/var/mysql
+#sudo mysql.server start &
+#wait $!
+
+# Wait for MySQL to start
 sudo chown -R _mysql:mysql /usr/local/var/mysql
-sudo mysql.server start &
-wait $!
+sudo mysql.server start
+
+# Check MySQL status
+MYSQL_STATUS=$(sudo mysqladmin ping)
+while [ "$MYSQL_STATUS" != "mysqld is alive" ]; do
+  sleep 1
+  MYSQL_STATUS=$(sudo mysqladmin ping)
+done
+
+# MySQL has started
+echo "\033[1;32mMySQL has started successfully\033[0m"
+
+# Wait until the server is healthy
+echo "\033[1;32mWaiting for the mysql server to be healthy...\033[0m"
+until mysql -u root -e "SELECT 1" >/dev/null 2>&1; do
+  sleep 1
+done
+
+# Server is healthy
+echo "\033[1;32mServer is healthy\033[0m"
+
 
 mysql -u root
 mysqladmin -u root password root
