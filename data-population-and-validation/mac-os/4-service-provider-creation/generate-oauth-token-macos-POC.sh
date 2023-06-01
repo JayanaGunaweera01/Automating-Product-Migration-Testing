@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 
 # Load client_id and client_secret from file
 if [ -f "client_credentials" ]; then
-  . /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/02-POC/macos/data-population-and-validation/4-service-provider-creation/client_credentials
+  . /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation/client_credentials
   
 else
   echo -e "${RED}Error: client_credentials file not found.${NC}"
