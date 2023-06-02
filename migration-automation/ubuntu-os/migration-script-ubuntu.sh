@@ -17,9 +17,14 @@ sudo apt-get -qq update
 cd "$AUTOMATION_HOME"
 cd migration-automation
 
-# Get the value of the "currentVersion" and "migratingVersion" inputs
+# Get the value of the inputs from workflow dispatch
+
+urlOld=$1
+urlNew=$2
 currentVersion=$3
 migratingVersion=$4
+database=$5
+os=$6
 
 # Remove spaces from the beginning and end of the currentVersion variable
 currentVersion=$(echo $currentVersion | xargs)
@@ -41,7 +46,7 @@ sed -i "s/MigratingVersion/${combinedMigratingVersion}/g" /home/runner/work/Auto
 
 # Define the message in a variable for easier modification
 echo
-echo "${ORANGE}WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING! THIS TIME WE WILL PERFORM A MIGRATION TESTING FROM IS VERSION ${RESET}${YELLOW}$3${RESET}${ORANGE} TO IS VERSION ${RESET}${YELLOW}$4${RESET}${ORANGE} IN THE ${RESET}${YELLOW}$5${RESET}${ORANGE} DATABASE, RUNNING ON THE ${RESET}${YELLOW}$6${RESET}${ORANGE} OPERATING SYSTEM.${RESET}"
+echo "${ORANGE}WELCOME TO AUTOMATING PRODUCT MIGRATION TESTING! THIS TIME WE WILL PERFORM A MIGRATION TESTING FROM IS VERSION ${RESET}${YELLOW}"$currentVersion"${RESET}${ORANGE} TO IS VERSION ${RESET}${YELLOW}"$migratingVersion"${RESET}${ORANGE} IN THE ${RESET}${YELLOW}"$database"${RESET}${ORANGE} DATABASE, RUNNING ON THE ${RESET}${YELLOW}"$os"${RESET}${ORANGE} OPERATING SYSTEM.${RESET}"
 
 # Print instructions with different colors and formatting using echo command
 echo "${ORANGE}${RESET} ${CYAN}1. PRIOR TO PROCEEDING, ENSURE THAT YOU HAVE MADE THE NECESSARY MODIFICATIONS IN THE env.sh FILE TO ALIGN WITH YOUR REQUIREMENTS.${RESET} ${ORANGE}${RESET}"
@@ -78,7 +83,7 @@ cd IS_HOME_OLD
 echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 # Download needed wso2IS zip
-wget -qq --waitretry=5 --retry-connrefused $1
+wget -qq --waitretry=5 --retry-connrefused "$urlOld"
 ls -a
 echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
 
@@ -97,35 +102,34 @@ cd "$AUTOMATION_HOME"
 
 # Needed changes in deployment.toml
 chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh "$3" "$4" "$5" "$6" 3
+sh change-deployment-toml.sh "$currentVersion" "$migratingVersion" "$database" "$os" "3"
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 # Check if database is set to mysql
-if [ "$5" = "mysql" ]; then
+if [ "$database" = "mysql" ]; then
     # Setup mysql
     cd "$UBUNTU_HOME"
     chmod +x setup-mysql-ubuntu.sh
-    sh setup-mysql-ubuntu.sh "$3"
+    sh setup-mysql-ubuntu.sh "$currentVersion"
 
 else
-    echo "${GREEN}==> Skipping the MySQL setup process since the selected database is $5 ${RESET}"
+    echo "${GREEN}==> Skipping the MySQL setup process since the selected database is "$database" ${RESET}"
 fi
 
 cd "$AUTOMATION_HOME"
 
 # Copy Jars
 chmod +x copy-jar-file.sh
-sh copy-jar-file.sh "$5" "$6"
+sh copy-jar-file.sh "$database" "$os"
 
 cd "$AUTOMATION_HOME"
 
 # Start wso2IS
-echo "${GREEN}==> Identity server $3 started running!${RESET}"
+echo "${GREEN}==> Identity server "$currentVersion" started running!${RESET}"
 
 # Starting downloaded identity server
 chmod +x start-server.sh
-sh start-server.sh "$6" "3" $3 $4
-# Use keywords here
+sh start-server.sh "$os" "3" "$currentVersion" "$migratingVersion"
 
 cd "$AUTOMATION_HOME"
 
@@ -148,7 +152,7 @@ echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
 chmod +x stop-server.sh
-sh stop-server.sh "$6" "3"
+sh stop-server.sh "$os" "3"
 echo
 
 cd "$AUTOMATION_HOME"
@@ -162,15 +166,15 @@ echo "${GREEN}==> Created a directory for placing latest wso2IS${RESET}"
 cd "$IS_HOME_NEW"
 
 # Download needed (latest) wso2IS zip
-wget -qq --waitretry=5 --retry-connrefused ${2}
+wget -qq --waitretry=5 --retry-connrefused "$urlNew"
 wait $!
 ls -a
-echo "${GREEN}==> Downloaded $4 zip${RESET}"
+echo "${GREEN}==> Downloaded "$migratingVersion" zip${RESET}"
 
 # Unzip IS archive
 unzip -qq *.zip &
 wait $!
-echo "${GREEN}==> Unzipped $4 zip${RESET}"
+echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
 
 # Divert to utils folder
 cd "$UTILS"
@@ -215,22 +219,22 @@ echo "${GREEN}==> Diverted to home successfully${RESET}"
 
 # Needed changes in migration-config.yaml
 chmod +x change-migration-config-yaml.sh
-sh change-migration-config-yaml.sh "$3" "$4" "$6"
+sh change-migration-config-yaml.sh "$currentVersion" "$migratingVersion" "$os"
 wait $!
 echo "${GREEN}==> Did needed changes in migration-config.yaml file successfully${RESET}"
 
 # Copy userstores, tenants,jar files,.jks files from oldIS to newIS
 cp -r "$LIB" "$LIB_NEW"
-echo "${BLUE}==> Jar files from IS $3 to IS $4 copied successfully!${RESET}"
+echo "${BLUE}==> Jar files from IS "$currentVersion" to IS "$migratingVersion" copied successfully!${RESET}"
 
 cp -r "$TENANT_OLD_PATH" "$TENANT_NEW_PATH"
-echo "${BLUE}==> Tenants from from IS $3 to IS $4 copied successfully!${RESET}"
+echo "${BLUE}==> Tenants from from IS "$currentVersion" to IS "$migratingVersion" copied successfully!${RESET}"
 
 cp -r "$RESOURCES_OLD_PATH" "$RESOURCES_NEW_PATH"
-echo "${BLUE}==> .jks files from from IS $3 to IS $4 copied successfully!${RESET}"
+echo "${BLUE}==> .jks files from from IS "$currentVersion" to IS "$migratingVersion" copied successfully!${RESET}"
 
 cp -r "$USERSTORE_OLD_PATH" "$USERSTORE_NEW_PATH"
-echo "${BLUE}==> Userstores from IS $3 to IS $4 copied successfully!${RESET}"
+echo "${BLUE}==> Userstores from IS "$currentVersion" to IS "$migratingVersion" copied successfully!${RESET}"
 
 # Check if all files are copied successfully
 if [ $? -eq 0 ]; then
@@ -242,36 +246,36 @@ echo "${BLUE}==> Copied userstores, tenants,jar files,.jks files from oldIS to n
 
 # Deployment toml changes in new is version
 chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh "$3" "$4" "$5" "$6" "4"
+sh change-deployment-toml.sh "$currentVersion" "$migratingVersion" "$database" "$os" "4"
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
-echo "${BLUE}==> Copied deployment toml of $3 to $4 successfully!${RESET}"
+echo "${BLUE}==> Copied deployment toml of "$currentVersion" to "$migratingVersion" successfully!${RESET}"
 wait $!
 
 # Execute consent management db scripts for IS 5.11.0 - MySQL
-if [ "$4" = "5.11.0" && "$5" = "mysql" ]; then
+if [ "$migratingVersion" = "5.11.0" && "$database" = "mysql" ]; then
     docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' </home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/other-db-scripts/config-management-is-5-11.sql
     echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - MySQL${RESET}"
 else
-    echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
+    echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0"$database" ${RESET}"
 
 fi
 wait $!
 
 # Execute consent management db scripts for IS 5.11.0 - MSSQL
-if [ "$4" = "5.11.0" && "$5" = "mssql" ]; then
+if [ "$migratingVersion" = "5.11.0" && "$database" = "mssql" ]; then
     # Add the command for executing MSSQL script here
     echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - MSSQL${RESET}"
 else
-    echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
+    echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0"$database" ${RESET}"
 fi
 wait $!
 
 # Execute consent management db scripts for IS 5.11.0 - PostgreSQL
-if [ "$4" = "5.11.0" && "$5" = "postgres" ]; then
+if [ "$migratingVersion" = "5.11.0" && "$database" = "postgres" ]; then
     # Add the command for executing PostgreSQL script on Ubuntu here
     echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - PostgreSQL (Ubuntu)${RESET}"
 else
-    echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0$5 ${RESET}"
+    echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0"$database" ${RESET}"
 fi
 wait $!
 
@@ -293,9 +297,9 @@ print_star_line() {
 # Print the box with migration details
 print_star_line
 echo "${YELLOW}${STAR}${SPACE}Migration details:${SPACE}${RESET}"
-echo "${YELLOW}${STAR}${SPACE}Migrating from IS: $3 to IS: $4${SPACE}${RESET}"
-echo "${YELLOW}${STAR}${SPACE}Database: $5${SPACE}${RESET}"
-echo "${YELLOW}${STAR}${SPACE}Operating System: $6${SPACE}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Migrating from IS: "$currentVersion" to IS: "$migratingVersion"${SPACE}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Database: "$database"${SPACE}${RESET}"
+echo "${YELLOW}${STAR}${SPACE}Operating System: "$os"${SPACE}${RESET}"
 echo "${YELLOW}${STAR}${SPACE}Time and date: $time_and_date${SPACE}${RESET}"
 print_star_line
 
@@ -304,7 +308,7 @@ echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
 #chmod +x start-server.sh
-#sh start-server.sh "$6" "3" "$3" "$4" "true"
+#sh start-server.sh "$os" "3" "$currentVersion" "$migratingVersion" "true"
 
 # Start wso2IS migration server
 cd "$BIN_ISNEW"
@@ -344,17 +348,17 @@ wait_until_server_is_up() {
 
 wait_until_server_is_up
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
-# embed this inside start.sh
+
 cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
 chmod +x stop-server.sh
-sh stop-server.sh "$6" "4"
+sh stop-server.sh "$os" "4"
 echo
 
 # Special config change when migrating from IS 5.9 changing userstore type to database unique id
-if [ "$3" = "5.9.0" ]; then
+if [ "$currentVersion" = "5.9.0" ]; then
     cd "$DEPLOYMENT_PATH_NEW"
     chmod +x deployment.toml
     for file in $(find "$DEPLOYMENT_PATH_NEW" -type f -name 'deployment.toml'); do
@@ -367,15 +371,15 @@ if [ "$3" = "5.9.0" ]; then
     echo "${GREEN}==> Changes made to deployment toml file - special config change when migrating from IS 5.9 changing userstore type to database unique id${RESET}"
 
 else
-    echo "${GREEN}==> Skipping this step since the current version was not IS 5.9.0$5 ${RESET}"
+    echo "${GREEN}==> Skipping this step since the current version was not IS 5.9.0"$database" ${RESET}"
 fi
 
 cd "$AUTOMATION_HOME"
-echo "${GREEN}==> Migrated WSO2 Identity Server - IS $4 is starting....${RESET}"
+echo "${GREEN}==> Migrated WSO2 Identity Server - IS "$migratingVersion" is starting....${RESET}"
 
 # Starting migrated identity server
 chmod +x start-server.sh
-sh start-server.sh "$6" "4" $3 $4
+sh start-server.sh "$os" "4" "$currentVersion" "$migratingVersion"
 
 cd "$AUTOMATION_HOME"
 
@@ -399,7 +403,8 @@ echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
 chmod +x stop-server.sh
-sh stop-server.sh "$6" "5"
+sh stop-server.sh "$os" "5"
 echo
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"
+
