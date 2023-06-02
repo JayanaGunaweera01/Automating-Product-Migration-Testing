@@ -309,6 +309,7 @@ echo "${GREEN}==> Started running migration client${RESET}"
 # Start the migration server
 chmod +x start-server.sh
 sh start-server.sh "$os" "migration" "$currentVersion" "$migratingVersion" 
+echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
 cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Directed to home successfully${RESET}"

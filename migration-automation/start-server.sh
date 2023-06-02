@@ -93,3 +93,4 @@ wait_until_server_is_up() {
 
 wait_until_server_is_up
 echo "${GREEN}WSO2 Identity Server has started successfully${RESET}"
+
