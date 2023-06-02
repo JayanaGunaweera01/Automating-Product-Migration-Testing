@@ -36,6 +36,9 @@ while ! mysqladmin ping -h"$DB_HOST" --silent; do
   sleep 1
 done
 
+# add a timeout for the loop
+# Modify the comment  
+
 # Connect to MySQL server
 echo "${GREEN}==> MySQL server is available on $DB_HOST${RESET}"
 
