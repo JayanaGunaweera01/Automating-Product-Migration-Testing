@@ -135,7 +135,7 @@ echo "${GREEN}==> Identity server "$currentVersion" started running!${RESET}"
 
 # Starting downloaded identity server
 chmod +x start-server.sh
-sh start-server.sh ""$os"" "3" "$currentVersion" "$migratingVersion"
+sh start-server.sh "$os" "current" "$currentVersion" "$migratingVersion"
 
 cd "$AUTOMATION_HOME_MAC"
 
@@ -314,7 +314,7 @@ echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
 #chmod +x start-server.sh
-#sh start-server.sh ""$os"" "3" "$currentVersion" "$migratingVersion" "true"
+#sh start-server.sh "$os" "migration" "$currentVersion" "$migratingVersion" 
 #echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
 # Start wso2IS migration server
@@ -386,7 +386,7 @@ echo "${GREEN}==> Migrated WSO2 Identity Server - IS "$migratingVersion" is star
 
 # Starting migrated identity server
 chmod +x start-server.sh
-sh start-server.sh "$os" "4" "$currentVersion" "$migratingVersion"
+sh start-server.sh "$os" "migrated" "$currentVersion" "$migratingVersion"
 
 cd "$AUTOMATION_HOME_MAC"
 

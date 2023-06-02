@@ -129,7 +129,7 @@ echo "${GREEN}==> Identity server "$currentVersion" started running!${RESET}"
 
 # Starting downloaded identity server
 chmod +x start-server.sh
-sh start-server.sh "$os" "3" "$currentVersion" "$migratingVersion"
+sh start-server.sh "$os" "current" "$currentVersion" "$migratingVersion"
 
 cd "$AUTOMATION_HOME"
 
@@ -307,47 +307,8 @@ print_star_line
 echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
-#chmod +x start-server.sh
-#sh start-server.sh "$os" "3" "$currentVersion" "$migratingVersion" "true"
-
-# Start wso2IS migration server
-cd "$BIN_ISNEW"
-echo "${GREEN}==> Entered bin successfully${RESET}"
-# Start the migration server
-echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
-chmod +x start.sh && chmod 777 start.sh
-nohup ./start.sh &
-
-# Wait until server is up
-is_server_up() {
-    local status
-    status=$(curl -k -L -s \
-        -o /dev/null \
-        -w "%{http_code}" \
-        --request GET \
-        "https://localhost:9443/")
-    if [ "$status" -eq 200 ]; then
-        return 0
-    fi
-    return 1
-}
-
-wait_until_server_is_up() {
-    local timeout=600
-    local wait_time=0
-    while ! is_server_up; do
-        echo "Migration is currently in progress. Please wait..." &&
-            sleep 10
-        wait_time=$((wait_time + 10))
-        if [ "$wait_time" -ge "$timeout" ]; then
-            echo "Timeout: migration did not complete within $timeout seconds"
-            exit 1
-        fi
-    done
-}
-
-wait_until_server_is_up
-echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
+chmod +x start-server.sh
+sh start-server.sh "$os" "migration" "$currentVersion" "$migratingVersion" 
 
 cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Directed to home successfully${RESET}"
@@ -379,7 +340,7 @@ echo "${GREEN}==> Migrated WSO2 Identity Server - IS "$migratingVersion" is star
 
 # Starting migrated identity server
 chmod +x start-server.sh
-sh start-server.sh "$os" "4" "$currentVersion" "$migratingVersion"
+sh start-server.sh "$os" "migrated" "$currentVersion" "$migratingVersion"
 
 cd "$AUTOMATION_HOME"
 
