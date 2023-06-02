@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Define colors
@@ -28,9 +27,19 @@ token_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'grant_type=password&username=admin&password=admin&scope=somescope_password')
 
+# Debug statement: Print token response
+echo "${YELLOW}Token Response: ${NC}"
+echo "$token_response"
+
 # Extract access token and refresh token from response
-access_token=$(echo $token_response | jq -r '.access_token')
-refresh_token=$(echo $token_response | jq -r '.refresh_token')
+access_token=$(echo "$token_response" | jq -r '.access_token')
+refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
+
+# Debug statements: Print access token and refresh token
+echo "${YELLOW}Access Token: ${NC}"
+echo "$access_token"
+echo "${YELLOW}Refresh Token: ${NC}"
+echo "$refresh_token"
 
 if [ -n "$access_token" ] && [ -n "$refresh_token" ]; then
   # Print access token and refresh token
@@ -42,16 +51,16 @@ if [ -n "$access_token" ] && [ -n "$refresh_token" ]; then
   fi
 
   # Store access token and refresh token in a file
-  if grep -q "access_token" client_credentials; then
-    sed -i "s/access_token=.*/access_token=$access_token/" client_credentials
+  if grep -q "access_token" "$script_dir/client_credentials"; then
+    sed -i "s/access_token=.*/access_token=$access_token/" "$script_dir/client_credentials"
   else
-    echo "access_token=$access_token" >> client_credentials
+    echo "access_token=$access_token" >> "$script_dir/client_credentials"
   fi
 
-  if grep -q "refresh_token" client_credentials; then
-    sed -i "s/refresh_token=.*/refresh_token=$refresh_token/" client_credentials
+  if grep -q "refresh_token" "$script_dir/client_credentials"; then
+    sed -i "s/refresh_token=.*/refresh_token=$refresh_token/" "$script_dir/client_credentials"
   else
-    echo "refresh_token=$refresh_token" >> client_credentials
+    echo "refresh_token=$refresh_token" >> "$script_dir/client_credentials"
   fi
 
   # Print success message
