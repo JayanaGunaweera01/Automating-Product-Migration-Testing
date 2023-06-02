@@ -20,6 +20,7 @@ if [ "$os" = "ubuntu-latest" ]; then
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting current Identity Server in Ubuntu OS${RESET}"
+    echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
   elif [ "$startServer" = "migrated" ]; then
     cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
     chmod +x env.sh
@@ -28,14 +29,11 @@ if [ "$os" = "ubuntu-latest" ]; then
     cd "$BIN_ISNEW"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrated Identity Server in Ubuntu OS${RESET}"
-
-    if [ "$startServer" = "migration" ]; then
-       cd "$BIN_ISNEW"
-      echo "${GREEN}Starting Migration terminal${RESET}"
-      echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
-    else
-      echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
-    fi
+    echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
+  elif [ "$startServer" = "migration" ]; then
+    cd "$BIN_ISNEW"
+    echo "${GREEN}Starting Migration terminal${RESET}"
+    echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
   fi
 elif [ "$os" = "macos-latest" ]; then
   if [ "$startServer" = "current" ]; then
@@ -46,6 +44,7 @@ elif [ "$os" = "macos-latest" ]; then
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting current Identity Server in macOS${RESET}"
+    echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
   elif [ "$startServer" = "migrated" ]; then
     cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
     chmod +x env.sh
@@ -53,15 +52,12 @@ elif [ "$os" = "macos-latest" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrated Identity Server in macOS${RESET}"
+    echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
+  elif [ "$startServer" = "migration" ]; then
+    cd "$BIN_ISNEW_MAC"
+    echo "${GREEN}Starting Migration terminal${RESET}"
+    echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
   fi
-fi
-
-if [ "$startServer" = "migration" ]; then
-  cd "$BIN_ISNEW_MAC"
-  echo "${GREEN}Starting Migration terminal${RESET}"
-  echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
-else
-  echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
 fi
 
 chmod +x start.sh && chmod 777 start.sh
