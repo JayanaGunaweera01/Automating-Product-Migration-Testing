@@ -30,6 +30,7 @@ if [ "$os" = "ubuntu-latest" ]; then
     echo "${GREEN}Starting Migrated Identity Server in Ubuntu OS${RESET}"
 
     if [ "$startServer" = "migration" ]; then
+       cd "$BIN_ISNEW"
       echo "${GREEN}Starting Migration terminal${RESET}"
       echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
     else
@@ -56,6 +57,7 @@ elif [ "$os" = "macos-latest" ]; then
 fi
 
 if [ "$startServer" = "migration" ]; then
+  cd "$BIN_ISNEW_MAC"
   echo "${GREEN}Starting Migration terminal${RESET}"
   echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
 else
