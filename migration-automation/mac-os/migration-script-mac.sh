@@ -281,10 +281,6 @@ else
     echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0"$database" ${RESET}"
 fi
 
-#Divert to bin folder
-cd "$BIN_ISNEW_MAC"
-echo "${GREEN}==> Diverted to bin folder successfully${RESET}"
-
 # Get the existing time and date
 time_and_date=$(date +"%Y-%m-%d %H:%M:%S")
 
@@ -308,6 +304,9 @@ echo "${YELLOW}${STAR}${SPACE}Database: "$database"${SPACE}${RESET}"
 echo "${YELLOW}${STAR}${SPACE}Operating System: "$os"${SPACE}${RESET}"
 echo "${YELLOW}${STAR}${SPACE}Time and date: $time_and_date${SPACE}${RESET}"
 print_star_line
+
+cd "$AUTOMATION_HOME_MAC"
+echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Run the migration client
 echo "${GREEN}==> Started running migration client${RESET}"
