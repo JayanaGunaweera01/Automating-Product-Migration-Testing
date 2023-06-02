@@ -106,7 +106,7 @@ cd $AUTOMATION_HOME_MAC
 
 # Needed changes in deployment.toml
 chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh "$currentVersion" "$migratingVersion" "$database" "$os" 3
+sh change-deployment-toml.sh "$currentVersion" "$migratingVersion" "$database" "$os" "current"
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 
 cd $AUTOMATION_HOME_MAC
@@ -253,7 +253,7 @@ echo "${BLUE}==> Copied userstores, tenants,jar files,.jks files from oldIS to n
 
 # Deployment toml changes in new is version
 chmod +x change-deployment-toml.sh
-sh change-deployment-toml.sh "$currentVersion" "$migratingVersion" "$database" "$os" "4"
+sh change-deployment-toml.sh "$currentVersion" "$migratingVersion" "$database" "$os" "migration"
 echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 echo "${BLUE}==> Copied deployment toml of "$currentVersion" to "$migratingVersion" successfully!${RESET}"
 
