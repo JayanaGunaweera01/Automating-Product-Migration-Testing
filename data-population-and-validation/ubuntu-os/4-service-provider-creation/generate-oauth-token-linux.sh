@@ -13,6 +13,7 @@ script_dir="$(dirname "$(realpath "$0")")"
 # Load client_id and client_secret from file
 if [ -f "$script_dir/client_credentials" ]; then
    . "$script_dir/client_credentials"
+    echo "${GREEN}Sourced client_credentials file.${NC}"
 else
   echo "${RED}Error: client_credentials file not found.${NC}"
   exit 1
@@ -35,10 +36,10 @@ refresh_token=$(echo $token_response | jq -r '.refresh_token')
 if [ -n "$access_token" ] && [ -n "$refresh_token" ]; then
   # Print access token and refresh token
   if [ "$access_token" != "null" ]; then
-    echo "Access token: \033[31m$access_token\033[0m"
+    echo "Access token: \033[31m"$access_token"\033[0m"
   fi
   if [ "$refresh_token" != "null" ]; then
-    echo "Refresh token: \033[31m$refresh_token\033[0m"
+    echo "Refresh token: \033[31m"$refresh_token"\033[0m"
   fi
 
   # Store access token and refresh token in a file
