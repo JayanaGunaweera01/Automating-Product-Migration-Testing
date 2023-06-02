@@ -17,6 +17,10 @@ else
   exit 1
 fi
 
+# Echo client ID and client secret
+echo "${YELLOW}Client ID: $client_id${NC}"
+echo "${YELLOW}Client Secret: $client_secret${NC}"
+
 # Encode client_id:client_secret as base64
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
