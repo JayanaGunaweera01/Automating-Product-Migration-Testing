@@ -27,44 +27,41 @@ token_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'grant_type=password&username=admin&password=admin&scope=somescope_password')
 
-# Debug statement: Print token response
-echo "${YELLOW}Token Response: ${NC}"
-echo "$token_response"
+# Print token response
+echo "Token Response: $token_response"
 
 # Extract access token and refresh token from response
 access_token=$(echo "$token_response" | jq -r '.access_token')
 refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
 
-# Debug statements: Print access token and refresh token
-echo "${YELLOW}Access Token: ${NC}"
-echo "$access_token"
-echo "${YELLOW}Refresh Token: ${NC}"
-echo "$refresh_token"
+if [ "$access_token" != "null" ]; then
+  # Print access token
+  echo "Access Token: ${GREEN}$access_token${NC}"
 
-if [ -n "$access_token" ] && [ -n "$refresh_token" ]; then
-  # Print access token and refresh token
-  if [ "$access_token" != "null" ]; then
-    echo "Access token: \033[31m$access_token\033[0m"
-  fi
-  if [ "$refresh_token" != "null" ]; then
-    echo "Refresh token: \033[31m$refresh_token\033[0m"
-  fi
-
-  # Store access token and refresh token in a file
+  # Store access token in the file
   if grep -q "access_token" "$script_dir/client_credentials"; then
     sed -i "s/access_token=.*/access_token=$access_token/" "$script_dir/client_credentials"
   else
     echo "access_token=$access_token" >> "$script_dir/client_credentials"
   fi
+else
+  echo "Access Token: null"
+fi
 
+if [ "$refresh_token" != "null" ]; then
+  # Print refresh token
+  echo "Refresh Token: ${GREEN}$refresh_token${NC}"
+
+  # Store refresh token in the file
   if grep -q "refresh_token" "$script_dir/client_credentials"; then
     sed -i "s/refresh_token=.*/refresh_token=$refresh_token/" "$script_dir/client_credentials"
   else
     echo "refresh_token=$refresh_token" >> "$script_dir/client_credentials"
   fi
-
-  # Print success message
-  echo "${GREEN}An access token and a refresh token generated successfully.${NC}"
 else
-  echo "${GREEN}Database validation failed.${NC}"
+  echo "Refresh Token: null"
 fi
+
+# Print success message
+echo "${GREEN}An access token and a refresh token generated successfully.${NC}"
+
