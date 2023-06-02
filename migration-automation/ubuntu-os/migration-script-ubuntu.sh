@@ -344,7 +344,7 @@ wait_until_server_is_up() {
 
 wait_until_server_is_up
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
-
+# embed this inside start.sh
 cd "$AUTOMATION_HOME"
 echo "${GREEN}==> Directed to home successfully${RESET}"
 
