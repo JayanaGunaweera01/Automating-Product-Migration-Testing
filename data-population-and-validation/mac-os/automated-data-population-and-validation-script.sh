@@ -60,7 +60,7 @@ for dir in */; do
         chmod +x "$script" # make the script executable
         # execute script and redirect output to stdout
         printf "${ORANGE}Running script: %s${RESET}\n" "$script"
-        "./$script" >&1
+        "./$script" 
       fi
     done
     cd ..
