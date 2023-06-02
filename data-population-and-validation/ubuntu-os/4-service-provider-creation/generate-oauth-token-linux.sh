@@ -70,4 +70,3 @@ if [ -n "$access_token" ] && [ -n "$refresh_token" ]; then
 else
   echo "${GREEN}Database validation failed.${NC}"
 fi
-
