@@ -6,7 +6,7 @@ RESET='\033[0m'           # reset color
 
 # Get the value of the inputs
 os=$1
-server_number=$2
+stopServer=$2
 
 # Setup file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
@@ -24,32 +24,32 @@ fi
 
 # Setup file and path based on OS and server number
 if [ "$os" = "ubuntu-latest" ]; then
-  if [ "$server_number" = "3" ]; then
+  if [ "$stopServer" = "current" ]; then
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Stopping Identity Server in Ubuntu OS${RESET}"
-  elif [ "$server_number" = "4" ]; then
-    cd "$BIN_ISNEW"
-    echo "${GREEN}Diverted to bin${RESET}"
-    echo "${GREEN}Shutting down Migrating Identity Server in Ubuntu OS${RESET}"
-  elif [ "$server_number" = "5" ]; then
+  elif [ "$stopServer" = "migrated" ]; then
     cd "$BIN_ISNEW"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Shutting down Migrated Identity Server in Ubuntu OS${RESET}"
+  elif [ "$stopServer" = "migration" ]; then
+    cd "$BIN_ISNEW"
+    echo "${GREEN}Diverted to bin${RESET}"
+    echo "${GREEN}Shutting down Migration Completed Identity Server in Ubuntu OS${RESET}"
   fi
 elif [ "$os" = "macos-latest" ]; then
-  if [ "$server_number" = "3" ]; then
+  if [ "$stopServer" = "current" ]; then
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Stopping Identity Server in macOS${RESET}"
-  elif [ "$server_number" = "4" ]; then
-    cd "$BIN_ISNEW_MAC"
-    echo "${GREEN}Diverted to bin${RESET}"
-    echo "${GREEN}Shutting down Migrating Identity Server in macOS${RESET}"
-  elif [ "$server_number" = "5" ]; then
+  elif [ "$stopServer" = "migrated" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Shutting down Migrated Identity Server in macOS${RESET}"
+  elif [ "$stopServer" = "migration" ]; then
+    cd "$BIN_ISNEW_MAC"
+    echo "${GREEN}Diverted to bin${RESET}"
+    echo "${GREEN}Shutting down Migration Completed Identity Server in macOS${RESET}"
   fi
 fi
 

@@ -158,7 +158,7 @@ echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
 chmod +x stop-server.sh
-sh stop-server.sh "$os" "3"
+sh stop-server.sh "$os" "current"
 
 echo "${GREEN}==> Halted the wso2IS server successfully${RESET}"
 echo
@@ -321,7 +321,7 @@ echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
 chmod +x stop-server.sh
-sh stop-server.sh "$os" "4"
+sh stop-server.sh "$os" "migration"
 echo "${GREEN}==> Stopped migration terminal successfully!${RESET}"
 
 # Special config change when migrating from IS 5.9 changing userstore type to database unique id
@@ -369,7 +369,7 @@ echo "${GREEN}==> Directed to home successfully${RESET}"
 
 # Stop wso2IS
 chmod +x stop-server.sh
-sh stop-server.sh "$os" "5"
+sh stop-server.sh "$os" "migrated"
 echo
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"
