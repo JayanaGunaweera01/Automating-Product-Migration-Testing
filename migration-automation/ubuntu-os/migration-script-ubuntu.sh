@@ -125,6 +125,7 @@ echo "${GREEN}==> Identity server $3 started running!${RESET}"
 # Starting downloaded identity server
 chmod +x start-server.sh
 sh start-server.sh "$6" "3" $3 $4
+# Use keywords here
 
 cd "$AUTOMATION_HOME"
 
