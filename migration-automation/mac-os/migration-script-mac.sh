@@ -361,7 +361,6 @@ echo "${GREEN}==> Entered to data population directory-service provider creation
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
 #sh validate-database.sh
 sh generate-oauth-token-macos-POC.sh
-wait $!
 echo "${GREEN}==> Validated database successfully${RESET}"
 
 cd "$AUTOMATION_HOME_MAC"
