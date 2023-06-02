@@ -279,6 +279,9 @@ else
 fi
 wait $!
 
+# Run the migration client
+echo "${GREEN}==> Started running migration client${RESET}"
+
 # Get the existing time and date
 time_and_date=$(date +"%Y-%m-%d %H:%M:%S")
 
@@ -302,9 +305,6 @@ echo "${YELLOW}${STAR}${SPACE}Database: "$database"${SPACE}${RESET}"
 echo "${YELLOW}${STAR}${SPACE}Operating System: "$os"${SPACE}${RESET}"
 echo "${YELLOW}${STAR}${SPACE}Time and date: $time_and_date${SPACE}${RESET}"
 print_star_line
-
-# Run the migration client
-echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
 chmod +x start-server.sh
