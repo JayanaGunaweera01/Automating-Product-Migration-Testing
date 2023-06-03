@@ -277,7 +277,8 @@ jobs:
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
   run-shell-script:
-    needs: ubuntu-mysql-setup
+    needs: [ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
+    if: always()
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 💾 Checkout code
@@ -297,7 +298,7 @@ jobs:
         continue-on-error: true
 
   build-artifacts:
-    needs: [ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
+    needs: run-shell-script
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 📦 Download Logs
