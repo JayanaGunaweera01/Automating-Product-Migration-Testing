@@ -43,9 +43,9 @@ if [ "$os" = "ubuntu-latest" ]; then
     echo "${GREEN}==> CurrentEncryptionAlgorithm changed to \"RSA\" which is a special migration config change when migrating to versions above IS 5.11.0${RESET}"
   fi
 
- if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
-  cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
-  migration_config_file="$MIGRATION_RESOURCES_NEW_IS_UBUNTU/migration-config.yaml"
+#if [ "$migratingVersion" = "6.0.0" ] || [ "$migratingVersion" = "6.1.0" ] || [ "$migratingVersion" = "6.2.0" ]; then
+ # cd "$MIGRATION_RESOURCES_NEW_IS_UBUNTU"
+#  migration_config_file="$MIGRATION_RESOURCES_NEW_IS_UBUNTU/migration-config.yaml"
 
  # if [ -f "$migration_config_file" ]; then
  #   # Find the line numbers of the occurrences of "UserStorePasswordMigrator"
