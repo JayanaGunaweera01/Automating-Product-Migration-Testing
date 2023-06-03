@@ -279,7 +279,7 @@ jobs:
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
         run: |
-             chmod +x migration-automation/ubuntu-os/migration-script-mac.sh 
+             chmod +x migration-automation/mac-os/migration-script-mac.sh 
              sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
 
