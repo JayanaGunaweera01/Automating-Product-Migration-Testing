@@ -139,6 +139,7 @@ jobs:
         uses: actions/checkout@v2
         
   ubuntu-mssql-setup:
+   needs: setup-cache
    if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }} 
    runs-on: ${{ github.event.inputs.os }}
    services:
@@ -281,13 +282,13 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
       - name: 📦 Download Logs
         uses: actions/download-artifact@v2
         if: always()
         with:
-          name: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           retention-days: 7
  
       
