@@ -299,6 +299,7 @@ jobs:
 
   build-artifacts:
     needs: run-shell-script
+    if: always()
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 📦 Download Logs
