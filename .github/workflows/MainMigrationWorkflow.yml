@@ -280,6 +280,8 @@ jobs:
     needs: ubuntu_mysql_setup
     runs-on: ${{ github.event.inputs.os }}
     steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
         run: |
@@ -298,6 +300,8 @@ jobs:
     needs: run_shell_script
     runs-on: ${{ github.event.inputs.os }}
     steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
       - name: 📦 Download Logs
         uses: actions/download-artifact@v2
         with:
