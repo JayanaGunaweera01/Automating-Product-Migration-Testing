@@ -116,12 +116,7 @@ jobs:
           docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
           echo "All postgre scripts executed successfully!"
           
-  ubuntu-mysql-setup:
-    if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'ubuntu-latest' }} 
-    runs-on: ${{ github.event.inputs.os }}
-    steps:
-      - name: 💾 Checkout code
-        uses: actions/checkout@v2
+  
         
   ubuntu-mssql-setup:
    if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }} 
