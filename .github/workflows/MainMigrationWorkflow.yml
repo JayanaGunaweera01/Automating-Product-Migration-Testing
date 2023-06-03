@@ -123,6 +123,7 @@ jobs:
           docker cp /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/postgresfive.sql postgres:/
           docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
           echo "All postgre scripts executed successfully!"
+          
   ubuntu_mysql_setup:
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'ubuntu-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
@@ -272,7 +273,7 @@ jobs:
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
   run_shell_script:
-    needs: [ ubuntu_postgres_setup, ubuntu_mssql_setup, macos_mssql_setup, macos_postgres_setup, ubuntu_mysql_setup, macos_mysql_setup ] 
+    needs: [ ubuntu_postgres_setup, ubuntu_mssql_setup, ubuntu_mysql_setup, macos_mysql_setup, macos_postgres_setup, macos_mssql_setup  ] 
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
