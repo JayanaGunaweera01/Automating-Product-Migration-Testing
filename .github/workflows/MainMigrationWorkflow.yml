@@ -239,11 +239,6 @@ jobs:
       steps:
         - name: 💾 Checkout code
           uses: actions/checkout@v2
-        - name: Cache Logs
-          id: cache-logs
-          uses: actions/cache@v2
-          env:
-            cache-name: cache-logs
           with:
             path: migration-automation/logs.txt
             key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
@@ -277,8 +272,7 @@ jobs:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
-        env:
-          cache-hit: ${{ steps.cache-logs.outputs.cache-hit }}
+
 
 
       
