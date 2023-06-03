@@ -302,16 +302,18 @@ jobs:
     if: always()
     runs-on: ${{ github.event.inputs.os }}
     steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
       - name: 📦 Download Logs
         uses: actions/download-artifact@v2
         with:
-          name: migration-logs-of-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          name: "migration-logs-of-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: migration-logs-of-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          name: "migration-logs-of-migration-from-wso2IS-${{ github.event.inputs.currentVersion }}-to-wso2IS-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
  
