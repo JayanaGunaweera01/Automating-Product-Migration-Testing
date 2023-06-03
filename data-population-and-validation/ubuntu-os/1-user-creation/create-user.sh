@@ -30,15 +30,20 @@ response=$(curl -k --location --request POST "$SCIM_USER_EP" \
   }
 }')
 
-# check if the response contains any error message
+# Check if the response contains any error message
 if echo "$response" | grep -q '"Errors":'; then
-  # if there is an error, print the failure message with the error description
+  # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq '.Errors[0].description')
-  echo "Failure: $error_description"
+  echo "${RED}${BOLD}Failure: $error_description${NC}"
 else
-  # if there is no error, print the success message with the output
-  echo "Success: $response"
+    # If there is no error, print the success message with the output
+    echo "${GREEN}${BOLD}Success: $response${NC}"
+    # Print the additional information with all the details
+    echo "${PURPLE}${BOLD}An Identity Server user has been created successfully.${NC}"
+    echo "${PURPLE}${BOLD}User details:${NC}"
+    echo "${PURPLE}${BOLD}  User Name: $GIVEN_USER_NAME${NC}"
+    echo "${PURPLE}${BOLD}  Given Name: $GIVEN_NAME${NC}"
+    echo "${PURPLE}${BOLD}  Family Name: $GIVEN_FAMILY_NAME${NC}"
+    echo "${PURPLE}${BOLD}  Email (Home): $GIVEN_USER_EMAIL_HOME${NC}"
+    echo "${PURPLE}${BOLD}  Email (Work): $GIVEN_USER_EMAIL_WORK${NC}"
 fi
-
-echo "\033[1;33mA user has been created in Identity Server. User name=$GIVEN_USER_NAME\033[0m"
-echo
