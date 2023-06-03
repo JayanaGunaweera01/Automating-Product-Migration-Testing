@@ -1,3 +1,12 @@
+#!/bin/bash
+
+# Define colors
+RED='\033[0;31m'
+GREEN='\033[1;38;5;206m'
+YELLOW='\033[0;33m'
+PURPLE='\033[1;35m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
 
 # make the curl request and capture the response
 response=$(curl -k --location --request POST "$SCIM_USER_EP" \
@@ -46,4 +55,5 @@ else
     echo "Family Name: ${PURPLE}${GIVEN_FAMILY_NAME}${NC}"
     echo "Email (Home): ${PURPLE}${GIVEN_USER_EMAIL_HOME}${NC}"
     echo "Email (Work): ${PURPLE}${GIVEN_USER_EMAIL_WORK}${NC}"
+    echo
 fi
