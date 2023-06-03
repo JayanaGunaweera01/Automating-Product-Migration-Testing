@@ -1,34 +1,3 @@
-#!/bin/bash
-
-#curl -k --location --request POST "https://localhost:9443/scim2/Users" \
-#--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-#--header 'Content-Type: application/json' \
-#--data-raw '{
-#  "schemas": [],
-#  "name": {
-#    "givenName": 'Prabhanu',
-#    "familyName": 'Gunaweera'
-#  },
-#  "userName": 'Prabhanu',
-#  "password": 'Prabhanu123456789',
-#  "emails": [
-#    {
-#     "type": "home",
-#     "value": 'prabhanu@iit.ac.lk',
-#     "primary": true
-#   },
-#    {
-#      "type": "work",
-#      "value": 'prabhanu@iit2.ac.lk'
-#    }
-#  ],
-#  "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
-#    "employeeNumber": "1234A",
-#    "manager": {
-#      "value": "Taylor"
-#    }
-#  }
-#}'
 
 # make the curl request and capture the response
 response=$(curl -k --location --request POST "$SCIM_USER_EP" \

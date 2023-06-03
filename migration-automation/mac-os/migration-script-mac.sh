@@ -258,12 +258,12 @@ echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 echo "${BLUE}==> Copied deployment toml of "$currentVersion" to "$migratingVersion" successfully!${RESET}"
 
 # Execute consent management db scripts for IS 5.11.0 - MySQL
-#if [ "$migratingVersion" = "5.11.0" ] && [ "$database" = "mysql" ]; then
-#    docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' </Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/other-db-scripts/config-management-is-5-11.sql
-#    echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - MySQL${RESET}"
-#else
- #   echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0"$database" ${RESET}"
-#fi
+if [ "$migratingVersion" = "5.11.0" ] && [ "$database" = "mysql" ]; then
+    docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' </Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/other-db-scripts/config-management-is-5-11.sql
+    echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - MySQL${RESET}"
+else
+    echo "${GREEN}==> Skipping executing consent management db scripts since the migrating version is not IS 5.11.0"$database" ${RESET}"
+fi
 
 # Execute consent management db scripts for IS 5.11.0 - MSSQL
 if [ "$migratingVersion" = "5.11.0" ] && [ "$database" = "mssql" ]; then
