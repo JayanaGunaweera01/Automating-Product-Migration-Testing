@@ -54,13 +54,17 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-      - name: 📦 Cache logs
+      - name: Cache Logs
         id: cache-logs
         uses: actions/cache@v2
+        env:
+          cache-name: cache-logs
         with:
           path: migration-automation/logs.txt
-          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
 
   ubuntu-postgres-setup:
     needs: setup-cache
@@ -285,6 +289,8 @@ jobs:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/logs.txt
           retention-days: 7
+        env:
+          cache-hit: ${{ steps.cache-logs.outputs.cache-hit }}
  
       
   
