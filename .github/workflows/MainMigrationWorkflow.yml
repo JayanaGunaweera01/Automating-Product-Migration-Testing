@@ -49,23 +49,7 @@ on:
         default: https://github.com/wso2/product-is/releases/download/v6.0.0-rc2/wso2is-6.0.0-rc2.zip
         required: true
 jobs:
-  setup-cache:
-    runs-on: ${{ github.event.inputs.os }}
-    steps:
-      - name: 💾 Checkout code
-        uses: actions/checkout@v2
-      - name: Cache Logs
-        id: cache-logs
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-logs
-        with:
-          path: migration-automation/logs.txt
-          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-
   ubuntu-postgres-setup:
-    needs: setup-cache
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'ubuntu-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -133,7 +117,6 @@ jobs:
           echo "All postgre scripts executed successfully!"
           
   ubuntu-mysql-setup:
-    needs: setup-cache
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'ubuntu-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -141,7 +124,6 @@ jobs:
         uses: actions/checkout@v2
         
   ubuntu-mssql-setup:
-   needs: setup-cache
    if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }} 
    runs-on: ${{ github.event.inputs.os }}
    services:
@@ -184,7 +166,6 @@ jobs:
           echo "Copied mssql scripts to docker container"
 
   macos-mysql-setup:
-    needs: setup-cache
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'macos-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -192,7 +173,6 @@ jobs:
         uses: actions/checkout@v2  
      
   macos-postgres-setup:
-    needs: setup-cache
     runs-on: ${{ github.event.inputs.os }}
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }} 
     steps:
@@ -222,7 +202,6 @@ jobs:
         shell: bash
                
   macos-mssql-setup:
-    needs: setup-cache
     if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
