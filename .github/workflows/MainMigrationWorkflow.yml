@@ -231,53 +231,55 @@ jobs:
       
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-  run-shell-script:
-    needs: [ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
-    if: always()
-    runs-on: ${{ github.event.inputs.os }}
-    steps:
-      - name: 💾 Checkout code
-        uses: actions/checkout@v2
-      - name: Cache Logs
-        id: cache-logs
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-logs
-        with:
-          path: migration-automation/logs.txt
-          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
 
-      - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
-        run: |
-            chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
-            sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
-        continue-on-error: true
+run-shell-script:
+  needs: [ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
+  if: always()
+  runs-on: ${{ github.event.inputs.os }}
+  steps:
+    - name: 💾 Checkout code
+      uses: actions/checkout@v2
+    - name: Cache Logs
+      id: cache-logs
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-logs
+      with:
+        path: migration-automation/logs.txt
+        key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+        restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
 
-      - name: 🚀 Execute Migration Automation Script 🍎 Mac
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
-        run: |
-             chmod +x migration-automation/mac-os/migration-script-mac.sh 
-             sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
-        continue-on-error: true
+    - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
+      if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres') && github.event.inputs.os == 'ubuntu-latest' }}
+      run: |
+          chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
+          sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
+      continue-on-error: true
 
-  build-artifacts:
-    needs: run-shell-script
-    if: always()
-    runs-on: ${{ github.event.inputs.os }}
-    steps:
-      - name: 💾 Checkout code
-        uses: actions/checkout@v2
-      - name: 📦 Upload Artifacts
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: migration-automation/logs.txt
-          retention-days: 7
-        env:
-          cache-hit: ${{ steps.cache-logs.outputs.cache-hit }}
+    - name: 🚀 Execute Migration Automation Script 🍎 Mac
+      if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
+      run: |
+           chmod +x migration-automation/mac-os/migration-script-mac.sh 
+           sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
+      continue-on-error: true
+
+build-artifacts:
+  needs: run-shell-script
+  if: always()
+  runs-on: ${{ github.event.inputs.os }}
+  steps:
+    - name: 💾 Checkout code
+      uses: actions/checkout@v2
+    - name: 📦 Upload Artifacts
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
+        path: migration-automation/logs.txt
+        retention-days: 7
+      env:
+        cache-hit: ${{ steps.cache-logs.outputs.cache-hit }}
+
  
       
   
