@@ -300,8 +300,6 @@ jobs:
     needs: run_shell_script
     runs-on: ${{ github.event.inputs.os }}
     steps:
-      - name: 💾 Checkout code
-        uses: actions/checkout@v2
       - name: 📦 Download Logs
         uses: actions/download-artifact@v2
         with:
