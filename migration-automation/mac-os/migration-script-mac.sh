@@ -112,11 +112,11 @@ echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 cd $AUTOMATION_HOME_MAC
 
 # Check if database is set to mysql
-if [ ""$database"" = "mysql" ]; then
+if [ "$database" = "mysql" ]; then
     # Setup mysql
     cd "$MAC_HOME"
     chmod +x setup-mysql-mac.sh
-    sh setup-mysql-mac.sh ""$currentVersion""
+    sh setup-mysql-mac.sh "$currentVersion"
 
 else
     echo "${GREEN}==> Skipping the MySQL setup process since the selected database is "$database" ${RESET}"
@@ -258,7 +258,7 @@ echo "${GREEN}==> Deployment.toml changed successfully${RESET}"
 echo "${BLUE}==> Copied deployment toml of "$currentVersion" to "$migratingVersion" successfully!${RESET}"
 
 # Execute consent management db scripts for IS 5.11.0 - MySQL
-if [ ""$migratingVersion"" = "5.11.0" ] && [ "$database" = "mysql" ]; then
+if [ "$migratingVersion" = "5.11.0" ] && [ "$database" = "mysql" ]; then
     docker exec -i amazing_feynman sh -c 'exec mysql -uroot -proot -D testdb' </Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/other-db-scripts/config-management-is-5-11.sql
     echo "${GREEN}==> Executing consent management db scripts for IS 5.11.0 - MySQL${RESET}"
 else
@@ -313,7 +313,7 @@ echo "${GREEN}==> Started running migration client${RESET}"
 
 # Start the migration server
 chmod +x start-server.sh
-sh start-server.sh "$os" "migration" "$currentVersion" "$migratingVersion" 
+sh start-server.sh "$os" "migration" "$currentVersion" "$migratingVersion"
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
 cd "$AUTOMATION_HOME_MAC"
@@ -372,4 +372,3 @@ sh stop-server.sh "$os" "migrated"
 echo
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"
-
