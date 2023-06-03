@@ -178,7 +178,6 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-      - name: 🔧 Set up PostgreSQL  
         env:
             PGDATA: /usr/local/var/postgres
             PGDATABASE: testdb
