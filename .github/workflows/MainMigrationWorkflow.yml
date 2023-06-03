@@ -253,7 +253,7 @@ jobs:
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
   run-shell-script:
-    needs: [ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
+    needs: [setup-cache, ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
     if: always()
     runs-on: ${{ github.event.inputs.os }}
     steps:
