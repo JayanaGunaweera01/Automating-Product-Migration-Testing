@@ -267,6 +267,8 @@ jobs:
     if: always()
     runs-on: ${{ github.event.inputs.os }}
     steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
