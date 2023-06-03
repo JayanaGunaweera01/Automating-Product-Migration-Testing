@@ -9,18 +9,18 @@ currentVersion=$1
 migratingVersion=$2
 database=$3
 os=$4
-startServer=$5
+startserver=$5
 
 # Set deployment file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
-    if [ "$startServer" = "current" ]; then
+    if [ "$startserver" = "current" ]; then
         deployment_file="$DEPLOYMENT_PATH/deployment.toml"
         deployment_path="$DEPLOYMENT_PATH"
         cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
         chmod +x env.sh
         . ./env.sh
         echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
-    elif [ "$startServer" = "migrated"]; then
+    elif [ "$startserver" = "migrated"]; then
         deployment_file="$DEPLOYMENT_PATH_NEW/deployment.toml"
         deployment_path="$DEPLOYMENT_PATH_NEW"
         cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
@@ -29,14 +29,14 @@ if [ "$os" = "ubuntu-latest" ]; then
         echo "${GREEN}==> Env file for Migrating Identity server in Ubuntu os sourced successfully${RESET}"
     fi
 elif [ "$os" = "macos-latest" ]; then
-    if [ "$startServer" = "current" ]; then
+    if [ "$startserver" = "current" ]; then
         deployment_file="$DEPLOYMENT_PATH_MAC/deployment.toml"
         deployment_path="$DEPLOYMENT_PATH_MAC"
         cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
         chmod +x env.sh
         source ./env.sh
         echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
-    elif [ "$startServer" = "migrated"]; then
+    elif [ "$startserver" = "migrated"]; then
         deployment_file="$DEPLOYMENT_PATH_NEW_MAC/deployment.toml"
         deployment_path="$DEPLOYMENT_PATH_NEW_MAC"
         cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" || exit 1
@@ -47,7 +47,7 @@ elif [ "$os" = "macos-latest" ]; then
 fi
 
 # Set deployment automation file based on database and OS - Current Version
-if [ "$startServer" = "current" ]; then
+if [ "$startserver" = "current" ]; then
     if [ "$database" = "mysql" ]; then
         if [ "$os" = "ubuntu-latest" ]; then
             case "$currentVersion" in
@@ -184,7 +184,7 @@ if [ "$startServer" = "current" ]; then
 fi
 
 # Set deployment automation file based on database and OS - Migrating Version
-if [ "$startServer" = "migrated"]; then
+if [ "$startserver" = "migrated"]; then
     if [ "$database" = "mysql" ]; then
         if [ "$os" = "ubuntu-latest" ]; then
             case "$migratingVersion" in
@@ -323,7 +323,7 @@ fi
 # Special config change when migrating from IS 5.9: doing migration with database type as "database" and starting migrated server as "database-unique-id"
 if [ -n "$deployment_automation_file" ]; then
     if [ "$currentVersion" = "5.9.0" ]; then
-        if [ "$startServer" = "migrated"]; then
+        if [ "$startserver" = "migrated"]; then
             deployment_directory=$(dirname "$deployment_automation_file")
             chmod +x "$deployment_automation_file"
             # Search for the code block in deployment_automation_file
@@ -345,7 +345,7 @@ if [ -n "$deployment_automation_file" ]; then
 fi
 
 # Replace secret key in deployment.toml
-if [ "$startServer" = "migrated"]; then
+if [ "$startserver" = "migrated"]; then
     cd "$deployment_path"
     chmod +x deployment.toml
     # Generate the secret key
