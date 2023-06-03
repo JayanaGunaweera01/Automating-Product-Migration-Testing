@@ -62,7 +62,8 @@ jobs:
          with:
            path: migration-automation/logs.txt
            key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-           restore-keys: logs-${{ github.event.inputs.currentVersion-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+           restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+
        - name: 🐳 Setup Docker environment
          run: |
             # Get the ID of the workflow from the GitHub API using curl and jq
@@ -130,7 +131,14 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-    
+      - name: 📦 Cache logs
+        id: cache-logs
+        uses: actions/cache@v2
+        with:
+          path: migration-automation/logs.txt
+          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+
 
   ubuntu_mssql_setup:
    if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }} 
@@ -153,9 +161,10 @@ jobs:
         id: cache-logs
         uses: actions/cache@v2
         with:
-           path: migration-automation/logs.txt
-           key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-           restore-keys: logs-${{ github.event.inputs.currentVersion-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          path: migration-automation/logs.txt
+          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+
       - name: 🏗️ Create MS SQL Database
         run: |
           sudo apt-get update && sudo apt-get install -y mssql-tools
@@ -190,44 +199,45 @@ jobs:
         id: cache-logs
         uses: actions/cache@v2
         with:
-           path: migration-automation/logs.txt
-           key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-           restore-keys: logs-${{ github.event.inputs.currentVersion-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          path: migration-automation/logs.txt
+          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+
   macos_postgres_setup:
     runs-on: ${{ github.event.inputs.os }}
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }} 
     steps:
-       - name: 💾 Checkout code
-         uses: actions/checkout@v2
-       - name: 📦 Cache logs
-         id: cache-logs
-         uses: actions/cache@v2
-         with:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
+      - name: 📦 Cache logs
+        id: cache-logs
+        uses: actions/cache@v2
+        with:
            path: migration-automation/logs.txt
            key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-           restore-keys: logs-${{ github.event.inputs.currentVersion-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-       - name: 🔧 Set up PostgreSQL
-         env:
+           restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+
+        env:
             PGDATA: /usr/local/var/postgres
             PGDATABASE: testdb
-         run: |
-          brew update
-          brew install postgresql
-          initdb $PGDATA
-          pg_ctl -D $PGDATA start
-          createuser -s postgres
-          createdb $PGDATABASE
-          psql -c "GRANT ALL PRIVILEGES ON DATABASE $PGDATABASE TO postgres;"
-       - name: 🐘 Execute Postgres SQL scripts
-         run: |
+            run: |
+              brew update
+              brew install postgresql
+              initdb $PGDATA
+              pg_ctl -D $PGDATA start
+              createuser -s postgres
+              createdb $PGDATABASE
+              psql -c "GRANT ALL PRIVILEGES ON DATABASE $PGDATABASE TO postgres;"
+      - name: 🐘 Execute Postgres SQL scripts
+        run: |
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/postgresone.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/consent/postgresfour.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/postgrestwo.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/identity/uma/postgresthree.sql
           psql -d testdb -f /Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/db-scripts/IS-5.11/metrics/postgresfive.sql
-       - name: ✅ Verify script execution
-         run: psql -d testdb -c 'SHOW server_version'
-         shell: bash
+      - name: ✅ Verify script execution
+        run: psql -d testdb -c 'SHOW server_version'
+        shell: bash
       
           
   macos_mssql_setup:
@@ -240,9 +250,9 @@ jobs:
         id: cache-logs
         uses: actions/cache@v2
         with:
-           path: migration-automation/logs.txt
-           key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-           restore-keys: logs-${{ github.event.inputs.currentVersion-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          path: migration-automation/logs.txt
+          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
       - uses: potatoqualitee/mssqlsuite@v1.7
         with:
           install: sqlengine, sqlclient, sqlpackage, localdb
