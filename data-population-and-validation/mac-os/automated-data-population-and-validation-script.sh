@@ -18,13 +18,11 @@ if [ -d "$data_population_dir" ]; then
   for script in \
     "1-user-creation/create-user.sh" \
     "1-user-creation/create-bulk-users.sh" \
-    #"2-tenant-creation/create-tenant.sh" \
-    #"2-tenant-creation/register-an-app-in-a-tenant.sh" \
-    #"2-tenant-creation/get-access-token-tenantwise.sh" \
-    #"3-userstore-creation/create-userstore.sh" \
-    #"3-userstore-creation/create-user-in-userstore.sh" \
-    #"4-service-provider-creation/register-a-service-provider.sh" \
-    #"4-service-provider-creation/create-user-in-a-service-provider.sh" \
+    "2-tenant-creation/create-tenant.sh" \
+    "2-tenant-creation/register-an-app-in-a-tenant.sh" \
+    "3-userstore-creation/create-userstore.sh" \
+    "3-userstore-creation/create-user-in-userstore.sh" \
+    "4-service-provider-creation/register-a-service-provider.sh" \
     "4-service-provider-creation/get-oauth-token.sh" \
     "5-group-creation/create-group.sh" \
     "5-group-creation/create-groups-with-users.sh"; do
