@@ -50,7 +50,7 @@ on:
         required: true
 jobs:
   
-  ubuntu_postgres_setup:
+  ubuntu-postgres-setup:
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'ubuntu-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -125,7 +125,7 @@ jobs:
           docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
           echo "All postgre scripts executed successfully!"
           
-  ubuntu_mysql_setup:
+  ubuntu-mysql-setup:
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'ubuntu-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -140,7 +140,7 @@ jobs:
           restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
 
 
-  ubuntu_mssql_setup:
+  ubuntu-mssql-setup:
    if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }} 
    runs-on: ${{ github.event.inputs.os }}
    services:
@@ -189,7 +189,7 @@ jobs:
 
           echo "Copied mssql scripts to docker container"
 
-  macos_mysql_setup:
+  macos-mysql-setup:
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'macos-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -203,7 +203,7 @@ jobs:
           key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
           restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
 
-  macos_postgres_setup:
+  macos-postgres-setup:
     runs-on: ${{ github.event.inputs.os }}
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }} 
     steps:
@@ -240,7 +240,7 @@ jobs:
         shell: bash
       
           
-  macos_mssql_setup:
+  macos-mssql-setup:
     if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -276,8 +276,8 @@ jobs:
       
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-  run_shell_script:
-    needs: ubuntu_mysql_setup
+  run-shell-script:
+    needs: ubuntu-mysql-setup
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 💾 Checkout code
@@ -296,8 +296,8 @@ jobs:
              sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee migration-automation/logs.txt
         continue-on-error: true
 
-  build_artifacts:
-    needs: run_shell_script
+  build-artifacts:
+    needs: [ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 📦 Download Logs
