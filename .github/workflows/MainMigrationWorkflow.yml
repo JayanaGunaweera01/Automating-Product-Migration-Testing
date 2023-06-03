@@ -272,7 +272,7 @@ jobs:
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
   run_shell_script:
-    needs: [ubuntu_postgres_setup, ubuntu_mssql_setup, macos_mssql_setup, macos_postgres_setup, ubuntu_mysql_setup, macos_mysql_setup ] 
+    if: ${{ needs.ubuntu_postgres_setup.result == 'success' || needs.ubuntu_mssql_setup.result == 'success' || needs.macos_mssql_setup.result == 'success' || needs.macos_postgres_setup.result == 'success' || needs.ubuntu_mysql_setup.result == 'success' || needs.macos_mysql_setup.result == 'success' }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
