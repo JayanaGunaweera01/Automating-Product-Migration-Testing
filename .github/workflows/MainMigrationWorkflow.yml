@@ -179,7 +179,7 @@ jobs:
           echo "Copied mssql scripts to docker container"
 
   macos_mysql_setup:
-    if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'ubuntu-latest' }} 
+    if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'macos-latest' }} 
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 💾 Checkout code
