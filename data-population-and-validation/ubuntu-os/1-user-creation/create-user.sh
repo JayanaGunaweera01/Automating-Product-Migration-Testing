@@ -40,10 +40,10 @@ else
     echo "${GREEN}${BOLD}Success: $response${NC}"
     # Print the additional information with all the details
     echo "${PURPLE}${BOLD}An Identity Server user has been created successfully.${NC}"
-    echo "${PURPLE}${BOLD}User details:${NC}"
-    echo "${PURPLE}${BOLD}  User Name: $GIVEN_USER_NAME${NC}"
-    echo "${PURPLE}${BOLD}  Given Name: $GIVEN_NAME${NC}"
-    echo "${PURPLE}${BOLD}  Family Name: $GIVEN_FAMILY_NAME${NC}"
-    echo "${PURPLE}${BOLD}  Email (Home): $GIVEN_USER_EMAIL_HOME${NC}"
-    echo "${PURPLE}${BOLD}  Email (Work): $GIVEN_USER_EMAIL_WORK${NC}"
+    # Print the additional information with all the details
+    echo "User Name: ${PURPLE}${GIVEN_USER_NAME}${NC}"
+    echo "Given Name: ${PURPLE}${GIVEN_NAME}${NC}"
+    echo "Family Name: ${PURPLE}${GIVEN_FAMILY_NAME}${NC}"
+    echo "Email (Home): ${PURPLE}${GIVEN_USER_EMAIL_HOME}${NC}"
+    echo "Email (Work): ${PURPLE}${GIVEN_USER_EMAIL_WORK}${NC}"
 fi
