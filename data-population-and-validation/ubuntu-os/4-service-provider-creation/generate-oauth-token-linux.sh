@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  chmod +x env.sh
-  . ./env.sh
+chmod +x env.sh
+source ./env.sh
 
 # Define colors
 RED='\033[0;31m'
@@ -19,19 +19,19 @@ script_dir="$(dirname "$(realpath "$0")")"
 if [ -f "$script_dir/client_credentials" ]; then
   . "$script_dir/client_credentials"
 else
-  echo "${RED}${BOLD}Error: client_credentials file not found.${NC}"
+  echo -e "${RED}${BOLD}Error: client_credentials file not found.${NC}"
   exit 1
 fi
 
 # Echo client ID and client secret
-echo "${YELLOW}Client ID: $client_id${NC}"
-echo "${YELLOW}Client Secret: $client_secret${NC}"
+echo -e "${YELLOW}Client ID: $client_id${NC}"
+echo -e "${YELLOW}Client Secret: $client_secret${NC}"
 
 # Encode client_id:client_secret as base64
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Get access token
-echo "${YELLOW}Getting access token...${NC}"
+echo -e "${YELLOW}Getting access token...${NC}"
 token_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
   -H "Authorization: Basic $base64_encoded" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -44,7 +44,7 @@ echo "Token Response: $token_response"
 if echo "$token_response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$token_response" | jq -r '.error_description')
-  echo "${RED}${BOLD}Database validation failed: $error_description${NC}"
+  echo -e "${RED}${BOLD}Database validation failed: $error_description${NC}"
   exit 1
 fi
 
@@ -54,9 +54,9 @@ refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
 
 if [ "$access_token" != "null" ]; then
   # Print success message
-  echo "${GREEN}${BOLD}An access token generated successfully.${NC}"
+  echo -e "${GREEN}${BOLD}An access token generated successfully.${NC}"
   # Print access token
-  echo "Access Token: ${PURPLE}$access_token${NC}"
+  echo -e "Access Token: ${PURPLE}$access_token${NC}"
 
   # Store access token in the file
   if grep -q "access_token" "$script_dir/client_credentials"; then
@@ -65,14 +65,14 @@ if [ "$access_token" != "null" ]; then
     echo "access_token=$access_token" >>"$script_dir/client_credentials"
   fi
 else
-  echo "Access Token: null"
+  echo -e "Access Token: null"
 fi
 
 if [ "$refresh_token" != "null" ]; then
   # Print success message
-  echo "${GREEN}${BOLD}A refresh token generated successfully.${NC}"
+  echo -e "${GREEN}${BOLD}A refresh token generated successfully.${NC}"
   # Print refresh token
-  echo "Refresh Token: ${PURPLE}$refresh_token${NC}"
+  echo -e "Refresh Token: ${PURPLE}$refresh_token${NC}"
 
   # Store refresh token in the file
   if grep -q "refresh_token" "$script_dir/client_credentials"; then
@@ -81,5 +81,5 @@ if [ "$refresh_token" != "null" ]; then
     echo "refresh_token=$refresh_token" >>"$script_dir/client_credentials"
   fi
 else
-  echo "Refresh Token: null"
+  echo -e "Refresh Token: null"
 fi
