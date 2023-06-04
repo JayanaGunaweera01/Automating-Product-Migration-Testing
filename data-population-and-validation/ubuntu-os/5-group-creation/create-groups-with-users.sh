@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  chmod +x env.sh
-  . ./env.sh
+chmod +x env.sh
+source ./env.sh
 
 # Define colors
 RED='\033[0;31m'
@@ -16,13 +16,14 @@ interns_response=$(curl -s -k -X POST -H "Content-Type: application/json" -H "Au
 # Check if the interns group creation was successful
 if echo "$interns_response" | grep -q '"displayName":"interns"'; then
   # Print success message
-  echo "${GREEN}${BOLD}The interns group has been created successfully.${NC}"
+  echo -e "${GREEN}${BOLD}The interns group has been created successfully.${NC}"
 else
   # Print failure message
-  echo "${RED}${BOLD}Failed to create the interns group.${NC}"
-  echo "${RED}${BOLD}Error Response: ${interns_response}${NC}"
+  echo -e "${RED}${BOLD}Failed to create the interns group.${NC}"
+  echo -e "${RED}${BOLD}Error Response: ${interns_response}${NC}"
 fi
 echo
+
 
 
 

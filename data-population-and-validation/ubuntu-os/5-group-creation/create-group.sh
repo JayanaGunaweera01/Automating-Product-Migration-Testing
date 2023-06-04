@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  chmod +x env.sh
-  . ./env.sh
+chmod +x env.sh
+source ./env.sh
 
 # Define colors
 RED='\033[0;31m'
@@ -26,19 +26,17 @@ group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
 # Check if the group creation was successful
 if echo "$group_response" | grep -q '"displayName":'; then
   # Print success message
-  echo "${GREEN}${BOLD}A group has been created successfully.${NC}"
+  echo -e "${GREEN}${BOLD}A group has been created successfully.${NC}"
   # Print group name
-  echo "Group Name: ${PURPLE}$GROUP_NAME${NC}"
+  echo -e "Group Name: ${PURPLE}$GROUP_NAME${NC}"
 else
   # Print failure message
-  echo "${RED}${BOLD}Failed to create the group.${NC}"
+  echo -e "${RED}${BOLD}Failed to create the group.${NC}"
   # Print error details
-  echo "${RED}${BOLD}Error Response:${NC}"
+  echo -e "${RED}${BOLD}Error Response:${NC}"
   echo "$group_response"
 fi
 echo
-
-
 
 
 
