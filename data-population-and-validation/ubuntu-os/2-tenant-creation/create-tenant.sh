@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  chmod +x env.sh
-  . ./env.sh
+chmod +x env.sh
+. ./env.sh
 
 # Define colours
 RED='\033[0;31m'
@@ -62,13 +62,13 @@ fi
 # Extract tenant ID from the response
 tenant_id=$(echo "$response" | jq -r '.tenant_id')
 
- # Encode client_id:client_secret in base64
-  base64_encoded=$(echo -n "$USERNAME:$PASSWORD" | base64)
+# Encode client_id:client_secret in base64
+base64_encoded=$(echo -n "$USERNAME:$PASSWORD")
 
 # Register service provider inside the tenant
 response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/applications" \
   --header 'Content-Type: application/json' \
-  --header 'Authorization: Basic ZHVtbXl1c2VyOmR1bW15cGFzc3dvcmQ=' \
+  --header "Authorization: Basic $base64_encoded" \
   --data-raw '{  "client_name": "tenant app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
 # Check if the response contains any error message
@@ -83,15 +83,13 @@ else
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
   echo "$response"
-  
+
   # Generate access token
   access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --header 'Authorization: Basic ZHVtbXl1c2VyOmR1bW15cGFzc3dvcmQ=' \
+    --header "Authorization: Basic $base64_encoded" \
     --data-urlencode 'grant_type=client_credentials' \
     --data-urlencode 'scope=samplescope')
-
-    echo "A"
 
   # Check if the response contains any error message
   if echo "$access_token_response" | grep -q '"error":'; then
@@ -106,20 +104,19 @@ else
     # Print the details of the successful response
     echo -e "${PURPLE}Response Details:${NC}"
     echo "$access_token_response"
-    echo "access_token_response=$access_token_response" >> token
-    cat token
     
     # Extract access token from response
-    access_token=$(echo "$access_token_response" | jq -r '.access_token')
-    
+    #access_token=$(echo "$access_token_response" | jq -r '.access_token')
+    access_token=$(echo "$access_token_response" | grep -o '"access_token":"[^"]*' | cut -d':' -f2 | tr -d '"')
+
     if [ -n "$access_token" ]; then
       # Store access token in a file
       echo "access_token=$access_token" >> tenant_credentials
-      
+
       # Print tenant access token in file
       echo -e "${PURPLE}Tenant Access Token:${NC}"
       cat tenant_credentials
-      
+
       # Print success message
       echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!${NC}"
     else
@@ -128,4 +125,3 @@ else
     fi
   fi
 fi
-
