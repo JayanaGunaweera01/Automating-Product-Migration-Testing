@@ -32,7 +32,7 @@ response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
 # Check if the response contains any error message
 if echo "$response" | grep -q '"schemas":'; then
     # If there is no error, print the success message
-    echo "${GREEN}A user has been created in the userstore. User name=${USERSTORE_USER_NAME}, Group name=${USERSTORE_GROUP_NAME}${NC}"
+    echo -e "${GREEN}${BOLD}A user has been created in the userstore. User name=${USERSTORE_USER_NAME}, Group name=${USERSTORE_GROUP_NAME}${NC}"
     # Print the additional details
     echo "Additional Details:"
     echo "User Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
@@ -44,10 +44,9 @@ if echo "$response" | grep -q '"schemas":'; then
     echo "Department: ${PURPLE}Integration${NC}"
     echo "Manager ID: ${PURPLE}111000${NC}"
     echo "Manager Display Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
-
 else
     # If there is an error, print the failure message with the error description
     error_description=$(echo "$response" | jq -r '.error[0].description')
-    echo "${RED}${BOLD}Failure: $error_description${NC}"
+    echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 fi
 echo

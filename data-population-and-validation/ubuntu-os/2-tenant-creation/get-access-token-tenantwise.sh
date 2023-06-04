@@ -12,7 +12,7 @@ NC='\033[0m' # No Color
 response=$(curl -k --location --request POST 'https://localhost:9443/t/carbon.super/api/server/v1/tenants' \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
-  --data-raw '{"domain":"iit.com","owners":[{"username":"jayana","password":"jayana123","email":"jayana@wso2.com","firstname":"jayana","lastname":"gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
+  --data-raw '{"domain":"iit.com","owners":[{"username":"jayana","password":"jayana12345678","email":"jayana@wso2.com","firstname":"Jayana","lastname":"Gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
@@ -23,7 +23,6 @@ if echo "$response" | grep -q '"error":'; then
 else
   # If there is no error, print the success message
   echo "${GREEN}${BOLD}Success: Tenant has been created successfully.${NC}"
-
   # Print the details of the successful response
   echo "${PURPLE}Response Details:${NC}"
   echo "$response" | jq '.'
@@ -46,7 +45,7 @@ response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/a
 if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error_description')
-  echo "${RED}${BOLD}Failure: $error_description${NC}"
+  echo "${RED}${BOLD}Failure in registering a service provider inside the tenant: $error_description${NC}"
 else
   # If there is no error, print the success message
   echo "${GREEN}${BOLD}Success: Service provider registered successfully.${NC}"
