@@ -62,10 +62,13 @@ fi
 # Extract tenant ID from the response
 tenant_id=$(echo "$response" | jq -r '.tenant_id')
 
+ # Encode client_id:client_secret in base64
+  base64_encoded=$(echo -n "$USERNAME:$PASSWORD" | base64)
+
 # Register service provider inside the tenant
 response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/applications" \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Basic $base64_encoded" \
   --data-raw '{  "client_name": "tenant app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
 # Check if the response contains any error message
@@ -81,13 +84,6 @@ else
   echo -e "${PURPLE}Response Details:${NC}"
   echo "$response"
   
-  # Extract client_id and client_secret from the response
-  client_id=$(echo "$response" | jq -r '.client_id')
-  client_secret=$(echo "$response" | jq -r '.client_secret')
-
-  # Encode client_id:client_secret in base64
-  base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
-
   # Generate access token
   access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header "Content-Type: application/x-www-form-urlencoded" \
