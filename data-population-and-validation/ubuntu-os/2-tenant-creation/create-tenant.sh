@@ -56,7 +56,7 @@ else
 fi
 
 # Extract tenant ID from the response
-tenant_id=$(echo "$response" | python3 -c "import sys, json; print(json.load(sys.stdin)['tenantId'])")
+tenant_id=$(echo "$response" | jq -r '.tenant_id')
 
 # Register service provider inside the tenant
 response=$(curl -k --location --request POST "$TENANT_EP/$tenant_id/api/server/v1/service/register" \
@@ -78,8 +78,8 @@ else
   echo "$response"
   
   # Extract client_id and client_secret from the response
-  client_id=$(echo "$response" | python3 -c "import sys, json; print(json.load(sys.stdin)['client_id'])")
-  client_secret=$(echo "$response" | python3 -c "import sys, json; print(json.load(sys.stdin)['client_secret'])")
+  client_id=$(echo "$response" | jq -r '.client_id')
+  client_secret=$(echo "$response" | jq -r '.client_secret')
 
   # Encode client_id:client_secret in base64
   base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
@@ -106,7 +106,7 @@ else
     echo "$access_token_response"
     
     # Extract access token from response
-    access_token=$(echo "$access_token_response" | python3 -c "import sys, json; print(json.load(sys.stdin)['access_token'])")
+    access_token=$(echo "$access_token_response" | jq -r '.access_token')
     
     if [ -n "$access_token" ]; then
       # Store access token in a file
