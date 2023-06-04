@@ -2,7 +2,7 @@
 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
 chmod +x env.sh
-source ./env.sh
+. ./env.sh
 
 # Define colors
 RED='\033[0;31m'
