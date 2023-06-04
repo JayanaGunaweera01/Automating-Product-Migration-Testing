@@ -50,7 +50,7 @@ if echo "$response" | grep -q '"Errors":'; then
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message with the output
-  echo -e "${GREEN}${BOLD}Success: $response${NC}"
+  echo -e "$Success: $response"
   
   # Print the additional information with all the details
   echo -e "${PURPLE}${BOLD}An Identity Server user has been created successfully.${NC}"

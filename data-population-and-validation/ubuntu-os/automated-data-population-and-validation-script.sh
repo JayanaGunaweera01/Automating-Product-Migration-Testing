@@ -12,7 +12,7 @@ NC='\033[0m' # No Color
 
 data_population_dir="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os"
 
-echo "Running data population scripts"
+echo -e "${GREEN}==>Running data population scripts${NC}"
 if [ -d "$data_population_dir" ]; then
   cd "$data_population_dir" || {
     echo "${RED}${BOLD}Failed to change directory.${NC}"
