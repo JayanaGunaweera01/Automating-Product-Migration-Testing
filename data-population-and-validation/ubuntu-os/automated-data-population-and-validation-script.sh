@@ -1,17 +1,21 @@
 #!/bin/bash
 
-
 # Define color variables
-ORANGE='\033[0;33m\033[1m' # orange color
-RESET='\033[0m'            # reset color
-GREEN='\033[0;32m\033[1m'  # green color
+ORANGE='\033[0;33m\033[1m' 
+RESET='\033[0m'            
+GREEN='\033[0;32m\033[1m'  
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+PURPLE='\033[1;35m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
 
 data_population_dir="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os"
 
 echo "Running data population scripts"
 if [ -d "$data_population_dir" ]; then
   cd "$data_population_dir" || {
-    echo "Failed to change directory."
+    echo "${RED}${BOLD}Failed to change directory.${NC}"
     exit 1
   }
 
