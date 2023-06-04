@@ -8,6 +8,7 @@ cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Mi
 RED='\033[0;31m'
 GREEN='\033[1;38;5;206m'
 BOLD='\033[1m'
+PURPLE='\033[1;35m'
 NC='\033[0m' # No Color
 
 # Register the service provider
@@ -18,10 +19,8 @@ response=$(curl -k --location --request POST 'https://localhost:9443/api/identit
 
 # Check if the registration was successful
 if echo "$response" | grep -q '"client_name":'; then
-    # Print success message
-    echo "Registered a service provider successfully!"
     # Print service provider details
-    echo -e "${GREEN}${BOLD}A new service provider has been registered. Service provider name=test migration app${NC}"
+    echo -e "${PURPLE}${BOLD}A new service provider has been registered. Service provider name is test migration app${NC}"
 else
     # Print failure message
     echo "${RED}${BOLD}Failed to register the service provider.${NC}"
