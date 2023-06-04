@@ -31,10 +31,10 @@ response=$(curl -k --location --request POST "$TENANT_EP" \
 if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error[0].description')
-  echo "${RED}${BOLD}Failure: $error_description${NC}"
+  echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo "${GREEN}${BOLD}Success: Tenant has been created successfully.${NC}"
+  echo -e "${GREEN}${BOLD}Success: Tenant has been created successfully.${NC}"
 
   # Print the details of the successful response
   echo "${PURPLE}Response Details:${NC}"
@@ -56,7 +56,7 @@ else
   echo -e "  Provisioning Method: ${PURPLE}inline-password${NC}"
   echo -e "  Additional Claims:"
   echo -e "    Claim: ${PURPLE}http://wso2.org/claims/telephone${NC}"
-  echo -e"    Value: ${PURPLE}$TELEPHONE${NC}"
+  echo -e "    Value: ${PURPLE}$TELEPHONE${NC}"
 fi
 
 # Extract tenant ID from the response
