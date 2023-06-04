@@ -31,7 +31,7 @@ echo -e "${YELLOW}Client Secret: $client_secret${NC}"
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Get access token
-echo -e "${YELLOW}Getting access token...${NC}"
+echo -e "${PURPLE}${BOLD}Getting access token...${NC}"
 token_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
   -H "Authorization: Basic $base64_encoded" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -54,7 +54,7 @@ refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
 
 if [ "$access_token" != "null" ]; then
   # Print success message
-  echo -e "${GREEN}${BOLD}An access token generated successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}An access token generated successfully.${NC}"
   # Print access token
   echo -e "Access Token: ${PURPLE}$access_token${NC}"
 
@@ -70,7 +70,7 @@ fi
 
 if [ "$refresh_token" != "null" ]; then
   # Print success message
-  echo -e "${GREEN}${BOLD}A refresh token generated successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}A refresh token generated successfully.${NC}"
   # Print refresh token
   echo -e "Refresh Token: ${PURPLE}$refresh_token${NC}"
 
