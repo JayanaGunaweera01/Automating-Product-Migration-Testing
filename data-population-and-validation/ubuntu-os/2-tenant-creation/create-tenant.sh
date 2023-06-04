@@ -63,7 +63,7 @@ fi
 tenant_id=$(echo "$response" | jq -r '.tenant_id')
 
 # Register service provider inside the tenant
-response=$(curl -k --location --request POST "https://localhost:9443/t/"$tenant_id"/api/server/v1/applications" \
+response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/applications" \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --data-raw '{  "client_name": "tenant app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
@@ -89,7 +89,7 @@ else
   base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
   # Generate access token
-  access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/"$tenant_id"/api/server/oauth2/token" \
+  access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header "Content-Type: application/x-www-form-urlencoded" \
     --header "Authorization: Basic $base64_encoded" \
     --data-urlencode 'grant_type=client_credentials' \
