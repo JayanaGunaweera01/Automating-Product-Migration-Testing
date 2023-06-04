@@ -6,7 +6,7 @@ cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Mi
 
 # Define colours
 RED='\033[0;31m'
-GREEN='\033[1;38;5;206m'
+GREEN='\033[0;32m\033[1m'
 PURPLE='\033[1;35m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
@@ -91,6 +91,8 @@ else
     --data-urlencode 'grant_type=client_credentials' \
     --data-urlencode 'scope=samplescope')
 
+    echo "A"
+
   # Check if the response contains any error message
   if echo "$access_token_response" | grep -q '"error":'; then
     # If there is an error, print the failure message with the error description
@@ -104,6 +106,8 @@ else
     # Print the details of the successful response
     echo -e "${PURPLE}Response Details:${NC}"
     echo "$access_token_response"
+    echo "access_token_response=$access_token_response" >> token
+    cat token
     
     # Extract access token from response
     access_token=$(echo "$access_token_response" | jq -r '.access_token')
@@ -114,7 +118,7 @@ else
       
       # Print tenant access token in file
       echo -e "${PURPLE}Tenant Access Token:${NC}"
-      cat tenant_credentials | jq.status
+      cat tenant_credentials
       
       # Print success message
       echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!${NC}"
