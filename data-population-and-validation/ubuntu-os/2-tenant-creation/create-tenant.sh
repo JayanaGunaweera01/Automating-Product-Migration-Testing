@@ -54,3 +54,74 @@ else
   echo "    Claim: ${PURPLE}http://wso2.org/claims/telephone${NC}"
   echo "    Value: ${PURPLE}$TELEPHONE${NC}"
 fi
+
+# Extract tenant ID from the response
+tenant_id=$(echo "$response" | python3 -c "import sys, json; print(json.load(sys.stdin)['tenantId'])")
+
+# Register service provider inside the tenant
+response=$(curl -k --location --request POST "$TENANT_EP/$tenant_id/api/server/v1/service/register" \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --data-raw '{  "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
+
+# Check if the response contains any error message
+if echo "$response" | grep -q '"error":'; then
+  # If there is an error, print the failure message with the error description
+  error_description=$(echo "$response" | jq -r '.error_description')
+  echo -e "${RED}${BOLD}Failure in registering a service provider inside the tenant: $error_description${NC}"
+else
+  # If there is no error, print the success message
+  echo -e "${GREEN}${BOLD}Success: Service provider registered successfully.${NC}"
+
+  # Print the details of the successful response
+  echo -e "${PURPLE}Response Details:${NC}"
+  echo "$response"
+  
+  # Extract client_id and client_secret from the response
+  client_id=$(echo "$response" | python3 -c "import sys, json; print(json.load(sys.stdin)['client_id'])")
+  client_secret=$(echo "$response" | python3 -c "import sys, json; print(json.load(sys.stdin)['client_secret'])")
+
+  # Encode client_id:client_secret in base64
+  base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+
+  # Generate access token
+  access_token_response=$(curl -k --location --request POST "$TENANT_EP/$tenant_id/oauth2/token" \
+    --header "Content-Type: application/x-www-form-urlencoded" \
+    --header "Authorization: Basic $base64_encoded" \
+    --data-urlencode 'grant_type=client_credentials' \
+    --data-urlencode 'scope=samplescope')
+
+  # Check if the response contains any error message
+  if echo "$access_token_response" | grep -q '"error":'; then
+    # If there is an error, print the failure message with the error description
+    error_description=$(echo "$access_token_response" | jq -r '.error_description')
+    echo -e "${RED}No access token generated from the tenant.${NC}"
+    echo -e "${RED}${BOLD}Failure: $error_description${NC}"
+  else
+    # If there is no error, print the success message
+    echo -e "${GREEN}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
+
+    # Print the details of the successful response
+    echo -e "${PURPLE}Response Details:${NC}"
+    echo "$access_token_response"
+    
+    # Extract access token from response
+    access_token=$(echo "$access_token_response" | python3 -c "import sys, json; print(json.load(sys.stdin)['access_token'])")
+    
+    if [ -n "$access_token" ]; then
+      # Store access token in a file
+      echo "access_token=$access_token" >> tenant_credentials
+      
+      # Print tenant access token in file
+      echo -e "${PURPLE}Tenant Access Token:${NC}"
+      cat tenant_credentials
+      
+      # Print success message
+      echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!${NC}"
+    else
+      # Print error message
+      echo -e "${RED}No access token generated from the tenant.${NC}"
+    fi
+  fi
+fi
+
