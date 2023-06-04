@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  chmod +x env.sh
-  . ./env.sh
+chmod +x env.sh
+source ./env.sh
 
 # Define colors
 RED='\033[0;31m'
@@ -44,10 +44,13 @@ response=$(curl -k --location --request POST "$USERSTORE_EP" \
     ]
   }')
 
+# Print the response
+echo -e "Response:\n$response"
+
 # Check if the response contains any error message
 if echo "$response" | grep -q '"typeId":'; then
   # If there is no error, print the success message
-  echo "${GREEN}${BOLD}A userstore has been created in Identity Server. Userstore name=${USERSTORE_NAME}${NC}"
+  echo -e "${GREEN}${BOLD}A userstore has been created in Identity Server. Userstore name=${USERSTORE_NAME}${NC}"
   # Print the additional details
   echo "Additional Details:"
   echo "Userstore Name: ${PURPLE}$USERSTORE_NAME${NC}"
@@ -62,6 +65,6 @@ if echo "$response" | grep -q '"typeId":'; then
 else
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error[0].description')
-  echo "${RED}${BOLD}Failure: $error_description${NC}"
+  echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 fi
-echo
+
