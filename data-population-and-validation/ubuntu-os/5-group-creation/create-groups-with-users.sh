@@ -1,23 +1,38 @@
-#curl -k --location --request POST "$SCIM2_GROUP_EP" \
-#--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-#--header 'Content-Type: application/json' \
-#--data-raw '{
-# "displayName": "'$GROUP_DISPLAY_NAME'",
-#"members": [
-#{
-#    "value": "GROUP_USER_ID"
-# }
-#],
-#"schemas": [
-# "urn:ietf:params:scim:schemas:core:2.0:Group"
-#]
-#}'
+#!/bin/bash
+
+# Define colors
+RED='\033[0;31m'
+GREEN='\033[1;38;5;206m'
+YELLOW='\033[0;33m'
+PURPLE='\033[1;35m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
 
 # Create interns group
-curl -k -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d '{"displayName":"interns","members":[{"display":"Jayana","value":"Jayana","ref":"User","operation":"add"},{"display":"Randul","value":"Randul","ref":"User","operation":"add"},{"display":"Chithara","value":"Chithara","ref":"User","operation":"add"},{"display":"Rukshan","value":"Rukshan","ref":"User","operation":"add"}]}' https://localhost:9443/api/identity/group/v1.0/groups
+interns_response=$(curl -k -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d '{"displayName":"interns","members":[{"display":"Jayana","value":"Jayana","ref":"User","operation":"add"},{"display":"Randul","value":"Randul","ref":"User","operation":"add"},{"display":"Chithara","value":"Chithara","ref":"User","operation":"add"},{"display":"Rukshan","value":"Rukshan","ref":"User","operation":"add"}]}' https://localhost:9443/api/identity/group/v1.0/groups)
+
+# Check if the interns group creation was successful
+if echo "$interns_response" | grep -q '"displayName":"interns"'; then
+  # Print success message
+  echo "${GREEN}${BOLD}The interns group has been created successfully.${NC}"
+else
+  # Print failure message
+  echo "${RED}${BOLD}Failed to create the interns group.${NC}"
+  echo "${RED}${BOLD}Error Response: ${interns_response}${NC}"
+fi
 
 # Create mentors group
-curl -k -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d '{"displayName":"mentors","members":[{"display":"Ashen","value":"Ashen","ref":"User","operation":"add"},{"display":"Chamath","value":"Chamath","ref":"User","operation":"add"}]}' https://localhost:9443/api/identity/group/v1.0/groups
+mentors_response=$(curl -k -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d '{"displayName":"mentors","members":[{"display":"Ashen","value":"Ashen","ref":"User","operation":"add"},{"display":"Chamath","value":"Chamath","ref":"User","operation":"add"}]}' https://localhost:9443/api/identity/group/v1.0/groups)
 
-echo "\033[1;34mA group called $GROUP_DISPLAY_NAME has been created with a user-ID=$GROUP_USER_ID\033[0m"
+# Check if the mentors group creation was successful
+if echo "$mentors_response" | grep -q '"displayName":"mentors"'; then
+  # Print success message
+  echo "${GREEN}${BOLD}The mentors group has been created successfully.${NC}"
+else
+  # Print failure message
+  echo "${RED}${BOLD}Failed to create the mentors group.${NC}"
+  echo "${RED}${BOLD}Error Response: ${mentors_response}${NC}"
+fi
 echo
+
+

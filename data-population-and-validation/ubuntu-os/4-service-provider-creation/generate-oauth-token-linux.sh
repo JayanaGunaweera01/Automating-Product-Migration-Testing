@@ -4,6 +4,8 @@
 RED='\033[0;31m'
 GREEN='\033[1;38;5;206m'
 YELLOW='\033[0;33m'
+PURPLE='\033[1;35m'
+BOLD='\033[1m'
 NC='\033[0m' # No Color
 
 # Get the directory of the script
@@ -11,9 +13,9 @@ script_dir="$(dirname "$(realpath "$0")")"
 
 # Load client_id and client_secret from file
 if [ -f "$script_dir/client_credentials" ]; then
-   . "$script_dir/client_credentials"
+  . "$script_dir/client_credentials"
 else
-  echo "${RED}Error: client_credentials file not found.${NC}"
+  echo "${RED}${BOLD}Error: client_credentials file not found.${NC}"
   exit 1
 fi
 
@@ -34,38 +36,46 @@ token_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
 # Print token response
 echo "Token Response: $token_response"
 
+# Check if the token response contains any error message
+if echo "$token_response" | grep -q '"error":'; then
+  # If there is an error, print the failure message with the error description
+  error_description=$(echo "$token_response" | jq -r '.error_description')
+  echo "${RED}${BOLD}Database validation failed: $error_description${NC}"
+  exit 1
+fi
+
 # Extract access token and refresh token from response
 access_token=$(echo "$token_response" | jq -r '.access_token')
 refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
 
 if [ "$access_token" != "null" ]; then
+  # Print success message
+  echo "${GREEN}${BOLD}An access token generated successfully.${NC}"
   # Print access token
-  echo "Access Token: ${GREEN}$access_token${NC}"
+  echo "Access Token: ${PURPLE}$access_token${NC}"
 
   # Store access token in the file
   if grep -q "access_token" "$script_dir/client_credentials"; then
     sed -i "s/access_token=.*/access_token=$access_token/" "$script_dir/client_credentials"
   else
-    echo "access_token=$access_token" >> "$script_dir/client_credentials"
+    echo "access_token=$access_token" >>"$script_dir/client_credentials"
   fi
 else
   echo "Access Token: null"
 fi
 
 if [ "$refresh_token" != "null" ]; then
+  # Print success message
+  echo "${GREEN}${BOLD}A refresh token generated successfully.${NC}"
   # Print refresh token
-  echo "Refresh Token: ${GREEN}$refresh_token${NC}"
+  echo "Refresh Token: ${PURPLE}$refresh_token${NC}"
 
   # Store refresh token in the file
   if grep -q "refresh_token" "$script_dir/client_credentials"; then
     sed -i "s/refresh_token=.*/refresh_token=$refresh_token/" "$script_dir/client_credentials"
   else
-    echo "refresh_token=$refresh_token" >> "$script_dir/client_credentials"
+    echo "refresh_token=$refresh_token" >>"$script_dir/client_credentials"
   fi
 else
   echo "Refresh Token: null"
 fi
-
-# Print success message
-echo "${GREEN}An access token and a refresh token generated successfully.${NC}"
-
