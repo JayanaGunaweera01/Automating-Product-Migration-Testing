@@ -45,10 +45,10 @@ client_credentials_file="/home/runner/work/Automating-Product-Migration-Testing/
 
 if [ -f "$client_credentials_file" ]; then
   echo "client_id=$client_id" >>"$client_credentials_file"
-  echo "client_secret=$client_secret" >>"$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
 else
   echo "client_id=$client_id" >"$client_credentials_file"
-  echo "client_secret=$client_secret" >>"$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
 fi
 
 # Print client_id and client_secret
@@ -75,7 +75,7 @@ else
   access_token=$(echo "$access_token_response" | jq -r '.access_token')
 
   # Store access token in a file
-  echo "access_token=$access_token" >>"$client_credentials_file"
+  echo "access_token=$access_token" >> "$client_credentials_file"
 
   # Print success message
   echo -e "${PURPLE}${BOLD}Access token obtained successfully from the registered service provider.${NC}"
