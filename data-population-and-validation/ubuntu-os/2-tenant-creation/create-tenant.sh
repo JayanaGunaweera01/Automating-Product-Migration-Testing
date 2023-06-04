@@ -34,7 +34,7 @@ if echo "$response" | grep -q '"error":'; then
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo -e "${GREEN}${BOLD}Success: Tenant has been created successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully.${NC}"
 
   # Print the details of the successful response
   echo "${PURPLE}Response Details:${NC}"
@@ -78,7 +78,7 @@ if echo "$response" | grep -q '"error":'; then
   echo -e "${RED}${BOLD}Failure in registering a service provider inside the tenant: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo -e "${GREEN}${BOLD}Success: Service provider registered successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Success: Service provider registered successfully.${NC}"
 
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
@@ -99,7 +99,7 @@ else
     echo -e "${RED}${BOLD}Failure: $error_description${NC}"
   else
     # If there is no error, print the success message
-    echo -e "${GREEN}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
+    echo -e "${PURPLE}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
 
     # Print the details of the successful response
     echo -e "${PURPLE}Response Details:${NC}"
@@ -118,7 +118,7 @@ else
       cat tenant_credentials
 
       # Print success message
-      echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!${NC}"
+      echo -e "${PURPLE}Generated an access token from the service provider registered in the tenant successfully!${NC}"
     else
       # Print error message
       echo -e "${RED}No access token generated from the tenant.${NC}"
