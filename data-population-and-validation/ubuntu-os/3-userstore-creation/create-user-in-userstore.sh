@@ -32,7 +32,7 @@ response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.su
     }')
 
 # Check if the response contains any error message
-if [[ "$response" == *"schemas"* ]]; then
+if [ "$response" == *"schemas"* ]; then
     # If there is no error, print the success message
     echo -e "${GREEN}${BOLD}A user has been created in the userstore '$USERSTORE_NAME'. User name=${USERSTORE_USER_NAME}, Group name=${USERSTORE_GROUP_NAME}${NC}"
     # Print the additional details
