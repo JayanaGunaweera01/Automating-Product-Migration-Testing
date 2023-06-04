@@ -2,7 +2,7 @@
 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
 chmod +x env.sh
-source ./env.sh
+. ./env.sh
 
 # Define colors
 RED='\033[0;31m'
@@ -50,9 +50,8 @@ echo -e "Response:\n$response"
 # Check if the response contains any error message
 if echo "$response" | grep -q '"typeId":'; then
   # If there is no error, print the success message
-  echo -e "${GREEN}${BOLD}A userstore has been created in Identity Server. Userstore name=${USERSTORE_NAME}${NC}"
+  echo -e "${PURPLE}${BOLD}A userstore has been created.Userstore name is ${USERSTORE_NAME}${NC}"
   # Print the additional details
-  echo "Additional Details:"
   echo "Userstore Name: ${PURPLE}$USERSTORE_NAME${NC}"
   echo "Userstore Description: ${PURPLE}Sample JDBC user store to add.${NC}"
   echo "Userstore Properties:"
@@ -61,7 +60,6 @@ if echo "$response" | grep -q '"typeId":'; then
   echo "  - Property: driverName, Value: ${PURPLE}com.mysql.jdbc.Driver${NC}"
   echo "  - Property: url, Value: ${PURPLE}jdbc:mysql://localhost:3306/testdb?useSSL=false${NC}"
   echo "  - Property: disabled, Value: ${PURPLE}false${NC}"
-
 else
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error[0].description')
