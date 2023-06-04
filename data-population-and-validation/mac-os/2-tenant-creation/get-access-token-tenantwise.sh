@@ -4,7 +4,7 @@
 response=$(curl -k --location --request POST 'https://localhost:9443/t/carbon.super/api/server/v1/tenants' \
 --header 'accept: */*' \
 --header 'Content-Type: application/json' \
---data-raw '{"domain":"iit.com","owners":[{"username":"jayana","password":"jayana123","email":"jayana@wso2.com","firstname":"jayana","lastname":"gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
+--data-raw '{"domain":"iit.com","owners":[{"username":"jayana","password":"jayana123","email":"jayana@iit.com","firstname":"Jayana","lastname":"Gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
 
 # Extract client_id and client_secret from response
 client_id=$(echo $response | jq -r '.client_id')
@@ -14,7 +14,7 @@ client_secret=$(echo $response | jq -r '.client_secret')
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Register service provider
-response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
+response=$(curl -k --location --request POST 'https://localhost:9443/t/iit@iit.com/api/server/v1/service/register' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
 --header 'Content-Type: application/json' \
 --data-raw '{  "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
@@ -32,7 +32,7 @@ response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/o
 --header "Content-Type: application/x-www-form-urlencoded" \
 --header "Authorization: Basic $base64_encoded" \
 --data-urlencode 'grant_type=password' \
---data-urlencode 'username=jayana@iit.com' \
+--data-urlencode 'username=jayana' \
 --data-urlencode 'password=jayana123' \
 --data-urlencode 'scope=samplescope')
 

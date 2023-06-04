@@ -12,7 +12,7 @@ NC='\033[0m' # No Color
 response=$(curl -k --location --request POST 'https://localhost:9443/t/carbon.super/api/server/v1/tenants' \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
-  --data-raw '{"domain":"iit.com","owners":[{"username":"jayana","password":"jayana12345678","email":"jayana@wso2.com","firstname":"Jayana","lastname":"Gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
+  --data-raw '{"domain":"iit.com","owners":[{"username":"jayana","password":"jayana12345678","email":"jayana@iit.com","firstname":"Jayana","lastname":"Gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
