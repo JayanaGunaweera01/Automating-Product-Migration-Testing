@@ -4,6 +4,7 @@
 GREEN='\033[1;38;5;206m'
 RED='\033[0;31m'
 BOLD='\033[1m'
+PURPLE='\033[1;35m'
 NC='\033[0m' # No Color
 
 # Create a user in the service provider
@@ -40,14 +41,22 @@ response=$(curl -k --location --request POST "$SP_USER_REGISTER_EP" \
 # Check if the user creation was successful
 if echo "$response" | grep -q '"userName":'; then
     # Print success message
-    echo -e "${GREEN}${BOLD}A user has been created in the service provider.${NC}"
-    # Print user details
-    echo "Name of user created in SP: $SP_USER_NAME"
+    echo -e "${PURPLE}${BOLD}A user has been created in the service provider.${NC}"
+    # Print additional details individually in purple
+    echo -e "Additional Details:"
+    echo -e "${PURPLE}User Name:${NC} $SP_USER_NAME"
+    echo -e "${PURPLE}Family Name:${NC} $SP_USER_FAMILY_NAME"
+    echo -e "${PURPLE}User Name:${NC} lanka"
+    echo -e "${PURPLE}Home Email:${NC} $SP_USER_HOME_EMAIL"
+    echo -e "${PURPLE}Work Email:${NC} $SP_USER_WORK_EMAIL"
+    echo -e "${PURPLE}Employee Number:${NC} 1234A"
+    echo -e "${PURPLE}Manager:${NC} Taylor"
+
 else
     # Print failure message
-    echo "${RED}${BOLD}Failed to create the user in the service provider.${NC}"
+    echo -e "${RED}${BOLD}Failed to create the user in the service provider.${NC}"
     # Print error details
-    echo "Error Details:"
+    echo -e "${RED}${BOLD}Error Details:${NC}"
     echo "$response"
 fi
 echo
