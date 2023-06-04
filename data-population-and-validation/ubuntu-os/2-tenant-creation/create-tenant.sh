@@ -85,7 +85,7 @@ else
   base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
   # Generate access token
-  access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/dummyuser@wso2.com/api/server/oauth2/token" \
+  access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header "Content-Type: application/x-www-form-urlencoded" \
     --header "Authorization: Basic $base64_encoded" \
     --data-urlencode 'grant_type=client_credentials' \
