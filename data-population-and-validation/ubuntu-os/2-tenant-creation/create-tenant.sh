@@ -37,7 +37,7 @@ else
   echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully.${NC}"
 
   # Print the details of the successful response
-  echo "${PURPLE}Response Details:${NC}"
+  echo -e "${PURPLE}${BOLD}Response Details:${NC}"
   echo "$response" | jq '.'
 
   # Print the additional information with all the details
@@ -45,7 +45,7 @@ else
   echo -e "Tenant name: ${PURPLE}dummyuser@wso2.com${NC}"
   echo -e "User name: ${PURPLE}$USERNAME${NC}"
   echo
-  echo -e "Additional Details:"
+  echo -e "${PURPLE}${BOLD}Additional Details:${NC}"
   echo -e "Domain: ${PURPLE}wso2.com${NC}"
   echo -e "Owner:"
   echo -e "  Username: ${PURPLE}$USERNAME${NC}"
