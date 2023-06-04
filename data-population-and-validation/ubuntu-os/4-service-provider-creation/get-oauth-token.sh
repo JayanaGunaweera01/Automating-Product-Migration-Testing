@@ -78,7 +78,7 @@ else
   echo "access_token=$access_token" >>"$client_credentials_file"
 
   # Print success message
-  echo -e "${GREEN}${BOLD}Access token obtained successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Access token obtained successfully from the registered service provider.${NC}"
 
   # Print additional details
   echo -e "${PURPLE}${BOLD}Additional Details:${NC}"
