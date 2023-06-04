@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+  chmod +x env.sh
+  . ./env.sh
+
 # Define colors
 RED='\033[0;31m'
 GREEN='\033[1;38;5;206m'
@@ -16,17 +20,17 @@ response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.su
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
         "schemas": [],
-        "userName": "'"$USERSTORE_USER_NAME"'",
-        "password": "'"$USERSTORE_USER_PASSWORD"'",
+        "userName": "$USERSTORE_USER_NAME",
+        "password": "$USERSTORE_USER_PASSWORD",
         "wso2Extension": {
             "employeeNumber": "000111",
             "costCenter": "111111",
             "organization": "WSO2Org",
-            "division": "'"$USERSTORE_GROUP_NAME"'",
+            "division": "$USERSTORE_GROUP_NAME",
             "department": "Integration",
             "manager": {
                 "managerId": "111000",
-                "displayName": "'"$USERSTORE_USER_NAME"'"
+                "displayName": "$USERSTORE_USER_NAME"
             }
         }
     }')

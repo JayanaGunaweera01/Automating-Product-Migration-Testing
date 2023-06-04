@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+  chmod +x env.sh
+  . ./env.sh
+
 # Set variables
 url="https://localhost:9443/services/TenantMgtAdminService.TenantMgtAdminServiceHttpsSoap11Endpoint/"
 username="admin"

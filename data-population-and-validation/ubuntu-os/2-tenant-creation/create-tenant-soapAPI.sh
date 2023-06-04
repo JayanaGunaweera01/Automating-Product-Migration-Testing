@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+  chmod +x env.sh
+  . ./env.sh
+
 # WSO2 Identity Server admin credentials
 admin_username="admin"
 admin_password="admin"
