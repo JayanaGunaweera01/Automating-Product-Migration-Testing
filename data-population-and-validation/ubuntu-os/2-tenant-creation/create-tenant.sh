@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Define colors
+# Define colours
 RED='\033[0;31m'
 GREEN='\033[1;38;5;206m'
 PURPLE='\033[1;35m'
