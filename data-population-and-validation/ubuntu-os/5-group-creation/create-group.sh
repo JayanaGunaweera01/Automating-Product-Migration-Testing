@@ -26,7 +26,7 @@ group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
 # Check if the group creation was successful
 if echo "$group_response" | grep -q '"displayName":'; then
   # Print success message
-  echo -e "${GREEN}${BOLD}A group has been created successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}A group has been created successfully.${NC}"
   # Print group name
   echo -e "Group Name: ${PURPLE}$GROUP_NAME${NC}"
 else
