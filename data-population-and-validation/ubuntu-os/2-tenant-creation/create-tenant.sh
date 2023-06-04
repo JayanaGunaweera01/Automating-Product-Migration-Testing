@@ -41,29 +41,29 @@ else
   echo "$response" | jq '.'
 
   # Print the additional information with all the details
-  echo "${PURPLE}${BOLD}A tenant has been created with a user.${NC}"
-  echo "Tenant name: ${PURPLE}dummyuser@wso2.com${NC}"
-  echo "User name: ${PURPLE}$USERNAME${NC}"
+  echo -e "${PURPLE}${BOLD}A tenant has been created with a user.${NC}"
+  echo -e "Tenant name: ${PURPLE}dummyuser@wso2.com${NC}"
+  echo -e "User name: ${PURPLE}$USERNAME${NC}"
   echo
-  echo "Additional Details:"
-  echo "Domain: ${PURPLE}wso2.com${NC}"
-  echo "Owner:"
-  echo "  Username: ${PURPLE}$USERNAME${NC}"
-  echo "  Password: ${PURPLE}$PASSWORD${NC}"
-  echo "  Email: ${PURPLE}$EMAIL${NC}"
-  echo "  First Name: ${PURPLE}$FIRSTNAME${NC}"
-  echo "  Last Name: ${PURPLE}$LASTNAME${NC}"
-  echo "  Provisioning Method: ${PURPLE}inline-password${NC}"
-  echo "  Additional Claims:"
-  echo "    Claim: ${PURPLE}http://wso2.org/claims/telephone${NC}"
-  echo "    Value: ${PURPLE}$TELEPHONE${NC}"
+  echo -e "Additional Details:"
+  echo -e "Domain: ${PURPLE}wso2.com${NC}"
+  echo -e "Owner:"
+  echo -e "  Username: ${PURPLE}$USERNAME${NC}"
+  echo -e "  Password: ${PURPLE}$PASSWORD${NC}"
+  echo -e "  Email: ${PURPLE}$EMAIL${NC}"
+  echo -e "  First Name: ${PURPLE}$FIRSTNAME${NC}"
+  echo -e "  Last Name: ${PURPLE}$LASTNAME${NC}"
+  echo -e "  Provisioning Method: ${PURPLE}inline-password${NC}"
+  echo -e "  Additional Claims:"
+  echo -e "    Claim: ${PURPLE}http://wso2.org/claims/telephone${NC}"
+  echo -e"    Value: ${PURPLE}$TELEPHONE${NC}"
 fi
 
 # Extract tenant ID from the response
 tenant_id=$(echo "$response" | jq -r '.tenant_id')
 
 # Encode client_id:client_secret in base64
-base64_encoded=$(echo -n "$USERNAME:$PASSWORD")
+base64_encoded=$(echo -n "dummyuser:dummypassword")
 
 # Register service provider inside the tenant
 response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/applications" \
