@@ -114,7 +114,7 @@ else
       
       # Print tenant access token in file
       echo -e "${PURPLE}Tenant Access Token:${NC}"
-      cat tenant_credentials
+      cat tenant_credentials jq.status
       
       # Print success message
       echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!${NC}"
