@@ -16,7 +16,13 @@ interns_response=$(curl -s -k -X POST -H "Content-Type: application/json" -H "Au
 # Check if the interns group creation was successful
 if echo "$interns_response" | grep -q '"displayName":"interns"'; then
   # Print success message
-  echo -e "${GREEN}${BOLD}The interns group has been created successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}The interns group has been created successfully.${NC}"
+  echo -e "${PURPLE}Additional Details:${NC}"
+  echo -e "${PURPLE}- Display Name:${NC} interns"
+  echo -e "${PURPLE}- Members:${NC}"
+  echo -e "${PURPLE}  - Randul${NC}"
+  echo -e "${PURPLE}  - Chithara${NC}"
+  echo -e "${PURPLE}  - Rukshan${NC}"
 else
   # Print failure message
   echo -e "${RED}${BOLD}Failed to create the interns group.${NC}"
