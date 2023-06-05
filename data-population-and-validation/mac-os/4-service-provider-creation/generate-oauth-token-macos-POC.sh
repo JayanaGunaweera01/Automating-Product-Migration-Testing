@@ -21,7 +21,7 @@ else
 fi
 
 # Remove leading/trailing whitespaces from client_id and client_secret
-client_id=$(echo "$client_id" | xargs)
+client_id=$(echo "$client_id" | sed 's/^-n//; s/ *$//')
 client_secret=$(echo "$client_secret" | xargs)
 
 # Encode client_id:client_secret as base64
@@ -51,11 +51,11 @@ fi
 if grep -q "access_token" "$script_dir/client_credentials"; then
   sed -i '' "s/access_token=.*/access_token=$access_token/" "$script_dir/client_credentials"
 else
-  echo "access_token=$access_token" >>"$script_dir/client_credentials"
+  echo "access_token=$access_token" >> "$script_dir/client_credentials"
 fi
 
 if grep -q "refresh_token" "$script_dir/client_credentials"; then
   sed -i '' "s/refresh_token=.*/refresh_token=$refresh_token/" "$script_dir/client_credentials"
 else
-  echo "refresh_token=$refresh_token" >>"$script_dir/client_credentials"
+  echo "refresh_token=$refresh_token" >> "$script_dir/client_credentials"
 fi
