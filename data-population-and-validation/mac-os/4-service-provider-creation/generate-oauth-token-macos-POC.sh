@@ -27,7 +27,15 @@ fi
 #base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | tr -d '\n')
 
 # Encode client_id:client_secret as base64 without the leading -n
-base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | sed 's/-n //')
+#base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | sed 's/-n //')
+
+# Encode client_id:client_secret as base64 without the leading -n
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+
+# Check for leading -n in client_id and remove it if present
+if [ $base64_encoded == -n* ]; then
+  base64_encoded="${base64_encoded#-n}"
+fi
 
 
 # Get access token
