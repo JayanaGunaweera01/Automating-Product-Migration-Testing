@@ -43,7 +43,7 @@ if echo "$response" | grep -q '"schemas":'; then
     # If there is no error, print the success message
     echo -e "${GREEN}${BOLD}A user has been created in the userstore '$USERSTORE_NAME'. User name=${USERSTORE_USER_NAME}, Group name=${USERSTORE_GROUP_NAME}${NC}"
     # Print the additional details
-    echo "Additional Details:"
+    echo "{PURPLE}Additional Details:${NC}"
     echo -e "User Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
     echo -e "Group Name: ${PURPLE}$USERSTORE_GROUP_NAME${NC}"
     echo -e "Employee Number: ${PURPLE}000111${NC}"
