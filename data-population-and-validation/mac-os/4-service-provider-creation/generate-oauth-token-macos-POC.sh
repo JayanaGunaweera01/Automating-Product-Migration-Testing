@@ -33,7 +33,7 @@ fi
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Check for leading -n in client_id and remove it if present
-if [ $base64_encoded == -n* ]; then
+if [ $base64_encoded = -n* ]; then
   base64_encoded="${base64_encoded#-n}"
 fi
 
@@ -70,3 +70,7 @@ if grep -q "refresh_token" "$script_dir/client_credentials"; then
 else
   echo "refresh_token=$refresh_token" >> "$script_dir/client_credentials"
 fi
+
+# Validate the database
+validation=$(curl -k -H "Authorization: Bearer $access_token" -H 'Content-Type: application/json' -X GET https://localhost:9443/api/identity/oauth2/dcr/v1.1/register/$client_id)
+echo "Database validation: $validation"
