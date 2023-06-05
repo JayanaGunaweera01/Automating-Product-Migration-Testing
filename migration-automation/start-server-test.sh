@@ -6,51 +6,59 @@ RESET='\033[0m'           # reset color
 
 # Get the value of the inputs
 os=$1
-startServer=$2
+version=$2
 currentVersion=$3
 migratingVersion=$4
+migration=$5
 
 # Setup file and path based on OS and server number
 if [ "$os" = "ubuntu-latest" ]; then
-  cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  chmod +x env.sh
-  . ./env.sh
-  echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
-  if [ "$startServer" = "current" ]; then
+  if [ "$version" = "3" ]; then
+    cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+    chmod +x env.sh
+    . ./env.sh
+    echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
-    echo "${GREEN}Starting current Identity Server in Ubuntu OS${RESET}"
-    echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
-  elif [ "$startServer" = "migrated" ]; then
+    echo "${GREEN}Starting Identity Server in Ubuntu OS${RESET}"
+  elif [ "$version" = "4" ]; then
+    cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+    chmod +x env.sh
+    . ./env.sh
+    echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
     cd "$BIN_ISNEW"
     echo "${GREEN}Diverted to bin${RESET}"
-    echo "${GREEN}Starting Migrated Identity Server in Ubuntu OS${RESET}"
-    echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
-  elif [ "$startServer" = "migration" ]; then
-    cd "$BIN_ISNEW"
-    echo "${GREEN}Starting Migration terminal${RESET}"
-    echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
+    echo "${GREEN}Starting Migrating Identity Server in Ubuntu OS${RESET}"
+
+    if [ "$migration" = "true" ]; then
+      echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
+    else
+      echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
+    fi
   fi
 elif [ "$os" = "macos-latest" ]; then
-  cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  chmod +x env.sh
-  source ./env.sh
-  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
-  if [ "$startServer" = "current" ]; then
+  if [ "$version" = "3" ]; then
+    cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+    chmod +x env.sh
+    source ./env.sh
+    echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
-    echo "${GREEN}Starting current Identity Server in macOS${RESET}"
-    echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
-  elif [ "$startServer" = "migrated" ]; then
+    echo "${GREEN}Starting Identity Server in macOS${RESET}"
+  elif [ "$version" = "4" ]; then
+    cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+    chmod +x env.sh
+    source ./env.sh
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
-    echo "${GREEN}Starting Migrated Identity Server in macOS${RESET}"
-    echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
-  elif [ "$startServer" = "migration" ]; then
-    cd "$BIN_ISNEW_MAC"
-    echo "${GREEN}Starting Migration terminal${RESET}"
-    echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
+    echo "${GREEN}Starting Migrating Identity Server in macOS${RESET}"
   fi
+fi
+
+if [ "$migration" = "true" ]; then
+  echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" >start.sh
+else
+  echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" >start.sh
 fi
 
 chmod +x start.sh && chmod 777 start.sh
