@@ -30,16 +30,17 @@ token_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'grant_type=password&username=admin&password=admin&scope=somescope_password')
 
+echo "Token_response: $token_response"
 # Extract access token and refresh token from response
 access_token=$(echo "$token_response" | jq -r '.access_token')
 refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
 
 # Print access token and refresh token
 if [ "$access_token" != "null" ]; then
-  echo "Access token: ${access_token}"
+  echo "Access token: $access_token"
 fi
 if [ "$refresh_token" != "null" ]; then
-  echo "Refresh token: ${refresh_token}"
+  echo "Refresh token: $refresh_token"
 fi
 
 # Store access token and refresh token in a file
@@ -56,6 +57,6 @@ else
 fi
 
 # Print success message
-echo "${GREEN}An access token and a refresh token generated successfully.${NC}"
-else
-echo "${RED}Database validation failed.${NC}"
+#echo "${GREEN}An access token and a refresh token generated successfully.${NC}"
+#else
+#echo "${RED}Database validation failed.${NC}"
