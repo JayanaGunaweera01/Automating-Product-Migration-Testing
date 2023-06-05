@@ -24,7 +24,7 @@ fi
 # base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Encode client_id:client_secret as base64 without the -n issue
-printf -v base64_encoded "%s" "$(echo -n "$client_id:$client_secret" | base64)"
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | tr -d '\n')
 
 # Get access token
 echo "${YELLOW}Getting access token...${NC}"
