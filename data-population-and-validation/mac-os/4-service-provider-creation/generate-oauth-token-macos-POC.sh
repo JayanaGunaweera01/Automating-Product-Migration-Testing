@@ -20,6 +20,10 @@ else
   exit 1
 fi
 
+# Remove leading/trailing whitespaces from client_id and client_secret
+client_id=$(echo "$client_id" | xargs)
+client_secret=$(echo "$client_secret" | xargs)
+
 # Encode client_id:client_secret as base64
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
@@ -55,8 +59,3 @@ if grep -q "refresh_token" "$script_dir/client_credentials"; then
 else
   echo "refresh_token=$refresh_token" >>"$script_dir/client_credentials"
 fi
-
-# Print success message
-#echo "${GREEN}An access token and a refresh token generated successfully.${NC}"
-#else
-#echo "${RED}Database validation failed.${NC}"
