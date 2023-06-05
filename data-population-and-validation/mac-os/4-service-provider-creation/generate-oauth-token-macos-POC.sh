@@ -20,12 +20,8 @@ else
   exit 1
 fi
 
-# Remove leading/trailing whitespaces from client_id and client_secret
-client_id=$(echo "$client_id" | sed 's/^-n//; s/ *$//')
-client_secret=$(echo "$client_secret" | xargs)
-
 # Encode client_id:client_secret as base64
-base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+base64_encoded=$(echo "$client_id:$client_secret" | base64)
 
 # Get access token
 echo "${YELLOW}Getting access token...${NC}"
