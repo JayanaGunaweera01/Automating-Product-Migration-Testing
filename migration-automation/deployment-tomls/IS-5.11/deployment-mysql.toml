@@ -52,6 +52,9 @@ validationQuery="SELECT 1"
 validationInterval="30000"
 defaultAutoCommit=false
 
+[tenant_context]
+enable_tenant_qualified_urls = true
+
 #[bps_database.config]
 #url = "jdbc:mysql://localhost:3306/testdb?useSSL=false"
 #username = "root"
