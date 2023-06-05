@@ -88,7 +88,9 @@ else
   access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --header 'Authorization: Basic ZHVtbXl1c2VyOmR1bW15cGFzc3dvcmQ=' \
-    --data-urlencode 'grant_type=client_credentials' \
+    --data-urlencode 'grant_type=password' \
+    --data-urlencode 'username=dummyuser' \
+    --data-urlencode 'password=dummypassword' \
     --data-urlencode 'scope=samplescope')
 
   # Check if the response contains any error message
