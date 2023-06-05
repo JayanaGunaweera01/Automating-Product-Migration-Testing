@@ -24,7 +24,11 @@ fi
 # base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Encode client_id:client_secret as base64 without the -n issue
-base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | tr -d '\n')
+#base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | tr -d '\n')
+
+# Encode client_id:client_secret as base64 without the leading -n
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | sed 's/-n //')
+
 
 # Get access token
 echo "${YELLOW}Getting access token...${NC}"
