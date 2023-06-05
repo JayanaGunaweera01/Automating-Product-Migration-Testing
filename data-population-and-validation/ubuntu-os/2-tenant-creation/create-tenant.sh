@@ -26,8 +26,7 @@ response=$(curl -k --location --request POST "$TENANT_EP" \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-  --data-raw "{\"domain\":\"wso2.com\",\"owners\":[{\"username\":\"$USERNAME\",\"password\":\"$PASSWORD\",\"email\":\"$EMAIL\",\"firstname\":\"$FIRSTNAME\",\"lastname\":\"$LASTNAME\",\"provisioningMethod\":\"inline-password\",\"additionalClaims\":[{\"claim\":\"http://wso2.org/claims/telephone\",\"value\":\"$TELEPHONE\"}]}]}")
-
+  --data-raw '{"domain":"iit.com","owners":[{"username":"wso2.com","password":"dummypassword","email":"dummyuser@wso2.com","firstname":"Dummy","lastname":"User","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 76 318 6705"}]}]}'
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
