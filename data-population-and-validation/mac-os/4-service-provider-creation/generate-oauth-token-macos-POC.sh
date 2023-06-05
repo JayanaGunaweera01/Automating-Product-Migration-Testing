@@ -11,8 +11,8 @@ script_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-P
 
 # Load client_id and client_secret from file
 if [ -f "$script_dir/client_credentials" ]; then
-   . "$script_dir/client_credentials"
-   echo "${GREEN}Client_credentials sourced.${NC}"
+  . "$script_dir/client_credentials"
+  echo "${GREEN}Client_credentials sourced.${NC}"
 else
   echo "${RED}Error: client_credentials file not found.${NC}"
   exit 1
@@ -35,27 +35,27 @@ refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
 if [ -n "$access_token" ] && [ -n "$refresh_token" ]; then
   # Print access token and refresh token
   if [ "$access_token" != "null" ]; then
-    echo "Access token: \033[31m$access_token\033[0m"
+    echo "Access token: $access_token"
   fi
   if [ "$refresh_token" != "null" ]; then
-    echo "Refresh token: \033[31m$refresh_token\033[0m"
+    echo "Refresh token: $refresh_token"
   fi
 
   # Store access token and refresh token in a file
   if grep -q "access_token" client_credentials; then
-   sed -i '' "s/access_token=.*/access_token=$access_token/" client_credentials
+    sed -i '' "s/access_token=.*/access_token=$access_token/" client_credentials
   else
-    echo "access_token=$access_token" >> client_credentials
+    echo "access_token=$access_token" >>client_credentials
   fi
 
   if grep -q "refresh_token" client_credentials; then
-     sed -i '' "s/refresh_token=.*/refresh_token=$refresh_token/" client_credentials
+    sed -i '' "s/refresh_token=.*/refresh_token=$refresh_token/" client_credentials
   else
-    echo "refresh_token=$refresh_token" >> client_credentials
+    echo "refresh_token=$refresh_token" >>client_credentials
   fi
 
   # Print success message
   echo "${GREEN}An access token and a refresh token generated successfully.${NC}"
 else
-  echo "${GREEN}Database validation failed.${NC}"
+  echo "${RED}Database validation failed.${NC}"
 fi
