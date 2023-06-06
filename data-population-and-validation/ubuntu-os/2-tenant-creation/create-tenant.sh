@@ -64,7 +64,7 @@ fi
 tenant_id=$(echo "$response" | jq -r '.tenant_id')
 
 # Encode client_id:client_secret in base64
-base64_encoded_sp=$(echo -n "dummyuser@wso2.com:dummyuserpassword")
+base64_encoded_sp=$(echo -n "dummyuser@wso2.com:dummypassword")
 
 # Register service provider inside the tenant
 response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/applications" \
@@ -88,10 +88,10 @@ else
   # Generate access token
   access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --header "Authorization: Basic ZHVtbXl1c2VyQHdzbzIuY29tOmR1bW15dXNlcnBhc3N3b3Jk" \
+    --header "Authorization: Basic ZHVtbXl1c2VyQHdzbzIuY29tOmR1bW15cGFzc3dvcmQ=" \
     --data-urlencode 'grant_type=password' \
     --data-urlencode 'username=dummyuser@wso2.com' \
-    --data-urlencode 'password=dummyuserpassword' \
+    --data-urlencode 'password=dummypassword' \
     --data-urlencode 'scope=samplescope')
 
   # Check if the response contains any error message
