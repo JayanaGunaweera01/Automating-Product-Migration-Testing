@@ -15,21 +15,18 @@ NC='\033[0m' # No Color
 #TENANT_EP="https://localhost:9443/t/carbon.super/api/server/v1/tenants"
 TENANT_EP="https://localhost:9443/t/wso2.com/api/server/v1/tenants"
 USERNAME="dummyuser"
-PASSWORD="dummyuserpassword"
+PASSWORD="dummypassword"
 EMAIL="dummyuser@wso2.com"
 FIRSTNAME="Dummy"
 LASTNAME="User"
 TELEPHONE="+94 123 4567"
 
-# Encode username:password as base64
-base64_encoded=$(echo -n "$USERNAME:$PASSWORD" | base64)
-
 # Create tenant
-response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/tenants" \
+response=$(curl -k --location --request POST "$TENANT_EP" \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
-  --header "Authorization: Basic ZHVtbXl1c2VyOmR1bW15dXNlcnBhc3N3b3Jk" \
-  --data-raw '{"domain":"wso2.com","owners":[{"username":"dummyuser","password":"dummyuserpassword","email":"dummyuser@wso2.com","firstname":"Dummy","lastname":"User","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 76 318 6705"}]}]}')
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --data-raw '{"domain":"wso2.com","owners":[{"username":"dummyuser","password":"dummypassword","email":"dummyuser@wso2.com","firstname":"Dummy","lastname":"User","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 76 318 6705"}]}]}')
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
@@ -72,7 +69,7 @@ base64_encoded_sp=$(echo -n "dummyuser@wso2.com:dummyuserpassword")
 # Register service provider inside the tenant
 response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/applications" \
   --header 'Content-Type: application/json' \
-  --header "Authorization: Basic ZHVtbXl1c2VyQHdzbzIuY29tOmR1bW15dXNlcnBhc3N3b3Jk" \
+  --header 'Authorization: Basic ZHVtbXl1c2VyOmR1bW15cGFzc3dvcmQ=' \
   --data-raw '{  "client_name": "tenant app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
 # Check if the response contains any error message
