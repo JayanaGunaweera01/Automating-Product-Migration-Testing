@@ -14,19 +14,22 @@ NC='\033[0m' # No Color
 # Define variables
 #TENANT_EP="https://localhost:9443/t/carbon.super/api/server/v1/tenants"
 TENANT_EP="https://localhost:9443/t/wso2.com/api/server/v1/tenants"
-USERNAME="admin"
-PASSWORD="admin"
+USERNAME="dummyuser"
+PASSWORD="dummyuserpassword"
 EMAIL="dummyuser@wso2.com"
 FIRSTNAME="Dummy"
 LASTNAME="User"
 TELEPHONE="+94 123 4567"
 
+# Encode username:password as base64
+base64_encoded=$(echo -n "dummyuser:dummyuserpassword" | base64)
+
 # Create tenant
 response=$(curl -k --location --request POST "$TENANT_EP" \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
-  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-  --data-raw '{"domain":"wso2.com","owners":[{"username":"admin","password":"admin","email":"dummyuser@wso2.com","firstname":"Dummy","lastname":"User","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 76 318 6705"}]}]}')
+  --header "Authorization: Basic $base64_encoded" \
+  --data-raw '{"domain":"wso2.com","owners":[{"username":"dummyuser","password":"dummyuserpassword","email":"dummyuser@wso2.com","firstname":"Dummy","lastname":"User","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 76 318 6705"}]}]}')
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
@@ -64,12 +67,12 @@ fi
 tenant_id=$(echo "$response" | jq -r '.tenant_id')
 
 # Encode client_id:client_secret in base64
-base64_encoded=$(echo -n "dummyuser:dummypassword")
+base64_encoded_sp=$(echo -n "dummyuser@wso2.com:dummyuserpassword")
 
 # Register service provider inside the tenant
 response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/applications" \
   --header 'Content-Type: application/json' \
-  --header 'Authorization: Basic ZHVtbXl1c2VyOmR1bW15cGFzc3dvcmQ=' \
+  --header "Authorization: Basic $base64_encoded_sp" \
   --data-raw '{  "client_name": "tenant app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
 # Check if the response contains any error message
@@ -88,10 +91,10 @@ else
   # Generate access token
   access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --header 'Authorization: Basic ZHVtbXl1c2VyOmR1bW15cGFzc3dvcmQ=' \
+    --header "Authorization: Basic $base64_encoded_sp" \
     --data-urlencode 'grant_type=password' \
-    --data-urlencode 'username=dummyuser' \
-    --data-urlencode 'password=dummypassword' \
+    --data-urlencode 'username=dummyuser@wso2.com' \
+    --data-urlencode 'password=dummyuserpassword' \
     --data-urlencode 'scope=samplescope')
 
   # Check if the response contains any error message
