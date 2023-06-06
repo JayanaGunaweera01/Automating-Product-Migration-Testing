@@ -22,20 +22,13 @@ This repository contains automation scripts and tools for automating product mig
 │   │   └── workflows
 │   │       └── MainMigrationWorkflow.yml
 │   ├── data-population-and-validation
-│   │   ├── mac-os
-│   │   │   ├── 1-user-creation
-│   │   │   ├── 2-tenant-creation
-│   │   │   ├── 3-userstore-creation
-│   │   │   ├── 4-service-provider-creation
-│   │   │   ├── 5-group-creation
-│   │   │   └── automated-data-poputation-and-validation-script.sh
-│   │   ├── ubuntu-os
-│   │   │   ├── 1-user-creation
-│   │   │   ├── 2-tenant-creation
-│   │   │   ├── 3-userstore-creation
-│   │   │   ├── 4-service-provider-creation
-│   │   │   ├── 5-group-creation
-│   │   │   └── automated-data-poputation-and-validation-script.sh
+│   │   ├── 1-user-creation
+│   │   ├── 2-tenant-creation
+│   │   ├── 3-userstore-creation
+│   │   ├── 4-service-provider-creation
+│   │   ├── 5-group-creation
+│   │   └── automated-data-poputation-and-validation-script-mac.sh
+│   │   └── automated-data-poputation-and-validation-script-ubuntu.sh
 │   │   └── windows-os
 │   │       ├── 1-user-creation
 │   │       ├── 2-tenant-creation
