@@ -2,7 +2,7 @@
 
 # Define colors
 RED='\033[0;31m'
-GREEN='\033[1;38;5;206m'
+GREEN='\033[0;32m\033[1m'
 YELLOW='\033[0;33m'
 PURPLE='\033[1;35m'
 BOLD='\033[1m'
@@ -13,12 +13,12 @@ script_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-P
 
 # Load client_id and client_secret from file
 if [ -f "$script_dir/client_credentials" ]; then
-  echo "${YELLOW}Client Credentials File:${NC}"
+  echo "${YELLOW}${BOLD}Client Credentials File:${NC}"
   cat "$script_dir/client_credentials"
   . "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation/client_credentials"
   echo "${GREEN}Client_credentials sourced.${NC}"
 else
-  echo "${RED}Error: client_credentials file not found.${NC}"
+  echo "${RED}${BOLD}Error: client_credentials file not found.${NC}"
   exit 1
 fi
 
@@ -58,7 +58,7 @@ base64_encoded=$(printf "%s:%s" "$client_id" "$client_secret" | base64)
 #base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Get access token
-echo "${YELLOW}Getting access token...${NC}"
+echo "${PURPLE}Getting access token...${NC}"
 token_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
   -H "Authorization: Basic $base64_encoded" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
