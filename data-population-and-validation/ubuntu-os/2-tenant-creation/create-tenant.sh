@@ -25,7 +25,7 @@ TELEPHONE="+94 123 4567"
 base64_encoded=$(echo -n "dummyuser:dummyuserpassword" | base64)
 
 # Create tenant
-response=$(curl -k --location --request POST "$TENANT_EP" \
+response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/tenants" \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
   --header "Authorization: Basic $base64_encoded" \
