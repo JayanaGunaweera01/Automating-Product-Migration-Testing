@@ -10,10 +10,10 @@
 export DIRECTORY_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing"
 
 # Absolute path to data population script
-export DATA_POPULATION="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os"
+export DATA_POPULATION="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation"
 
 # Absolute path to service provider
-export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/4-service-provider-creation"
+export SERVICE_PROVIDER_PATH="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation"
 
 # Absolute path to home folder
 export AUTOMATION_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
@@ -193,10 +193,10 @@ export DIRECTORY_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testi
 export IS_HOME_OLD_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD"
 
 # Absolute path to data population script
-export DATA_POPULATION_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os"
+export DATA_POPULATION_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation"
 
 # Absolute path to service provider creation directory
-export SERVICE_PROVIDER_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation"
+export SERVICE_PROVIDER_PATH_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation"
 
 # Absolute path to home folder
 export AUTOMATION_HOME_MAC="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
