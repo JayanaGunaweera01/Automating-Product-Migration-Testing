@@ -30,7 +30,7 @@ for script in \
   "3-userstore-creation/create-user-in-userstore.sh" \
   "4-service-provider-creation/register-a-service-provider.sh" \
   "4-service-provider-creation/create-user-in-a-service-provider.sh" \
-  "4-service-provider-creation/get-oauth-token.sh" \
+  "4-service-provider-creation/register-a-service-provider-get-access-token.sh" \
   "5-group-creation/create-group.sh" \
   "5-group-creation/create-groups-with-users.sh"; do
   # construct the full path of the script

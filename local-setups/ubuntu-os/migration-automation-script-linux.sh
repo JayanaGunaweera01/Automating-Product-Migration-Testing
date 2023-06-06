@@ -248,7 +248,7 @@ cd "$GENERATE_TOKEN"
 echo "\033[0;32m\033[1mEntered to data population directory\033[0;m"
 
 
-# Run get-oauth-token.sh to validate database.
+# Run register-a-service-provider-get-access-token.sh to validate database.
 sh generate-oauth-token.sh
 
 toilet -f term -F border --gay 'Migration executed and database validated successfully!'

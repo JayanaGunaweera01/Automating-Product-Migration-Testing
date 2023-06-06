@@ -34,5 +34,5 @@ sh create-groups-with-users.sh
 cd "$SP_CREATION"
 sh register-a-service-provider.sh
 sh create-user-in-a-service-provider.sh
-sh get-oauth-token.sh
+sh register-a-service-provider-get-access-token.sh
 

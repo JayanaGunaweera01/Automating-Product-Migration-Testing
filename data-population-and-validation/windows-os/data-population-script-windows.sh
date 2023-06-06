@@ -46,5 +46,5 @@ echo "\033[0;34mA new service provider has been registered. Service provider nam
 sh create-user-in-a-service-provider.sh
 echo "\033[0;34mA user has been created in service provider. Service provider name= Jayana. Name of user created in SP="$SP_USER_NAME"\033[0;34m"
 
-sh get-oauth-token.sh
+sh register-a-service-provider-get-access-token.sh
 echo "\033[0;34mAn oAuth token has been generated.Relevant Service provider=sampleapp\033[0;34m"

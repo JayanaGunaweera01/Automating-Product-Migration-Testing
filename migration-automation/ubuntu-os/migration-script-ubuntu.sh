@@ -356,7 +356,7 @@ echo "${GREEN}==> Entered to data population directory-service provider creation
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
 chmod +x generate-oauth-token-linux.sh
 sh generate-oauth-token-linux.sh
-#sh get-oauth-token.sh
+#sh register-a-service-provider-get-access-token.sh
 wait $!
 echo "${GREEN}==> Validated database successfully${RESET}"
 
