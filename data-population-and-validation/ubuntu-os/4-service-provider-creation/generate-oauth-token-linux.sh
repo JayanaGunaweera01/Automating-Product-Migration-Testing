@@ -83,3 +83,7 @@ if [ "$refresh_token" != "null" ]; then
 else
   echo -e "Refresh Token: null"
 fi
+
+# Validate the database
+validation=$(curl -k -H "Authorization: Bearer $access_token" -H 'Content-Type: application/json' -X GET https://localhost:9443/api/identity/oauth2/dcr/v1.1/register/$client_id)
+echo "Database validation: $validation"
