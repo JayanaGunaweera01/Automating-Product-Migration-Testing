@@ -41,10 +41,12 @@ fi
 # Remove leading -n from client_id, if present
 client_id=$(echo "$client_id" | sed 's/^-n//')
 
+# Trim leading/trailing spaces from client_id and client_secret
+client_id=$(echo "$client_id" | awk '{$1=$1};1')
+client_secret=$(echo "$client_secret" | awk '{$1=$1};1')
+
 # Encode client_id:client_secret as base64
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
-
-
 
 # Get access token
 echo "${YELLOW}Getting access token...${NC}"
