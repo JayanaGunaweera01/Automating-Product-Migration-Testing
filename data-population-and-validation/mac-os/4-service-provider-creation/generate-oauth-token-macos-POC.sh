@@ -46,8 +46,11 @@ fi
 #client_secret=$(echo "$client_secret" | awk '{$1=$1};1')
 
 # Remove leading -n from client_id, if present
-client_id=$(echo "$client_id" | cut -c 4-)
-echo "cut -n"
+#client_id=$(echo "$client_id" | cut -c 4-)
+#echo "cut -n"
+
+base64_encoded=$(printf "%s:%s" "$client_id" "$client_secret" | base64)
+
 
 # Encode client_id:client_secret as base64
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
