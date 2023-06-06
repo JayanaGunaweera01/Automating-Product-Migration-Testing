@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Define colors
+RED='\033[0;31m'
+GREEN='\033[1;38;5;206m'
+YELLOW='\033[0;33m'
+PURPLE='\033[1;35m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
+
 # Register service provider
 response=$(curl -k --location --request POST 'https://localhost:9443/api/identity/oauth2/dcr/v1.1/register' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -8,12 +16,6 @@ response=$(curl -k --location --request POST 'https://localhost:9443/api/identit
 
 # Extract client_name from response
 client_name=$(echo $response | jq -r '.client_name')
-
-# Define colors
-RED='\033[0;31m'
-GREEN='\033[1;38;5;206m'
-YELLOW='\033[0;33m'
-NC='\033[0m' # No Color
 
 echo "${YELLOW}Response: $response${NC}"
 echo "${GREEN}Service provider '$client_name' registered successfully${NC}"

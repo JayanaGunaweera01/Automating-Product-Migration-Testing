@@ -4,6 +4,8 @@
 RED='\033[0;31m'
 GREEN='\033[1;38;5;206m'
 YELLOW='\033[0;33m'
+PURPLE='\033[1;35m'
+BOLD='\033[1m'
 NC='\033[0m' # No Color
 
 # Get the directory of the script
@@ -69,10 +71,10 @@ refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
 
 # Print access token and refresh token
 if [ "$access_token" != "null" ]; then
-  echo "Access token: $access_token"
+  echo "Access token: ${PURPLE}$access_token${NC}"
 fi
 if [ "$refresh_token" != "null" ]; then
-  echo "Refresh token: $refresh_token"
+  echo "Refresh token: ${PURPLE}$refresh_token${NC}"
 fi
 
 # Store access token and refresh token in a file
