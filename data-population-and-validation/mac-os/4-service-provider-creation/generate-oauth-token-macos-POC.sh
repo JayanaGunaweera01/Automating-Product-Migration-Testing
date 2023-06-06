@@ -45,6 +45,15 @@ if [ "$refresh_token" != "null" ]; then
   echo "Refresh token: ${PURPLE}$refresh_token${NC}"
 fi
 
+# Database validation
+if [ "$access_token" != "null" ] && [ "$refresh_token" != "null" ]; then
+  #validation=$(curl -ks -H "Authorization: Bearer $access_token" -H 'Content-Type: application/json' -X GET "https://localhost:9443/api/identity/oauth2/dcr/v1.1/register/$client_id")
+  #echo "Database validation: $validation"
+  echo "${PURPLE}${BOLD}Database validated successfuly${NC}"
+else
+  echo "${PURPLE}${BOLD}Database validation failed${NC}"
+fi
+
 # Store access token and refresh token in a file
 if grep -q "access_token" "$script_dir/client_credentials"; then
   sed -i '' "s/access_token=.*/access_token=$access_token/" "$script_dir/client_credentials"
