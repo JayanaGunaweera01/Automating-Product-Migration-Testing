@@ -30,7 +30,21 @@ fi
 #base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | sed 's/-n //')
 
 # Encode client_id:client_secret as base64 without the leading -n
-base64_encoded=$(echo -n "${client_id#-n}:$client_secret" | base64)
+#base64_encoded=$(echo -n "${client_id#-n}:$client_secret" | base64)
+
+# Remove leading -n from client_id
+#client_id=$(echo "$client_id" | awk '{sub(/^-n/, "")} 1')
+
+# Encode client_id:client_secret as base64
+#base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+
+# Remove leading -n from client_id, if present
+client_id=$(echo "$client_id" | sed 's/^-n//')
+
+# Encode client_id:client_secret as base64
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+
+
 
 # Get access token
 echo "${YELLOW}Getting access token...${NC}"
