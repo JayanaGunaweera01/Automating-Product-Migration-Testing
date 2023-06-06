@@ -13,19 +13,19 @@ script_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-P
 
 # Load client_id and client_secret from file
 if [ -f "$script_dir/client_credentials" ]; then
-  echo -e "${YELLOW}${BOLD}Client Credentials File:${NC}"
+  echo "${YELLOW}${BOLD}Client Credentials File:${NC}"
   cat "$script_dir/client_credentials"
   . "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation/client_credentials"
-  echo -e "${GREEN}Client_credentials sourced.${NC}"
+  echo "${GREEN}Client_credentials sourced.${NC}"
 else
-  echo -e "${RED}${BOLD}Error: client_credentials file not found.${NC}"
+  echo "${RED}${BOLD}Error: client_credentials file not found.${NC}"
   exit 1
 fi
 
 base64_encoded=$(printf "%s:%s" "$client_id" "$client_secret" | base64)
 
 # Get access token
-echo -e "${PURPLE}Getting access token...${NC}"
+echo "${PURPLE}Getting access token...${NC}"
 curl_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
   -H "Authorization: Basic $base64_encoded" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -38,11 +38,11 @@ refresh_token=$(echo "$curl_response" | jq -r '.refresh_token')
 
 # Print access token and refresh token
 if [ "$access_token" != "null" ]; then
-  echo -e "Access token: ${PURPLE}$access_token${NC}"
-  echo -e "Expires in: $(echo "$curl_response" | jq -r '.expires_in') seconds"
+  echo "Access token: ${PURPLE}$access_token${NC}"
+  echo "Expires in: $(echo "$curl_response" | jq -r '.expires_in') seconds"
 fi
 if [ "$refresh_token" != "null" ]; then
-  echo -e "Refresh token: ${PURPLE}$refresh_token${NC}"
+  echo "Refresh token: ${PURPLE}$refresh_token${NC}"
 fi
 
 # Store access token and refresh token in a file
