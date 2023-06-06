@@ -37,7 +37,7 @@ if echo "$response" | grep -q '"error":'; then
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully using a tenanted url.${NC}"
 
   # Print the details of the successful response
   echo -e "${PURPLE}${BOLD}Response Details:${NC}"
