@@ -22,40 +22,7 @@ else
   exit 1
 fi
 
-# Encode client_id:client_secret as base64
-# base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
-
-# Encode client_id:client_secret as base64 without the -n issue
-#base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | tr -d '\n')
-
-# Encode client_id:client_secret as base64 without the leading -n
-#base64_encoded=$(echo -n "$client_id:$client_secret" | base64 | sed 's/-n //')
-
-# Encode client_id:client_secret as base64 without the leading -n
-#base64_encoded=$(echo -n "${client_id#-n}:$client_secret" | base64)
-
-# Remove leading -n from client_id
-#client_id=$(echo "$client_id" | awk '{sub(/^-n/, "")} 1')
-
-# Encode client_id:client_secret as base64
-#base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
-
-# Remove leading -n from client_id, if present
-#client_id=$(echo "$client_id" | sed 's/^-n//')
-
-# Trim leading/trailing spaces from client_id and client_secret
-#client_id=$(echo "$client_id" | awk '{$1=$1};1')
-#client_secret=$(echo "$client_secret" | awk '{$1=$1};1')
-
-# Remove leading -n from client_id, if present
-#client_id=$(echo "$client_id" | cut -c 4-)
-#echo "cut -n"
-
 base64_encoded=$(printf "%s:%s" "$client_id" "$client_secret" | base64)
-
-
-# Encode client_id:client_secret as base64
-#base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Get access token
 echo "${PURPLE}Getting access token...${NC}"
@@ -81,11 +48,11 @@ fi
 if grep -q "access_token" "$script_dir/client_credentials"; then
   sed -i '' "s/access_token=.*/access_token=$access_token/" "$script_dir/client_credentials"
 else
-  echo "access_token=$access_token" >> "$script_dir/client_credentials"
+  echo "access_token=$access_token" >>"$script_dir/client_credentials"
 fi
 
 if grep -q "refresh_token" "$script_dir/client_credentials"; then
   sed -i '' "s/refresh_token=.*/refresh_token=$refresh_token/" "$script_dir/client_credentials"
 else
-  echo "refresh_token=$refresh_token" >> "$script_dir/client_credentials"
+  echo "refresh_token=$refresh_token" >>"$script_dir/client_credentials"
 fi
