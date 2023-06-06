@@ -13,7 +13,7 @@ BOLD='\033[1m'
 NC='\033[0m' # No Color
 
 # Get the directory of the script
-script_dir="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/ubuntu-os/4-service-provider-creation"
+script_dir="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation"
 
 # Load client_id and client_secret from file
 if [ -f "$script_dir/client_credentials" ]; then
