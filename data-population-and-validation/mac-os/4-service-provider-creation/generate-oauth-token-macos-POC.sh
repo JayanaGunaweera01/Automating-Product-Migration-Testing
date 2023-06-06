@@ -13,7 +13,7 @@ script_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-P
 if [ -f "$script_dir/client_credentials" ]; then
   echo "${YELLOW}Client Credentials File:${NC}"
   cat "$script_dir/client_credentials"
-  . "$script_dir/client_credentials"
+  . "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/mac-os/4-service-provider-creation/client_credentials"
   echo "${GREEN}Client_credentials sourced.${NC}"
 else
   echo "${RED}Error: client_credentials file not found.${NC}"
@@ -53,7 +53,7 @@ base64_encoded=$(printf "%s:%s" "$client_id" "$client_secret" | base64)
 
 
 # Encode client_id:client_secret as base64
-base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+#base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Get access token
 echo "${YELLOW}Getting access token...${NC}"
