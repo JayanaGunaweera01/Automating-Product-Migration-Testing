@@ -39,11 +39,15 @@ fi
 #base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Remove leading -n from client_id, if present
-client_id=$(echo "$client_id" | sed 's/^-n//')
+#client_id=$(echo "$client_id" | sed 's/^-n//')
 
 # Trim leading/trailing spaces from client_id and client_secret
-client_id=$(echo "$client_id" | awk '{$1=$1};1')
-client_secret=$(echo "$client_secret" | awk '{$1=$1};1')
+#client_id=$(echo "$client_id" | awk '{$1=$1};1')
+#client_secret=$(echo "$client_secret" | awk '{$1=$1};1')
+
+# Remove leading -n from client_id, if present
+client_id=$(echo "$client_id" | cut -c 4-)
+echo "cut -n"
 
 # Encode client_id:client_secret as base64
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
@@ -80,7 +84,3 @@ if grep -q "refresh_token" "$script_dir/client_credentials"; then
 else
   echo "refresh_token=$refresh_token" >> "$script_dir/client_credentials"
 fi
-
-# Validate the database
-validation=$(curl -k -H "Authorization: Bearer $access_token" -H 'Content-Type: application/json' -X GET https://localhost:9443/api/identity/oauth2/dcr/v1.1/register/$client_id)
-echo "Database validation: $validation"
