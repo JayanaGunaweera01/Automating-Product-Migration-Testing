@@ -51,7 +51,7 @@ if [ "$access_token" != "null" ] && [ "$refresh_token" != "null" ]; then
   #echo "Database validation: $validation"
   echo "${PURPLE}${BOLD}Database validated successfuly${NC}"
 else
-  echo "${PURPLE}${BOLD}Database validation failed${NC}"
+  echo "${RED}${BOLD}Database validation failed${NC}"
 fi
 
 # Store access token and refresh token in a file
