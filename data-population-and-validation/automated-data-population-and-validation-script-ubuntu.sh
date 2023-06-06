@@ -9,7 +9,7 @@ YELLOW='\033[0;33m'
 PURPLE='\033[1;35m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
- 
+
 data_population_dir="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation"
 
 echo -e "${GREEN}==> Running data population scripts${NC}"
@@ -30,7 +30,7 @@ for script in \
   "3-userstore-creation/create-user-in-userstore.sh" \
   "4-service-provider-creation/register-a-service-provider.sh" \
   "4-service-provider-creation/create-user-in-a-service-provider.sh" \
-  "4-service-provider-creation/register-a-service-provider-get-access-token.sh" \
+  "4-service-provider-creation/register-a-service-provider-get-access-token-ubuntu.sh" \
   "5-group-creation/create-group.sh" \
   "5-group-creation/create-groups-with-users.sh"; do
   # construct the full path of the script

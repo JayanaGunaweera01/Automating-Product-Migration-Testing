@@ -148,8 +148,8 @@ cd "$DATA_POPULATION_MAC"
 echo "${GREEN}==> Entered to the data population directory successfully.${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
-chmod +x automated-data-population-and-validation-script.sh
-sh automated-data-population-and-validation-script.sh &
+chmod +x automated-data-population-and-validation-script-mac.sh
+sh automated-data-population-and-validation-script-mac.sh &
 wait $!
 echo "${GREEN}==> Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully${RESET}"
 
@@ -359,8 +359,8 @@ cd "$SERVICE_PROVIDER_PATH_MAC"
 echo "${GREEN}==> Entered to data population directory-service provider creation${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
-#sh validate-database.sh
-sh generate-oauth-token-macos-POC.sh
+chmod +x validate-database-mac.sh
+sh validate-database-mac.sh
 echo "${GREEN}==> Validated database successfully${RESET}"
 
 cd "$AUTOMATION_HOME_MAC"
