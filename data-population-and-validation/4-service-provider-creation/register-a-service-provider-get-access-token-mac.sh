@@ -1,69 +1,87 @@
 #!/bin/bash
 
+cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+chmod +x env.sh
+. ./env.sh
+
 # Define colors
 RED='\033[0;31m'
-GREEN='\033[0;32m\033[1m'
-YELLOW='\033[0;33m'
+GREEN='\033[1;38;5;206m'
 PURPLE='\033[1;35m'
 BOLD='\033[1m'
+YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
-# Get the directory of the script
-script_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation"
+# Register service provider
+response=$(curl -k --location --request POST 'https://localhost:9443/api/identity/oauth2/dcr/v1.1/register' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+    "client_name": "Migration Application",
+    "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"],
+    "redirect_uris":["http://localhost:8080/playground2"]
+  }')
 
-# Load client_id and client_secret from file
-if [ -f "$script_dir/client_credentials" ]; then
-  echo "${YELLOW}${BOLD}Client Credentials File:${NC}"
-  cat "$script_dir/client_credentials"
-  . "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation/client_credentials"
-  echo "${GREEN}Client_credentials sourced.${NC}"
-else
-  echo "${RED}${BOLD}Error: client_credentials file not found.${NC}"
+# Check if the response contains any error message
+if echo "$response" | grep -q '"error":'; then
+  # If there is an error, print the failure message with the error description
+  error_description=$(echo "$response" | jq -r '.error_description')
+  echo -e "${RED}${BOLD}Failure: $error_description${NC}"
   exit 1
+else
+  # If successful, print additional details in purple
+  client_name=$(echo "$response" | jq -r '.client_name')
+  echo "Response: $response${NC}"
+  echo -e "${PURPLE}Service provider '$client_name' registered successfully${NC}"
+  echo
 fi
 
-base64_encoded=$(printf "%s:%s" "$client_id" "$client_secret" | base64)
+# Extract client_id and client_secret
+client_id=$(echo "$response" | jq -r '.client_id')
+client_secret=$(echo "$response" | jq -r '.client_secret')
+
+# Store client_id and client_secret in a file
+client_credentials_file="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation/client_credentials"
+
+if [ -f "$client_credentials_file" ]; then
+  echo "client_id=$client_id" >>"$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
+else
+  echo "client_id=$client_id" >"$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
+fi
+
+# Print client_id and client_secret
+echo -e "Client ID: ${PURPLE}$client_id${NC}"
+echo -e "Client Secret: ${PURPLE}$client_secret${NC}"
+
+# Encode client_id:client_secret as base64
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Get access token
-echo "${PURPLE}Getting access token...${NC}"
-curl_response=$(curl -ks -X POST https://localhost:9443/oauth2/token \
+access_token_response=$(curl -k -X POST https://localhost:9443/oauth2/token \
   -H "Authorization: Basic $base64_encoded" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'grant_type=password&username=admin&password=admin&scope=somescope_password')
 
-echo "Curl_response: $curl_response"
-# Extract access token and refresh token from response
-access_token=$(echo "$curl_response" | jq -r '.access_token')
-refresh_token=$(echo "$curl_response" | jq -r '.refresh_token')
-
-# Print access token and refresh token
-if [ "$access_token" != "null" ]; then
-  echo "Access token: ${PURPLE}$access_token${NC}"
-  echo "Expires in: $(echo "$curl_response" | jq -r '.expires_in') seconds"
-fi
-if [ "$refresh_token" != "null" ]; then
-  echo "Refresh token: ${PURPLE}$refresh_token${NC}"
-fi
-
-# Database validation
-if [ "$access_token" != "null" ] && [ "$refresh_token" != "null" ]; then
-  #validation=$(curl -ks -H "Authorization: Bearer $access_token" -H 'Content-Type: application/json' -X GET "https://localhost:9443/api/identity/oauth2/dcr/v1.1/register/$client_id")
-  #echo "Database validation: $validation"
-  echo "${PURPLE}${BOLD}Database validated successfuly${NC}"
+# Check if the access token response contains any error message
+if echo "$access_token_response" | grep -q '"error":'; then
+  # If there is an error, print the failure message with the error description
+  error_description=$(echo "$access_token_response" | jq -r '.error_description')
+  echo -e "${RED}${BOLD}Failure: $error_description${NC}"
+  exit 1
 else
-  echo "${RED}${BOLD}Database validation failed${NC}"
-fi
+  # If successful, print the success message and additional details in purple
+  access_token=$(echo "$access_token_response" | jq -r '.access_token')
 
-# Store access token and refresh token in a file
-if grep -q "access_token" "$script_dir/client_credentials"; then
-  sed -i '' "s/access_token=.*/access_token=$access_token/" "$script_dir/client_credentials"
-else
-  echo "access_token=$access_token" >>"$script_dir/client_credentials"
-fi
+  # Store access token in a file
+  echo "access_token=$access_token" >> "$client_credentials_file"
 
-if grep -q "refresh_token" "$script_dir/client_credentials"; then
-  sed -i '' "s/refresh_token=.*/refresh_token=$refresh_token/" "$script_dir/client_credentials"
-else
-  echo "refresh_token=$refresh_token" >>"$script_dir/client_credentials"
-fi
+  # Print success message
+  echo -e "${PURPLE}${BOLD}Access token obtained successfully from the registered service provider.${NC}"
 
+  # Print additional details
+  echo -e "${PURPLE}${BOLD}Additional Details:${NC}"
+  echo -e "Access Token: ${PURPLE}$access_token${NC}"
+  echo
+fi
