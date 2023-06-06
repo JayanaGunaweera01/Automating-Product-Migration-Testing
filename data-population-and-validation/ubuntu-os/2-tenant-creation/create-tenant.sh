@@ -22,7 +22,7 @@ LASTNAME="User"
 TELEPHONE="+94 123 4567"
 
 # Encode username:password as base64
-base64_encoded=$(echo -n "dummyuser:dummyuserpassword" | base64)
+base64_encoded=$(echo -n "$USERNAME:$PASSWORD" | base64)
 
 # Create tenant
 response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/tenants" \
