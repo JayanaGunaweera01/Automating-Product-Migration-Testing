@@ -251,7 +251,7 @@ jobs:
            cp migration-automation/logs.txt migration-automation/artifacts/
         if: ${{ always() }}
       - name: 📦 Upload Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
