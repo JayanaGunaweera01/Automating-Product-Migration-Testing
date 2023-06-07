@@ -259,13 +259,18 @@ jobs:
      steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
+      - name: Cd artifacts folder
+        run: |
+    
+           cd migration-automation/artifacts
+           ls -a
      
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: migration-automation/artifacts
+          path: migration-automation/artifacts/logs.txt
           retention-days: 7
        
 
