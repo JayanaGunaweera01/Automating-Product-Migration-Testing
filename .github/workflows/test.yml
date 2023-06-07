@@ -260,7 +260,7 @@ jobs:
       - name: Persist Logs
         run: |
           mkdir -p migration-automation/artifacts
-          cp migration-automation/logs.txt migration-automation/artifacts/logs.txt
+          cp migration-automation/logs.txt migration-automation/artifacts/
 
   build-artifacts:
      needs: run-shell-script
