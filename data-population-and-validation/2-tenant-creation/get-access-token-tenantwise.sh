@@ -2,7 +2,7 @@
 
 # Define colors
 RED='\033[0;31m'
-GREEN='\033[1;38;5;206m'
+GREEN='\033[0;32m\033[1m'
 YELLOW='\033[0;33m'
 PURPLE='\033[1;35m'
 BOLD='\033[1m'
