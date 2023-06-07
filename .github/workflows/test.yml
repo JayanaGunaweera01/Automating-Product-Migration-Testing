@@ -265,20 +265,12 @@ jobs:
       - name: List Artifacts Folder
         run: ls migration-automation/artifacts
 
-  build-artifacts:
-     needs: run-shell-script
-     if: always()
-     runs-on: ${{ github.event.inputs.os }}
-     steps:
-      - name: 💾 Checkout code
-        uses: actions/checkout@v2
-
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: migration-automation/artifacts
+          path: migration-automation/artifacts/logs.txt
           retention-days: 7
        
 
