@@ -248,7 +248,7 @@ jobs:
       - name: Persist Logs
         run: |
            mkdir -p migration-automation/artifacts
-           cp migration-automation/logs.txt migration-automation/artifacts/logs.txt
+           cp migration-automation/logs.txt migration-automation/artifacts/
       
   build-artifacts:
      needs: run-shell-script
@@ -263,7 +263,7 @@ jobs:
         if: always()
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: migration-automation/artifacts
+          path: migration-automation/artifacts/logs.txt
           retention-days: 7
        
 
