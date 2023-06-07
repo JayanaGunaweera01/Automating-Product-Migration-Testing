@@ -250,6 +250,12 @@ jobs:
            mkdir -p migration-automation/artifacts
            cp migration-automation/logs.txt migration-automation/artifacts/
         if: ${{ always() }}
+      - name: 📦 Upload Artifacts
+        uses: actions/download-artifact@v2
+        if: always()
+        with:
+          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
+          path: migration-automation/artifacts
       
   build-artifacts:
      needs: run-shell-script
@@ -258,7 +264,7 @@ jobs:
      steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-      - name: 📦 Upload Artifacts
+      - name: 📦 Download Artifacts
         uses: actions/download-artifact@v2
         if: always()
         with:
