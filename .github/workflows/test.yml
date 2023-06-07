@@ -275,10 +275,9 @@ jobs:
         if: always()
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: ${{ github.workspace }}/migration-automation/logs.txt
+          path:  migration-automation/artifacts/logs.txt
           retention-days: 7
-        env:
-         cache-hit: ${{ needs.run-shell-script.outputs.cache-logs-hit }}
+       
 
   
 
