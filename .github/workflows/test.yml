@@ -282,8 +282,12 @@ jobs:
           retention-days: 7
       - name: Use Logs
         run: |
-          # Access logs from the downloaded artifacts folder
-          cat migration-automation/artifacts/logs.txt
+           # Access logs from the downloaded artifacts folder
+           if grep -i -q "ERROR\|error\|Error" migration-automation/artifacts/logs.txt; then
+             echo -e "\e[91m$(cat migration-automation/artifacts/logs.txt)\e[0m"
+           else
+            cat migration-automation/artifacts/logs.txt
+           fi
        
 
   
