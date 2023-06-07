@@ -256,6 +256,12 @@ jobs:
              sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee "${{ github.workspace }}/logs.txt"
         continue-on-error: true
       
+
+      - name: Persist Logs
+        run: |
+          mkdir -p migration-automation/artifacts
+          cp migration-automation/logs.txt migration-automation/artifacts/logs.txt
+
   build-artifacts:
      needs: run-shell-script
      if: always()
