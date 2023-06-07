@@ -262,9 +262,8 @@ jobs:
           mkdir -p migration-automation/artifacts
           cp migration-automation/logs.txt migration-automation/artifacts/
 
-      - name: 📂 Verify Logs File
-        run: |
-          ls migration-automation/artifacts/logs.txt
+      - name: List Artifacts Folder
+        run: ls migration-automation/artifacts
 
   build-artifacts:
      needs: run-shell-script
