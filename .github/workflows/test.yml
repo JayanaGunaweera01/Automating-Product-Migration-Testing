@@ -231,6 +231,15 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
+      - name: Cache Logs
+        id: cache-logs
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-logs
+        with:
+          path: ${{ github.workspace }}/migration-automation/logs.txt
+          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
