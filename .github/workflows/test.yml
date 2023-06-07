@@ -263,7 +263,7 @@ jobs:
         if: always()
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: migration-automation/artifacts/logs.txt
+          path: migration-automation/artifacts
           retention-days: 7
        
 
