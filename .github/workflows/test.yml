@@ -256,7 +256,7 @@ jobs:
       - name: Persist Logs
         run: |
            mkdir -p migration-automation/artifacts
-           cp migration-automation/logs.txt migration-automation/artifacts/
+           cp migration-automation/logs.txt migration-automation/artifacts/logs.txt
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
