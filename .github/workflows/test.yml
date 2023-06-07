@@ -249,8 +249,7 @@ jobs:
         run: |
            mkdir -p migration-automation/artifacts
            cp migration-automation/logs.txt migration-automation/artifacts/
-           cd migration-automation/artifacts
-           ls -a
+        if: ${{ always() }}
       
   build-artifacts:
      needs: run-shell-script
@@ -259,19 +258,17 @@ jobs:
      steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-      - name: Cd artifacts folder
-        run: |
-    
-           cd migration-automation/artifacts
-           ls -a
-     
       - name: 📦 Upload Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/download-artifact@v2
         if: always()
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: migration-automation/artifacts/logs.txt
+          path: migration-automation/artifacts
           retention-days: 7
+      - name: Use Logs
+        run: |
+          # Access logs from the downloaded artifacts folder
+          cat migration-automation/artifacts/logs.txt
        
 
   
