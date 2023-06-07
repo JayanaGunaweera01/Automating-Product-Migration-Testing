@@ -245,6 +245,10 @@ jobs:
              chmod +x migration-automation/mac-os/migration-script-mac.sh 
              sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
+      - name: Persist Logs
+        run: |
+           mkdir -p migration-automation/artifacts
+           cp migration-automation/logs.txt migration-automation/artifacts/logs.txt
       
   build-artifacts:
      needs: run-shell-script
@@ -253,10 +257,7 @@ jobs:
      steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-      - name: Persist Logs
-        run: |
-           mkdir -p migration-automation/artifacts
-           cp migration-automation/logs.txt migration-automation/artifacts/logs.txt
+     
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
