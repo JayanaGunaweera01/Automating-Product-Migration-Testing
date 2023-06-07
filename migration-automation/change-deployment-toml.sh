@@ -29,14 +29,14 @@ if [ "$os" = "ubuntu-latest" ]; then
         echo "${GREEN}==> Env file for Migrating Identity server in Ubuntu os sourced successfully${RESET}"
     fi
 elif [ "$os" = "macos-latest" ]; then
-    if [ "$startServer" = "migrated" ]; then
+    if [ "$startServer" = "current" ]; then
         deployment_file="$DEPLOYMENT_PATH_MAC/deployment.toml"
         deployment_path="$DEPLOYMENT_PATH_MAC"
         cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
         chmod +x env.sh
         source ./env.sh
         echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
-    elif [ "$startServer" = "current" ]; then
+    elif [ "$startServer" = "migrated" ]; then
         deployment_file="$DEPLOYMENT_PATH_NEW_MAC/deployment.toml"
         deployment_path="$DEPLOYMENT_PATH_NEW_MAC"
         cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
