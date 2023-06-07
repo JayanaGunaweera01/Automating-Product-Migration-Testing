@@ -246,12 +246,20 @@ jobs:
              sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
       
+  build-artifacts:
+     needs: run-shell-script
+     if: always()
+     runs-on: ${{ github.event.inputs.os }}
+     steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
+
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
-          path: migration-automation/logs.txt
+          path: migration-automation/artifacts
           retention-days: 7
        
 
