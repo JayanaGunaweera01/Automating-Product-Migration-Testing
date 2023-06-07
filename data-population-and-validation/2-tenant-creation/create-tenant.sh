@@ -1,15 +1,28 @@
 #!/bin/bash
 
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-chmod +x env.sh
-. ./env.sh
-
 # Define colours
 RED='\033[0;31m'
 GREEN='\033[0;32m\033[1m'
 PURPLE='\033[1;35m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
+
+os=$1
+
+# Set deployment file and path based on OS
+if [ "$os" = "ubuntu-latest" ]; then
+
+  chmod +x env.sh
+  . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
+  echo "${GREEN}==> Env file for Ubuntu sourced successfully"
+fi
+if [ "$os" = "macos-latest" ]; then
+
+  chmod +x env.sh
+  source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
+  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+
+fi
 
 # Define variables
 #TENANT_EP="https://localhost:9443/t/carbon.super/api/server/v1/tenants"
@@ -109,14 +122,14 @@ else
     # Print the details of the successful response
     echo -e "${PURPLE}Response Details:${NC}"
     echo "$access_token_response"
-    
+
     # Extract access token from response
     #access_token=$(echo "$access_token_response" | jq -r '.access_token')
     access_token=$(echo "$access_token_response" | grep -o '"access_token":"[^"]*' | cut -d':' -f2 | tr -d '"')
 
     if [ -n "$access_token" ]; then
       # Store access token in a file
-      echo "access_token=$access_token" >> tenant_credentials
+      echo "access_token=$access_token" >>tenant_credentials
 
       # Print tenant access token in file
       echo -e "${PURPLE}Tenant Access Token:${NC}"

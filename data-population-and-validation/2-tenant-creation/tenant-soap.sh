@@ -1,8 +1,21 @@
 #!/bin/bash
 
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+os=$1
+
+# Set deployment file and path based on OS
+if [ "$os" = "ubuntu-latest" ]; then
+
   chmod +x env.sh
-  . ./env.sh
+  . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
+  echo "${GREEN}==> Env file for Ubuntu sourced successfully"
+fi
+if [ "$os" = "macos-latest" ]; then
+
+  chmod +x env.sh
+  source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
+  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+
+fi
 
 # Set variables
 url="https://localhost:9443/services/TenantMgtAdminService.TenantMgtAdminServiceHttpsSoap11Endpoint/"

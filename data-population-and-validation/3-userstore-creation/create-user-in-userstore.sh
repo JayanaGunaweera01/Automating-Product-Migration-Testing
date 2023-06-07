@@ -1,15 +1,28 @@
 #!/bin/bash
 
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-chmod +x env.sh
-. ./env.sh
-
 # Define colors
 RED='\033[0;31m'
 GREEN='\033[1;38;5;206m'
 PURPLE='\033[1;35m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
+
+os=$1
+
+# Set deployment file and path based on OS
+if [ "$os" = "ubuntu-latest" ]; then
+
+  chmod +x env.sh
+  . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
+  echo "${GREEN}==> Env file for Ubuntu sourced successfully"
+fi
+if [ "$os" = "macos-latest" ]; then
+
+  chmod +x env.sh
+  source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
+  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+
+fi
 
 # Set the userstore name
 USERSTORE_NAME="$USERSTORE_NAME"

@@ -8,6 +8,23 @@ PURPLE='\033[1;35m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
 
+os=$1
+
+# Set deployment file and path based on OS
+if [ "$os" = "ubuntu-latest" ]; then
+
+  chmod +x env.sh
+  . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
+  echo "${GREEN}==> Env file for Ubuntu sourced successfully"
+fi
+if [ "$os" = "macos-latest" ]; then
+
+  chmod +x env.sh
+  source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
+  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+
+fi
+
 # Get the directory of the script
 script_dir="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/4-service-provider-creation"
 
