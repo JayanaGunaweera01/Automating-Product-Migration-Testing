@@ -280,7 +280,7 @@ jobs:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/artifacts
           retention-days: 7
-      - name: Use Logs
+      - name: 💥 Post Migration Testing 
         run: |
             # Access logs from the downloaded artifacts folder
             while IFS= read -r line; do
