@@ -250,10 +250,9 @@ jobs:
 
             if [ $? -eq 0 ]; then
                 echo "Download completed! URL: $DOWNLOAD_URL"
-                ls wso2is-migration-1.0.225.zip
                 
                 echo "Unzipping the file..."
-                unzip -q wso2is-migration-1.0.225.zip -d ./utils/migration-client
+                unzip -qq wso2is-migration-1.0.225.zip -d ./utils/migration-client
                 
                 echo "List of extracted files:"
                 ls ./utils/migration-client
