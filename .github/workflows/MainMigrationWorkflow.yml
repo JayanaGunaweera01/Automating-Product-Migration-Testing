@@ -247,7 +247,7 @@ jobs:
           DOWNLOAD_URL=$(curl -s -H "Authorization: Bearer ${MIGRATION_TOKEN}" ${API_URL} | jq -r ".assets[]? | select(.name == \"${FILE_NAME}\") | .browser_download_url")
 
           # Download the file
-          if [[ -n "$DOWNLOAD_URL" ]]; then
+          if [ -n "$DOWNLOAD_URL" ]; then
             echo "Downloading Migration Client..."
             wget -qq --waitretry=5 --tries=3 "${DOWNLOAD_URL}" -O "${FILE_NAME}"
             echo "Download completed!"
