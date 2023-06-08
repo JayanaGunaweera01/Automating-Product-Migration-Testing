@@ -243,29 +243,29 @@ jobs:
         env:
           MIGRATION_TOKEN: ${{ secrets.MIGRATION_TOKEN }}
         run: |
-          DOWNLOAD_URL=$(curl --silent --show-error --location --header "Authorization: token $MIGRATION_TOKEN" \
-           --request GET --write-out "%{redirect_url}" \
-            -o client.zip \
-            "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip")
+          curl --silent --show-error --location --header "Authorization: token $MIGRATION_TOKEN" \
+          --request GET --write-out "%{redirect_url}" \
+           -o client.zip \
+           "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
 
-           if [ $? -eq 0 ]; then
-               echo "Download completed! URL: $DOWNLOAD_URL"
-               
-               echo "Verifying the downloaded file..."
-               FILE_SIZE=$(ls -l client.zip | awk '{print $5}')
-               echo "Downloaded file size: $FILE_SIZE bytes"
-               
-               echo "Unzipping the file..."
-               unzip -qq client.zip -d ./utils/migration-client
-               
-               echo "List of extracted files:"
-               ls ./utils/migration-client
-               
-               rm client.zip
-           else
-               echo "Failed to download the file."
-               exit 1
-           fi
+
+              echo "Download completed! 
+              
+              echo "Verifying the downloaded file..."
+              FILE_SIZE=$(ls -l client.zip | awk '{print $5}')
+              echo "Downloaded file size: $FILE_SIZE bytes"
+              
+              echo "Unzipping the file..."
+              unzip -qq client.zip -d ./utils/migration-client
+              
+              echo "List of extracted files:"
+              ls ./utils/migration-client
+              
+              rm client.zip
+          else
+              echo "Failed to download the file."
+              exit 1
+          fi
       - name: 💵 Cache Logs
         id: cache-logs
         uses: actions/cache@v2
