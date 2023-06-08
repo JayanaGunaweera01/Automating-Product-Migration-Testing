@@ -1,4 +1,4 @@
-name: 🐧🍎🪟 Migration Tester
+name: test
 
 on:
   workflow_dispatch:
