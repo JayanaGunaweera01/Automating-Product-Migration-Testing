@@ -26,7 +26,7 @@ fi
 
 # Define variables
 #TENANT_EP="https://localhost:9443/t/carbon.super/api/server/v1/tenants"
-TENANT_EP="https://localhost:9443/t/wso2.com/api/server/v1/tenants"
+TENANT_EP="https://localhost:9443/api/server/v1/tenants"
 USERNAME="dummyuser"
 PASSWORD="dummypassword"
 EMAIL="dummyuser@wso2.com"

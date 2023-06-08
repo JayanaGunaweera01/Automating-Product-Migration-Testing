@@ -224,7 +224,7 @@ jobs:
       
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-  run-shell-script:
+  Execute-migration:
     needs: [ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
     if: always()
     runs-on: ${{ github.event.inputs.os }}
@@ -239,7 +239,7 @@ jobs:
            rm wso2is-migration-1.0.225.zip
         env:
           MIGRATION_TOKEN: ${{ secrets.MIGRATION_TOKEN }}
-      - name: Cache Logs
+      - name: 💵 Cache Logs
         id: cache-logs
         uses: actions/cache@v2
         env:
@@ -262,7 +262,7 @@ jobs:
              chmod +x migration-automation/mac-os/migration-script-mac.sh 
              sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
-      - name: Persist Logs
+      - name: 📋 Persist Logs
         run: |
            mkdir -p migration-automation/artifacts
            cp migration-automation/logs.txt migration-automation/artifacts/
@@ -274,8 +274,8 @@ jobs:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/artifacts
       
-  build-artifacts:
-     needs: run-shell-script
+  validate-migration:
+     needs: execute-migration
      if: always()
      runs-on: ${{ github.event.inputs.os }}
      steps:
@@ -288,7 +288,7 @@ jobs:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/artifacts
           retention-days: 7
-      - name: Use Logs
+      - name: 💥 Post Migration Testing 
         run: |
             # Access logs from the downloaded artifacts folder
             while IFS= read -r line; do
