@@ -106,9 +106,9 @@ base64_encoded_token=$(echo -n "dummyuser@wso2.com:dummypassword")
   # Generate access token
   access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --header "Authorization: Basic ZHVtbXl1c2VyQHdzbzIuY29tOmR1bW15cGFzc3dvcmQ=" \
+    --header "Authorization: Basic ZHVtbXl1c2VyOmR1bW15cGFzc3dvcmQ=" \
     --data-urlencode 'grant_type=password' \
-    --data-urlencode 'username=dummyuser@wso2.com' \
+    --data-urlencode 'username=dummyuser' \
     --data-urlencode 'password=dummypassword' \
     --data-urlencode 'scope=samplescope')
 
