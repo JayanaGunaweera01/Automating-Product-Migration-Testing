@@ -244,24 +244,24 @@ jobs:
           MIGRATION_PAT: ${{ secrets.MIGRATION_PAT }}
         run: |
 
-          wget -qq --waitretry=5 --retry-connrefused -O client.zip \
-            --header "Authorization: Bearer $MIGRATION_PAT" \
-            "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
+          curl -s -L -H "Authorization: token $MIGRATION_PAT" \
+           -o wso2is-migration-1.0.225.zip \
+          "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
 
-          if [ $? -eq 0 ]; then
-              echo "Download completed!"
-              
-              echo "Unzipping the file..."
-              unzip -qq client.zip -d ./utils/migration-client
-              
-              echo "List of extracted files:"
-              ls ./utils/migration-client
-              
-              rm client.zip
-          else
-              echo "Failed to download the file."
-              exit 1
-          fi
+           if [ $? -eq 0 ]; then
+               echo "Download completed!"
+               
+               echo "Unzipping the file..."
+               unzip -qq wso2is-migration-1.0.225.zip -d ./utils/migration-client
+               
+               echo "List of extracted files:"
+               ls ./utils/migration-client
+               
+               rm wso2is-migration-1.0.225.zip
+           else
+               echo "Failed to download the file."
+               exit 1
+           fi
 
       - name: 💵 Cache Logs
         id: cache-logs
