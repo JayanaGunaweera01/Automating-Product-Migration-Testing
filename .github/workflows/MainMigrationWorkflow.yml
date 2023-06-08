@@ -226,7 +226,7 @@ jobs:
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
   execute-migration:
     needs: [ubuntu-postgres-setup, ubuntu-mssql-setup, macos-mssql-setup, macos-postgres-setup, ubuntu-mysql-setup, macos-mysql-setup]
-    if: always()
+    if: always() && !cancelled()
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 💾 Checkout code
@@ -279,7 +279,7 @@ jobs:
       
   validate-migration:
      needs: execute-migration
-     if: always()
+     if:  ${{ !cancelled() && (success() || failure() || needs.execute-migration.result == 'skipped') }}
      runs-on: ${{ github.event.inputs.os }}
      steps:
       - name: 💾 Checkout code
