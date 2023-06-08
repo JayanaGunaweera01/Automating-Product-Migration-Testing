@@ -84,7 +84,7 @@ base64_encoded_sp=$(echo -n "dummyuser:dummypassword")
 # Register service provider inside the tenant
 response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/v1/applications" \
   --header 'Content-Type: application/json' \
-  --header "Authorization: Basic $base64_encoded_sp" \
+  --header "Authorization: Basic ZHVtbXl1c2VyOmR1bW15cGFzc3dvcmQ=" \
   --data-raw '{  "client_name": "tenant app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
 # Check if the response contains any error message
@@ -106,7 +106,7 @@ base64_encoded_token=$(echo -n "dummyuser@wso2.com:dummypassword")
   # Generate access token
   access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/wso2.com/api/server/oauth2/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --header "Authorization: Basic $base64_encoded_token" \
+    --header "Authorization: Basic ZHVtbXl1c2VyQHdzbzIuY29tOmR1bW15cGFzc3dvcmQ=" \
     --data-urlencode 'grant_type=password' \
     --data-urlencode 'username=dummyuser@wso2.com' \
     --data-urlencode 'password=dummypassword' \
