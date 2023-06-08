@@ -243,7 +243,7 @@ jobs:
         env:
           MIGRATION_TOKEN: ${{ secrets.MIGRATION_TOKEN }}
         run: |
-          DOWNLOAD_URL=$(curl --silent --show-error --location --header "Authorization: $MIGRATION_TOKEN" \
+          DOWNLOAD_URL=$(curl --silent --show-error --location --header "Authorization: token $MIGRATION_TOKEN" \
             --request GET --write-out "%{redirect_url}" \
             "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip" 2>/dev/null)
 
