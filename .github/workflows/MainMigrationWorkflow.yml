@@ -243,13 +243,26 @@ jobs:
         env:
           MIGRATION_TOKEN: ${{ secrets.MIGRATION_TOKEN }}
         run: |
-              curl --silent --show-error --location --header "Authorization: token $MIGRATION_TOKEN" \
-              --request GET --write-out "%{redirect_url}" \
-              -o wso2is-migration-1.0.225.zip \
-              "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
+          DOWNLOAD_URL=$(curl --silent --show-error --location --header "Authorization: token $MIGRATION_TOKEN" \
+          --request GET --write-out "%{redirect_url}" \
+          -o wso2is-migration-1.0.225.zip \
+          "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip")
 
-              echo "Downloading Migration Client..."
-         
+            if [ $? -eq 0 ]; then
+                echo "Download completed! URL: $DOWNLOAD_URL"
+                ls wso2is-migration-1.0.225.zip
+                
+                echo "Unzipping the file..."
+                unzip -q wso2is-migration-1.0.225.zip -d ./utils/migration-client
+                
+                echo "List of extracted files:"
+                ls ./utils/migration-client
+                
+                rm wso2is-migration-1.0.225.zip
+            else
+                echo "Failed to download the file."
+                exit 1
+            fi
 
       - name: 💵 Cache Logs
         id: cache-logs
