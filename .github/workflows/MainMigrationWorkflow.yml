@@ -236,37 +236,21 @@ jobs:
           MIGRATION_TOKEN: ${{ secrets.MIGRATION_TOKEN }}
         run: |
 
-          # Define the necessary variables
-          REPO_OWNER="wso2-extensions"
-          REPO_NAME="identity-migration-resources"
-          RELEASE_TAG="v1.0.225"
-          FILE_NAME="wso2is-migration-1.0.225.zip"
-
-          # Get the latest release information
-          API_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/tags/${RELEASE_TAG}"
-          DOWNLOAD_URL=$(curl -s -H "Authorization: Bearer ${MIGRATION_TOKEN}" ${API_URL} | jq -r ".assets[]? | select(.name == \"${FILE_NAME}\") | .browser_download_url")
-
-          # Download the file
-          if [[ -n "$DOWNLOAD_URL" ]]; then
-            echo "Downloading Migration Client..."
-            wget -qq --waitretry=5 --tries=3 "${DOWNLOAD_URL}" -O "${FILE_NAME}"
-            echo "Download completed!"
-            unzip -q "${FILE_NAME}" -d ./utils/migration-client
-            rm "${FILE_NAME}"
-          else
-            echo "Failed to retrieve the download URL for the Migration Client."
-            exit 1
-          fi
+          curl --silent --show-error \
+          --header "Accept: application/octet-stream" \
+          --header "Authorization: token $ACCESS_TOKEN" \
+          --request GET --write-out "%{redirect_url}" \
+           "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
 
       - name: 💵 Cache Logs
         id: cache-logs
         uses: actions/cache@v2
         env:
-          cache-name: cache-logs
+            cache-name: cache-logs
         with:
-          path: ${{ github.workspace }}/migration-automation/logs.txt
-          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+              path: ${{ github.workspace }}/migration-automation/logs.txt
+              key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+              restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
