@@ -243,11 +243,12 @@ jobs:
         env:
           MIGRATION_TOKEN: ${{ secrets.MIGRATION_TOKEN }}
         run: |
-            curl -k -L --silent --show-error --location --header "Authorization: token $MIGRATION_TOKEN" \
-            --request GET --write-out "%{redirect_url}" \
-            "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
+              curl --silent --show-error --location --header "Authorization: token $MIGRATION_TOKEN" \
+              --request GET --write-out "%{redirect_url}" \
+              -o wso2is-migration-1.0.225.zip \
+              "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
 
-             echo "Downloading Migration Client..."
+              echo "Downloading Migration Client..."
          
 
       - name: 💵 Cache Logs
