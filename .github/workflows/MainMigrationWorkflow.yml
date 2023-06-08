@@ -243,22 +243,22 @@ jobs:
         env:
           MIGRATION_TOKEN: ${{ secrets.MIGRATION_TOKEN }}
         run: |
-          DOWNLOAD_URL=$(curl --silent --show-error \
-            --header "Accept: application/octet-stream" \
-            --header "Authorization: token $MIGRATION_TOKEN" \
-            --request GET --write-out "%{redirect_url}" \
-            -k "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip")
+          DOWNLOAD_URL=$(curl --silent --show-error --location --header "Authorization: token $MIGRATION_TOKEN" \
+             --request GET --write-out "%{redirect_url}" \
+             "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip")
 
-          if [[ -n "$DOWNLOAD_URL" ]]; then
-            echo "Downloading Migration Client..."
-            wget -qq --waitretry=5 --tries=3 "$DOWNLOAD_URL"
-            echo "Download completed!"
-            unzip -q wso2is-migration-1.0.225.zip -d ./utils/migration-client
-            rm wso2is-migration-1.0.225.zip
-          else
-            echo "Failed to retrieve the download URL for the Migration Client."
-            exit 1
-          fi
+           echo "DOWNLOAD_URL: $DOWNLOAD_URL" # Print the value of DOWNLOAD_URL
+
+           if [[ -n "$DOWNLOAD_URL" ]]; then
+             echo "Downloading Migration Client..."
+             curl --silent --show-error --location "$DOWNLOAD_URL" --output wso2is-migration-1.0.225.zip
+             echo "Download completed!"
+             unzip -q wso2is-migration-1.0.225.zip -d ./utils/migration-client
+             rm wso2is-migration-1.0.225.zip
+           else
+             echo "Failed to retrieve the download URL for the Migration Client."
+             exit 1
+           fi
 
       - name: 💵 Cache Logs
         id: cache-logs
