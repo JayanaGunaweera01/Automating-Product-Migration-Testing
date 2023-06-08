@@ -246,7 +246,7 @@ jobs:
 
           curl --silent --show-error \
           --header "Accept: application/octet-stream" \
-          --header "Authorization: MIGRATION_PAT" \
+          --header "Authorization: ${{ secrets.MIGRATION_PAT }}" \
           --request GET --write-out "%{redirect_url}" \
            "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
 
