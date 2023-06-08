@@ -235,7 +235,7 @@ jobs:
         run: |
            cd ./utils/migration-client
            wget -qq --waitretry=5 --retry-connrefused "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
-           unzip -q wso2is-migration-1.0.225.zip -d ./utils
+           unzip -q wso2is-migration-1.0.225.zip -d ./utils/migration-client
            rm wso2is-migration-1.0.225.zip
         env:
           MIGRATION_TOKEN: ${{ secrets.MIGRATION_TOKEN }}
