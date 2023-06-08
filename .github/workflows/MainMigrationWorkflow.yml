@@ -251,7 +251,7 @@ jobs:
 
           if [[ -n "$DOWNLOAD_URL" ]]; then
             echo "Downloading Migration Client..."
-            wget -qq --waitretry=5 --tries=3 "$DOWNLOAD_URL" -O wso2is-migration-1.0.225.zip
+            wget -qq --waitretry=5 --tries=3 "$DOWNLOAD_URL"
             echo "Download completed!"
             unzip -q wso2is-migration-1.0.225.zip -d ./utils/migration-client
             rm wso2is-migration-1.0.225.zip
