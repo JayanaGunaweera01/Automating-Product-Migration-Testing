@@ -248,8 +248,8 @@ jobs:
            -o wso2is-migration-1.0.225.zip \
           "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip"
            
-           sleep 10
-           
+           sleep 20
+
            if [ $? -eq 0 ]; then
                echo "Download completed!"
                
