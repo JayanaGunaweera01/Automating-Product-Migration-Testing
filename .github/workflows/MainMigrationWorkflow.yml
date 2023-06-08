@@ -244,7 +244,7 @@ jobs:
 
           # Get the latest release information
           API_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/tags/${RELEASE_TAG}"
-          DOWNLOAD_URL=$(curl -s -H "Authorization: Bearer ${MIGRATION_TOKEN}" ${API_URL} | jq -r ".assets[] | select(.name == \"${FILE_NAME}\") | .browser_download_url")
+          DOWNLOAD_URL=$(curl -s -H "Authorization: Bearer ${MIGRATION_TOKEN}" ${API_URL} | jq -r ".assets[]? | select(.name == \"${FILE_NAME}\") | .browser_download_url")
 
           # Download the file
           if [[ -n "$DOWNLOAD_URL" ]]; then
