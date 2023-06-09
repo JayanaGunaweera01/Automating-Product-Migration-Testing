@@ -250,7 +250,7 @@ jobs:
           readonly asset_file_name_with_ext="wso2is-migration-$tag.zip"
 
           github_tag_url=$(curl --silent --show-error \
-                --header "Authorization: token $MIGRATION_PAT" \
+                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
                 --header "Accept: application/json, application/vnd.github.v3+json" \
                 --request GET "https://api.github.com/repos/$github_repo_owner/$github_repo_name/releases?per_page=100&draft=false" |
                 jq -r '.url') &&
@@ -258,7 +258,7 @@ jobs:
               echo "Discovered the github_tag_url: ${github_tag_url}" &&
 
           github_tag_id=$(curl --silent --show-error \
-                --header "Authorization: token $MIGRATION_PAT" \
+                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
                 --header "Accept: application/json, application/vnd.github.v3+json" \
                 --request GET "${github_tag_url}" | 
               jq --raw-output "first(.[] | select(.tag_name==\"v$tag\")).id") &&
@@ -268,7 +268,7 @@ jobs:
 
               # Get the download URL of our desired asset
               download_url=$(curl --silent --show-error \
-                --header "Authorization: token $MIGRATION_PAT" \
+                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
                 --header "Accept: application/json, application/vnd.github.v3+json" \
                 --location --request "GET" \
                 "https://api.github.com/repos/$github_repo_owner/$github_repo_name/releases/$github_tag_id" |
@@ -280,7 +280,7 @@ jobs:
               
               redirect_url=$(curl --silent --show-error \
                 --header "Accept: application/octet-stream" \
-                --header "Authorization: token $MIGRATION_PAT" \
+                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
                 --request GET --write-out "%{redirect_url}" \
                 "$download_url") &&
               readonly redirect_url &&
