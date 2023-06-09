@@ -195,6 +195,7 @@ echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
 # Divert to utils folder
 cd "$UTILS"
 echo "${GREEN}==> Diverted to utils folder${RESET}"
+ls -a
 
 # Download migration client
 # wget -qq "$LINK_TO_MIGRATION_CLIENT" &
