@@ -251,12 +251,13 @@ jobs:
            readonly redirect_url &&
            echo "Download is starting now..." &&
 
-           # Finally download the actual binary.
+           # Finally, download the actual binary.
            cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" &&
            curl -LJO --show-error \
-             --output "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/wso2is-migration-1.0.225.zip" \
+             --output "wso2is-migration-1.0.225.zip" \
              --request GET \
-             "$redirect_url" &&
+             "$redirect_url" ||
+           (echo "Error downloading binary." && exit 1) &&
            echo "Binary download is completed."
 
       - name: 💵 Cache Logs
