@@ -243,7 +243,7 @@ jobs:
         #env:
         #MIGRATION_PAT: ${{ secrets.MIGRATION_PAT }}
         run: |
-          redirect_url=$(curl --silent --show-error \
+          redirect_url=$(curl --silent \
              --header "Accept: application/octet-stream" \
              --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
              --request GET --write-out "%{redirect_url}" \
@@ -253,7 +253,7 @@ jobs:
 
            # Finally, download the actual binary.
            cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" &&
-           curl -LJO --show-error \
+           curl -LJO \
              --output "wso2is-migration-1.0.225.zip" \
              --request GET \
              "$redirect_url" ||
