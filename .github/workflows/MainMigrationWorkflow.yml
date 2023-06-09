@@ -288,10 +288,11 @@ jobs:
 
             # Finally download the actual binary.
             curl -LJO --show-error \
-              --output "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" \
+              --output "./utils/migration-client" \
               --request GET \
               "$redirect_url" &&
             echo "Binary $asset_file_name_with_ext download is completed."
+            
 
       - name: 💵 Cache Logs
         id: cache-logs
