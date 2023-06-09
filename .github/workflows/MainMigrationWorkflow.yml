@@ -240,8 +240,8 @@ jobs:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
       - name: 🤖 Download Migration Client
-        env:
-          MIGRATION_PAT: ${{ secrets.MIGRATION_PAT }}
+        #env:
+          #MIGRATION_PAT: ${{ secrets.MIGRATION_PAT }}
         run: |
 
           redirect_url=$(curl --silent --show-error \
