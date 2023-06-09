@@ -257,8 +257,8 @@ jobs:
           curl -LJO --show-error -v \
             --output "client.zip" \
             "$redirect_url" ||
-          (echo "Error downloading binary." && exit 1) &&
           echo "Binary download is completed."
+          ls -a
 
       - name: 💵 Cache Logs
         id: cache-logs
