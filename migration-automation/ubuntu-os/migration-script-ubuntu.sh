@@ -99,13 +99,13 @@ echo "${GREEN}==> Update tool successfully copied to "$currentVersion"${RESET}"
 cd "$BIN_ISOLD"
 
 #  Update Client Tool
-./wso2update_linux 
-echo "${GREEN}==> Updated the Client Tool successfully${RESET}"&
+./wso2update_linux
+echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Update Product Pack
-./wso2update_linux 
-echo "${GREEN}==> Updated the Product Pack successfully${RESET}"&
+./wso2update_linux
+echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
 
 cd "$AUTOMATION_HOME"
@@ -158,7 +158,7 @@ cd "$DATA_POPULATION"
 echo "${GREEN}==> Entered the data population directory successfully.${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
-chmod +x automated-data-population-and-validation-script-ubuntu.sh 
+chmod +x automated-data-population-and-validation-script-ubuntu.sh
 sh automated-data-population-and-validation-script-ubuntu.sh "$os"
 wait $!
 echo "${GREEN}==> Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully${RESET}"
@@ -209,7 +209,12 @@ if [ -n "$migration_archive" ]; then
     wait $!
     ls -a
     echo "${GREEN}==> Unzipped migration client archive${RESET}"
+    # Remove migration client archive
+    rm "$migration_archive"
+    echo "${GREEN}==> Removed downloaded migration client zip from the system${RESET}"
+
 else
+    ls -a
     echo "${RED}==> Migration client archive not found!${RESET}"
 fi
 
@@ -324,7 +329,7 @@ print_star_line
 
 # Start the migration server
 chmod +x start-server.sh
-sh start-server.sh "$os" "migration" "$currentVersion" "$migratingVersion" 
+sh start-server.sh "$os" "migration" "$currentVersion" "$migratingVersion"
 echo "${GREEN}==> Yay! Migration process completed!🎉 Check artifacts after completing workflow run to check whether there are any errors${RESET}"
 
 cd "$AUTOMATION_HOME"
@@ -384,4 +389,3 @@ sh stop-server.sh "$os" "migrated"
 echo
 
 echo "${CYAN}END OF AUTOMATING PRODUCT MIGRATION TESTING${CYAN}"
-

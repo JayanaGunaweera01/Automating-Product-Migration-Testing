@@ -103,13 +103,13 @@ echo "${GREEN}==> Update tool successfully copied to "$currentVersion"${RESET}"
 cd "$BIN_ISOLD_MAC"
 
 #  Update Client Tool
-./wso2update_darwin 
-echo "${GREEN}==> Updated the Client Tool successfully${RESET}" 
+./wso2update_darwin
+echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 wait $!
 
 # Update Product Pack
 ./wso2update_darwin
-echo "${GREEN}==> Updated the Product Pack successfully${RESET}" 
+echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
 wait $!
 
 cd $AUTOMATION_HOME_MAC
@@ -164,7 +164,7 @@ cd "$DATA_POPULATION_MAC"
 echo "${GREEN}==> Entered to the data population directory successfully.${RESET}"
 
 # Run data-population-script.sh which is capable of populating data to create users,tenants,userstores,generate tokens etc.
-chmod +x automated-data-population-and-validation-script-mac.sh 
+chmod +x automated-data-population-and-validation-script-mac.sh
 sh automated-data-population-and-validation-script-mac.sh "$os" &
 wait $!
 echo "${GREEN}==> Created users, user stores, service providers, tenants, generated oAuth tokens and executed the script successfully${RESET}"
@@ -217,6 +217,9 @@ if [ -n "$migration_archive" ]; then
     unzip -qq "$migration_archive" &
     wait $!
     echo "${GREEN}==> Unzipped migration client archive${RESET}"
+    # Remove migration client archive
+    rm "$migration_archive"
+    echo "${GREEN}==> Removed downloaded migration client zip from the system${RESET}"
 else
     echo "${RED}==> Migration client archive not found!${RESET}"
 fi
