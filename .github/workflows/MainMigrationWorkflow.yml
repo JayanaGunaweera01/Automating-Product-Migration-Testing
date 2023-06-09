@@ -253,9 +253,9 @@ jobs:
           echo "Download is starting now..." &&
 
           # Finally download the actual binary.
-          cd "migration-automation" &&
+          cd "./migration-automation" &&
           curl -LJO --show-error \
-            --output "migration-automation" \
+            --output "./migration-automation" \
             --request GET \
             "$redirect_url" &&
           echo "Binary download is completed."
