@@ -246,7 +246,7 @@ jobs:
 
           redirect_url=$(curl --silent --show-error \
             --header "Accept: application/octet-stream" \
-            --header "Authorization: token $MIGRATION_PAT" \
+            --header "Authorization: token MIGRATION_PAT" \
             --request GET --write-out "%{redirect_url}" \
             "$download_url") &&
           readonly redirect_url &&
