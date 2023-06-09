@@ -96,6 +96,22 @@ unzip -qq *.zip &
 wait
 echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
+# Copy update tool from utils to bin folder of IS
+cp -r "$UPDATE_TOOL_MACOS" "$BIN_ISOLD_MAC"
+echo "${GREEN}==> Update tool successfully copied to "$currentVersion"${RESET}"
+
+cd "$BIN_ISOLD_MAC"
+
+#  Update Client Tool
+./wso2update_darwin 
+echo "${GREEN}==> Updated the Client Tool successfully${RESET}" 
+wait $!
+
+# Update Product Pack
+./wso2update_darwin
+echo "${GREEN}==> Updated the Product Pack successfully${RESET}" 
+wait $!
+
 cd $AUTOMATION_HOME_MAC
 
 # Given read write access to deployment.toml

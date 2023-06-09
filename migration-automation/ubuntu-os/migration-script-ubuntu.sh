@@ -98,6 +98,16 @@ echo "${GREEN}==> Update tool successfully copied to "$currentVersion"${RESET}"
 
 cd "$BIN_ISOLD"
 
+#  Update Client Tool
+./wso2update_linux 
+echo "${GREEN}==> Updated the Client Tool successfully${RESET}"&
+wait $!
+
+# Update Product Pack
+./wso2update_linux 
+echo "${GREEN}==> Updated the Product Pack successfully${RESET}"&
+wait $!
+
 cd "$AUTOMATION_HOME"
 
 # Given read write access to deployment.toml
