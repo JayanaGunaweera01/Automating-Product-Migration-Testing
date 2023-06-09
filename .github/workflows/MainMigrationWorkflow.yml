@@ -292,7 +292,8 @@ jobs:
               --request GET \
               "$redirect_url" &&
             echo "Binary $asset_file_name_with_ext download is completed."
-            
+            pwd
+            ls -a
 
       - name: 💵 Cache Logs
         id: cache-logs
