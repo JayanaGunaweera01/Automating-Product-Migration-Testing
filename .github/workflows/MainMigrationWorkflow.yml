@@ -255,7 +255,7 @@ jobs:
           # Finally, download the actual binary.
           cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" &&
           curl -LJO --show-error -v \
-            --output "wso2is-migration-1.0.225.zip" \
+            --output "client.zip" \
             "$redirect_url" ||
           (echo "Error downloading binary." && exit 1) &&
           echo "Binary download is completed."
