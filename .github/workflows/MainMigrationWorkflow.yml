@@ -244,21 +244,54 @@ jobs:
         #MIGRATION_PAT: ${{ secrets.MIGRATION_PAT }}
         run: |
 
-          redirect_url=$(curl --silent --show-error \
-            --header "Accept: application/octet-stream" \
-            --header "Authorization: token ${MIGRATION_PAT}" \
-            --write-out "%{redirect_url}" \
-            "https://github.com/wso2-extensions/identity-migration-resources/releases/download/v1.0.225/wso2is-migration-1.0.225.zip") &&
-          readonly redirect_url &&
-          echo "Download is starting now..." &&
+          readonly github_repo_owner="wso2-extensions"
+          readonly github_repo_name="identity-migration-resources"
+          readonly tag="1.0.225"
+          readonly asset_file_name_with_ext="wso2is-migration-$tag.zip"
 
-          # Finally, download the actual binary.
-          cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" &&
-          curl -LJO --show-error -v \
-            --output "client.zip" \
-            "$redirect_url" ||
-          echo "Binary download is completed."
-          ls -a
+          github_tag_url=$(curl --silent --show-error \
+                --header "Authorization: token $MIGRATION_PAT" \
+                --header "Accept: application/json, application/vnd.github.v3+json" \
+                --request GET "https://api.github.com/repos/$github_repo_owner/$github_repo_name/releases?per_page=100&draft=false" |
+                jq -r '.url') &&
+              readonly github_tag_url &&
+              echo "Discovered the github_tag_url: ${github_tag_url}" &&
+
+          github_tag_id=$(curl --silent --show-error \
+                --header "Authorization: token $MIGRATION_PAT" \
+                --header "Accept: application/json, application/vnd.github.v3+json" \
+                --request GET "${github_tag_url}" | 
+              jq --raw-output "first(.[] | select(.tag_name==\"v$tag\")).id") &&
+              readonly github_tag_id &&
+              echo "Discovered the tag_id: ${github_tag_id}" &&
+              echo "Creating the download link..." &&
+
+              # Get the download URL of our desired asset
+              download_url=$(curl --silent --show-error \
+                --header "Authorization: token $MIGRATION_PAT" \
+                --header "Accept: application/json, application/vnd.github.v3+json" \
+                --location --request "GET" \
+                "https://api.github.com/repos/$github_repo_owner/$github_repo_name/releases/$github_tag_id" |
+                jq --raw-output ".assets[] | select(.name==\"${asset_file_name_with_ext}\").url") &&
+              readonly download_url &&
+              echo "Found resource download url: $download_url" &&
+              echo "Discovering the S3 bucket url for resource..." &&
+
+              
+              redirect_url=$(curl --silent --show-error \
+                --header "Accept: application/octet-stream" \
+                --header "Authorization: token $MIGRATION_PAT" \
+                --request GET --write-out "%{redirect_url}" \
+                "$download_url") &&
+              readonly redirect_url &&
+              echo "Download is starting now..." &&
+
+            # Finally download the actual binary.
+            curl -LJO --show-error \
+              --output "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation" \
+              --request GET \
+              "$redirect_url" &&
+            echo "Binary $asset_file_name_with_ext download is completed."
 
       - name: 💵 Cache Logs
         id: cache-logs

@@ -179,6 +179,10 @@ export MIGRATION_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Tes
 # Absolute path to ubuntu folder
 export UBUNTU_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/ubuntu-os"
 
+# Absolute path to ubuntu update tool
+export UPDATE_TOOL_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools/wso2update_darwin"
+
+
 ###############################################################################################################################
 #                                                      ENV CONFIGS RELATED TO MACOS                                           #
 ###############################################################################################################################
@@ -370,6 +374,10 @@ export MIGRATION_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testi
 
 # Absolute path to macos folder
 export MAC_HOME="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/mac-os"
+
+# Absolute path to macos update tool
+export UPDATE_TOOL_MACOS="/User/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools/wso2update_darwin"
+
 
 ###############################################################################################################################
 #                   ENV CONFIGS RELATED TO data-population-and-validation FOLDER - COMMON TO LINUX & MACOS                                #

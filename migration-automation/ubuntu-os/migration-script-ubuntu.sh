@@ -92,6 +92,12 @@ unzip -qq *.zip &
 wait
 echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
+# Copy update tool from utils to bin folder of IS
+cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISOLD"
+echo "${GREEN}==> Update tool successfully copied to "$currentVersion"${RESET}"
+
+cd "$BIN_ISOLD"
+
 cd "$AUTOMATION_HOME"
 
 # Given read write access to deployment.toml
