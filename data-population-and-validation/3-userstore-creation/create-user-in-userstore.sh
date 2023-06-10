@@ -28,7 +28,7 @@ fi
 USERSTORE_NAME="$USERSTORE_NAME"
 
 # Create the user in the userstore
-response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/server/v1/userstores/$USERSTORE_NAME/users" \
+response=$(curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores/$USERSTORE_NAME/users" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{

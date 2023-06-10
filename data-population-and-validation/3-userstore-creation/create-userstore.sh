@@ -26,7 +26,7 @@ if [ "$os" = "macos-latest" ]; then
 fi
 
 # Create the userstore in Identity Server
-response=$(curl -k --location --request POST "$USERSTORE_EP" \
+response=$(curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores" \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --data-raw '{
