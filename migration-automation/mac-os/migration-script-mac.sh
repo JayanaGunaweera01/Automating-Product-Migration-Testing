@@ -96,9 +96,16 @@ unzip -qq *.zip &
 wait
 echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
-# Copy update tool from utils to bin folder of IS
-cp -r "$UPDATE_TOOL_MACOS" "$BIN_ISOLD_MAC"
-echo "${GREEN}==> Update tool successfully copied to "$currentVersion"${RESET}"
+# Copy update tool from utils to bin folder
+cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
+
+cp -r $UPDATE_TOOL_MACOS $BIN_ISOLD_MAC
+copy_exit_code=$?
+if [ $copy_exit_code -eq 0 ]; then
+  echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
+else
+  echo "${RED}==> Failed to copy the update tool.${RESET}"
+fi
 
 cd "$BIN_ISOLD_MAC"
 
