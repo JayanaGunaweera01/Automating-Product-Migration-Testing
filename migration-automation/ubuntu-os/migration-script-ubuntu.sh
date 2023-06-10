@@ -106,17 +106,27 @@ fi
 cd "$BIN_ISOLD"
 ls -a
 
+sudo apt-get install expect -y
+
 #  Update Client Tool
 ./wso2update_linux
 
-# Use autoexpect to generate an expect script
-autoexpect ./wso2update_linux
-
-# Run the generated expect script
-./wso2update_linux.expect <<EOF
-jayana@wso2.com
-jay123
+# Create an expect script file
+cat > wso2update_script.expect <<EOF
+#!/usr/bin/expect -f
+spawn ./wso2update_linux
+expect "Please enter your credentials to continue."
+send "jayana@wso2.com\r"
+expect "Email:"
+send "jay123\r"
+expect eof
 EOF
+
+# Set executable permissions for the expect script
+chmod +x wso2update_script.expect
+
+# Run the expect script
+./wso2update_script.expect
 
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
