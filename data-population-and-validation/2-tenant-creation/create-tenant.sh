@@ -142,7 +142,7 @@ base64_encoded_token=$(echo -n "dummyuser@wso2.com:dummypassword")
       echo -e "${PURPLE}Generated an access token from the service provider registered in the tenant successfully!${NC}"
     else
       # Print error message
-      echo -e "${RED}No access token generated from the tenant.${NC}"
+      echo -e "${RED}No access token generated from the service provider registered in tenant.${NC}"
     fi
   fi
 fi
