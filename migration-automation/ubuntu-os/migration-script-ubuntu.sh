@@ -103,12 +103,12 @@ cd "$BIN_ISOLD"
 ls -a
 
 #  Update Client Tool
-sh wso2update_linux.sh
+./wso2update_linux
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Update Product Pack
-sh wso2update_linux.sh
+./wso2update_linux
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
 
