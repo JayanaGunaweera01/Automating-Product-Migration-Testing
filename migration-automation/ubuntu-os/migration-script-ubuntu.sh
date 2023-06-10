@@ -108,19 +108,17 @@ ls -a
 
 #  Update Client Tool
 ./wso2update_linux
+
+# Use autoexpect to generate an expect script
+autoexpect ./wso2update_linux
+
+# Run the generated expect script
+jayana@wso2.com
+jay123
+EOF
+
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
-
-# Enter email and password using expect
-expect -c "
-    spawn ./wso2update_linux
-    expect \"Please enter your credentials to continue.\"
-    send \"jayana@wso2.com\r\"
-    expect \"Email:\"
-    send \"jay123\r\"
-    expect eof
-"
-
 
 # Update Product Pack
 ./wso2update_linux
