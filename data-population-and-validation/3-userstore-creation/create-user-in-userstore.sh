@@ -22,27 +22,26 @@ if [ "$os" = "macos-latest" ]; then
     echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 fi
 
-# Create the user in the userstore
-response=$(curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores/$USERSTORE_NAME/users" \
+curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores/NewUserStore1/users" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-    --header 'X-Requested-With: XMLHttpRequest' \
     --data-raw '{
         "schemas": [],
-        "userName": "'"$USERSTORE_USER_NAME"'",
-        "password": "'"$USERSTORE_USER_PASSWORD"'",
+        "userName": "Jayana",
+        "password": "Userstorepassword@123",
         "wso2Extension": {
             "employeeNumber": "000111",
             "costCenter": "111111",
             "organization": "WSO2Org",
-            "division": "'"$USERSTORE_GROUP_NAME"'",
+            "division": “Engineering",
             "department": "Integration",
             "manager": {
                 "managerId": "111000",
-                "displayName": "'"$USERSTORE_USER_NAME"'"
+                "displayName": “Jayana"
             }
         }
-    }')
+    }'
+
 
 # Print the response
 echo -e "Response:\n$response"
