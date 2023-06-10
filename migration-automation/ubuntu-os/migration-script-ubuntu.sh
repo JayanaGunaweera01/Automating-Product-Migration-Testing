@@ -95,7 +95,7 @@ echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 # Copy update tool from utils to bin folder of 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
 ls -a
-cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISOLD" 
+cp -r $UPDATE_TOOL_UBUNTU $BIN_ISOLD
 wait $!
 echo "${GREEN}==> Update tool successfully copied to "$currentVersion"${RESET}"
 
