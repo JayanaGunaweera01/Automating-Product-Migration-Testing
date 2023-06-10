@@ -212,6 +212,14 @@ echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
 cd "$UTILS_MAC_PATH"
 echo "${GREEN}==> Diverted to utils folder${RESET}"
 
+# Copy migration client from home to migration client folder
+cp -r "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/wso2is-migration-1.0.225.zip" "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/" &
+cp_pid=$!
+
+wait $cp_pid
+echo "${GREEN}==> Copied migration client from home to migration client folder${RESET}"
+
+
 # Download migration client
 #wget -qq "$LINK_TO_MIGRATION_CLIENT" &
 # wait $!
