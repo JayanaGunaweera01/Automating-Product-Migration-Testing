@@ -195,6 +195,14 @@ echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
 # Divert to utils folder
 cd "$UTILS"
 echo "${GREEN}==> Diverted to utils folder${RESET}"
+
+# Copy migration client from home to migration client folder
+cp -r "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/wso2is-migration-1.0.225.zip" "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/" &
+cp_pid=$!
+
+wait $cp_pid
+echo "${GREEN}==> Copied migration client from home to migration client folder${RESET}"
+
 ls -a
 
 # Download migration client
