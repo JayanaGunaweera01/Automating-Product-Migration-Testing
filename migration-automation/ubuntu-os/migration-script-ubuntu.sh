@@ -113,6 +113,7 @@ ls -a
 autoexpect ./wso2update_linux
 
 # Run the generated expect script
+./wso2update_linux.expect <<EOF
 jayana@wso2.com
 jay123
 EOF
