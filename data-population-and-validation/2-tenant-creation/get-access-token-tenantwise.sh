@@ -72,3 +72,51 @@ else
   echo "${PURPLE}Response Details:${NC}"
   echo "$response" | jq '.'
 fi
+
+
+# Extract client_id and client_secret
+client_id=$(echo "$response" | jq -r '.client_id')
+client_secret=$(echo "$response" | jq -r '.client_secret')
+
+# Encode client_id:client_secret as base64
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+
+# Generate access token
+response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/oauth2/token' \
+  --header "Content-Type: application/x-www-form-urlencoded" \
+  --header "Authorization: Basic $base64_encoded" \
+  --data-urlencode 'grant_type=client_credentials' \
+  --data-urlencode 'scope=samplescope')
+
+# Check if the response contains any error message
+if echo "$response" | grep -q '"error":'; then
+  # If there is an error, print the failure message with the error description
+  error_description=$(echo "$response" | jq -r '.error_description')
+  echo "${RED}No access token generated from tenant.${NC}"
+  echo "${RED}${BOLD}Failure: $error_description${NC}"
+else
+  # If there is no error, print the success message
+  echo "${GREEN}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
+
+  # Print the details of the successful response
+  echo "${PURPLE}Response Details:${NC}"
+  echo "$response" | jq '.'
+fi
+
+# Extract access token from response
+access_token=$(echo "$response" | jq -r '.access_token')
+if [ -n "$access_token" ]; then
+  # Store access token in a file
+  echo "access_token=$access_token" >> tenant_credentials
+
+  # Print tenant access token in file
+  echo "${PURPLE}Tenant Access Token:${NC}"
+  cat tenant_credentials
+
+  # Print success message
+  echo "${GREEN}Generated an access token from the service provider registered in the tenant successfully!.${NC}"
+else
+  # Print error message
+  echo "${RED}No access token generated from tenant.${NC}"
+fi
+echo
