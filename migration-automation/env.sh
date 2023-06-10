@@ -180,7 +180,7 @@ export MIGRATION_YAML_UBUNTU="/home/runner/work/Automating-Product-Migration-Tes
 export UBUNTU_HOME="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/ubuntu-os"
 
 # Absolute path to ubuntu update tool
-export UPDATE_TOOL_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools/wso2update_darwin"
+export UPDATE_TOOL_UBUNTU="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools/wso2update_linux "
 
 
 ###############################################################################################################################
@@ -376,7 +376,7 @@ export MIGRATION_YAML_MAC="/Users/runner/work/Automating-Product-Migration-Testi
 export MAC_HOME="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/mac-os"
 
 # Absolute path to macos update tool
-export UPDATE_TOOL_MACOS="/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools/wso2update_darwin"
+export UPDATE_TOOL_MACOS="/User/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools/wso2update_darwin"
 
 
 ###############################################################################################################################
