@@ -29,6 +29,7 @@ fi
 response=$(curl -k --location --request POST 'https://localhost:9443/t/carbon.super/api/server/v1/tenants' \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --data-raw '{"domain":"iit.com","owners":[{"username":"jayana","password":"jayana12345678","email":"jayana@iit.com","firstname":"Jayana","lastname":"Gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
 
 # Check if the response contains any error message

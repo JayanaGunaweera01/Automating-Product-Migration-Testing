@@ -48,7 +48,7 @@ response=$(curl -k --location --request POST "$USERSTORE_EP" \
       },
       {
         "name": "url",
-        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false"
+        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
       },
       {
         "name": "disabled",
