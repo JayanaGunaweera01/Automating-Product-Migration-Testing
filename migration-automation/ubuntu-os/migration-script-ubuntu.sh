@@ -108,9 +108,6 @@ ls -a
 
 sudo apt-get install expect -y
 
-#  Update Client Tool
-./wso2update_linux
-
 # Create an expect script file
 cat > wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
