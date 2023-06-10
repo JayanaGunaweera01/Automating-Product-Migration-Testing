@@ -47,13 +47,12 @@ response=$(curl -k --location --request POST "https://localhost:9443/api/server/
 
 # Print the response
 echo -e "Response:\n$response"
+# Get the HTTP status code
+http_status=$(curl -s -o /dev/null -w "%{http_code}" "https://localhost:9443/api/server/v1/userstores/$USERSTORE_NAME/users")
 
-# Check if the response has a successful HTTP status code
-if [ "$(echo "$response" | jq -r '.status')" = "success" ]; then
-    # If there is no error, print the success message
+if [ $http_status -eq 201 ]; then
     echo -e "${GREEN}${BOLD}A user has been created in the userstore '$USERSTORE_NAME'. User name=${USERSTORE_USER_NAME}, Group name=${USERSTORE_GROUP_NAME}${NC}"
-    # Print the additional details
-    echo -e "${PURPLE}Additional Details:${NC}"
+    echo "{PURPLE}Additional Details:${NC}"
     echo -e "User Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
     echo -e "Group Name: ${PURPLE}$USERSTORE_GROUP_NAME${NC}"
     echo -e "Employee Number: ${PURPLE}000111${NC}"
@@ -64,7 +63,5 @@ if [ "$(echo "$response" | jq -r '.status')" = "success" ]; then
     echo -e "Manager ID: ${PURPLE}111000${NC}"
     echo -e "Manager Display Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
 else
-    # If there is an error, print the failure message with the error description
-    error_description=$(echo "$response" | jq -r '.error[0].description')
-    echo -e "${RED}${BOLD}Failure: $error_description${NC}"
+    echo -e "${RED}${BOLD}Failure: User creation request returned HTTP status code $http_status${NC}"
 fi
