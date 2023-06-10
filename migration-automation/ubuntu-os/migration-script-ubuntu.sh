@@ -98,9 +98,9 @@ cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Mi
 cp -r $UPDATE_TOOL_UBUNTU $BIN_ISOLD
 copy_exit_code=$?
 if [ $copy_exit_code -eq 0 ]; then
-  echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
+    echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
 else
-  echo "${RED}==> Failed to copy the update tool.${RESET}"
+    echo "${RED}==> Failed to copy the update tool.${RESET}"
 fi
 
 cd "$BIN_ISOLD"
@@ -110,6 +110,16 @@ ls -a
 ./wso2update_linux
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
+
+# Enter email and password using expect
+expect <<EOF
+    spawn ./wso2update_linux
+    expect "Email:"
+    send "jayana@wso2.com\r"
+    expect "Password:"
+    send "jay123\r"
+    expect eof
+EOF
 
 # Update Product Pack
 ./wso2update_linux
