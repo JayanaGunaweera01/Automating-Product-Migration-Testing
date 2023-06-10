@@ -112,14 +112,15 @@ echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Enter email and password using expect
-expect <<EOF
+expect -c "
     spawn ./wso2update_linux
-    expect "Email:"
-    send "jayana@wso2.com\r"
-    expect "Password:"
-    send "jay123\r"
+    expect \"Please enter your credentials to continue.\"
+    send \"jayana@wso2.com\r\"
+    expect \"Email:\"
+    send \"jay123\r\"
     expect eof
-EOF
+"
+
 
 # Update Product Pack
 ./wso2update_linux
