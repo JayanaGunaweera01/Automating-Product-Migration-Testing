@@ -203,8 +203,6 @@ cp_pid=$!
 wait $cp_pid
 echo "${GREEN}==> Copied migration client from home to migration client folder${RESET}"
 
-ls -a
-
 # Download migration client
 # wget -qq "$LINK_TO_MIGRATION_CLIENT" &
 # wait $!
@@ -216,10 +214,10 @@ migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
 if [ -n "$migration_archive" ]; then
     unzip -qq "$migration_archive" &
     wait $!
-    ls -a
     echo "${GREEN}==> Unzipped migration client archive${RESET}"
     # Remove migration client archive
     rm "$migration_archive"
+    ls -a
     echo "${GREEN}==> Removed downloaded migration client zip from the system${RESET}"
 
 else
