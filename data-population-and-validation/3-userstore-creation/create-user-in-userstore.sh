@@ -27,8 +27,8 @@ response=$(curl -k --location --request POST "https://localhost:9443/api/server/
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
         "schemas": [],
-        "userName": "Jayana",
-        "password": "Userstorepassword@123",
+        "userName": "admin",
+        "password": "admin",
         "wso2Extension": {
             "employeeNumber": "000111",
             "costCenter": "111111",
@@ -37,7 +37,7 @@ response=$(curl -k --location --request POST "https://localhost:9443/api/server/
             "department": "Integration",
             "manager": {
                 "managerId": "111000",
-                "displayName": "Jayana"
+                "displayName": "admin"
             }
         }
     }')
