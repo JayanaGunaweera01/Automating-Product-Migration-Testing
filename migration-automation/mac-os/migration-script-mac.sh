@@ -109,8 +109,28 @@ fi
 
 cd "$BIN_ISOLD_MAC"
 
-#  Update Client Tool
-./wso2update_darwin
+# Install expect if not already installed
+if ! command -v expect &> /dev/null; then
+    echo "Installing expect..."
+    brew install expect
+fi
+
+# Create an expect script file
+cat > wso2update_script.expect <<EOF
+#!/usr/bin/expect -f
+spawn ./wso2update_linux
+expect "Please enter your credentials to continue."
+send "jayana@wso2.com\r"
+expect "Email:"
+send "jay123\r"
+expect eof
+EOF
+
+# Set executable permissions for the expect script
+chmod +x wso2update_script.expect
+
+# Run the expect script
+./wso2update_script.expect
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 wait $!
 
