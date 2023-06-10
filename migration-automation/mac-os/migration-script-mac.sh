@@ -129,10 +129,10 @@ EOF
 # Set executable permissions for the expect script
 chmod +x wso2update_script.expect
 
-# Run the expect script
-./wso2update_script.expect
+# Run the expect script in the background
+./wso2update_script.expect &
+
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
-wait $!
 
 # Update Product Pack
 ./wso2update_darwin
