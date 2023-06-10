@@ -26,7 +26,7 @@ if [ "$os" = "macos-latest" ]; then
 fi
 
 # Create tenant
-response=$(curl -k --location --request POST 'https://localhost:9443/t/carbon.super/api/server/v1/tenants' \
+response=$(curl -k --location --request POST 'https://localhost:9443/api/server/v1/tenants' \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
