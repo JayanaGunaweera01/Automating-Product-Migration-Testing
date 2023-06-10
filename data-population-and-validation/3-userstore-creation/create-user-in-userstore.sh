@@ -22,7 +22,7 @@ if [ "$os" = "macos-latest" ]; then
     echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 fi
 
-curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores/NewUserStore1/users" \
+response=$(curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores/NewUserStore1/users" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
@@ -33,15 +33,14 @@ curl -k --location --request POST "https://localhost:9443/api/server/v1/userstor
             "employeeNumber": "000111",
             "costCenter": "111111",
             "organization": "WSO2Org",
-            "division": “Engineering",
+            "division": "Engineering",
             "department": "Integration",
             "manager": {
                 "managerId": "111000",
-                "displayName": “Jayana"
+                "displayName": "Jayana"
             }
         }
-    }'
-
+    }')
 
 # Print the response
 echo -e "Response:\n$response"
@@ -51,9 +50,9 @@ error_description=$(echo "$response" | jq -r '.description')
 if [ "$error_description" != "null" ]; then
     echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
-    echo -e "${GREEN}${BOLD}A user has been created in the userstore '$USERSTORE_NAME'. User name=${USERSTORE_USER_NAME}, Group name=${USERSTORE_GROUP_NAME}${NC}"
+    echo -e "${GREEN}${BOLD}A user has been created in the userstore 'NewUserStore1'. User name=Jayana, Group name=${USERSTORE_GROUP_NAME}${NC}"
     echo -e "${PURPLE}Additional Details:${NC}"
-    echo -e "User Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
+    echo -e "User Name: ${PURPLE}Jayana${NC}"
     echo -e "Group Name: ${PURPLE}$USERSTORE_GROUP_NAME${NC}"
     echo -e "Employee Number: ${PURPLE}000111${NC}"
     echo -e "Cost Center: ${PURPLE}111111${NC}"
@@ -61,5 +60,5 @@ else
     echo -e "Division: ${PURPLE}$USERSTORE_GROUP_NAME${NC}"
     echo -e "Department: ${PURPLE}Integration${NC}"
     echo -e "Manager ID: ${PURPLE}111000${NC}"
-    echo -e "Manager Display Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
+    echo -e "Manager Display Name: ${PURPLE}Jayana${NC}"
 fi
