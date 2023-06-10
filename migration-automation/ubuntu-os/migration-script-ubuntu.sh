@@ -93,18 +93,20 @@ wait
 echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
 # Copy update tool from utils to bin folder of IS
-cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISOLD"
+cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISOLD" &
+wait $!
 echo "${GREEN}==> Update tool successfully copied to "$currentVersion"${RESET}"
 
 cd "$BIN_ISOLD"
+ls -a
 
 #  Update Client Tool
-./wso2update_linux
+sh wso2update_linux.sh
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Update Product Pack
-./wso2update_linux
+sh wso2update_linux.sh
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
 
