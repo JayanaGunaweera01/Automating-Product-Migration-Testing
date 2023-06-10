@@ -30,7 +30,7 @@ response=$(curl -k --location --request POST 'https://localhost:9443/api/server/
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-  --data-raw '{"domain":"iit.com","owners":[{"username":"Jayana","password":"Jayana12345678","email":"jayana@iit.com","firstname":"Jayana","lastname":"Gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
+  --data-raw '{"domain":"iit.com","owners":[{"username":"admin","password":"admin","email":"jayana@iit.com","firstname":"Jayana","lastname":"Gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
@@ -55,7 +55,7 @@ base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Register service provider
 response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
-  --header "Authorization: Basic $base64_encoded" \
+  --header "Authorization: Basic YWRtaW46YWRtaW4=" \
   --header 'Content-Type: application/json' \
   --data-raw '{  "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
