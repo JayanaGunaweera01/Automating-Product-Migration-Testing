@@ -68,39 +68,117 @@ NC='\033[0m' # No Color
 #  echo "Response Code: $response"
 #fi
 
-# Create a user and retrieve the user ID
+# Create the user and retrieve the user ID
 user_response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"gunasinghe","givenName":"hasinitg"},"userName":"hasinitg","password":"hasinitg","emails":[{"primary":true,"value":"hasini_home.com","type":"home"},{"value":"hasini_work.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/wso2/scim/Users)
-
 user_id=$(echo "$user_response" | jq -r '.id')
 
 if [ -n "$user_id" ]; then
-  echo -e "${GREEN}${BOLD}User has been created successfully.${NC}"
+  echo "User has been created successfully."
   echo "User ID: $user_id"
+
+  # Create the 'Interns' group and add the user to it
+  response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
+    --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+      "displayName": "Interns",
+      "members": [
+        {
+          "value": "'"$user_id"'"
+        }
+      ],
+      "schemas": [
+        "urn:ietf:params:scim:schemas:core:2.0:Group"
+      ]
+    }')
+
+  group_id=$(echo "$response" | jq -r '.id')
+
+  if [ -n "$group_id" ]; then
+    echo "Success Message: $response"
+    echo -e "${PURPLE}${BOLD}Group 'Interns' has been created and the user has been added successfully.${NC}"
+  else
+    echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
+    echo "Error Message: $response"
+  fi
 else
-  echo -e "${RED}${BOLD}Failed to create user.${NC}"
+  echo -e "${RED}${BOLD}Failed to create the user.${NC}"
+  echo "Error Message: $user_response"
 fi
 
-# Create the 'Interns' group and add the user to it
-response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
-  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-    "displayName": "Interns",
-    "members": [
-      {
-        "value": "'"$user_id"'"
+# Create bulk users
+bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
+    --header 'Content-Type: application/scim+json' \
+    --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+    --data-raw '{
+  "failOnErrors": 1,
+  "schemas": ["urn:ietf:params:scim:api:messages:2.0:BulkRequest"],
+  "Operations": [
+    {
+      "method": "POST",
+      "path": "/Users",
+      "bulkId": "ytrewq",
+      "data": {
+        "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User", "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
+        "userName": "Chamath",
+        "password": "chamathpass",
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "11250",
+          "mentor": {
+            "value": "bulkId:qwerty"
+          }
+        }
       }
-    ],
-    "schemas": [
-      "urn:ietf:params:scim:schemas:core:2.0:Group"
-    ]
-  }')
+    },
+    {
+      "method": "POST",
+      "path": "/Users",
+      "bulkId": "ytrewq",
+      "data": {
+        "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User", "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
+        "userName": "Ashen",
+        "password": "ashenpass",
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
+          "employeeNumber": "11251",
+          "mentor": {
+            "value": "bulkId:qwerty"
+          }
+        }
+      }
+    }
+  ]
+}')
 
-status_code=$(echo "$response" | jq -r '.status')
+# Check if bulk users were created successfully
+bulk_user_ids=$(echo "$bulk_response" | jq -r '.Resources[].id')
 
-if [ "$status_code" = "201" ]; then
-  echo -e "${GREEN}${BOLD}Group 'Interns' has been created and the user has been added successfully.${NC}"
+if [ -n "$bulk_user_ids" ]; then
+  echo "Bulk users have been created successfully."
+  echo "User IDs: $bulk_user_ids"
+
+  # Add bulk users to the 'Mentors' group
+  group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
+    --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+      "displayName": "Mentors",
+      "members": [
+        '"$(echo "$bulk_user_ids" | jq -cR 'split("\n")[:-1] | map({"value": .})')"'
+      ],
+      "schemas": [
+        "urn:ietf:params:scim:schemas:core:2.0:Group"
+      ]
+    }')
+
+  group_id=$(echo "$group_response" | jq -r '.id')
+
+  if [ -n "$group_id" ]; then
+    echo -e "${PURPLE}${BOLD}Group 'Mentors' has been created and bulk users have been added successfully.${NC}"
+  else
+    echo -e "${RED}${BOLD}Failed to create the 'Mentors' group.${NC}"
+    echo "Error Message: $group_response"
+  fi
 else
-  echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
-  echo "Error Message: $response"
+  echo -e "${RED}${BOLD}Failed to create bulk users.${NC}"
+  echo "Error Message: $bulk_response"
 fi
