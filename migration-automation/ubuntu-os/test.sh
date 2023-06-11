@@ -222,6 +222,9 @@ cp_pid=$!
 wait $cp_pid
 echo "${GREEN}==> Jar files from migration client have been copied to IS_HOME_NEW/repository/components/dropins folder successfully!${RESET}"
 
+cd "$COMPONENTS_PATH"
+ls -a
+
 # Copy migration resources folder to wso2IS (latest) root folder
 cp -r "$MIGRATION_RESOURCES" "$IS_NEW_ROOT" &
 cp_pid=$!
