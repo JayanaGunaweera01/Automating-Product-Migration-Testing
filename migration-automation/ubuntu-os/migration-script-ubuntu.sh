@@ -110,24 +110,23 @@ ls -a
 
 sudo apt-get install expect -y
 
-
+# Create an expect script file
+cat >wso2update_script.expect <<EOF
+#!/usr/bin/expect -f
 spawn ./wso2update_linux
-
 expect "Please enter your credentials to continue."
 sleep 5
 send -- "$email\r"
-
 expect "Email:"
 sleep 5
 send -- "$password\r"
-
 expect {
     "wso2update: Error while authenticating user: Error while authenticating user credentials: Invalid email address '*'" {
-        puts "Invalid email address. Please check the secret value for MIGRATION_EMAIL."
+        puts "Invalid email address. Please check the MIGRATION_EMAIL environment variable."
         exit 1
     }
     "wso2update: Error while authenticating user: Error while authenticating user credentials: Unable to read input: EOF" {
-        puts "Error while authenticating user credentials. Please check the secret value for MIGRATION_PASSWORD."
+        puts "Error while authenticating user credentials. Please check the MIGRATION_PASSWORD environment variable."
         exit 1
     }
     eof {
@@ -135,10 +134,9 @@ expect {
         exit 0
     }
 }
-
+EOF
 # Set executable permissions for the expect script
 chmod +x wso2update_script.expect
-
 # Run the expect script
 ./wso2update_script.expect
 
