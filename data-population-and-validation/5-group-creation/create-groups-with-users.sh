@@ -110,7 +110,9 @@ if [ -n "$bulk_user_ids" ]; then
       ]
     }')
 
-  if [ "$(echo "$group_response" | jq -r '.schemas[0]')" == "urn:ietf:params:scim:schemas:core:2.0:Group" ]; then
+  group_id=$(echo "$group_response" | jq -r '.id')
+
+  if [ -n "$group_id" ]; then
     echo -e "${PURPLE}${BOLD}Group 'Mentors' has been created and bulk users have been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Mentors' group.${NC}"
