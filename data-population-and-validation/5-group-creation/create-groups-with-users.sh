@@ -68,6 +68,8 @@ NC='\033[0m' # No Color
 #  echo "Response Code: $response"
 #fi
 
+#!/bin/bash
+
 # Function to create multiple users and retrieve their user IDs
 create_users() {
   local users='[
@@ -204,10 +206,12 @@ response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
     ]
   }')
 
-# Check the response code
-if [ "$response" -eq 201 ]; then
+# Check the response code from the JSON response
+status_code=$(echo "$response" | jq -r '.status')
+
+if [ "$status_code" = "201" ]; then
   echo -e "${GREEN}${BOLD}Group 'Interns' has been created and users have been added successfully.${NC}"
 else
   echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
-  echo "Response Code: $response"
+  echo "Error Message: $response"
 fi
