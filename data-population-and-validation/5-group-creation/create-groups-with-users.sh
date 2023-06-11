@@ -91,11 +91,11 @@ bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
 }')
 
 # Check if bulk users were created successfully
-bulk_user_ids=$(echo "$bulk_response" | jq -r '.Resources[].id')
+bulk_user_ids=$(echo "$bulk_response" | jq -r '.Operations[].location | split("/") | .[-1]')
 
 if [ -n "$bulk_user_ids" ]; then
-  echo "${PURPLE}${BOLD}Bulk users have been created successfully.${NC}"
-  echo "${PURPLE}${BOLD}User IDs:${NC} $bulk_user_ids"
+  echo -e "${PURPLE}${BOLD}Bulk users have been created successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}User IDs:${NC} $bulk_user_ids"
 
   # Add bulk users to the 'Mentors' group
   group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
@@ -117,9 +117,9 @@ if [ -n "$bulk_user_ids" ]; then
     echo -e "${PURPLE}${BOLD}Group 'Mentors' has been created and bulk users have been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Mentors' group.${NC}"
-    echo "${RED}${BOLD}Error Message:${NC} $group_response"
+    echo -e "${RED}${BOLD}Error Message:${NC} $group_response"
   fi
 else
   echo -e "${RED}${BOLD}Failed to create bulk users.${NC}"
-  echo "${RED}${BOLD}Error Message:${NC} $bulk_response"
+  echo -e "${RED}${BOLD}Error Message:${NC} $bulk_response"
 fi
