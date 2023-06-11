@@ -63,9 +63,9 @@ if echo "$response" | grep -q '"code":'; then
     echo "${RED}${BOLD}Failure: Error $error_code - $error_message${NC}"
 else
     # If there is no error, print the success message
-    echo "${GREEN}${BOLD}Success: A service provider has been generated in tenant=$tenant_domain. Application name=$application_name${NC}"
+    echo "${PURPLE}${BOLD}Success: A service provider has been generated in tenant=$tenant_domain${NC}.${PURPLE}${BOLD}Application name=$application_name${NC}"
     # Print the details of the successful response
-    echo "${PURPLE}Response Details:${NC}"
+    echo "${PURPLE}Response Details${NC}:"
     echo "$response" | jq '.'
 
 fi
