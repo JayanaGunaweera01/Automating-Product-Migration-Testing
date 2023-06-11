@@ -44,7 +44,7 @@ if echo "$response" | grep -q '"error":'; then
 else
   # If successful, print additional details in purple
   client_name=$(echo "$response" | jq -r '.client_name')
-  echo "Response: $response${NC}"
+  echo -e "${PURPLE}Response: $response${NC}"
   echo -e "${PURPLE}Service provider '$client_name' registered successfully${NC}"
   echo
 fi

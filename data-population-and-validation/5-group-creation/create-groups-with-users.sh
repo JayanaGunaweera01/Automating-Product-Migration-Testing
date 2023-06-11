@@ -14,8 +14,8 @@ user_response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"fam
 user_id=$(echo "$user_response" | jq -r '.id')
 
 if [ -n "$user_id" ]; then
-  echo "${PURPLE}${BOLD}User has been created successfully.${NC}"
-  echo "${PURPLE}${BOLD}User ID:${NC} $user_id"
+  echo -e "${PURPLE}${BOLD}User has been created successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}User ID:${NC} $user_id"
 
   # Create the 'Interns' group and add the user to it
   response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
@@ -36,15 +36,15 @@ if [ -n "$user_id" ]; then
   group_id=$(echo "$response" | jq -r '.id')
 
   if [ -n "$group_id" ]; then
-    echo "${PURPLE}${BOLD}Success Message:${NC} $response"
+    echo -e "${PURPLE}${BOLD}Success Message:${NC} $response"
     echo -e "${PURPLE}${BOLD}Group 'Interns' has been created and the user has been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
-    echo "${RED}${BOLD}Error Message:${NC} $response"
+    echo -e "${RED}${BOLD}Error Message:${NC} $response"
   fi
 else
   echo -e "${RED}${BOLD}Failed to create the user.${NC}"
-  echo "Error Message: $user_response"
+  echo -e "Error Message: $user_response"
 fi
 
 # Create bulk users

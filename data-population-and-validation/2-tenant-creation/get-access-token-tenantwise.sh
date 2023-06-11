@@ -15,13 +15,13 @@ if [ "$os" = "ubuntu-latest" ]; then
 
   chmod +x env.sh
   . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo "${GREEN}==> Env file for Ubuntu sourced successfully"
+  echo -e "${GREEN}==> Env file for Ubuntu sourced successfully"
 fi
 if [ "$os" = "macos-latest" ]; then
 
   chmod +x env.sh
   source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+  echo -e "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 
 fi
 
@@ -36,13 +36,13 @@ response=$(curl -k --location --request POST 'https://localhost:9443/api/server/
 if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error_description')
-  echo "${RED}${BOLD}Failure: $error_description${NC}"
+  echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 
 else
   # If there is no error, print the success message
-  echo "${GREEN}${BOLD}Success: Tenant has been created successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully.${NC}"
   # Print the details of the successful response
-  echo "${PURPLE}Response Details:${NC}"
+  echo -e "${PURPLE}Response Details:${NC}"
   echo "$response" | jq '.'
 fi
 
@@ -63,13 +63,13 @@ response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/a
 if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error_description')
-  echo "${RED}${BOLD}Failure in registering a service provider inside the tenant: $error_description${NC}"
+  echo -e "${RED}${BOLD}Failure in registering a service provider inside the tenant: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo "${GREEN}${BOLD}Success: Service provider registered successfully.${NC}"
+  echo -e "${GREEN}${BOLD}Success: Service provider registered successfully.${NC}"
 
   # Print the details of the successful response
-  echo "${PURPLE}Response Details:${NC}"
+  echo -e "${PURPLE}Response Details:${NC}"
   echo "$response" | jq '.'
 fi
 
@@ -92,14 +92,14 @@ response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/o
 if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error_description')
-  echo "${RED}No access token generated from tenant.${NC}"
-  echo "${RED}${BOLD}Failure: $error_description${NC}"
+  echo -e "${RED}No access token generated from tenant.${NC}"
+  echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo "${GREEN}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
+  echo -e "${GREEN}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
 
   # Print the details of the successful response
-  echo "${PURPLE}Response Details:${NC}"
+  echo -e "${PURPLE}Response Details:${NC}"
   echo "$response" | jq '.'
 fi
 
@@ -110,13 +110,13 @@ if [ -n "$access_token" ]; then
   echo "access_token=$access_token" >> tenant_credentials
 
   # Print tenant access token in file
-  echo "${PURPLE}Tenant Access Token:${NC}"
+  echo -e "${PURPLE}Tenant Access Token:${NC}"
   cat tenant_credentials
 
   # Print success message
-  echo "${GREEN}Generated an access token from the service provider registered in the tenant successfully!.${NC}"
+  echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!.${NC}"
 else
   # Print error message
-  echo "${RED}No access token generated from tenant.${NC}"
+  echo -e "${RED}No access token generated from tenant.${NC}"
 fi
 echo
