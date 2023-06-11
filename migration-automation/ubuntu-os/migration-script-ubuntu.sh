@@ -262,6 +262,8 @@ echo "${GREEN}==> Jar files from migration client have been copied to IS_HOME_NE
 
 cd "$COMPONENTS_PATH"
 ls -a
+cd dropins
+ls -a
 
 # Copy migration resources folder to wso2IS (latest) root folder
 cp -r "$MIGRATION_RESOURCES" "$IS_NEW_ROOT" &
