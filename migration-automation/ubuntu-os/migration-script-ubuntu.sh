@@ -114,10 +114,10 @@ cat >wso2update_script.expect <<EOF
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
 sleep 5
-send -- "$env(MIGRATION_EMAIL)\r"
+send -- "$env($MIGRATION_EMAIL)\r"
 expect "Email:"
 sleep 5
-send -- "$env(MIGRATION_PASSWORD)\r"
+send -- "$env($MIGRATION_PASSWORD)\r"
 expect {
     "wso2update: Error while authenticating user: Error while authenticating user credentials: Invalid email address '*'" {
         puts "Invalid email address. Please check the MIGRATION_EMAIL environment variable."
