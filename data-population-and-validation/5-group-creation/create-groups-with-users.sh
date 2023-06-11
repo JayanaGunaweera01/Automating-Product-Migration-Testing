@@ -27,7 +27,7 @@ for user in "${USERS[@]}"; do
         }')
 
     # Check if the user creation is successful
-    if [ $(echo "$response" | jq -r '.userName') = "$user" ]; then
+    if [ $(echo "$response" | jq -r '.userName') == "$user" ]; then
         echo -e "User '${GREEN}${BOLD}$user${NC}' created successfully"
     else
         echo -e "${RED}${BOLD}Failed to add user '$user' to the 'PRIMARY' user store.${NC}"
@@ -48,7 +48,7 @@ group_response=$(curl -k -X POST -H "Content-Type: application/json" -H "Authori
     }' "$IS_URL/api/identity/group/v1.0/groups")
 
 # Check if the group creation is successful
-if [ $(echo "$group_response" | jq -r '.displayName') = "interns" ]; then
+if [ $(echo "$group_response" | jq -r '.displayName') == "interns" ]; then
     echo -e "Group '${GREEN}${BOLD}interns${NC}' created successfully"
 else
     echo -e "${RED}${BOLD}Failed to create the 'interns' group.${NC}"
