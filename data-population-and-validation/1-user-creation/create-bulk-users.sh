@@ -78,8 +78,8 @@ response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
       "bulkId": "ytrewq",
       "data": {
         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User", "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
-        "userName": "Chamath",
-        "password": "chamathpass",
+        "userName": "Kalana",
+        "password": "kalanapass",
         "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
           "employeeNumber": "11250",
           "mentor": {
@@ -94,8 +94,8 @@ response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
       "bulkId": "ytrewq",
       "data": {
         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User", "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
-        "userName": "Ashen",
-        "password": "ashenpass",
+        "userName": "Shwetha",
+        "password": "shwethapass",
         "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
           "employeeNumber": "11251",
           "": {
