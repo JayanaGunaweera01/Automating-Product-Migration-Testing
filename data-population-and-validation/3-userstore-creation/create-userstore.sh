@@ -79,6 +79,23 @@ else
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 fi
 
+# Enable SCIM for the user store
+scim_enable_response=$(curl -k --user admin:admin --header "Content-Type: application/json" --request PUT \
+--data '{
+  "Properties": {
+    "ReadOnly": "false",
+    "SCIMEnabled": "true"
+  }
+}' \
+https://localhost:9443/wso2/carbon/userstore/v1.0.0/user-stores/AMRSNGHE)
+
+if [[ "$scim_enable_response" == *"true"* ]]; then
+  echo -e "${PURPLE}${BOLD}SCIM has been enabled for the user store 'AMRSNGHE'${NC}"
+else
+  echo -e "${RED}${BOLD}Failed to enable SCIM for the user store 'AMRSNGHE'${NC}"
+  echo -e "${RED}${BOLD}Error Message:${NC} $scim_enable_response"
+fi
+
 # Create a group in the user store domain
 group_response=$(curl -k --user admin:admin --data '{"displayName": "AMRSNGHE/'$USERSTORE_NAME'"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
 
@@ -106,3 +123,4 @@ else
   echo -e "${RED}${BOLD}Failed to create the user in the given user store domain.${NC}"
   echo -e "${RED}${BOLD}Error Message:${NC} $user_response"
 fi
+
