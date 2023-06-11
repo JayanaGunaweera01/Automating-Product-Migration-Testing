@@ -37,7 +37,7 @@ if [ "$error_description" != "null" ]; then
 else
     echo -e "${GREEN}${BOLD}A user has been created in the userstore 'NewUserStore1'. User name=Jayana, Group name=${USERSTORE_GROUP_NAME}${NC}"
     echo -e "${PURPLE}Additional Details:${NC}"
-    echo -e "User Name: ${PURPLE}Randul${NC}"
+    echo -e "User Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
     echo -e "Group Name: ${PURPLE}$USERSTORE_GROUP_NAME${NC}"
     echo -e "Employee Number: ${PURPLE}000111${NC}"
     echo -e "Cost Center: ${PURPLE}111111${NC}"
