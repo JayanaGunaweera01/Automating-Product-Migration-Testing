@@ -22,25 +22,10 @@ if [ "$os" = "macos-latest" ]; then
     echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 fi
 
-response=$(curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores/NewUserStore1/users" \
+response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-    --data-raw '{
-        "schemas": [],
-        "userName": "admin",
-        "password": "admin",
-        "wso2Extension": {
-            "employeeNumber": "000111",
-            "costCenter": "111111",
-            "organization": "WSO2Org",
-            "division": "Engineering",
-            "department": "Integration",
-            "manager": {
-                "managerId": "111000",
-                "displayName": "admin"
-            }
-        }
-    }')
+    --data-raw '{"schemas":[],"userName":"'$USERSTORE_USER_NAME'","password":"'$USERSTORE_USER_PASSWORD'","wso2Extension":{"employeeNumber":"000111","costCenter":"111111","organization":"WSO2Org","division":"'$USERSTORE_GROUP_NAME'","department":"Intigration","manager":{"managerId":"111000","displayName":"'$USERSTORE_USER_NAME'"}}}')
 
 # Print the response
 echo -e "Response:\n$response"
