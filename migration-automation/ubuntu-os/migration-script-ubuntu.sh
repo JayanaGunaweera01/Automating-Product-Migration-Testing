@@ -25,6 +25,8 @@ currentVersion=$3
 migratingVersion=$4
 database=$5
 os=$6
+email=$7
+password=$8
 
 # Remove spaces from the beginning and end of the currentVersion variable
 currentVersion=$(echo $currentVersion | xargs)
@@ -108,23 +110,24 @@ ls -a
 
 sudo apt-get install expect -y
 
-# Create an expect script file
-cat >wso2update_script.expect <<EOF
-#!/usr/bin/expect -f
+
 spawn ./wso2update_linux
+
 expect "Please enter your credentials to continue."
 sleep 5
-send -- "$env($MIGRATION_EMAIL)\r"
+send -- "$email\r"
+
 expect "Email:"
 sleep 5
-send -- "$env($MIGRATION_PASSWORD)\r"
+send -- "$password\r"
+
 expect {
     "wso2update: Error while authenticating user: Error while authenticating user credentials: Invalid email address '*'" {
-        puts "Invalid email address. Please check the MIGRATION_EMAIL environment variable."
+        puts "Invalid email address. Please check the secret value for MIGRATION_EMAIL."
         exit 1
     }
     "wso2update: Error while authenticating user: Error while authenticating user credentials: Unable to read input: EOF" {
-        puts "Error while authenticating user credentials. Please check the MIGRATION_PASSWORD environment variable."
+        puts "Error while authenticating user credentials. Please check the secret value for MIGRATION_PASSWORD."
         exit 1
     }
     eof {
@@ -132,7 +135,6 @@ expect {
         exit 0
     }
 }
-EOF
 
 # Set executable permissions for the expect script
 chmod +x wso2update_script.expect
