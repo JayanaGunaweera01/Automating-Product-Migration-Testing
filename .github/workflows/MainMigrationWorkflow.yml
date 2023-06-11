@@ -309,7 +309,7 @@ jobs:
         if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
         run: |
           chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
-          sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" | tee "migration-automation/logs.txt"
+          sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
 
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
