@@ -109,21 +109,17 @@ ls -a
 sudo apt-get install expect -y
 
 # Create an expect script file
-cat >wso2update_script.expect <<EOF
+cat > wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
+sleep 5
+send -- "$MIGRATION_EMAIL\r"
 expect "Email:"
 sleep 5
-send "$MIGRATION_EMAIL\r"
-sleep 5
-expect "Password for:"
-sleep 5
-send "$MIGRATION_PASSWORD\r"
-sleep 5
+send -- "$MIGRATION_PASSWORD\r"
 expect eof
 EOF
-
 
 # Set executable permissions for the expect script
 chmod +x wso2update_script.expect
