@@ -14,8 +14,8 @@ user_response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"fam
 user_id=$(echo "$user_response" | jq -r '.id')
 
 if [ -n "$user_id" ]; then
-  echo "User has been created successfully."
-  echo "User ID: $user_id"
+  echo "${PURPLE}${BOLD}User has been created successfully.${NC}"
+  echo "${PURPLE}${BOLD}User ID:${NC} $user_id"
 
   # Create the 'Interns' group and add the user to it
   response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
@@ -36,11 +36,11 @@ if [ -n "$user_id" ]; then
   group_id=$(echo "$response" | jq -r '.id')
 
   if [ -n "$group_id" ]; then
-    echo "Success Message: $response"
+    echo "${PURPLE}${BOLD}Success Message:${NC} $response"
     echo -e "${PURPLE}${BOLD}Group 'Interns' has been created and the user has been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
-    echo "Error Message: $response"
+    echo "${RED}${BOLD}Error Message:${NC} $response"
   fi
 else
   echo -e "${RED}${BOLD}Failed to create the user.${NC}"
@@ -94,8 +94,8 @@ bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
 bulk_user_ids=$(echo "$bulk_response" | jq -r '.Resources[].id')
 
 if [ -n "$bulk_user_ids" ]; then
-  echo "Bulk users have been created successfully."
-  echo "User IDs: $bulk_user_ids"
+  echo "${PURPLE}${BOLD}Bulk users have been created successfully.${NC}"
+  echo "${PURPLE}${BOLD}User IDs:${NC} $bulk_user_ids"
 
   # Add bulk users to the 'Mentors' group
   group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
@@ -117,9 +117,9 @@ if [ -n "$bulk_user_ids" ]; then
     echo -e "${PURPLE}${BOLD}Group 'Mentors' has been created and bulk users have been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Mentors' group.${NC}"
-    echo "Error Message: $group_response"
+    echo "${RED}${BOLD}Error Message:${NC} $group_response"
   fi
 else
   echo -e "${RED}${BOLD}Failed to create bulk users.${NC}"
-  echo "Error Message: $bulk_response"
+  echo "${RED}${BOLD}Error Message:${NC} $bulk_response"
 fi
