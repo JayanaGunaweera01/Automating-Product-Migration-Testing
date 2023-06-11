@@ -48,7 +48,7 @@ response=$(curl -k --location --request POST "https://localhost:9443/api/server/
       },
       {
         "name": "url",
-        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
+        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false"
       },
       {
         "name": "disabled",
