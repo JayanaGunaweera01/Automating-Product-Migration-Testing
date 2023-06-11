@@ -98,7 +98,7 @@ if [ -n "$bulk_user_ids" ]; then
   echo -e "${PURPLE}${BOLD}User IDs:${NC} $bulk_user_ids"
 
   # Add bulk users to the 'Mentors' group
-  group_members=$(echo "$bulk_user_ids" | jq -cR 'split("\n")[:-1] | map({"value": .})')
+  group_members=$(echo "$bulk_user_ids" | jq -cR 'split("\n")[:-1] | map({value: .})')
   group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --header 'Content-Type: application/json' \
@@ -110,9 +110,7 @@ if [ -n "$bulk_user_ids" ]; then
       ]
     }')
 
-  group_id=$(echo "$group_response" | jq -r '.id')
-
-  if [ -n "$group_id" ]; then
+  if [ "$(echo "$group_response" | jq -r '.schemas[0]')" == "urn:ietf:params:scim:schemas:core:2.0:Group" ]; then
     echo -e "${PURPLE}${BOLD}Group 'Mentors' has been created and bulk users have been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Mentors' group.${NC}"
