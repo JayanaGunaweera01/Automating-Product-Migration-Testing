@@ -109,13 +109,13 @@ ls -a
 sudo apt-get install expect -y
 
 # Create an expect script file
-cat > wso2update_script.expect <<EOF
+cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
-send "${{ secrets.MIGRATION_EMAIL }}\r"
+send "$MIGRATION_EMAIL\r"
 expect "Email:"
-send "${{ secrets.MIGRATION_PASSWORD }}\r"
+send "$MIGRATION_PASSWORD\r"
 expect eof
 EOF
 
