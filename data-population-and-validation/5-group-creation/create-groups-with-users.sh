@@ -68,7 +68,6 @@ NC='\033[0m' # No Color
 #  echo "Response Code: $response"
 #fi
 
-#!/bin/bash
 
 # Function to create multiple users and retrieve their user IDs
 create_users() {
@@ -177,41 +176,25 @@ create_users() {
 
   local user_response=$(curl -v -k --user admin:admin --data "$users" --header "Content-Type:application/json" https://localhost:9443/wso2/scim/Users)
 
-  local user_ids=$(echo "$user_response" | jq -r '.Resources[].id')
-  echo "$user_ids"
+  echo "$user_response"
 }
 
-# Create an array to store the user IDs
-user_ids=()
-
 # Create multiple users and retrieve their user IDs
-user_ids=$(create_users)
+user_response=$(create_users)
 
-# Join user IDs into a comma-separated string
-members=$(IFS=,; echo "${user_ids[*]}")
+# Print the user creation response to the console
+echo "User Creation Response:"
+echo "$user_response"
+echo
 
-# Create the 'Interns' group and add the users to it
-response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
-  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-    "displayName": "Interns",
-    "members": [
-      {
-        "value": "'"$members"'"
-      }
-    ],
-    "schemas": [
-      "urn:ietf:params:scim:schemas:core:2.0:Group"
-    ]
-  }')
+# Extract user IDs from the response using jq
+user_ids=$(echo "$user_response" | jq -r '.Resources[].id')
 
-# Check the response code from the JSON response
-status_code=$(echo "$response" | jq -r '.status')
-
-if [ "$status_code" = "201" ]; then
-  echo -e "${GREEN}${BOLD}Group 'Interns' has been created and users have been added successfully.${NC}"
+# Check if any user IDs are found
+if [ -n "$user_ids" ]; then
+  echo -e "${GREEN}${BOLD}Users have been created successfully.${NC}"
+  echo "User IDs:"
+  echo "$user_ids"
 else
-  echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
-  echo "Error Message: $response"
+  echo -e "${RED}${BOLD}Failed to create users.${NC}"
 fi
