@@ -114,11 +114,16 @@ cat >wso2update_script.expect <<EOF
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
 expect "Email:"
+sleep 5
 send "$MIGRATION_EMAIL\r"
+sleep 5
 expect "Password for:"
+sleep 5
 send "$MIGRATION_PASSWORD\r"
+sleep 5
 expect eof
 EOF
+
 
 # Set executable permissions for the expect script
 chmod +x wso2update_script.expect
