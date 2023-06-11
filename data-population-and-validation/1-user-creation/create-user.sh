@@ -56,6 +56,15 @@ response=$(curl -k --location --request POST "$SCIM_USER_EP" \
   }
 }')
 
+# extract the user ID from the response
+user_id=$(echo "$response" | jq -r '.id')
+
+if [ -n "$user_id" ]; then
+  echo "User ID: $user_id"
+else
+  echo "Failed to create user."
+fi
+
 # Check if the response contains any error message
 if echo "$response" | grep -q '"Errors":'; then
   # If there is an error, print the failure message with the error description
