@@ -30,11 +30,11 @@ group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --header 'Content-Type: application/json' \
   --data-raw '{
-    "displayName": "'"$GROUP_NAME"'",
+    "displayName": "'$GROUP_NAME'",
     "schemas": [
-      "urn:ietf:params:scim:schemas:core:2.0:Group"
+        "urn:ietf:params:scim:schemas:core:2.0:Group"
     ]
-  }')
+}')
 
 # Check if the group creation was successful
 if echo "$group_response" | grep -q '"displayName":'; then
@@ -50,8 +50,3 @@ else
   echo "$group_response"
 fi
 echo
-
-
-
-
-
