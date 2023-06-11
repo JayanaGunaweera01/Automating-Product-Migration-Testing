@@ -113,9 +113,9 @@ cat > wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
-send "jayana@wso2.com\r"
+send "${{ secrets.MIGRATION_EMAIL }}\r"
 expect "Email:"
-send "jay123\r"
+send "${{ secrets.MIGRATION_PASSWORD }}\r"
 expect eof
 EOF
 
