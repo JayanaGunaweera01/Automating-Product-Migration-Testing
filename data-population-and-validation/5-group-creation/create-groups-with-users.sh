@@ -29,6 +29,20 @@ add_user() {
   fi
 }
 
+# Create PRIMARY user store
+response=$(curl -k -s -o /dev/null -w "%{http_code}" -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d '{
+  "typeId": "SkRCQ1VzZXJTdG9yZQ==",
+  "description": "Primary user store",
+  "name": "PRIMARY"
+}' https://localhost:9443/api/server/v1/userstores)
+
+if [ "$response" -eq 201 ]; then
+  echo -e "${GREEN}${BOLD}PRIMARY user store has been created successfully.${NC}"
+else
+  echo -e "${RED}${BOLD}Failed to create PRIMARY user store.${NC}"
+  echo "Response Code: $response"
+fi
+
 # Add users to the PRIMARY user store
 add_user "Jayana" "jayanapass"
 add_user "Randul" "randulpass"
@@ -52,14 +66,3 @@ else
   echo -e "${RED}${BOLD}Failed to create the 'interns' group.${NC}"
   echo "Response Code: $response"
 fi
-
-
-# Create interns group
-#curl -k -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d '{"displayName":"interns","members":[{"display":"Jayana","value":"Jayana","ref":"User","operation":"add"},{"display":"Randul","value":"Randul","ref":"User","operation":"add"},{"display":"Chithara","value":"Chithara","ref":"User","operation":"add"},{"display":"Rukshan","value":"Rukshan","ref":"User","operation":"add"}]}' https://localhost:9443/api/identity/group/v1.0/groups
-
-# Create mentors group
-#curl -k -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d '{"displayName":"mentors","members":[{"display":"Ashen","value":"Ashen","ref":"User","operation":"add"},{"display":"Chamath","value":"Chamath","ref":"User","operation":"add"}]}' https://localhost:9443/api/identity/group/v1.0/groups
-
-
-
-
