@@ -98,7 +98,7 @@ if [ -n "$bulk_user_ids" ]; then
   echo -e "${PURPLE}${BOLD}User IDs:${NC} $bulk_user_ids"
 
   # Add bulk users to the 'Mentors' group
-  group_members=$(echo "$bulk_user_ids" | jq -cR 'split("\n")[:-1] | map({value: .})')
+  group_members=$(echo "$bulk_user_ids" | jq -cR 'split("\n")[:-1] | map({"value": .})')
   group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --header 'Content-Type: application/json' \
