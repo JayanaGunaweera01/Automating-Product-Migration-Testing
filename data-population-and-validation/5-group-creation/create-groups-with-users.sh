@@ -36,7 +36,7 @@ if [ -n "$user_id" ]; then
   group_id=$(echo "$response" | jq -r '.id')
 
   if [ -n "$group_id" ]; then
-    echo -e "${PURPLE}${BOLD}Success Message:${NC} $response"
+    echo -e "${PURPLE}${BOLD}Success Message${NC} :$response"
     echo -e "${PURPLE}${BOLD}Group 'Interns' has been created and the user has been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
@@ -113,6 +113,7 @@ if [ -n "$bulk_user_ids" ]; then
   group_id=$(echo "$group_response" | jq -r '.id')
 
   if [ -n "$group_id" ]; then
+    echo -e "${PURPLE}${BOLD}Success Message${NC}: $group_response"
     echo -e "${PURPLE}${BOLD}Group 'Mentors' has been created and bulk users have been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Mentors' group.${NC}"
