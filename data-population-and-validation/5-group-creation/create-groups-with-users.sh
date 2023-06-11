@@ -67,25 +67,147 @@ NC='\033[0m' # No Color
 #  echo -e "${RED}${BOLD}Failed to create the 'interns' group.${NC}"
 #  echo "Response Code: $response"
 #fi
- 
+
+# Function to create multiple users and retrieve their user IDs
+create_users() {
+  local users='[
+    {
+      "schemas": [],
+      "name": {
+        "familyName": "Doe1",
+        "givenName": "John1"
+      },
+      "userName": "johnd1",
+      "password": "password123",
+      "emails": [
+        {
+          "primary": true,
+          "value": "john.doe1@example.com",
+          "type": "home"
+        },
+        {
+          "value": "john.doe1@example.com",
+          "type": "work"
+        }
+      ]
+    },
+    {
+      "schemas": [],
+      "name": {
+        "familyName": "Doe2",
+        "givenName": "John2"
+      },
+      "userName": "johnd2",
+      "password": "password123",
+      "emails": [
+        {
+          "primary": true,
+          "value": "john.doe2@example.com",
+          "type": "home"
+        },
+        {
+          "value": "john.doe2@example.com",
+          "type": "work"
+        }
+      ]
+    },
+    {
+      "schemas": [],
+      "name": {
+        "familyName": "Doe3",
+        "givenName": "John3"
+      },
+      "userName": "johnd3",
+      "password": "password123",
+      "emails": [
+        {
+          "primary": true,
+          "value": "john.doe3@example.com",
+          "type": "home"
+        },
+        {
+          "value": "john.doe3@example.com",
+          "type": "work"
+        }
+      ]
+    },
+    {
+      "schemas": [],
+      "name": {
+        "familyName": "Doe4",
+        "givenName": "John4"
+      },
+      "userName": "johnd4",
+      "password": "password123",
+      "emails": [
+        {
+          "primary": true,
+          "value": "john.doe4@example.com",
+          "type": "home"
+        },
+        {
+          "value": "john.doe4@example.com",
+          "type": "work"
+        }
+      ]
+    },
+    {
+      "schemas": [],
+      "name": {
+        "familyName": "Doe5",
+        "givenName": "John5"
+      },
+      "userName": "johnd5",
+      "password": "password123",
+      "emails": [
+        {
+          "primary": true,
+          "value": "john.doe5@example.com",
+          "type": "home"
+        },
+        {
+          "value": "john.doe5@example.com",
+          "type": "work"
+        }
+      ]
+    }
+  ]'
+
+  local user_response=$(curl -v -k --user admin:admin --data "$users" --header "Content-Type:application/json" https://localhost:9443/wso2/scim/Users)
+
+  local user_ids=$(echo "$user_response" | jq -r '.Resources[].id')
+  echo "$user_ids"
+}
+
+# Create an array to store the user IDs
+user_ids=()
+
+# Create multiple users and retrieve their user IDs
+user_ids=$(create_users)
+
+# Join user IDs into a comma-separated string
+members=$(IFS=,; echo "${user_ids[*]}")
+
+# Create the 'Interns' group and add the users to it
 response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --header 'Content-Type: application/json' \
   --data-raw '{
-    "displayName": "'$GROUP_DISPLAY_NAME'",
+    "displayName": "Interns",
     "members": [
-        {
-            "value": "'$GROUP_USER_ID'"
-        }
+      {
+        "value": "'"$members"'"
+      }
     ],
     "schemas": [
-        "urn:ietf:params:scim:schemas:core:2.0:Group"
+      "urn:ietf:params:scim:schemas:core:2.0:Group"
     ]
-}')
+  }')
 
+# Check the response code
 if [ "$response" -eq 201 ]; then
-  echo -e "${GREEN}${BOLD}Group 'salesgroup' has been created and added a user to it successfully.${NC}"
+  echo -e "${GREEN}${BOLD}Group 'Interns' has been created and users have been added successfully.${NC}"
 else
-  echo -e "${RED}${BOLD}Failed to create the 'sales' group.${NC}"
+  echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
   echo "Response Code: $response"
 fi
