@@ -106,7 +106,6 @@ else
 fi
 
 cd "$BIN_ISOLD"
-ls -a
 
 sudo apt-get install expect -y
 

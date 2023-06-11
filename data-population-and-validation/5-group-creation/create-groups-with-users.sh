@@ -68,133 +68,39 @@ NC='\033[0m' # No Color
 #  echo "Response Code: $response"
 #fi
 
+# Create a user and retrieve the user ID
+user_response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"gunasinghe","givenName":"hasinitg"},"userName":"hasinitg","password":"hasinitg","emails":[{"primary":true,"value":"hasini_home.com","type":"home"},{"value":"hasini_work.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/wso2/scim/Users)
 
-# Function to create multiple users and retrieve their user IDs
-create_users() {
-  local users='[
-    {
-      "schemas": [],
-      "name": {
-        "familyName": "Doe1",
-        "givenName": "John1"
-      },
-      "userName": "johnd1",
-      "password": "password123",
-      "emails": [
-        {
-          "primary": true,
-          "value": "john.doe1@example.com",
-          "type": "home"
-        },
-        {
-          "value": "john.doe1@example.com",
-          "type": "work"
-        }
-      ]
-    },
-    {
-      "schemas": [],
-      "name": {
-        "familyName": "Doe2",
-        "givenName": "John2"
-      },
-      "userName": "johnd2",
-      "password": "password123",
-      "emails": [
-        {
-          "primary": true,
-          "value": "john.doe2@example.com",
-          "type": "home"
-        },
-        {
-          "value": "john.doe2@example.com",
-          "type": "work"
-        }
-      ]
-    },
-    {
-      "schemas": [],
-      "name": {
-        "familyName": "Doe3",
-        "givenName": "John3"
-      },
-      "userName": "johnd3",
-      "password": "password123",
-      "emails": [
-        {
-          "primary": true,
-          "value": "john.doe3@example.com",
-          "type": "home"
-        },
-        {
-          "value": "john.doe3@example.com",
-          "type": "work"
-        }
-      ]
-    },
-    {
-      "schemas": [],
-      "name": {
-        "familyName": "Doe4",
-        "givenName": "John4"
-      },
-      "userName": "johnd4",
-      "password": "password123",
-      "emails": [
-        {
-          "primary": true,
-          "value": "john.doe4@example.com",
-          "type": "home"
-        },
-        {
-          "value": "john.doe4@example.com",
-          "type": "work"
-        }
-      ]
-    },
-    {
-      "schemas": [],
-      "name": {
-        "familyName": "Doe5",
-        "givenName": "John5"
-      },
-      "userName": "johnd5",
-      "password": "password123",
-      "emails": [
-        {
-          "primary": true,
-          "value": "john.doe5@example.com",
-          "type": "home"
-        },
-        {
-          "value": "john.doe5@example.com",
-          "type": "work"
-        }
-      ]
-    }
-  ]'
+user_id=$(echo "$user_response" | jq -r '.id')
 
-  local user_response=$(curl -v -k --user admin:admin --data "$users" --header "Content-Type:application/json" https://localhost:9443/wso2/scim/Users)
-
-  echo "$user_response"
-}
-
-# Create multiple users and retrieve their user IDs
-user_response=$(create_users)
-
-# Print the user creation response to the console
-echo "User Creation Response:"
-echo "$user_response"
-echo
-
-# Extract user IDs from the response using jq
-user_ids=$(echo "$user_response" | jq -r '.Resources[].id')
-
-# Check if any user IDs are found
-if [ -n "$user_ids" ]; then
-  echo -e "${GREEN}${BOLD}Users have been created successfully.${NC}"
-  echo "User IDs:"
-  echo "$user_ids"
+if [ -n "$user_id" ]; then
+  echo -e "${GREEN}${BOLD}User has been created successfully.${NC}"
+  echo "User ID: $user_id"
 else
-  echo -e "${RED}${BOLD}Failed to create users.${NC}"
+  echo -e "${RED}${BOLD}Failed to create user.${NC}"
+fi
+
+# Create the 'Interns' group and add the user to it
+response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+    "displayName": "Interns",
+    "members": [
+      {
+        "value": "'"$user_id"'"
+      }
+    ],
+    "schemas": [
+      "urn:ietf:params:scim:schemas:core:2.0:Group"
+    ]
+  }')
+
+status_code=$(echo "$response" | jq -r '.status')
+
+if [ "$status_code" = "201" ]; then
+  echo -e "${GREEN}${BOLD}Group 'Interns' has been created and the user has been added successfully.${NC}"
+else
+  echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
+  echo "Error Message: $response"
 fi
