@@ -79,3 +79,30 @@ else
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 fi
 
+# Create a group in the user store domain
+group_response=$(curl -k --user admin:admin --data '{"displayName": "AMRSNGHE/'$USERSTORE_NAME'"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
+
+group_id=$(echo "$group_response" | jq -r '.id')
+
+if [ -n "$group_id" ]; then
+  echo -e "${PURPLE}${BOLD}Group has been created successfully in the user store domain.${NC}"
+  echo "${PURPLE}${BOLD}Group Response:${NC}"
+  echo "$group_response"
+else
+  echo -e "${RED}${BOLD}Failed to create the group in the user store domain.${NC}"
+  echo -e "${RED}${BOLD}Error Message:${NC} $group_response"
+fi
+
+# Create a user in the given user store domain
+user_response=$(curl -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"John","givenName":"Doe"},"userName":"AMRSNGHE/groupUSR001","password":"testPwd123"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Users)
+
+user_id=$(echo "$user_response" | jq -r '.id')
+
+if [ -n "$user_id" ]; then
+  echo -e "${PURPLE}${BOLD}User has been created successfully in the given user store domain.${NC}"
+  echo "${PURPLE}${BOLD}User Response:${NC}"
+  echo "$user_response"
+else
+  echo -e "${RED}${BOLD}Failed to create the user in the given user store domain.${NC}"
+  echo -e "${RED}${BOLD}Error Message:${NC} $user_response"
+fi
