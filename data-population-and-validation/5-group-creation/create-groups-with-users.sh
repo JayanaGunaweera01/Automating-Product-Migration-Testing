@@ -6,7 +6,7 @@ BLUE='\033[0;34m\033[1m'   # blue color
 YELLOW='\033[0;33m\033[1m' # yellow color
 ORANGE='\033[0;91m\033[1m' # orange color
 RED='\033[0;31m\033[1m'    # red color
-PURPLE='\033[1;35m'        # purple colour
+PURPLE='\033[1;35m'        # purple color
 RESET='\033[0m'   
 
 # Create the user and retrieve the user ID
@@ -36,7 +36,7 @@ if [ -n "$user_id" ]; then
   group_id=$(echo "$response" | jq -r '.id')
 
   if [ -n "$group_id" ]; then
-    echo -e "${PURPLE}${BOLD}Success Message${NC} :$response"
+    echo -e "${PURPLE}${BOLD}Success Message${NC}: $response"
     echo -e "${PURPLE}${BOLD}Group 'Interns' has been created and the user has been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Interns' group.${NC}"
@@ -45,6 +45,7 @@ if [ -n "$user_id" ]; then
 else
   echo -e "${RED}${BOLD}Failed to create the user.${NC}"
   echo -e "Error Message: $user_response"
+  exit 1  # Exit with an error code to indicate failure
 fi
 
 # Create bulk users
@@ -124,4 +125,5 @@ if [ -n "$bulk_user_ids" ]; then
 else
   echo -e "${RED}${BOLD}Failed to create bulk users.${NC}"
   echo -e "${RED}${BOLD}Error Message:${NC} $bulk_response"
+  exit 1  # Exit with an error code to indicate failure
 fi
