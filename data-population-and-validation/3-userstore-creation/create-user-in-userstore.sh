@@ -112,7 +112,7 @@ if [ -n "$user_store_response" ]; then
             echo -e "${RED}${BOLD}Error Message:${NC} $group_response"
         fi
     else
-        echo -e "${RED}${BOLD}Failed to enable SCIM for the user store 'AMRSNGHE'.${NC}"
+        echo -e "${RED}${BOLD}Failed to enable SCIM for the user store 'Testuserstore'.${NC}"
         echo -e "${RED}${BOLD}Error Message:${NC} $scim_enable_response"
     fi
 else
