@@ -25,7 +25,7 @@ if [ "$os" = "macos-latest" ]; then
 fi
 
 # Create a user in the service provider
-response=$(curl -k --location --request POST "https://localhost:9443/t/iit.com/scim2/Users" \
+response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/scim2/Users" \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --header 'Content-Type: application/json' \
     --data-raw '{
@@ -56,7 +56,7 @@ response=$(curl -k --location --request POST "https://localhost:9443/t/iit.com/s
     }')
 
 # Check the HTTP status code
-status_code=$(curl -s -o /dev/null -w "%{http_code}" "https://localhost:9443/t/iit.com/scim2/Users")
+status_code=$(curl -s -o /dev/null -w "%{http_code}" "https://localhost:9443/t/carbon.super/scim2/Users")
 
 if [ "$status_code" -eq 201 ]; then
     # Print success message
