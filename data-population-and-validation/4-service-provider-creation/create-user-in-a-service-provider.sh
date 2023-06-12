@@ -55,6 +55,8 @@ response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
         }
     }')
 
+ echo "$response"
+ 
 # Check if the user creation was successful
 if echo "$response" | grep -q '"userName":'; then
     # Print success message
