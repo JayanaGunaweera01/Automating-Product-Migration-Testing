@@ -59,7 +59,7 @@ bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
     {
       "method": "POST",
       "path": "/Users",
-      "bulkId": "ytrewq",
+      "bulkId": "ytrewq1",  # Unique bulkId for the first user
       "data": {
         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User", "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
         "userName": "Chamath",
@@ -75,7 +75,7 @@ bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
     {
       "method": "POST",
       "path": "/Users",
-      "bulkId": "ytrewq",
+      "bulkId": "ytrewq2",  # Unique bulkId for the second user
       "data": {
         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User", "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
         "userName": "Ashen",
@@ -127,3 +127,4 @@ else
   echo -e "${RED}${BOLD}Error Message:${NC} $bulk_response"
   exit 1  # Exit with an error code to indicate failure
 fi
+
