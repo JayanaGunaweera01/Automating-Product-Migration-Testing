@@ -22,28 +22,83 @@ if [ "$os" = "macos-latest" ]; then
     echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 fi
 
-response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
-    --header 'Content-Type: application/json' \
-    --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-    --data-raw '{"schemas":[],"userName":"'Chithara'","password":"'chitharapass'","wso2Extension":{"employeeNumber":"000111","costCenter":"111111","organization":"WSO2Org","division":"'$USERSTORE_GROUP_NAME'","department":"Intigration","manager":{"managerId":"111000","displayName":"'$USERSTORE_USER_NAME'"}}}')
+# Create the user store
+user_store_response=$(curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores" \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --data-raw '{
+    "typeId": "SkRCQ1VzZXJTdG9yZU1hbmFnZXI",
+    "description": "Sample JDBC user store to add.",
+    "name": "Testuserstore",
+    "properties": [
+      {
+        "name": "userName",
+        "value": "testdb"
+      },
+      {
+        "name": "password",
+        "value": "testdb"
+      },
+      {
+        "name": "driverName",
+        "value": "com.mysql.jdbc.Driver"
+      },
+      {
+        "name": "url",
+        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false"
+      },
+      {
+        "name": "disabled",
+        "value": "false"
+      }
+    ]
+  }')
 
-# Print the response
-echo -e "Response:\n$response"
+if [ -n "$user_store_response" ]; then
+  echo -e "${PURPLE}${BOLD}User store 'Testuserstore' has been created successfully.${NC}"
+  echo "${PURPLE}${BOLD}User Store Response:${NC}"
+  echo "$user_store_response"
 
-# Check if the response contains an error
-error_description=$(echo "$response" | jq -r '.description')
-if [ "$error_description" != "null" ]; then
-    echo -e "${RED}${BOLD}Failure: $error_description${NC}"
+  # Create a group in the user store domain
+  group_response=$(curl -k --user admin:admin --data '{"displayName": "AMRSNGHE/Testuserstore"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
+
+  group_id=$(echo "$group_response" | jq -r '.id')
+
+  if [ -n "$group_id" ]; then
+    echo -e "${PURPLE}${BOLD}Group has been created successfully in the user store domain.${NC}"
+    echo -e "${PURPLE}${BOLD}Group Response:${NC}"
+    echo "$group_response"
+
+    # Create a user in the given user store domain
+    user_response=$(curl -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"John","givenName":"Doe"},"userName":"AMRSNGHE/groupUSR001","password":"testPwd123"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Users)
+
+    user_id=$(echo "$user_response" | jq -r '.id')
+
+    if [ -n "$user_id" ]; then
+      echo -e "${PURPLE}${BOLD}User has been created successfully in the given user store domain.${NC}"
+      echo -e "${PURPLE}${BOLD}User Response:${NC}"
+      echo "$user_response"
+
+      # Add the user to the created group
+      add_user_to_group_response=$(curl -k --user admin:admin --request PATCH --data '{"members":[{"value":"'$user_id'"}]}' --header "Content-Type: application/json" "https://localhost:9443/wso2/scim/Groups/$group_id")
+
+      if [ -n "$add_user_to_group_response" ]; then
+        echo -e "${PURPLE}${BOLD}User has been added to the group successfully.${NC}"
+        echo -e "${PURPLE}${BOLD}Add User to Group Response:${NC}"
+        echo "$add_user_to_group_response"
+      else
+        echo -e "${RED}${BOLD}Failed to add the user to the group.${NC}"
+        echo -e "${RED}${BOLD}Error Message:${NC} $add_user_to_group_response"
+      fi
+    else
+      echo -e "${RED}${BOLD}Failed to create the user in the given user store domain.${NC}"
+      echo -e "${RED}${BOLD}Error Message:${NC} $user_response"
+    fi
+  else
+    echo -e "${RED}${BOLD}Failed to create the group in the user store domain.${NC}"
+    echo -e "${RED}${BOLD}Error Message:${NC} $group_response"
+  fi
 else
-    echo -e "${GREEN}${BOLD}A user has been created in the userstore 'NewUserStore1'. User name=Jayana, Group name=${USERSTORE_GROUP_NAME}${NC}"
-    echo -e "${PURPLE}Additional Details:${NC}"
-    echo -e "User Name: ${PURPLE}Chithara${NC}"
-    echo -e "Group Name: ${PURPLE}$USERSTORE_GROUP_NAME${NC}"
-    echo -e "Employee Number: ${PURPLE}000111${NC}"
-    echo -e "Cost Center: ${PURPLE}111111${NC}"
-    echo -e "Organization: ${PURPLE}WSO2Org${NC}"
-    echo -e "Division: ${PURPLE}$USERSTORE_GROUP_NAME${NC}"
-    echo -e "Department: ${PURPLE}Integration${NC}"
-    echo -e "Manager ID: ${PURPLE}111000${NC}"
-    echo -e "Manager Display Name: ${PURPLE}Randul${NC}"
+  echo -e "${RED}${BOLD}Failed to create the user store.${NC}"
+  echo -e "${RED}${BOLD}Error Message:${NC} $user_store_response"
 fi
