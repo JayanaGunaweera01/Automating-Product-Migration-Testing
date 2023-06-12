@@ -49,7 +49,7 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
       },
       {
         "name": "disabled",
-        "value": "false"
+        "value": "true"
       }
     ]
   }')
