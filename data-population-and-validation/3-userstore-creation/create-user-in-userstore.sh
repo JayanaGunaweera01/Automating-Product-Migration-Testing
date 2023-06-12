@@ -29,7 +29,7 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
     --data-raw '{
     "typeId": "SkRCQ1VzZXJTdG9yZU1hbmFnZXI",
     "description": "Sample JDBC user store to add.",
-    "name": "AMRSNGHE",
+    "name": "Testuserstore",
     "properties": [
       {
         "name": "userName",
@@ -55,12 +55,12 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
   }')
 
 if [ -n "$user_store_response" ]; then
-    echo -e "${PURPLE}${BOLD}User store 'AMRSNGHE' has been created successfully.${NC}"
+    echo -e "${PURPLE}${BOLD}User store 'Testuserstore' has been created successfully.${NC}"
     echo "${PURPLE}${BOLD}User Store Response:${NC}"
     echo "$user_store_response"
 
     # Enable SCIM for the user store
-    scim_enable_response=$(curl -k --location --request PATCH "https://localhost:9443/api/server/v1/userstores/AMRSNGHE/scim" \
+    scim_enable_response=$(curl -k --location --request PATCH "https://localhost:9443/api/server/v1/userstores/Testuserstore/scim" \
         --header 'Content-Type: application/json' \
         --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
         --data-raw '{
@@ -68,7 +68,7 @@ if [ -n "$user_store_response" ]; then
     }')
 
     if [[ "$scim_enable_response" == *"SCIM has been enabled for the user store."* ]]; then
-        echo -e "${PURPLE}${BOLD}SCIM has been enabled for the user store 'AMRSNGHE'.${NC}"
+        echo -e "${PURPLE}${BOLD}SCIM has been enabled for the user store 'Testuserstore'.${NC}"
         echo "${PURPLE}${BOLD}SCIM Enable Response:${NC}"
         echo "$scim_enable_response"
 
