@@ -25,7 +25,7 @@ if [ "$os" = "macos-latest" ]; then
 fi
 
 # Create a user in the service provider
-response=$(curl -k --location --request POST "$SP_USER_REGISTER_EP" \
+response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --header 'Content-Type: application/json' \
     --data-raw '{
