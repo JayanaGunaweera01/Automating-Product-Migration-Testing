@@ -65,14 +65,14 @@ if echo "$response" | grep -q '"typeId":'; then
   # If there is no error, print the success message
   echo -e "${PURPLE}${BOLD}A userstore has been created.Userstore name is ${USERSTORE_NAME}${NC}"
   # Print the additional details
-  echo "Userstore Name: ${PURPLE}$USERSTORE_NAME${NC}"
-  echo "Userstore Description: ${PURPLE}Sample JDBC user store to add.${NC}"
-  echo "Userstore Properties:"
-  echo "  - Property: userName, Value: ${PURPLE}testdb${NC}"
-  echo "  - Property: password, Value: ${PURPLE}testdb${NC}"
-  echo "  - Property: driverName, Value: ${PURPLE}com.mysql.jdbc.Driver${NC}"
-  echo "  - Property: url, Value: ${PURPLE}jdbc:mysql://localhost:3306/testdb?useSSL=false${NC}"
-  echo "  - Property: disabled, Value: ${PURPLE}false${NC}"
+  echo -e "Userstore Name: ${PURPLE}$USERSTORE_NAME${NC}"
+  echo -e "Userstore Description: ${PURPLE}Sample JDBC user store to add.${NC}"
+  echo -e "Userstore Properties:"
+  echo -e "  - Property: userName, Value: ${PURPLE}testdb${NC}"
+  echo -e "  - Property: password, Value: ${PURPLE}testdb${NC}"
+  echo -e "  - Property: driverName, Value: ${PURPLE}com.mysql.jdbc.Driver${NC}"
+  echo -e "  - Property: url, Value: ${PURPLE}jdbc:mysql://localhost:3306/testdb?useSSL=false${NC}"
+  echo -e "  - Property: disabled, Value: ${PURPLE}false${NC}"
 else
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error[0].description')
@@ -87,12 +87,12 @@ scim_enable_response=$(curl -k --user admin:admin --header "Content-Type: applic
     "SCIMEnabled": "true"
   }
 }' \
-https://localhost:9443/wso2/carbon/userstore/v1.0.0/user-stores/AMRSNGHE)
+https://localhost:9443/wso2/carbon/userstore/v1.0.0/user-stores/NewUserStore1)
 
 if [[ "$scim_enable_response" == *"true"* ]]; then
-  echo -e "${PURPLE}${BOLD}SCIM has been enabled for the user store 'AMRSNGHE'${NC}"
+  echo -e "${PURPLE}${BOLD}SCIM has been enabled for the user store 'NewUserStore1'${NC}"
 else
-  echo -e "${RED}${BOLD}Failed to enable SCIM for the user store 'AMRSNGHE'${NC}"
+  echo -e "${RED}${BOLD}Failed to enable SCIM for the user store 'NewUserStore1'${NC}"
   echo -e "${RED}${BOLD}Error Message:${NC} $scim_enable_response"
 fi
 
