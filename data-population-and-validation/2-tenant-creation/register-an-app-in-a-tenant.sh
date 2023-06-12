@@ -15,13 +15,13 @@ if [ "$os" = "ubuntu-latest" ]; then
 
   chmod +x env.sh
   . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo "${GREEN}==> Env file for Ubuntu sourced successfully"
+  echo -e "${GREEN}==> Env file for Ubuntu sourced successfully"
 fi
 if [ "$os" = "macos-latest" ]; then
 
   chmod +x env.sh
   source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+  echo -e "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 
 fi
 
@@ -60,12 +60,12 @@ if echo "$response" | grep -q '"code":'; then
     # If there is an error, print the failure message with the error description
     error_code=$(echo "$response" | jq -r '.code')
     error_message=$(echo "$response" | jq -r '.message')
-    echo "${RED}${BOLD}Failure: Error $error_code - $error_message${NC}"
+    echo -e "${RED}${BOLD}Failure: Error $error_code - $error_message${NC}"
 else
     # If there is no error, print the success message
-    echo "${PURPLE}${BOLD}Success: A service provider has been generated in tenant=$tenant_domain${NC}.${PURPLE}${BOLD}Application name=$application_name${NC}"
+    echo -e "${PURPLE}${BOLD}Success: A service provider has been generated in tenant=$tenant_domain${NC}.${PURPLE}${BOLD}Application name=$application_name${NC}"
     # Print the details of the successful response
-    echo "${PURPLE}Response Details${NC}:"
+    echo -e "${PURPLE}Response Details${NC}:"
     echo "$response" | jq '.'
 
 fi
