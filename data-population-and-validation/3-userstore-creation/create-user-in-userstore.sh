@@ -25,7 +25,7 @@ fi
 response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-    --data-raw '{"schemas":[],"userName":"'$USERSTORE_USER_NAME'","password":"'$USERSTORE_USER_PASSWORD'","wso2Extension":{"employeeNumber":"000111","costCenter":"111111","organization":"WSO2Org","division":"'$USERSTORE_GROUP_NAME'","department":"Intigration","manager":{"managerId":"111000","displayName":"'$USERSTORE_USER_NAME'"}}}')
+    --data-raw '{"schemas":[],"userName":"'Chithara'","password":"'chitharapass'","wso2Extension":{"employeeNumber":"000111","costCenter":"111111","organization":"WSO2Org","division":"'$USERSTORE_GROUP_NAME'","department":"Intigration","manager":{"managerId":"111000","displayName":"'$USERSTORE_USER_NAME'"}}}')
 
 # Print the response
 echo -e "Response:\n$response"
@@ -37,7 +37,7 @@ if [ "$error_description" != "null" ]; then
 else
     echo -e "${GREEN}${BOLD}A user has been created in the userstore 'NewUserStore1'. User name=Jayana, Group name=${USERSTORE_GROUP_NAME}${NC}"
     echo -e "${PURPLE}Additional Details:${NC}"
-    echo -e "User Name: ${PURPLE}$USERSTORE_USER_NAME${NC}"
+    echo -e "User Name: ${PURPLE}Chithara${NC}"
     echo -e "Group Name: ${PURPLE}$USERSTORE_GROUP_NAME${NC}"
     echo -e "Employee Number: ${PURPLE}000111${NC}"
     echo -e "Cost Center: ${PURPLE}111111${NC}"
