@@ -90,6 +90,8 @@ bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
   ]
 }')
 
+echo "$bulk_response"
+
 # Check if bulk users were created successfully
 bulk_user_ids=$(echo "$bulk_response" | jq -r '.Operations[].location | split("/") | .[-1]')
 

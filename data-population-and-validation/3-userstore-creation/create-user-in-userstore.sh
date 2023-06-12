@@ -56,7 +56,7 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
 
 if [ -n "$user_store_response" ]; then
     echo -e "${PURPLE}${BOLD}User store 'Testuserstore' has been created successfully.${NC}"
-    echo "${PURPLE}${BOLD}User Store Response:${NC}"
+    echo -e "${PURPLE}${BOLD}User Store Response:${NC}"
     echo "$user_store_response"
 
     # Enable SCIM for the user store
