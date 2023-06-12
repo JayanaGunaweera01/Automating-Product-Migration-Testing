@@ -99,14 +99,14 @@ if [ -n "$bulk_user_ids" ]; then
   echo -e "${PURPLE}${BOLD}Bulk users have been created successfully.${NC}"
   echo -e "${PURPLE}${BOLD}User IDs:${NC} $bulk_user_ids"
 
-  # Add bulk users to the 'Mentors' group
-  group_members=$(echo "$bulk_user_ids" | jq -cR 'split("\n")[:-1] | map({"value": .})')
+  # Add only one user to the 'Mentors' group
+  group_members=$(echo "$bulk_user_ids" | jq -r '.[0]')
   group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --header 'Content-Type: application/json' \
     --data-raw '{
       "displayName": "Mentors",
-      "members": '"$group_members"',
+      "members": [{"value": "'"$group_members"'"}],
       "schemas": [
         "urn:ietf:params:scim:schemas:core:2.0:Group"
       ]
@@ -116,7 +116,7 @@ if [ -n "$bulk_user_ids" ]; then
 
   if [ -n "$group_id" ]; then
     echo -e "${PURPLE}${BOLD}Success Message${NC}: $group_response"
-    echo -e "${PURPLE}${BOLD}Group 'Mentors' has been created and bulk users have been added successfully.${NC}"
+    echo -e "${PURPLE}${BOLD}Group 'Mentors' has been created and the user has been added successfully.${NC}"
   else
     echo -e "${RED}${BOLD}Failed to create the 'Mentors' group.${NC}"
     echo -e "${RED}${BOLD}Error Message:${NC} $group_response"
