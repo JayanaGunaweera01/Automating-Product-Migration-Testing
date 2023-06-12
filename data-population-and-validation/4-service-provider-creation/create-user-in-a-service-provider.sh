@@ -25,7 +25,7 @@ if [ "$os" = "macos-latest" ]; then
 fi
 
 # Create a user in the service provider
-response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
+response=$(curl -k --location --request POST "$SP_USER_REGISTER_EP" \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --header 'Content-Type: application/json' \
     --data-raw '{
@@ -56,7 +56,7 @@ response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
     }')
 
 # Check the HTTP status code
-status_code=$(curl -s -o /dev/null -w "%{http_code}" "$SCIM_USER_EP_USERSTORE")
+status_code=$(curl -s -o /dev/null -w "%{http_code}" "$SP_USER_REGISTER_EP")
 
 if [ "$status_code" -eq 201 ]; then
     # Print success message
