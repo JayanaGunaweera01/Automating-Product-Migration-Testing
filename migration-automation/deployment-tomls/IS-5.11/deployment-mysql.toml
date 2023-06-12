@@ -13,6 +13,9 @@ create_admin_account = true
 type = "database_unique_id"
 read_groups = true
 
+[user_store.properties]
+SCIMEnabled= true
+
 # MYSQL CONFIGS
 
 [database.user]
