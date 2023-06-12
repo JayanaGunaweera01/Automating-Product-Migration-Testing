@@ -59,15 +59,15 @@ bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
     {
       "method": "POST",
       "path": "/Users",
-      "bulkId": "ytrewq1",  # Unique bulkId for the first user
+      "bulkId": "ytrewq",
       "data": {
         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User", "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
         "userName": "Chamath",
         "password": "chamathpass",
         "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
           "employeeNumber": "11250",
-          "mentor": {
-            "value": "bulkId:qwerty"
+          "manager": {
+            "value": "Taylor"
           }
         }
       }
@@ -75,15 +75,15 @@ bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
     {
       "method": "POST",
       "path": "/Users",
-      "bulkId": "ytrewq2",  # Unique bulkId for the second user
+      "bulkId": "ytrewq",
       "data": {
         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User", "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"],
         "userName": "Ashen",
         "password": "ashenpass",
         "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
           "employeeNumber": "11251",
-          "mentor": {
-            "value": "bulkId:qwerty"
+          "manager": {
+            "value": "Taylor"
           }
         }
       }
@@ -94,7 +94,7 @@ bulk_response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
 echo "$bulk_response"
 
 # Check if bulk users were created successfully
-bulk_user_ids=$(echo "$bulk_response" | jq -r '.Operations[].location | split("/") | .[-1]')
+bulk_user_ids=$(echo "$bulk_response" | jq -r '.Operations[].response.data.id')
 
 if [ -n "$bulk_user_ids" ]; then
   echo -e "${PURPLE}${BOLD}Bulk users have been created successfully.${NC}"
@@ -127,4 +127,3 @@ else
   echo -e "${RED}${BOLD}Error Message:${NC} $bulk_response"
   exit 1  # Exit with an error code to indicate failure
 fi
-
