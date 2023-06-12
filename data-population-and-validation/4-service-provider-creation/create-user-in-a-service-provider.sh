@@ -55,10 +55,10 @@ response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
         }
     }')
 
- echo "$response"
- 
-# Check if the user creation was successful
-if echo "$response" | grep -q '"userName":'; then
+# Check the HTTP status code
+status_code=$(curl -s -o /dev/null -w "%{http_code}" "$SCIM_USER_EP_USERSTORE")
+
+if [ "$status_code" -eq 201 ]; then
     # Print success message
     echo -e "${PURPLE}${BOLD}A user has been created in the service provider.${NC}"
     # Print additional details individually in purple
@@ -70,7 +70,6 @@ if echo "$response" | grep -q '"userName":'; then
     echo -e "${PURPLE}Work Email:${NC} $SP_USER_WORK_EMAIL"
     echo -e "${PURPLE}Employee Number:${NC} 1234A"
     echo -e "${PURPLE}Manager:${NC} Taylor"
-
 else
     # Print failure message
     echo -e "${RED}${BOLD}Failed to create the user in the service provider.${NC}"
@@ -78,5 +77,3 @@ else
     echo -e "${RED}${BOLD}Error Details:${NC}"
     echo "$response"
 fi
-echo
-
