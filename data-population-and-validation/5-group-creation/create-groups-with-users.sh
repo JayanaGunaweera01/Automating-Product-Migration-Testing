@@ -61,7 +61,7 @@ if [ -n "$user_id" ]; then
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-      "displayName": "Mentor Group",
+      "displayName": "Mentors",
       "members": [
         {
           "value": "'"$user_id"'"
