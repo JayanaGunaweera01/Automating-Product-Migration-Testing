@@ -45,7 +45,7 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
       },
       {
         "name": "url",
-        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false"
+        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
       },
       {
         "name": "disabled",
