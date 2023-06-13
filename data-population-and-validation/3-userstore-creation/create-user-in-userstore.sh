@@ -80,6 +80,7 @@ if [ -n "$file" ]; then
   sed -i 's/<Property name="SCIMEnabled">false<\/Property>/<Property name="SCIMEnabled">true<\/Property>/g' "$file"
 
   echo "Property value updated successfully."
+    cat "$file"
 else
   echo "File not found."
   # Display the contents of the file
