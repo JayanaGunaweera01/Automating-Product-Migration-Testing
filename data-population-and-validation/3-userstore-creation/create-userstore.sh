@@ -71,7 +71,7 @@ if echo "$response" | grep -q '"typeId":'; then
   echo -e "  - Property: userName, Value: ${PURPLE}testdb${NC}"
   echo -e "  - Property: password, Value: ${PURPLE}testdb${NC}"
   echo -e "  - Property: driverName, Value: ${PURPLE}com.mysql.jdbc.Driver${NC}"
-  echo -e "  - Property: url, Value: ${PURPLE}jdbc:mysql://localhost:3306/testdb?useSSL=false${NC}"
+  echo -e "  - Property: url, Value: ${PURPLE}jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true${NC}"
   echo -e "  - Property: disabled, Value: ${PURPLE}false${NC}"
 else
   # If there is an error, print the failure message with the error description
