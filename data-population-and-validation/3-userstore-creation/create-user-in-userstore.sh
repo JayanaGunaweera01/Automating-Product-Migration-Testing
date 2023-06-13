@@ -96,52 +96,52 @@ chmod +x Testuserstore.xml
     echo -e "${PURPLE}${BOLD}A user has been created in the userstore successfully.${NC}"
     echo -e "${PURPLE}${BOLD}User Creation Response${NC}: "$user_creation_response""
 
-    response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"jackson","givenName":"kim"},"userName":"Testuserstore/kim","password":"kimwso2","emails":[{"primary":true,"value":"kim.jackson@gmail.com","type":"home"},{"value":"kim_j@wso2.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/scim2/Users)
-   echo "$response"
+ #   response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"jackson","givenName":"kim"},"userName":"Testuserstore/kim","password":"kimwso2","emails":[{"primary":true,"value":"kim.jackson@gmail.com","type":"home"},{"value":"kim_j@wso2.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/scim2/Users)
+ #   echo "$response"
 
-    response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
-    echo "$response"
+ #   response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
+ #   echo "$response"
     # Create a group in the user store domain
-    group_response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
-    echo "Group Creation Response: "$group_response""
-    group_id=$(echo "$group_response" | jq -r '.id')
+ #   group_response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
+ #   echo "Group Creation Response: "$group_response""
+ #   group_id=$(echo "$group_response" | jq -r '.id')
 
-    if [ -n "$group_id" ]; then
-        echo -e "${PURPLE}${BOLD}Group has been created successfully in the user store domain.${NC}"
-        echo -e "${PURPLE}${BOLD}Group Response:${NC}"
-        echo "$group_response"
+ #   if [ -n "$group_id" ]; then
+ #       echo -e "${PURPLE}${BOLD}Group has been created successfully in the user store domain.${NC}"
+ #       echo -e "${PURPLE}${BOLD}Group Response:${NC}"
+ #       echo "$group_response"
 
         # Create a user in the given user store domain
-        user_response=$(curl -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"John","givenName":"Doe"},"userName":"Testuserstore/AMRSNGHE","password":"testPwd123"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Users)
-        echo "User Creation Response: "$user_response""
-        user_id=$(echo "$user_response" | jq -r '.id')
+ #       user_response=$(curl -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"John","givenName":"Doe"},"userName":"Testuserstore/AMRSNGHE","password":"testPwd123"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Users)
+  #      echo "User Creation Response: "$user_response""
+  #      user_id=$(echo "$user_response" | jq -r '.id')
 
-        if [ -n "$user_id" ]; then
-            echo -e "${PURPLE}${BOLD}User has been created successfully in the given user store domain.${NC}"
-            echo -e "${PURPLE}${BOLD}User Response:${NC}"
-            echo "$user_response"
+ #       if [ -n "$user_id" ]; then
+  #          echo -e "${PURPLE}${BOLD}User has been created successfully in the given user store domain.${NC}"
+  #          echo -e "${PURPLE}${BOLD}User Response:${NC}"
+   #         echo "$user_response"
 
             # Add the user to the created group
-            add_user_to_group_response=$(curl -k --user admin:admin --request PATCH --data '{"members":[{"value":"'$user_id'"}]}' --header "Content-Type: application/json" "https://localhost:9443/wso2/scim/Groups/$group_id")
-            echo "User Adding To The Group Response: "$add_user_to_group_response""
-            if [ -n "$add_user_to_group_response" ]; then
-                echo -e "${PURPLE}${BOLD}User has been added to the group successfully.${NC}"
-                echo -e "${PURPLE}${BOLD}Add User to Group Response:${NC}"
-                echo "$add_user_to_group_response"
-            else
-                echo -e "${RED}${BOLD}Failed to add the user to the group.${NC}"
-                echo -e "${RED}${BOLD}Error Message:${NC} $add_user_to_group_response"
-            fi
-        else
-            echo -e "${RED}${BOLD}Failed to create the user in the given user store domain.${NC}"
-            echo -e "${RED}${BOLD}Error Message:${NC} $user_response"
-        fi
-    else
-        echo -e "${RED}${BOLD}Failed to create the group in the user store domain.${NC}"
-        echo -e "${RED}${BOLD}Error Message:${NC} $group_response"
-    fi
+  #          add_user_to_group_response=$(curl -k --user admin:admin --request PATCH --data '{"members":[{"value":"'$user_id'"}]}' --header "Content-Type: application/json" "https://localhost:9443/wso2/scim/Groups/$group_id")
+  #          echo "User Adding To The Group Response: "$add_user_to_group_response""
+  #          if [ -n "$add_user_to_group_response" ]; then
+  #              echo -e "${PURPLE}${BOLD}User has been added to the group successfully.${NC}"
+  #              echo -e "${PURPLE}${BOLD}Add User to Group Response:${NC}"
+   #             echo "$add_user_to_group_response"
+   #         else
+   #             echo -e "${RED}${BOLD}Failed to add the user to the group.${NC}"
+   #             echo -e "${RED}${BOLD}Error Message:${NC} $add_user_to_group_response"
+   #         fi
+  #      else
+  #          echo -e "${RED}${BOLD}Failed to create the user in the given user store domain.${NC}"
+  #          echo -e "${RED}${BOLD}Error Message:${NC} $user_response"
+  #      fi
+  #  else
+ #       echo -e "${RED}${BOLD}Failed to create the group in the user store domain.${NC}"
+ #       echo -e "${RED}${BOLD}Error Message:${NC} $group_response"
+  #  fi
 
-else
-    echo -e "${RED}${BOLD}Failed to create the user store.${NC}"
-    echo -e "${RED}${BOLD}Error Message:${NC} $user_store_response"
-fi
+#else
+ #   echo -e "${RED}${BOLD}Failed to create the user store.${NC}"
+ #   echo -e "${RED}${BOLD}Error Message:${NC} $user_store_response"
+#fi
