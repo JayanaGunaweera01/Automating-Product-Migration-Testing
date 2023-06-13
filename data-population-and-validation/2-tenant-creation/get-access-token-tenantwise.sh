@@ -54,7 +54,7 @@ client_secret=$(echo "$response" | jq -r '.client_secret')
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Register service provider
-response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
+response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
   --header "Authorization: Basic YWRtaW46YWRtaW4=" \
   --header 'Content-Type: application/json' \
   --data-raw '{  "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
@@ -66,7 +66,7 @@ if echo "$response" | grep -q '"error":'; then
   echo -e "${RED}${BOLD}Failure in registering a service provider inside the tenant: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo -e "${GREEN}${BOLD}Success: Service provider registered successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Success: Service provider registered successfully.${NC}"
 
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
@@ -82,7 +82,7 @@ client_secret=$(echo "$response" | jq -r '.client_secret')
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Generate access token
-response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/oauth2/token' \
+response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/oauth2/token' \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --header "Authorization: Basic YWRtaW46YWRtaW4=" \
   --data-urlencode 'grant_type=client_credentials' \
