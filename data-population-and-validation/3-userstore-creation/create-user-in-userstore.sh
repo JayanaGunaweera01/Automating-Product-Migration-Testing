@@ -57,10 +57,14 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
 
 echo "Userstore Creation Response: "$user_store_response""
 
+
 if [ -n "$user_store_response" ]; then
     echo -e "${PURPLE}${BOLD}User store 'Testuserstore' has been created successfully.${NC}"
     echo -e "${PURPLE}${BOLD}User Store Response:${NC}"
     echo "$user_store_response"
+
+cd /home/runner/work/Automate-Product-Migration-Testing/Automate-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
+ls -a
 
 
     # Create a user in the userstore
