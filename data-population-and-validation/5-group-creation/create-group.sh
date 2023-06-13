@@ -26,7 +26,7 @@ if [ "$os" = "macos-latest" ]; then
 fi
 
 # Create the group
-group_response=$(curl -k --location --request POST "$SCIM2_GROUP_EP" \
+group_response=$(curl -k -i --location --request POST "$SCIM2_GROUP_EP" \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --header 'Content-Type: application/json' \
   --data-raw '{
