@@ -71,34 +71,30 @@ echo -e "Client Secret: ${PURPLE}$client_secret${NC}"
 # Encode client_id:client_secret as base64
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
-# Get access token and refresh token
-token_response=$(curl -k -X POST https://localhost:9443/oauth2/token \
+# Get access token
+access_token_response=$(curl -k -X POST https://localhost:9443/oauth2/token \
   -H "Authorization: Basic $base64_encoded" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'grant_type=authorization_code&code=some_authorization_code&redirect_uri=some_redirect_uri&scope=some_scope')
+  -d 'grant_type=password&username=admin&password=admin&scope=somescope_password')
 
-# Check if the token response contains any error message
-if echo "$token_response" | grep -q '"error":'; then
+# Check if the access token response contains any error message
+if echo "$access_token_response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
-  error_description=$(echo "$token_response" | jq -r '.error_description')
+  error_description=$(echo "$access_token_response" | jq -r '.error_description')
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
   exit 1
 else
   # If successful, print the success message and additional details in purple
-  access_token=$(echo "$token_response" | jq -r '.access_token')
-  refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
+  access_token=$(echo "$access_token_response" | jq -r '.access_token')
 
-  # Store access token and refresh token in a file
-  echo -e "access_token=$access_token" >> "$client_credentials_file"
-  echo -e "refresh_token=$refresh_token" >> "$client_credentials_file"
+  # Store access token in a file
+  echo "access_token=$access_token" >> "$client_credentials_file"
 
   # Print success message
-  echo -e "${PURPLE}${BOLD}Access token and refresh token obtained successfully from the registered service provider.${NC}"
+  echo -e "${PURPLE}${BOLD}Access token obtained successfully from the registered service provider.${NC}"
 
   # Print additional details
   echo -e "${PURPLE}${BOLD}Additional Details:${NC}"
   echo -e "Access Token: ${PURPLE}$access_token${NC}"
-  echo -e "Refresh Token: ${PURPLE}$refresh_token${NC}"
   echo
 fi
-
