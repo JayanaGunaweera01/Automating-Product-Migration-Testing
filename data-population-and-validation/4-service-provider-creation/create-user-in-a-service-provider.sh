@@ -25,7 +25,7 @@ if [ "$os" = "macos-latest" ]; then
 fi
 
 # Create a user in the service provider
-response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/scim2/Users" \
+response=$(curl -k --location --request POST "https://localhost:9443/scim2/Users" \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --header 'Content-Type: application/json' \
     --data-raw '{
@@ -53,27 +53,7 @@ response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.su
                 "value": "Taylor"
             }
         }
-    }')
+    }' 2>&1)
 
-# Check the HTTP status code
-status_code=$(curl -s -o /dev/null -w "%{http_code}" "https://localhost:9443/t/carbon.super/scim2/Users")
-
-if [ "$status_code" -eq 201 ]; then
-    # Print success message
-    echo -e "${PURPLE}${BOLD}A user has been created in the service provider.${NC}"
-    # Print additional details individually in purple
-    echo -e "Additional Details:"
-    echo -e "${PURPLE}User Name:${NC} $SP_USER_NAME"
-    echo -e "${PURPLE}Family Name:${NC} $SP_USER_FAMILY_NAME"
-    echo -e "${PURPLE}User Name:${NC} lanka"
-    echo -e "${PURPLE}Home Email:${NC} $SP_USER_HOME_EMAIL"
-    echo -e "${PURPLE}Work Email:${NC} $SP_USER_WORK_EMAIL"
-    echo -e "${PURPLE}Employee Number:${NC} 1234A"
-    echo -e "${PURPLE}Manager:${NC} Taylor"
-else
-    # Print failure message
-    echo -e "${RED}${BOLD}Failed to create the user in the service provider.${NC}"
-    # Print error details
-    echo -e "${RED}${BOLD}Error Details:${NC}"
-    echo "$response"
-fi
+echo "Failed to create the user in the service provider."
+echo "Error Details: $response"
