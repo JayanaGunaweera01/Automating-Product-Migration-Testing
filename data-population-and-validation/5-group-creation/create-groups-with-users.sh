@@ -87,22 +87,21 @@ else
   exit 1  # Exit with an error code to indicate failure
 fi
 
-
 # Create users using bulk request and extract user IDs
-bulk_response=$(curl -v -k --user admin:admin -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"failOnErrors\":2,\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"Operations\":[{\"data\":{\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"path\":\"/Users\",\"userName\":\"hashini\",\"method\":\"POST\",\"emails\":[{\"value\":\"hasini@gmail.com\"},{\"value\":\"hasinig@yahoo.com\"}],\"phoneNumbers\":[{\"value\":\"0772508354\"}],\"displayName\":\"Hasini\",\"externalId\":\"hasini@wso2.com\",\"password\":\"dummyPW1\",\"preferredLanguage\":\"Sinhala\",\"bulkId\":\"bulkIDUser1\"},\"path\":\"/Users\",\"method\":\"POST\",\"bulkId\":\"bulkIDUser1\"},{\"data\":{\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"path\":\"/Users\",\"userName\":\"dinuka\",\"method\":\"POST\",\"emails\":[{\"value\":\"dinuka.malalanayake@gmail.com\"},{\"value\":\"dinuka_malalanayake@yahoo.com\"}],\"phoneNumbers\":[{\"value\":\"0772508354\"}],\"displayName\":\"Dinuka\",\"externalId\":\"dinukam@wso2.com\",\"password\":\"myPassword\",\"preferredLanguage\":\"Sinhala\",\"bulkId\":\"bulkIDUser2\"},\"path\":\"/Users\",\"method\":\"POST\",\"bulkId\":\"bulkIDUser2\"}]}" https://localhost:9443/wso2/scim/Bulk)
+bulk_response=$(curl -v -k --user admin:admin -H "Accept: application/json" -H "Content-type: application/json" -d "{\"failOnErrors\":2,\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"Operations\":[{\"data\":{\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"path\":\"/Users\",\"userName\":\"geeth\",\"method\":\"POST\",\"emails\":[{\"value\":\"geeth@gmail.com\"},{\"value\":\"geethg@yahoo.com\"}],\"phoneNumbers\":[{\"value\":\"0772508354\"}],\"displayName\":\"Geeth\",\"externalId\":\"geeth@wso2.com\",\"password\":\"dummyPW1\",\"preferredLanguage\":\"Sinhala\",\"bulkId\":\"bulkIDUser1\"},\"path\":\"/Users\",\"method\":\"POST\",\"bulkId\":\"bulkIDUser1\"},{\"data\":{\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"path\":\"/Users\",\"userName\":\"dinuka\",\"method\":\"POST\",\"emails\":[{\"value\":\"dinuka.malalanayake@gmail.com\"},{\"value\":\"dinuka_malalanayake@yahoo.com\"}],\"phoneNumbers\":[{\"value\":\"0772508354\"}],\"displayName\":\"Dinuka\",\"externalId\":\"dinukam@wso2.com\",\"password\":\"myPassword\",\"preferredLanguage\":\"Sinhala\",\"bulkId\":\"bulkIDUser2\"},\"path\":\"/Users\",\"method\":\"POST\",\"bulkId\":\"bulkIDUser2\"}]}" https://localhost:9443/wso2/scim/Bulk)
 
 # Extract user IDs from bulk response
-hashini_user_id=$(echo "$bulk_response" | jq -r '.Resources[0].id')
-dinuka_user_id=$(echo "$bulk_response" | jq -r '.Resources[1].id')
+geeth_user_id=$(echo "$bulk_response" | jq -r '.Operations[0].response.body.id')
+dinuka_user_id=$(echo "$bulk_response" | jq -r '.Operations[1].response.body.id')
 
-if [ -n "$hashini_user_id" ] && [ -n "$dinuka_user_id" ]; then
+if [ -n "$geeth_user_id" ] && [ -n "$dinuka_user_id" ]; then
   echo -e "${PURPLE}${BOLD}Users have been created successfully.${NC}"
-  echo -e "${PURPLE}${BOLD}User IDs:${NC} $hashini_user_id, $dinuka_user_id"
+  echo -e "${PURPLE}${BOLD}User IDs:${NC} $geeth_user_id, $dinuka_user_id"
 
   # Create groups and add users to them
-  group_response=$(curl -v -k --user admin:admin -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"failOnErrors\":2,\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"Operations\":[{\"data\":{\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"path\":\"/Groups\",\"method\":\"POST\",\"displayName\":\"security\",\"externalId\":\"security\",\"members\":[{\"value\":\"$hashini_user_id\"}],\"bulkId\":\"bulkGroup1\"},\"path\":\"/Groups\",\"method\":\"POST\",\"bulkId\":\"bulkGroup1\"},{\"data\":{\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"path\":\"/Groups\",\"method\":\"POST\",\"displayName\":\"legal\",\"externalId\":\"legal\",\"members\":[{\"value\":\"$dinuka_user_id\"}],\"bulkId\":\"bulkGroup2\"},\"path\":\"/Groups\",\"method\":\"POST\",\"bulkId\":\"bulkGroup2\"}]}" https://localhost:9443/wso2/scim/Bulk)
+  group_response=$(curl -v -k --user admin:admin -H "Accept: application/json" -H "Content-type: application/json" -d "{\"failOnErrors\":2,\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"Operations\":[{\"data\":{\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"path\":\"/Groups\",\"method\":\"POST\",\"displayName\":\"security\",\"externalId\":\"security\",\"members\":[{\"value\":\"$geeth_user_id\"}],\"bulkId\":\"bulkGroup1\"},\"path\":\"/Groups\",\"bulkId\":\"bulkGroup1\"},{\"data\":{\"schemas\":[\"urn:scim:schemas:core:1.0\"],\"path\":\"/Groups\",\"method\":\"POST\",\"displayName\":\"legal\",\"externalId\":\"legal\",\"members\":[{\"value\":\"$dinuka_user_id\"}],\"bulkId\":\"bulkGroup2\"},\"path\":\"/Groups\",\"bulkId\":\"bulkGroup2\"}]}" https://localhost:9443/wso2/scim/B)
 
-  # Check if the group creation response contains any error message
+  # Check if there are any errors in the group creation response
   if echo "$group_response" | grep -q '"error":'; then
     # If there is an error, print the failure message with the error description
     error_description=$(echo "$group_response" | jq -r '.error_description')
