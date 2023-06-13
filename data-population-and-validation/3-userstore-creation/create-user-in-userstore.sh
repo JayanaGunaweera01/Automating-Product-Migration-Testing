@@ -33,11 +33,11 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
     "properties": [
       {
         "name": "userName",
-        "value": "root"
+        "value": "testdb"
       },
       {
         "name": "password",
-        "value": "root"
+        "value": "testdb"
       },
       {
         "name": "driverName",
@@ -56,23 +56,23 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
 
 echo "Userstore Creation Response: "$user_store_response""
 
-user_creation_response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
---header 'Content-Type: application/json' \
---header 'Authorization: Basic YWRtaW46YWRtaW4=' \
---data-raw '{"schemas":[],"userName":"'$USERSTORE_USER_NAME'","password":"'$USERSTORE_USER_PASSWORD'","wso2Extension":{"employeeNumber":"000111","costCenter":"111111","organization":"WSO2Org","division":"'$USERSTORE_GROUP_NAME'","department":"Intigration","manager":{"managerId":"111000","displayName":"'$USERSTORE_USER_NAME'"}}}')
-
-echo "User Creation Response: "$user_creation_response""
-
 if [ -n "$user_store_response" ]; then
     echo -e "${PURPLE}${BOLD}User store 'Testuserstore' has been created successfully.${NC}"
     echo -e "${PURPLE}${BOLD}User Store Response:${NC}"
     echo "$user_store_response"
 
-   response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"jackson","givenName":"kim"},"userName":"Testuserstore/kim","password":"kimwso2","emails":[{"primary":true,"value":"kim.jackson@gmail.com","type":"home"},{"value":"kim_j@wso2.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/scim2/Users)
-   echo "$response"
-   
-   response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
-    echo "$response" 
+    user_creation_response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
+        --header 'Content-Type: application/json' \
+        --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+        --data-raw '{"schemas":[],"userName":"'$USERSTORE_USER_NAME'","password":"'$USERSTORE_USER_PASSWORD'","wso2Extension":{"employeeNumber":"000111","costCenter":"111111","organization":"WSO2Org","division":"'$USERSTORE_GROUP_NAME'","department":"Intigration","manager":{"managerId":"111000","displayName":"'$USERSTORE_USER_NAME'"}}}')
+
+    echo "User Creation Response: "$user_creation_response""
+
+    response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"jackson","givenName":"kim"},"userName":"Testuserstore/kim","password":"kimwso2","emails":[{"primary":true,"value":"kim.jackson@gmail.com","type":"home"},{"value":"kim_j@wso2.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/scim2/Users)
+    echo "$response"
+
+    response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
+    echo "$response"
     # Create a group in the user store domain
     group_response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
     echo "Group Creation Response: "$group_response""
