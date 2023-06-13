@@ -61,7 +61,7 @@ if [ -n "$user_store_response" ]; then
     echo -e "${PURPLE}${BOLD}User Store Response:${NC}"
     echo "$user_store_response"
 
-    curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores" \
+    primary_user_store_response=$(curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores" \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --data-raw '{
@@ -114,10 +114,12 @@ if [ -n "$user_store_response" ]; then
         "value": "SHA-256"
       }
     ]
-  }'
+  }')
+
+echo "$primary_user_store_response"
 
 
-curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores" \
+secondary_user_store_response=$(curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores" \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --data-raw '{
@@ -170,11 +172,16 @@ curl -k --location --request POST "https://localhost:9443/api/server/v1/userstor
         "value": "SHA-256"
       }
     ]
-  }'
+  }')
+
+  echo "$secondary_user_store_response"
 
 
-    curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"jackson","givenName":"kim"},"userName":"Testuserstore/kim","password":"kimwso2","emails":[{"primary":true,"value":"kim.jackson@gmail.com","type":"home"},{"value":"kim_j@wso2.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/scim2/Users
-    curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups
+   response=$(curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"jackson","givenName":"kim"},"userName":"Testuserstore/kim","password":"kimwso2","emails":[{"primary":true,"value":"kim.jackson@gmail.com","type":"home"},{"value":"kim_j@wso2.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/scim2/Users)
+   echo "$response"
+   
+   response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
+    echo "$response" 
     # Create a group in the user store domain
     group_response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
     echo "Group Creation Response: "$group_response""
