@@ -101,21 +101,21 @@ if [ -n "$user_store_response" ]; then
                     echo "$add_user_to_group_response"
                 else
                     echo -e "${RED}${BOLD}Failed to add the user to the group.${NC}"
-                    echo "${RED}${BOLD}Error Message:${NC} $add_user_to_group_response"
+                    echo -e "${RED}${BOLD}Error Message:${NC} $add_user_to_group_response"
                 fi
             else
                 echo -e "${RED}${BOLD}Failed to create the user in the given user store domain.${NC}"
-                echo "${RED}${BOLD}Error Message:${NC} $user_response"
+                echo -e "${RED}${BOLD}Error Message:${NC} $user_response"
             fi
         else
             echo -e "${RED}${BOLD}Failed to create the group in the user store domain.${NC}"
-            echo "${RED}${BOLD}Error Message:${NC} $group_response"
+            echo -e "${RED}${BOLD}Error Message:${NC} $group_response"
         fi
     else
         echo -e "${RED}${BOLD}Failed to enable SCIM for the user store 'Testuserstore'.${NC}"
-        echo "${RED}${BOLD}Error Message:${NC} $scim_enable_response"
+        echo -e "${RED}${BOLD}Error Message:${NC} $scim_enable_response"
     fi
 else
     echo -e "${RED}${BOLD}Failed to create the user store.${NC}"
-    echo "${RED}${BOLD}Error Message:${NC} $user_store_response"
+    echo -e "${RED}${BOLD}Error Message:${NC} $user_store_response"
 fi

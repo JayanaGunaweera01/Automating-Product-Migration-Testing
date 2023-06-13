@@ -53,5 +53,5 @@ response=$(curl -k --location --request POST "https://localhost:9443/scim2/Users
         }
     }')
 
-echo -e "${PURPLE}${BOLD}Response${NC}: $response" 
+echo "${PURPLE}${BOLD}Response${NC}: $response " 
 
