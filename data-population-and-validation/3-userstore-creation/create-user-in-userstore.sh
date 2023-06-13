@@ -72,6 +72,8 @@ file=$(grep -lR '<Property name="SCIMEnabled">false</Property>' .)
 
 if [ -n "$file" ]; then
   echo "File found: $file"
+  # Display the contents of the file
+  cat "$file"
   
   # Replace the property value in the file
   sed -i 's/<Property name="SCIMEnabled">false<\/Property>/<Property name="SCIMEnabled">true<\/Property>/g' "$file"
@@ -79,6 +81,8 @@ if [ -n "$file" ]; then
   echo "Property value updated successfully."
 else
   echo "File not found."
+  # Display the contents of the file
+  cat "$file"
 fi
 
 chmod +x Testuserstore.xml
