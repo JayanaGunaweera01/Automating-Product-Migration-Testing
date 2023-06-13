@@ -66,7 +66,7 @@ if [ -n "$user_store_response" ]; then
 cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
 
 # Find the file containing the specified property
-file=$(grep -lR '<Property name="SCIMEnabled">false</Property>' .)
+file=Testuserstore.xml
 
 if [ -n "$file" ]; then
   echo "File found: $file"
