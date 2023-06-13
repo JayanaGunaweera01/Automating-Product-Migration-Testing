@@ -61,6 +61,118 @@ if [ -n "$user_store_response" ]; then
     echo -e "${PURPLE}${BOLD}User Store Response:${NC}"
     echo "$user_store_response"
 
+    curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores" \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --data-raw '{
+    "typeId": "PRIMARY",
+    "name": "PrimaryUserStore",
+    "description": "Primary User Store",
+    "properties": [
+      {
+        "name": "ClassName",
+        "value": "org.wso2.carbon.user.core.jdbc.JDBCUserStoreManager"
+      },
+      {
+        "name": "TenantId",
+        "value": "-1234"
+      },
+      {
+        "name": "ReadOnly",
+        "value": "false"
+      },
+      {
+        "name": "MaxUserNameListLength",
+        "value": "100"
+      },
+      {
+        "name": "UserEntryObjectClass",
+        "value": "user"
+      },
+      {
+        "name": "UserNameSearchFilter",
+        "value": "(&(objectClass=user)(uid=?))"
+      },
+      {
+        "name": "UserNameListFilter",
+        "value": "(objectClass=user)"
+      },
+      {
+        "name": "ConnectionURL",
+        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
+      },
+      {
+        "name": "ConnectionName",
+        "value": "testdb"
+      },
+      {
+        "name": "ConnectionPassword",
+        "value": "testdb"
+      },
+      {
+        "name": "PasswordDigest",
+        "value": "SHA-256"
+      }
+    ]
+  }'
+
+
+curl -k --location --request POST "https://localhost:9443/api/server/v1/userstores" \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --data-raw '{
+    "typeId": "JDBC_SECONDARY",
+    "name": "SecondaryUserStore",
+    "description": "Secondary User Store",
+    "properties": [
+      {
+        "name": "ClassName",
+        "value": "org.wso2.carbon.user.core.jdbc.JDBCUserStoreManager"
+      },
+      {
+        "name": "TenantId",
+        "value": "-1234"
+      },
+      {
+        "name": "ReadOnly",
+        "value": "false"
+      },
+      {
+        "name": "MaxUserNameListLength",
+        "value": "100"
+      },
+      {
+        "name": "UserEntryObjectClass",
+        "value": "user"
+      },
+      {
+        "name": "UserNameSearchFilter",
+        "value": "(&(objectClass=user)(uid=?))"
+      },
+      {
+        "name": "UserNameListFilter",
+        "value": "(objectClass=user)"
+      },
+      {
+        "name": "ConnectionURL",
+        "value": "jdbc:mysql://localhost:3306/testdb?useSSL=false&amp;allowPublicKeyRetrieval=true"
+      },
+      {
+        "name": "ConnectionName",
+        "value": "testdb"
+      },
+      {
+        "name": "ConnectionPassword",
+        "value": "testdb"
+      },
+      {
+        "name": "PasswordDigest",
+        "value": "SHA-256"
+      }
+    ]
+  }'
+
+
     curl -v -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"jackson","givenName":"kim"},"userName":"Testuserstore/kim","password":"kimwso2","emails":[{"primary":true,"value":"kim.jackson@gmail.com","type":"home"},{"value":"kim_j@wso2.com","type":"work"}]}' --header "Content-Type:application/json" https://localhost:9443/scim2/Users
     curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups
     # Create a group in the user store domain
