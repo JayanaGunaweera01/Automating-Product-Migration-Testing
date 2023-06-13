@@ -14,12 +14,12 @@ os=$1
 if [ "$os" = "ubuntu-latest" ]; then
   chmod +x env.sh
   . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo -e "${GREEN}==> Env file for Ubuntu sourced successfully"
+  echo -e "${GREEN}==> Env file for Ubuntu sourced successfully${NC}"
 fi
 if [ "$os" = "macos-latest" ]; then
   chmod +x env.sh
   source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo -e "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+  echo -e "${GREEN}==> Env file for Mac sourced successfully${NC}"
 fi
 
 # Create tenant
@@ -51,9 +51,9 @@ base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Register service provider
 response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
-  --header "Authorization: Basic YWRtaW46YWRtaW4=" \
+  --header "Authorization: Basic $base64_encoded" \
   --header 'Content-Type: application/json' \
-  --data-raw '{  "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
+  --data-raw '{ "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
@@ -79,7 +79,7 @@ base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 # Generate access token
 response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/oauth2/token' \
   --header "Content-Type: application/x-www-form-urlencoded" \
-  --header "Authorization: Basic YWRtaW46YWRtaW4=" \
+  --header "Authorization: Basic $base64_encoded" \
   --data-urlencode 'grant_type=client_credentials' \
   --data-urlencode 'scope=samplescope')
 
@@ -91,7 +91,7 @@ if echo "$response" | grep -q '"error":'; then
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo -e "${GREEN}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
 
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
@@ -109,9 +109,8 @@ if [ -n "$access_token" ]; then
   cat tenant_credentials
 
   # Print success message
-  echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!.${NC}"
+  echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!${NC}"
 else
   # Print error message
   echo -e "${RED}No access token generated from tenant.${NC}"
 fi
-echo
