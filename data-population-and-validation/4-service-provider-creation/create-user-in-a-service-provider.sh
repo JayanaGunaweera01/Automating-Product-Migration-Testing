@@ -51,7 +51,7 @@ response=$(curl -k --location --request POST "https://localhost:9443/scim2/Users
                 "value": "Taylor"
             }
         }
-    }' 2>&1)
+    }')
 
-response_code=$(echo "$response" | awk '/HTTP\/1.1/ {print $2}')
+echo -e "${PURPLE}${BOLD}Response${NC}: $response" 
 
