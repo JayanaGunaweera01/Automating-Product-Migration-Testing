@@ -12,17 +12,14 @@ os=$1
 
 # Set deployment file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
-
   chmod +x env.sh
   . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
   echo -e "${GREEN}==> Env file for Ubuntu sourced successfully"
 fi
 if [ "$os" = "macos-latest" ]; then
-
   chmod +x env.sh
   source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
   echo -e "${GREEN}==> Env file for Mac sourced successfully${RESET}"
-
 fi
 
 # Create tenant
@@ -37,7 +34,6 @@ if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error_description')
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
-
 else
   # If there is no error, print the success message
   echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully.${NC}"
@@ -72,7 +68,6 @@ else
   echo -e "${PURPLE}Response Details:${NC}"
   echo "$response" | jq '.'
 fi
-
 
 # Extract client_id and client_secret
 client_id=$(echo "$response" | jq -r '.client_id')
