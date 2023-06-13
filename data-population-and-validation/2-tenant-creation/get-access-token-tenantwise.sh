@@ -12,14 +12,17 @@ os=$1
 
 # Set deployment file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
+
   chmod +x env.sh
   . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
   echo -e "${GREEN}==> Env file for Ubuntu sourced successfully${NC}"
 fi
 if [ "$os" = "macos-latest" ]; then
+
   chmod +x env.sh
   source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
   echo -e "${GREEN}==> Env file for Mac sourced successfully${NC}"
+
 fi
 
 # Create tenant
@@ -34,6 +37,7 @@ if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error_description')
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
+
 else
   # If there is no error, print the success message
   echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully.${NC}"
@@ -42,18 +46,18 @@ else
   echo "$response" | jq '.'
 fi
 
-# Extract username and password from response
-username=$(echo "$response" | jq -r '.username')
-password=$(echo "$response" | jq -r '.password')
+# Extract client_id and client_secret from response
+client_id=$(echo "$response" | jq -r '.client_id')
+client_secret=$(echo "$response" | jq -r '.client_secret')
 
 # Encode client_id:client_secret in base64
-base64_encoded=$(echo -n "$username:$password" | base64)
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Register service provider
-response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
+response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
   --header "Authorization: Basic YWRtaW46YWRtaW4=" \
   --header 'Content-Type: application/json' \
-  --data-raw '{ "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
+  --data-raw '{  "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
@@ -69,16 +73,16 @@ else
   echo "$response" | jq '.'
 fi
 
-# Extract username and password from response
-username=$(echo "$response" | jq -r '.username')
-password=$(echo "$response" | jq -r '.password')
 
-# Encode username:password as base64
-# username admin@iit.com:admin = YWRtaW5AaWl0LmNvbTphZG1pbg==
-base64_encoded=$(echo -n "$username:$password" | base64)
+# Extract client_id and client_secret
+client_id=$(echo "$response" | jq -r '.client_id')
+client_secret=$(echo "$response" | jq -r '.client_secret')
+
+# Encode client_id:client_secret as base64
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Generate access token
-response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/oauth2/token' \
+response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/oauth2/token' \
   --header "Content-Type: application/x-www-form-urlencoded" \
   --header "Authorization: Basic YWRtaW5AaWl0LmNvbTphZG1pbg==" \
   --data-urlencode 'grant_type=password' \
@@ -92,7 +96,7 @@ if echo "$response" | grep -q '"error":'; then
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo -e "${PURPLE}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
+  echo -e "${GREEN}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
 
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
@@ -110,8 +114,9 @@ if [ -n "$access_token" ]; then
   cat tenant_credentials
 
   # Print success message
-  echo -e "${PURPLE}Generated an access token from the service provider registered in the tenant successfully!${NC}"
+  echo -e "${PURPLE}Generated an access token from the service provider registered in the tenant successfully!.${NC}"
 else
   # Print error message
   echo -e "${RED}No access token generated from tenant.${NC}"
 fi
+echo
