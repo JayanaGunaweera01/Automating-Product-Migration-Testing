@@ -27,9 +27,8 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
-    "typeId": "PRIMARY",
+    "typeId": "SkRCQ1VzZXJTdG9yZU1hbmFnZXI",
     
-    #SkRCQ1VzZXJTdG9yZU1hbmFnZXI
     "description": "Sample JDBC user store to add.",
     "name": "Testuserstore",
     "properties": [
