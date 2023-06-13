@@ -64,7 +64,7 @@ if [ -n "$user_store_response" ]; then
     echo "$user_store_response"
 
 
-cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/01-Migration-Automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
+cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
 ls -a
 
 # Find the file containing the specified property
