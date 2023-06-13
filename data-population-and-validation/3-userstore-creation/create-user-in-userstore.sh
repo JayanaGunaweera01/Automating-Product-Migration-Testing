@@ -63,32 +63,30 @@ if [ -n "$user_store_response" ]; then
     echo -e "${PURPLE}${BOLD}User Store Response:${NC}"
     echo "$user_store_response"
 
-
 cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
-ls -a
-chmod +x Testuserstore.xml
 
 # Find the file containing the specified property
-file=Testuserstore.xml
+file=$(grep -lR '<Property name="SCIMEnabled">false</Property>' .)
 
 if [ -n "$file" ]; then
   echo "File found: $file"
+  
+  # Check if the property already exists in the file
+  if ! grep -q '<Property name="SCIMEnabled">true</Property>' "$file"; then
+    # Add the property to the file
+    sed -i '/<\/UserStoreManager>/i \ \ <Property name="SCIMEnabled">true<\/Property>' "$file"
+    echo "Property added successfully."
+  else
+    echo "Property already exists in the file."
+  fi
+  
   # Display the contents of the file
   cat "$file"
-  
-  # Replace the property value in the file
-  sed -i 's/<Property name="SCIMEnabled">false<\/Property>/<Property name="SCIMEnabled">true<\/Property>/g' "$file"
-
-  echo "Property value updated successfully."
-    cat "$file"
 else
   echo "File not found."
-  # Display the contents of the file
-  cat "$file"
 fi
 
-
-
+chmod +x Testuserstore.xml
 
  # Create a user in the userstore
     user_creation_response=$(curl -k --location --request POST "$SCIM_USER_EP_USERSTORE" \
