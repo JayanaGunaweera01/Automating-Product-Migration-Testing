@@ -73,8 +73,8 @@ if [ -n "$file" ]; then
   
   # Check if the property already exists in the file
   if ! grep -q '<Property name="SCIMEnabled">true</Property>' "$file"; then
-    # Add the property to the file
-    sed -i '/<\/UserStoreManager>/i \ \ <Property name="SCIMEnabled">true<\/Property>' "$file"
+    # Add the property to the file right below the specified line with proper indentation
+    sed -i '/<Property name="Description">Sample JDBC user store to add.<\/Property>/a \ \ <Property name="SCIMEnabled">true<\/Property>' "$file"
     echo "Property added successfully."
   else
     echo "Property already exists in the file."
