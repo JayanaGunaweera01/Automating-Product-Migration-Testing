@@ -38,7 +38,7 @@ application_name="MigrationApp"
 tenant_id=$(curl -k -X GET -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" "${server_url}/api/identity/user/v0.9/tenants?tenantDomain=${tenant_domain}" | jq -r '.tenantId')
 
 # Create the service provider
-response=$(curl -k -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d "{
+response=$(curl -k -i -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -d "{
     \"applicationName\":\"${application_name}\",
     \"description\":\"Application for ${application_name}\",
     \"saasApp\":true,
