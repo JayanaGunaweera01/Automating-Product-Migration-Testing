@@ -12,17 +12,14 @@ os=$1
 
 # Set deployment file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
-
   chmod +x env.sh
   . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
   echo -e "${GREEN}==> Env file for Ubuntu sourced successfully${NC}"
 fi
 if [ "$os" = "macos-latest" ]; then
-
   chmod +x env.sh
   source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
   echo -e "${GREEN}==> Env file for Mac sourced successfully${NC}"
-
 fi
 
 # Set the server URL
@@ -63,10 +60,9 @@ if echo "$response" | grep -q '"code":'; then
     echo -e "${RED}${BOLD}Failure: Error $error_code - $error_message${NC}"
 else
     # If there is no error, print the success message
-    echo -e "${PURPLE}${BOLD}Success: A service provider has been generated in tenant=$tenant_domain${NC}.${PURPLE}${BOLD}Application name=$application_name${NC}"
+    echo -e "${PURPLE}${BOLD}Success: A service provider has been generated in tenant=$tenant_domain.${NC} Application name=$application_name"
     # Print the details of the successful response
-    echo -e "${PURPLE}Response Details${NC}:"
+    echo -e "${PURPLE}Response Details:${NC}"
     echo "$response" | jq '.'
-
 fi
 echo
