@@ -13,13 +13,13 @@ os=$1
 if [ "$os" = "ubuntu-latest" ]; then
   chmod +x env.sh
   . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo "${GREEN}==> Env file for Ubuntu sourced successfully"
+  echo -e "${GREEN}==> Env file for Ubuntu sourced successfully"
 fi
 
 if [ "$os" = "macos-latest" ]; then
   chmod +x env.sh
   source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+  echo -e "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 fi
 
 # Create a user in the service provider
@@ -53,5 +53,5 @@ response=$(curl -k --location --request POST "https://localhost:9443/scim2/Users
         }
     }')
 
-echo "${PURPLE}${BOLD}Response${NC}: $response " 
+echo -e "${PURPLE}${BOLD}Response${NC}: $response " 
 
