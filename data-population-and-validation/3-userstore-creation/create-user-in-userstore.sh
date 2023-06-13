@@ -54,6 +54,8 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
     ]
   }')
 
+echo "Userstore Creation Response: "$user_store_response""
+
 if [ -n "$user_store_response" ]; then
     echo -e "${PURPLE}${BOLD}User store 'Testuserstore' has been created successfully.${NC}"
     echo -e "${PURPLE}${BOLD}User Store Response:${NC}"
@@ -67,6 +69,8 @@ if [ -n "$user_store_response" ]; then
       "enable": true
     }')
 
+    echo "SCIM Enable Response: "$scim_enable_response""
+
     if [[ "$scim_enable_response" == *"SCIM has been enabled for the user store."* ]]; then
         echo -e "${PURPLE}${BOLD}SCIM has been enabled for the user store 'Testuserstore'.${NC}"
         echo "${PURPLE}${BOLD}SCIM Enable Response:${NC}"
@@ -74,7 +78,7 @@ if [ -n "$user_store_response" ]; then
 
         # Create a group in the user store domain
         group_response=$(curl -k --user admin:admin --data '{"displayName": "AMRSNGHE/Testuserstore"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
-
+        echo "Group Creation Response: "$group_response""
         group_id=$(echo "$group_response" | jq -r '.id')
 
         if [ -n "$group_id" ]; then
@@ -84,7 +88,7 @@ if [ -n "$user_store_response" ]; then
 
             # Create a user in the given user store domain
             user_response=$(curl -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"John","givenName":"Doe"},"userName":"AMRSNGHE/groupUSR001","password":"testPwd123"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Users)
-
+            echo "User Creation Response: "$user_response""
             user_id=$(echo "$user_response" | jq -r '.id')
 
             if [ -n "$user_id" ]; then
@@ -94,7 +98,7 @@ if [ -n "$user_store_response" ]; then
 
                 # Add the user to the created group
                 add_user_to_group_response=$(curl -k --user admin:admin --request PATCH --data '{"members":[{"value":"'$user_id'"}]}' --header "Content-Type: application/json" "https://localhost:9443/wso2/scim/Groups/$group_id")
-
+                echo "User Adding To The Group Response: "$add_user_to_group_response""
                 if [ -n "$add_user_to_group_response" ]; then
                     echo -e "${PURPLE}${BOLD}User has been added to the group successfully.${NC}"
                     echo -e "${PURPLE}${BOLD}Add User to Group Response:${NC}"
