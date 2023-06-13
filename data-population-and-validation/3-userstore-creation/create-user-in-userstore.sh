@@ -77,7 +77,7 @@ if [ -n "$user_store_response" ]; then
         echo "$scim_enable_response"
 
         # Create a group in the user store domain
-        group_response=$(curl -k --user admin:admin --data '{"displayName": "AMRSNGHE/Testuserstore"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
+        group_response=$(curl -k --user admin:admin --data '{"displayName": "Testuserstore/AMRSNGHE"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Groups)
         echo "Group Creation Response: "$group_response""
         group_id=$(echo "$group_response" | jq -r '.id')
 
@@ -87,7 +87,7 @@ if [ -n "$user_store_response" ]; then
             echo "$group_response"
 
             # Create a user in the given user store domain
-            user_response=$(curl -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"John","givenName":"Doe"},"userName":"AMRSNGHE/groupUSR001","password":"testPwd123"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Users)
+            user_response=$(curl -k --user admin:admin --data '{"schemas":[],"name":{"familyName":"John","givenName":"Doe"},"userName":"Testuserstore/AMRSNGHE","password":"testPwd123"}' --header "Content-Type: application/json" https://localhost:9443/wso2/scim/Users)
             echo "User Creation Response: "$user_response""
             user_id=$(echo "$user_response" | jq -r '.id')
 
