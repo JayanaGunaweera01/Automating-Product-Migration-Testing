@@ -42,12 +42,12 @@ else
   echo "$response" | jq '.'
 fi
 
-# Extract client_id and client_secret from response
-client_id=$(echo "$response" | jq -r '.client_id')
-client_secret=$(echo "$response" | jq -r '.client_secret')
+# Extract username and password from response
+username=$(echo "$response" | jq -r '.username')
+password=$(echo "$response" | jq -r '.password')
 
 # Encode client_id:client_secret in base64
-base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+base64_encoded=$(echo -n "$username:$password" | base64)
 
 # Register service provider
 response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
@@ -69,18 +69,18 @@ else
   echo "$response" | jq '.'
 fi
 
-# Extract client_id and client_secret
-client_id=$(echo "$response" | jq -r '.client_id')
-client_secret=$(echo "$response" | jq -r '.client_secret')
+# Extract username and password from response
+username=$(echo "$response" | jq -r '.username')
+password=$(echo "$response" | jq -r '.password')
 
 # Encode client_id:client_secret as base64
-base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+base64_encoded=$(echo -n "$username:$password" | base64)
 
 # Generate access token
 response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/oauth2/token' \
   --header "Content-Type: application/x-www-form-urlencoded" \
-  --header "Authorization: Basic $base64_encoded" \
-  --data-urlencode 'grant_type=client_credentials' \
+  --header "Authorization: Basic YWRtaW46YWRtaW4=" \
+  --data-urlencode 'grant_type=password' \
   --data-urlencode 'scope=samplescope')
 
 # Check if the response contains any error message
