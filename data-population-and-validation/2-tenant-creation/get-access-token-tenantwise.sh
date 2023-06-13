@@ -109,7 +109,7 @@ if [ -n "$access_token" ]; then
   cat tenant_credentials
 
   # Print success message
-  echo -e "${GREEN}Generated an access token from the service provider registered in the tenant successfully!${NC}"
+  echo -e "${PURPLE}Generated an access token from the service provider registered in the tenant successfully!${NC}"
 else
   # Print error message
   echo -e "${RED}No access token generated from tenant.${NC}"
