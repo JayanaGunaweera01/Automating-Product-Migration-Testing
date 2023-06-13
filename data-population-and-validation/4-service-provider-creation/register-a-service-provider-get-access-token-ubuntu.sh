@@ -89,8 +89,8 @@ else
   refresh_token=$(echo "$token_response" | jq -r '.refresh_token')
 
   # Store access token and refresh token in a file
-  echo "access_token=$access_token" >> "$client_credentials_file"
-  echo "refresh_token=$refresh_token" >> "$client_credentials_file"
+  echo -e "access_token=$access_token" >> "$client_credentials_file"
+  echo -e "refresh_token=$refresh_token" >> "$client_credentials_file"
 
   # Print success message
   echo -e "${PURPLE}${BOLD}Access token and refresh token obtained successfully from the registered service provider.${NC}"
