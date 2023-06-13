@@ -69,7 +69,7 @@ user_creation_response=$(curl -k -i --location --request POST "$SCIM_USER_EP_USE
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{"schemas":[],"userName":"'$USERSTORE_USER_NAME'","password":"'$USERSTORE_USER_PASSWORD'","wso2Extension":{"employeeNumber":"000111","costCenter":"111111","organization":"WSO2Org","division":"'$USERSTORE_GROUP_NAME'","department":"Intigration","manager":{"managerId":"111000","displayName":"'$USERSTORE_USER_NAME'"}}}')
 echo -e "${PURPLE}${BOLD}A user has been created in the userstore successfully.${NC}"
-echo -e "${PURPLE}${BOLD}User Creation Response${NC}: "$user_creation_response""
+echo -e "${PURPLE}${BOLD}User Creation Response${NC}: ""$user_creation_response"
 
 
 #cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
