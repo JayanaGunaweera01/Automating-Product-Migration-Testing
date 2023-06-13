@@ -55,13 +55,3 @@ response=$(curl -k --location --request POST "https://localhost:9443/scim2/Users
 
 response_code=$(echo "$response" | awk '/HTTP\/1.1/ {print $2}')
 
-if [ "$response_code" = "201" ]; then
-  echo -e "${PURPLE}${BOLD}A user has been created successfully.${NC}"
-  # Rest of your code for success case
-else
-  echo -e "${RED}${BOLD}Failed to create the user in the service provider.${NC}"
-  echo -e "Error Details:"
-  echo -e "${RED}Response Code: $response_code${NC}"
-  echo -e "${RED}Response Body: $response${NC}"
-  exit 1  # Exit with an error code to indicate failure
-fi
