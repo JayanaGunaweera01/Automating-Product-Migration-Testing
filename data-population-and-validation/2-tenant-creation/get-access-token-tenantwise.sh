@@ -73,7 +73,8 @@ fi
 username=$(echo "$response" | jq -r '.username')
 password=$(echo "$response" | jq -r '.password')
 
-# Encode client_id:client_secret as base64
+# Encode username:password as base64
+# username admin@iit.com:admin = YWRtaW5AaWl0LmNvbTphZG1pbg==
 base64_encoded=$(echo -n "$username:$password" | base64)
 
 # Generate access token
