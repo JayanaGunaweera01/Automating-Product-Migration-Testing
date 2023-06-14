@@ -107,6 +107,16 @@ jobs:
             echo "Binary $asset_file_name_with_ext download is completed."
             pwd
             ls -a
+
+      # Upload migration client
+      - uses: actions/checkout@v3
+
+      - run: mkdir -p ./utils/migration-client
+
+      - uses: actions/upload-artifact@v3
+        with:
+           name: migration-client
+           path: ./utils/migration-client/migration-client.zip
     
   ubuntu-postgres-migration:
     needs: setup-migration-client 
@@ -202,6 +212,17 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: migration-client
+          path: ./utils/migration-client/migration-client.zip
+    
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ./utils/migration-client/migration-client.zip
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
