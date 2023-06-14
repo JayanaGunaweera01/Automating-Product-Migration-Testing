@@ -19,7 +19,12 @@ echo -e "${GREEN}==> Env file for Ubuntu sourced successfully${NC}"
 # Copy update tool from utils to bin folder
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
 
-cp -r $UPDATE_TOOL_UBUNTU $BIN_ISOLD
+
+if [ "$startServer" = "currentVersion" ]; then
+  cp -r $UPDATE_TOOL_UBUNTU $BIN_ISOLD
+elif [ "$startServer" = "migratingVersion" ]; then
+  cp -r $UPDATE_TOOL_UBUNTU $BIN_ISNEW
+fi
 copy_exit_code=$?
 if [ $copy_exit_code -eq 0 ]; then
     echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
