@@ -113,7 +113,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
            name: migration-client
-           path: ./utils/migration-client/migration-client.zip
+           path: ./utils/migration-client
     
   ubuntu-postgres-migration:
     needs: setup-migration-client 
@@ -209,11 +209,11 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-        
+
       - uses: actions/download-artifact@v3
         with:
           name: migration-client
-          path: ./utils/migration-client/migration-client.zip
+          path: ./utils/migration-client
     
       - name: Display structure of downloaded files
         run: ls -R
