@@ -1,10 +1,54 @@
 name: Composite Workflow 🐧🍎🪟
 
 on:
-  push:
-    branches:
-      - main
-
+  workflow_dispatch:
+    inputs:
+      currentVersion:
+        description: "🖥️ Specify the version of WSO2 IS that is presently installed in your environment."
+        default: "5.11.0"
+        type: choice
+        options:
+          - "5.9.0"
+          - "5.10.0"
+          - "5.11.0"
+          - "6.0.0"
+          - "6.1.0"
+          - "6.2.0"
+      migratingVersion:
+        description: "💻 Specify the version of WSO2 IS that you want to migrate."
+        default: "6.0.0"
+        type: choice
+        options:
+          - "5.10.0"
+          - "5.11.0"
+          - "6.0.0"
+          - "6.1.0"
+          - "6.2.0"
+      database:
+        description: "🐘 Select the database."
+        default: "mysql"
+        type: choice
+        options:
+          - "mysql"
+          - "mssql"
+          - "postgres"
+      os:
+        description: "🐧 Select the OS."
+        default: "ubuntu-latest"
+        type: choice
+        options:
+          - "ubuntu-latest"
+          - "macos-latest"
+          - "windows-latest"
+      urlOld:
+        description: "🔗 Provide the URL to download the old version of WSO2 IS."
+        default: https://github.com/wso2/product-is/releases/download/v5.11.0/wso2is-5.11.0.zip
+        required: true
+      urlNew:
+        description: "🔗🆕 Provide the URL to download the version you want to upgrade WSO2 IS."
+        default: https://github.com/wso2/product-is/releases/download/v6.0.0-rc2/wso2is-6.0.0-rc2.zip
+        required: true
+        
 jobs:
   setup-postgres:
     runs-on: ubuntu-latest
