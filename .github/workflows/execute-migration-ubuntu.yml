@@ -2,7 +2,7 @@ name: Execute Migration Ubuntu
 
 on:
   workflow_run:
-    workflows: ["Ubuntu Postgres Setup"]
+    workflows: ["Composite Workflow 🐧🍎🪟"]
     types:
       - completed
 jobs:
