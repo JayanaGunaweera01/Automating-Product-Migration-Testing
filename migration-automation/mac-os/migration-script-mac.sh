@@ -148,7 +148,7 @@ chmod +x wso2update_script.expect
 
 # Run the expect script in the background
 ./wso2update_script.expect &
-
+wait $!
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 
 # Update Product Pack
@@ -296,7 +296,7 @@ chmod +x wso2update_script.expect
 
 # Run the expect script in the background
 ./wso2update_script.expect &
-
+wait $!
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 
 # Update Product Pack
