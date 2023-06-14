@@ -78,7 +78,7 @@ echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Update Product Pack
-./wso2update_linux "$email" "$password"
+./wso2update_linux 
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
 
