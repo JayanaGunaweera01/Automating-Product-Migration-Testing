@@ -183,6 +183,11 @@ unzip -qq *.zip &
 wait $!
 echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
 
+# Run update tool
+cd "$UBUNTU_HOME"
+chmod +x update-pack.sh
+sh update-pack.sh "$email" "$password" "$migratingVersion"
+
 # Divert to utils folder
 cd "$UTILS"
 echo "${GREEN}==> Diverted to utils folder${RESET}"
