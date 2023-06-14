@@ -213,10 +213,14 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: migration-client
-          path: ./utils/migration-client
-           ls -a
-           pwd
+          path: "./utils/migration-client"
 
+      - name: check client
+        run: |  
+           cd "./utils/migration-client"
+           ls -a 
+           cd ./migration-automation  
+      
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
             chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
