@@ -120,7 +120,7 @@ fi
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
-spawn ./wso2update_linux
+spawn ./wso2update_darwin
 expect "Please enter your credentials to continue."
 sleep 5
 send -- "$email\r"
@@ -268,7 +268,7 @@ fi
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
-spawn ./wso2update_linux
+spawn ./wso2update_darwin
 expect "Please enter your credentials to continue."
 sleep 5
 send -- "$email\r"
