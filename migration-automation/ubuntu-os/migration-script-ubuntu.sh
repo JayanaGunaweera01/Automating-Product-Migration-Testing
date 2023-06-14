@@ -97,7 +97,7 @@ echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 # Run update tool
 cd "$UBUNTU_HOME"
 chmod +x update-pack.sh
-sh update-pack.sh "$email" "$password"
+sh update-pack.sh "$email" "$password" "$currentVersion"
 
 cd "$AUTOMATION_HOME"
 

@@ -9,6 +9,8 @@ NC='\033[0m' # No Color
 
 email=$1
 password=$2
+startServer=$3
+
 
 # Source env file
 . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
@@ -25,7 +27,12 @@ else
     echo "${RED}==> Failed to copy the update tool.${RESET}"
 fi
 
-cd "$BIN_ISOLD"
+if [ "$startServer" = "currentVersion" ]; then
+  cd "$BIN_IS_OLD"
+elif [ "$startServer" = "migratingVersion" ]; then
+  cd "$BIN_IS_NEW"
+fi
+
 
 sudo apt-get install expect -y
 
