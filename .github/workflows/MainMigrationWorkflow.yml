@@ -200,8 +200,23 @@ jobs:
               chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
               sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
+      
+      - name: 📋 Persist Logs
+        run: |
+          mkdir -p migration-automation/artifacts
+          cp migration-automation/logs.txt migration-automation/artifacts/
+        if: ${{ always() }}
+
+      - name: 📦 Upload Artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
+          path: migration-automation/artifacts
+
 
   ubuntu-mysql-migration:
+    needs: setup-migration-client 
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'ubuntu-latest' }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -218,6 +233,19 @@ jobs:
             chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
             sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
+
+      - name: 📋 Persist Logs
+        run: |
+          mkdir -p migration-automation/artifacts
+          cp migration-automation/logs.txt migration-automation/artifacts/
+        if: ${{ always() }}
+
+      - name: 📦 Upload Artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
+          path: migration-automation/artifacts
 
   ubuntu-mssql-migration:
     needs: setup-migration-client 
@@ -269,6 +297,19 @@ jobs:
           sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
 
+      - name: 📋 Persist Logs
+        run: |
+          mkdir -p migration-automation/artifacts
+          cp migration-automation/logs.txt migration-automation/artifacts/
+        if: ${{ always() }}
+
+      - name: 📦 Upload Artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
+          path: migration-automation/artifacts
+
   macos-mysql-migration:
     needs: setup-migration-client 
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'macos-latest' }}
@@ -300,7 +341,6 @@ jobs:
         with:
           name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
           path: migration-automation/artifacts
-
 
   macos-postgres-migration:
     needs: setup-migration-client 
