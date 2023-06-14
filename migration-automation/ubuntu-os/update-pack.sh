@@ -28,9 +28,9 @@ else
 fi
 
 if [ "$startServer" = "currentVersion" ]; then
-  cd "$BIN_IS_OLD"
+  cd "$BIN_ISOLD"
 elif [ "$startServer" = "migratingVersion" ]; then
-  cd "$BIN_IS_NEW"
+  cd "$BIN_ISNEW"
 fi
 
 
