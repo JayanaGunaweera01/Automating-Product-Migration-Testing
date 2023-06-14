@@ -152,8 +152,7 @@ wait $!
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 
 # Update Product Pack
-./wso2update_darwin &
-wait $!
+./wso2update_darwin 
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
 wait $!
 
@@ -301,8 +300,7 @@ wait $!
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 
 # Update Product Pack
-./wso2update_darwin &
-wait $!
+./wso2update_darwin 
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
 
 
