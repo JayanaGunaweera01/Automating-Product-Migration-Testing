@@ -218,6 +218,7 @@ jobs:
       - name: check client
         run: |  
            cd "./utils/migration-client"
+           pwd
            ls -a 
       
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
