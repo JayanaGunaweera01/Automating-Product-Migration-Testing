@@ -54,7 +54,7 @@ client_secret=$(echo "$response" | jq -r '.client_secret')
 base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
 # Register service provider
-response=$(curl -k -i --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
+response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/api/server/v1/service/register' \
   --header "Authorization: Basic YWRtaW46YWRtaW4=" \
   --header 'Content-Type: application/json' \
   --data-raw '{  "client_name": "migration app", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
