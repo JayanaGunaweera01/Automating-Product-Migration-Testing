@@ -70,7 +70,7 @@ else
 
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
-  echo "$response" | jq '.'
+  echo "$response"
 fi
 
 
@@ -83,7 +83,6 @@ if [ -z "$client_id" ] || [ -z "$client_secret" ]; then
   # Print error message
   error_description=$(echo "$response" | jq -r '.error_description')
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
-  exit 1
 fi
 
 # Encode client_id:client_secret in base64
@@ -97,3 +96,5 @@ response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/o
   --data-urlencode 'username=admin@iit.com' \
   --data-urlencode 'password=admin' \
   --data-urlencode 'scope=samplescope')
+
+ echo "Access Token Response: $response"
