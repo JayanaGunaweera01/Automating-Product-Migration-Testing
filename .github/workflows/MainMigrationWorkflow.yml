@@ -194,7 +194,7 @@ jobs:
         with:
            name: migration-client
            path: ./utils/migration-client.zip
-           
+
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
               chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
@@ -302,7 +302,7 @@ jobs:
           path: migration-automation/artifacts
 
 
-  macos-postgres-setup:
+  macos-postgres-migration:
     needs: setup-migration-client 
     runs-on: ${{ github.event.inputs.os }}
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }}
