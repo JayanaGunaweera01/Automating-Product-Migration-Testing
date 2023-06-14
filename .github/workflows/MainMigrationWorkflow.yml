@@ -194,10 +194,7 @@ jobs:
         with:
            name: migration-client
            path: ./utils/migration-client.zip
-
-      - name: 🤖 Unzip Migration Client
-        run: |
-          unzip ./utils/migration-client.zip -d ./utils
+           
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
               chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
@@ -216,9 +213,6 @@ jobs:
           name: migration-client
           path: ./utils/migration-client.zip
 
-      - name: 🤖 Unzip Migration Client
-        run: |
-          unzip ./utils/migration-client.zip -d ./utils
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
             chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
@@ -262,15 +256,13 @@ jobs:
           docker cp ./utils/db-scripts/IS-5.11/metrics/mssql.sql sqlserver-test:/metrics-mssql.sql
           docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /metrics-mssql.sql
           echo "Copied mssql scripts to docker container"
+
       - name: 📥 Download Migration Client Artifact
         uses: actions/download-artifact@v2
         with:
           name: migration-client
           path: ./utils/migration-client.zip
 
-      - name: 🤖 Unzip Migration Client
-        run: |
-          unzip ./utils/migration-client.zip -d ./utils
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
           chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
@@ -291,9 +283,6 @@ jobs:
           name: migration-client
           path: ./utils/migration-client.zip
 
-      - name: 🤖 Unzip Migration Client
-        run: |
-          unzip ./utils/migration-client.zip -d ./utils
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
           chmod +x migration-automation/mac-os/migration-script-mac.sh 
@@ -304,6 +293,7 @@ jobs:
           mkdir -p migration-automation/artifacts
           cp migration-automation/logs.txt migration-automation/artifacts/
         if: ${{ always() }}
+
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
@@ -348,9 +338,6 @@ jobs:
           name: migration-client
           path: ./utils/migration-client.zip
 
-      - name: 🤖 Unzip Migration Client
-        run: |
-          unzip ./utils/migration-client.zip -d ./utils
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
           chmod +x migration-automation/mac-os/migration-script-mac.sh 
@@ -361,6 +348,7 @@ jobs:
           mkdir -p migration-automation/artifacts
           cp migration-automation/logs.txt migration-automation/artifacts/
         if: ${{ always() }}
+
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
@@ -406,9 +394,6 @@ jobs:
           name: migration-client
           path: ./utils/migration-client.zip
 
-      - name: 🤖 Unzip Migration Client
-        run: |
-          unzip ./utils/migration-client.zip -d ./utils
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
           chmod +x migration-automation/mac-os/migration-script-mac.sh 
@@ -419,6 +404,7 @@ jobs:
           mkdir -p migration-automation/artifacts
           cp migration-automation/logs.txt migration-automation/artifacts/
         if: ${{ always() }}
+
       - name: 📦 Upload Artifacts
         uses: actions/upload-artifact@v2
         if: always()
