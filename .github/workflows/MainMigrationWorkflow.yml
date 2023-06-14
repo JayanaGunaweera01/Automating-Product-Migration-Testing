@@ -109,9 +109,6 @@ jobs:
             ls -a
 
       # Upload migration client
-      - uses: actions/checkout@v3
-
-      - run: mkdir -p ./utils/migration-client
 
       - uses: actions/upload-artifact@v3
         with:
@@ -212,9 +209,7 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-
-      - uses: actions/checkout@v3
-
+        
       - uses: actions/download-artifact@v3
         with:
           name: migration-client
