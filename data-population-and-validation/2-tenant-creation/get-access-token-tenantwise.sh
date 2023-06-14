@@ -73,7 +73,6 @@ else
   echo "$response"
 fi
 
-
 # Extract client_id and client_secret from response
 client_id=$(echo "$response" | jq -r '.client_id')
 client_secret=$(echo "$response" | jq -r '.client_secret')
