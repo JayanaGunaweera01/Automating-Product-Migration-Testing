@@ -112,7 +112,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-           name: migration-client
+           name: migration-client.zip
            path: ./utils/migration-client
     
   ubuntu-postgres-migration:
@@ -212,14 +212,13 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: migration-client
+          name: migration-client.zip
           path: "./utils/migration-client"
 
       - name: check client
         run: |  
            cd "./utils/migration-client"
            ls -a 
-           cd ./migration-automation  
       
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
