@@ -320,11 +320,7 @@ else
     echo "${RED}==> Migration client archive not found!${RESET}"
 fi
 ls -a
-unzip -qq migration-client.zip
-ls -a
-unzip -qq migration-client.zip
-ls -a
-wait $!
+
 
 # Navigate to dropins folder
 cd "$DROPINS_PATH_HOME"

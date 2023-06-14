@@ -107,21 +107,7 @@ jobs:
             echo "Binary $asset_file_name_with_ext download is completed."
             pwd
             ls -a
-      - name: 📤 Upload Migration Client Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: migration-client
-          path: "./utils/migration-client.zip"
-      - name: 💵 Cache Logs
-        id: cache-logs
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-logs
-        with:
-          path: ${{ github.workspace }}/migration-automation/logs.txt
-          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-
+    
   ubuntu-postgres-migration:
     needs: setup-migration-client 
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'ubuntu-latest' }}
@@ -189,12 +175,6 @@ jobs:
           docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
           echo "All postgre scripts executed successfully!"
 
-      - name: 📥 Download Migration Client Artifact
-        uses: actions/download-artifact@v2
-        with:
-           name: migration-client
-           path: ./utils/migration-client.zip
-
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
               chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
@@ -222,11 +202,6 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-      - name: 📥 Download Migration Client Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: migration-client
-          path: "./utils/migration-client"
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
@@ -285,12 +260,6 @@ jobs:
           docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /metrics-mssql.sql
           echo "Copied mssql scripts to docker container"
 
-      - name: 📥 Download Migration Client Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: migration-client
-          path: ./utils/migration-client.zip
-
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
           chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
@@ -317,12 +286,6 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-
-      - name: 📥 Download Migration Client Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: migration-client
-          path: ./utils/migration-client.zip
 
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
@@ -371,12 +334,6 @@ jobs:
       - name: ✅ Verify script execution
         run: psql -d testdb -c 'SHOW server_version'
         shell: bash
-
-      - name: 📥 Download Migration Client Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: migration-client
-          path: ./utils/migration-client.zip
 
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
@@ -427,12 +384,6 @@ jobs:
 
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-
-      - name: 📥 Download Migration Client Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: migration-client
-          path: ./utils/migration-client.zip
 
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
