@@ -152,7 +152,8 @@ wait $!
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 
 # Update Product Pack
-./wso2update_darwin
+./wso2update_darwin &
+wait $!
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
 wait $!
 
@@ -300,9 +301,10 @@ wait $!
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 
 # Update Product Pack
-./wso2update_darwin
-echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
+./wso2update_darwin &
 wait $!
+echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
+
 
 # Divert to utils folder
 cd "$UTILS_MAC_PATH"
