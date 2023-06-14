@@ -319,8 +319,9 @@ else
     ls -a
     echo "${RED}==> Migration client archive not found!${RESET}"
 fi
-
-unzip -qq wso2is-migration-1.0.225.zip
+ls -a
+unzip -qq migration-client.zip
+ls -a
 wait $!
 
 # Navigate to dropins folder

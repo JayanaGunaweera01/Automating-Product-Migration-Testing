@@ -110,7 +110,7 @@ jobs:
       - name: 📤 Upload Migration Client Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: wso2is-migration-1.0.225.zip
+          name: migration-client
           path: "./utils/migration-client"
       - name: 💵 Cache Logs
         id: cache-logs
@@ -225,8 +225,8 @@ jobs:
       - name: 📥 Download Migration Client Artifact
         uses: actions/download-artifact@v2
         with:
-          name: wso2is-migration-1.0.225.zip
-          path: "./utils/migration-client/wso2is-migration-1.0.225.zip"
+          name: migration-client
+          path: "./utils/migration-client/migration-client.zip"
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
