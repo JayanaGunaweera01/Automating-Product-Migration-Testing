@@ -226,7 +226,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: migration-client
-          path: ./utils/migration-client.zip
+          path: "./utils/migration-client/migration-client.zip"
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
