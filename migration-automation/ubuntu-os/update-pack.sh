@@ -27,7 +27,7 @@ elif [ "$startServer" = "migratingVersion" ]; then
 fi
 copy_exit_code=$?
 if [ $copy_exit_code -eq 0 ]; then
-    echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
+    echo "${GREEN}==> Update tool successfully copied to "$startServer"${RESET}"
 else
     echo "${RED}==> Failed to copy the update tool.${RESET}"
 fi
