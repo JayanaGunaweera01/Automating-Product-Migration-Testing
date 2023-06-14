@@ -49,7 +49,81 @@ on:
         default: https://github.com/wso2/product-is/releases/download/v6.0.0-rc2/wso2is-6.0.0-rc2.zip
         required: true
 jobs:
-  ubuntu-postgres-setup:
+  setup-migration-client:
+    runs-on: ${{ github.event.inputs.os }}
+    steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
+      - name: 🤖 Download Migration Client
+        run: |
+
+          readonly github_repo_owner="wso2-extensions"
+          readonly github_repo_name="identity-migration-resources"
+          readonly tag="1.0.225"
+          readonly asset_file_name_with_ext="wso2is-migration-$tag.zip"
+
+          github_tag_url=$(curl --silent --show-error \
+                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
+                --header "Accept: application/json, application/vnd.github.v3+json" \
+                --request GET "https://api.github.com/repos/$github_repo_owner/$github_repo_name/releases?per_page=100&draft=false" |
+                jq -r '.url') &&
+              readonly github_tag_url &&
+              echo "Discovered the github_tag_url: ${github_tag_url}" &&
+
+          github_tag_id=$(curl --silent --show-error \
+                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
+                --header "Accept: application/json, application/vnd.github.v3+json" \
+                --request GET "${github_tag_url}" | 
+              jq --raw-output "first(.[] | select(.tag_name==\"v$tag\")).id") &&
+              readonly github_tag_id &&
+              echo "Discovered the tag_id: ${github_tag_id}" &&
+              echo "Creating the download link..." &&
+
+              # Get the download URL of our desired asset
+              download_url=$(curl --silent --show-error \
+                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
+                --header "Accept: application/json, application/vnd.github.v3+json" \
+                --location --request "GET" \
+                "https://api.github.com/repos/$github_repo_owner/$github_repo_name/releases/$github_tag_id" |
+                jq --raw-output ".assets[] | select(.name==\"${asset_file_name_with_ext}\").url") &&
+              readonly download_url &&
+              echo "Found resource download url: $download_url" &&
+              echo "Discovering the S3 bucket url for resource..." &&
+
+              
+              redirect_url=$(curl --silent --show-error \
+                --header "Accept: application/octet-stream" \
+                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
+                --request GET --write-out "%{redirect_url}" \
+                "$download_url") &&
+              readonly redirect_url &&
+              echo "Download is starting now..." &&
+
+            # Finally download the actual binary.
+            curl -LJO --show-error \
+              --output "./utils/migration-client" \
+              --request GET \
+              "$redirect_url" &&
+            echo "Binary $asset_file_name_with_ext download is completed."
+            pwd
+            ls -a
+      - name: 📤 Upload Migration Client Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: migration-client
+          path: ./utils/migration-client.zip
+      - name: 💵 Cache Logs
+        id: cache-logs
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-logs
+        with:
+          path: ${{ github.workspace }}/migration-automation/logs.txt
+          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+
+  ubuntu-postgres-migration:
+    needs: setup-migration-client 
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'ubuntu-latest' }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -115,14 +189,44 @@ jobs:
           docker exec -i postgres sh -c 'exec psql -U postgres -d testdb < /postgresfive.sql'
           echo "All postgre scripts executed successfully!"
 
-  ubuntu-mysql-setup:
+      - name: 📥 Download Migration Client Artifact
+        uses: actions/download-artifact@v2
+        with:
+           name: migration-client
+           path: ./utils/migration-client.zip
+
+      - name: 🤖 Unzip Migration Client
+        run: |
+          unzip ./utils/migration-client.zip -d ./utils
+      - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
+        run: |
+              chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
+              sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+        continue-on-error: true
+
+  ubuntu-mysql-migration:
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'ubuntu-latest' }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
+      - name: 📥 Download Migration Client Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: migration-client
+          path: ./utils/migration-client.zip
 
-  ubuntu-mssql-setup:
+      - name: 🤖 Unzip Migration Client
+        run: |
+          unzip ./utils/migration-client.zip -d ./utils
+      - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
+        run: |
+            chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
+            sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+        continue-on-error: true
+
+  ubuntu-mssql-migration:
+    needs: setup-migration-client 
     if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'ubuntu-latest' }}
     runs-on: ${{ github.event.inputs.os }}
     services:
@@ -158,14 +262,58 @@ jobs:
           docker cp ./utils/db-scripts/IS-5.11/metrics/mssql.sql sqlserver-test:/metrics-mssql.sql
           docker exec sqlserver-test /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'YourStrongPassw0rd' -d testdb -i /metrics-mssql.sql
           echo "Copied mssql scripts to docker container"
-  macos-mysql-setup:
+      - name: 📥 Download Migration Client Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: migration-client
+          path: ./utils/migration-client.zip
+
+      - name: 🤖 Unzip Migration Client
+        run: |
+          unzip ./utils/migration-client.zip -d ./utils
+      - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
+        run: |
+          chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
+          sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+        continue-on-error: true
+
+  macos-mysql-migration:
+    needs: setup-migration-client 
     if: ${{ github.event.inputs.database == 'mysql' && github.event.inputs.os == 'macos-latest' }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
 
+      - name: 📥 Download Migration Client Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: migration-client
+          path: ./utils/migration-client.zip
+
+      - name: 🤖 Unzip Migration Client
+        run: |
+          unzip ./utils/migration-client.zip -d ./utils
+      - name: 🚀 Execute Migration Automation Script 🍎 Mac
+        run: |
+          chmod +x migration-automation/mac-os/migration-script-mac.sh 
+          sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+        continue-on-error: true
+      - name: 📋 Persist Logs
+        run: |
+          mkdir -p migration-automation/artifacts
+          cp migration-automation/logs.txt migration-automation/artifacts/
+        if: ${{ always() }}
+      - name: 📦 Upload Artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
+          path: migration-automation/artifacts
+
+
   macos-postgres-setup:
+    needs: setup-migration-client 
     runs-on: ${{ github.event.inputs.os }}
     if: ${{ github.event.inputs.database == 'postgres' && github.event.inputs.os == 'macos-latest' }}
     steps:
@@ -194,7 +342,34 @@ jobs:
         run: psql -d testdb -c 'SHOW server_version'
         shell: bash
 
-  macos-mssql-setup:
+      - name: 📥 Download Migration Client Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: migration-client
+          path: ./utils/migration-client.zip
+
+      - name: 🤖 Unzip Migration Client
+        run: |
+          unzip ./utils/migration-client.zip -d ./utils
+      - name: 🚀 Execute Migration Automation Script 🍎 Mac
+        run: |
+          chmod +x migration-automation/mac-os/migration-script-mac.sh 
+          sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+        continue-on-error: true
+      - name: 📋 Persist Logs
+        run: |
+          mkdir -p migration-automation/artifacts
+          cp migration-automation/logs.txt migration-automation/artifacts/
+        if: ${{ always() }}
+      - name: 📦 Upload Artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: "logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}"
+          path: migration-automation/artifacts
+
+  macos-mssql-migration:
+    needs: setup-migration-client 
     if: ${{ github.event.inputs.database == 'mssql' && github.event.inputs.os == 'macos-latest' }}
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -224,96 +399,17 @@ jobs:
 
       - name: ✅ Verify script execution
         run: sqlcmd -U SA -P 'YourStrongPassw0rd' -d testdb -Q 'SELECT @@VERSION'
-  execute-migration:
-    needs:
-      [
-        ubuntu-postgres-setup,
-        ubuntu-mssql-setup,
-        macos-mssql-setup,
-        macos-postgres-setup,
-        ubuntu-mysql-setup,
-        macos-mysql-setup,
-      ]
-    if: always() && !cancelled()
-    runs-on: ${{ github.event.inputs.os }}
-    steps:
-      - name: 💾 Checkout code
-        uses: actions/checkout@v2
-      - name: 🤖 Download Migration Client
-        #env:
-        #MIGRATION_PAT: ${{ secrets.MIGRATION_PAT }}
-        run: |
 
-          readonly github_repo_owner="wso2-extensions"
-          readonly github_repo_name="identity-migration-resources"
-          readonly tag="1.0.225"
-          readonly asset_file_name_with_ext="wso2is-migration-$tag.zip"
-
-          github_tag_url=$(curl --silent --show-error \
-                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
-                --header "Accept: application/json, application/vnd.github.v3+json" \
-                --request GET "https://api.github.com/repos/$github_repo_owner/$github_repo_name/releases?per_page=100&draft=false" |
-                jq -r '.url') &&
-              readonly github_tag_url &&
-              echo "Discovered the github_tag_url: ${github_tag_url}" &&
-
-          github_tag_id=$(curl --silent --show-error \
-                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
-                --header "Accept: application/json, application/vnd.github.v3+json" \
-                --request GET "${github_tag_url}" | 
-              jq --raw-output "first(.[] | select(.tag_name==\"v$tag\")).id") &&
-              readonly github_tag_id &&
-              echo "Discovered the tag_id: ${github_tag_id}" &&
-              echo "Creating the download link..." &&
-
-              # Get the download URL of our desired asset
-              download_url=$(curl --silent --show-error \
-                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
-                --header "Accept: application/json, application/vnd.github.v3+json" \
-                --location --request "GET" \
-                "https://api.github.com/repos/$github_repo_owner/$github_repo_name/releases/$github_tag_id" |
-                jq --raw-output ".assets[] | select(.name==\"${asset_file_name_with_ext}\").url") &&
-              readonly download_url &&
-              echo "Found resource download url: $download_url" &&
-              echo "Discovering the S3 bucket url for resource..." &&
-
-              
-              redirect_url=$(curl --silent --show-error \
-                --header "Accept: application/octet-stream" \
-                --header "Authorization: token ${{ secrets.MIGRATION_PAT }}" \
-                --request GET --write-out "%{redirect_url}" \
-                "$download_url") &&
-              readonly redirect_url &&
-              echo "Download is starting now..." &&
-
-            # Finally download the actual binary.
-            curl -LJO --show-error \
-              --output "./utils/migration-client" \
-              --request GET \
-              "$redirect_url" &&
-            echo "Binary $asset_file_name_with_ext download is completed."
-            pwd
-            ls -a
-
-      - name: 💵 Cache Logs
-        id: cache-logs
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-logs
+      - name: 📥 Download Migration Client Artifact
+        uses: actions/download-artifact@v2
         with:
-          path: ${{ github.workspace }}/migration-automation/logs.txt
-          key: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
-          restore-keys: logs-${{ github.event.inputs.currentVersion }}-${{ github.event.inputs.migratingVersion }}-${{ github.event.inputs.database }}-${{ github.event.inputs.os }}
+          name: migration-client
+          path: ./utils/migration-client.zip
 
-      - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'ubuntu-latest' }}
+      - name: 🤖 Unzip Migration Client
         run: |
-          chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
-          sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
-        continue-on-error: true
-
+          unzip ./utils/migration-client.zip -d ./utils
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
-        if: ${{ (github.event.inputs.database == 'mssql' || github.event.inputs.database == 'postgres' || github.event.inputs.database == 'mysql') && github.event.inputs.os == 'macos-latest' }}
         run: |
           chmod +x migration-automation/mac-os/migration-script-mac.sh 
           sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
@@ -331,7 +427,15 @@ jobs:
           path: migration-automation/artifacts
 
   validate-migration:
-    needs: execute-migration
+    needs:
+      [
+        ubuntu-postgres-migration,
+        ubuntu-mssql-migration,
+        macos-mssql-migration,
+        macos-postgres-migration,
+        ubuntu-mysql-migration,
+        macos-mysql-migration,
+      ]
     if: always()
     runs-on: ${{ github.event.inputs.os }}
     steps:
@@ -354,3 +458,4 @@ jobs:
               echo "$line"
             fi
           done < migration-automation/artifacts/logs.txt
+
