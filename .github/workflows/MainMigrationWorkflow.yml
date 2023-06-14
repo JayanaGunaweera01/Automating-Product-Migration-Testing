@@ -214,10 +214,6 @@ jobs:
         with:
           name: migration-client
           path: ./utils/migration-client
-    
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: ./utils/migration-client/migration-client.zip
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
