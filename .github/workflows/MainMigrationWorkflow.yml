@@ -214,6 +214,8 @@ jobs:
         with:
           name: migration-client
           path: ./utils/migration-client
+           ls -a
+           pwd
 
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
