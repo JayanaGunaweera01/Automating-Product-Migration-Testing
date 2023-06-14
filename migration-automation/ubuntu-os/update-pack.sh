@@ -44,6 +44,9 @@ sudo apt-get install expect -y
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
+email=$1
+password=$2
+
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
 sleep 5
@@ -69,13 +72,13 @@ EOF
 # Set executable permissions for the expect script
 chmod +x wso2update_script.expect
 # Run the expect script
-./wso2update_script.expect
+./wso2update_script.expect "$email" "$password"
 
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Update Product Pack
-./wso2update_linux
+./wso2update_linux "$email" "$password"
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
 
