@@ -75,11 +75,11 @@ fi
 
 
 # Extract client_id and client_secret
-client_id=$(echo "$response" | jq -r '.client_id')
-client_secret=$(echo "$response" | jq -r '.client_secret')
+username=$(echo "$response" | jq -r '.username')
+password=$(echo "$response" | jq -r '.password')
 
 # Encode client_id:client_secret as base64
-base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
+base64_encoded=$(echo -n "$username:$password" | base64)
 
 # Generate access token
 response=$(curl -k --location --request POST 'https://localhost:9443/t/iit.com/oauth2/token' \
@@ -98,7 +98,7 @@ if echo "$response" | grep -q '"error":'; then
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message
-  echo -e "${GREEN}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Success: Access token generated from the service provider registered in the tenant successfully.${NC}"
 
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
