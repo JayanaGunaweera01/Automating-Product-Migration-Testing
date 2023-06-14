@@ -220,7 +220,6 @@ jobs:
            cd "./utils/migration-client"
            pwd
            ls -a
-           unzip -qq migration-client.zip 
       
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
