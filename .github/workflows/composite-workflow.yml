@@ -1,0 +1,25 @@
+name: Composite Workflow 🐧🍎🪟
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-postgres:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Postgres Database
+        uses: ./.github/workflows/ubuntu-postgres-setup.yml
+
+  execute-migration:
+    needs: setup-postgres
+    runs-on: ${{ github.event.inputs.os }}
+    steps:
+      - name: 💾 Checkout code
+        uses: actions/checkout@v2
+      - name: 🚀 Execute Migration Automation Script
+        uses: ./.github/workflows/execute-migration-ubuntu.yml
+
