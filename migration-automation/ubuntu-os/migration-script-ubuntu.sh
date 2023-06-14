@@ -322,6 +322,8 @@ fi
 ls -a
 unzip -qq migration-client.zip
 ls -a
+unzip -qq migration-client.zip
+ls -a
 wait $!
 
 # Navigate to dropins folder
