@@ -320,6 +320,9 @@ else
     echo "${RED}==> Migration client archive not found!${RESET}"
 fi
 
+unzip -qq wso2is-migration-1.0.225.zip
+wait $!
+
 # Navigate to dropins folder
 cd "$DROPINS_PATH_HOME"
 
