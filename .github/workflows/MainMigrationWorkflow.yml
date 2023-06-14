@@ -110,8 +110,8 @@ jobs:
       - name: 📤 Upload Migration Client Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: migration-client
-          path: "./utils/wso2is-migration-1.0.225.zip"
+          name: wso2is-migration-1.0.225.zip
+          path: "./utils/migration-client"
       - name: 💵 Cache Logs
         id: cache-logs
         uses: actions/cache@v2
