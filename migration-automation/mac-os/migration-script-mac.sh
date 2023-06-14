@@ -27,6 +27,8 @@ currentVersion=$3
 migratingVersion=$4
 database=$5
 os=$6
+email=$7
+password=$8
 
 # Remove spaces from the beginning and end of the currentVersion variable
 currentVersion=$(echo $currentVersion | xargs)
@@ -116,14 +118,29 @@ if ! command -v expect &> /dev/null; then
 fi
 
 # Create an expect script file
-cat > wso2update_script.expect <<EOF
+cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
-spawn ./wso2update_darwin
+spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
-send "jayana@wso2.com\r"
+sleep 5
+send -- "$email\r"
 expect "Email:"
-send "jay123\r"
-expect eof
+sleep 5
+send -- "$password\r"
+expect {
+    "wso2update: Error while authenticating user: Error while authenticating user credentials: Invalid email address '*'" {
+        puts "Invalid email address. Please check the MIGRATION_EMAIL environment variable."
+        exit 1
+    }
+    "wso2update: Error while authenticating user: Error while authenticating user credentials: Unable to read input: EOF" {
+        puts "Error while authenticating user credentials. Please check the MIGRATION_PASSWORD environment variable."
+        exit 1
+    }
+    eof {
+        puts "Updated the Client Tool successfully"
+        exit 0
+    }
+}
 EOF
 
 # Set executable permissions for the expect script
@@ -227,6 +244,65 @@ unzip -qq *.zip &
 wait $!
 ls -a
 echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
+
+
+# Copy update tool from utils to bin folder
+cd "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
+
+cp -r $UPDATE_TOOL_MACOS $BIN_ISNEW_MAC
+copy_exit_code=$?
+if [ $copy_exit_code -eq 0 ]; then
+  echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
+else
+  echo "${RED}==> Failed to copy the update tool.${RESET}"
+fi
+
+cd "$BIN_ISNEW_MAC"
+
+# Install expect if not already installed
+if ! command -v expect &> /dev/null; then
+    echo "Installing expect..."
+    brew install expect
+fi
+
+# Create an expect script file
+cat >wso2update_script.expect <<EOF
+#!/usr/bin/expect -f
+spawn ./wso2update_linux
+expect "Please enter your credentials to continue."
+sleep 5
+send -- "$email\r"
+expect "Email:"
+sleep 5
+send -- "$password\r"
+expect {
+    "wso2update: Error while authenticating user: Error while authenticating user credentials: Invalid email address '*'" {
+        puts "Invalid email address. Please check the MIGRATION_EMAIL environment variable."
+        exit 1
+    }
+    "wso2update: Error while authenticating user: Error while authenticating user credentials: Unable to read input: EOF" {
+        puts "Error while authenticating user credentials. Please check the MIGRATION_PASSWORD environment variable."
+        exit 1
+    }
+    eof {
+        puts "Updated the Client Tool successfully"
+        exit 0
+    }
+}
+EOF
+
+# Set executable permissions for the expect script
+chmod +x wso2update_script.expect
+
+# Run the expect script in the background
+./wso2update_script.expect &
+
+echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
+
+# Update Product Pack
+./wso2update_darwin
+echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
+wait $!
 
 # Divert to utils folder
 cd "$UTILS_MAC_PATH"

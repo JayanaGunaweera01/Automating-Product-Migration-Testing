@@ -231,6 +231,9 @@ unzip -qq *.zip &
 wait $!
 echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
 
+# Copy update tool from utils to bin folder
+cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
+
 # Update package
 cp -r $UPDATE_TOOL_UBUNTU $BIN_ISNEW
 copy_exit_code=$?
