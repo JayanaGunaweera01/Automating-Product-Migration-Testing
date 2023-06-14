@@ -213,7 +213,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: migration-client.zip
-          path: "./utils/migration-client"
+          path: "./utils/migration-client/migration-client.zip"
 
       - name: check client
         run: |  
