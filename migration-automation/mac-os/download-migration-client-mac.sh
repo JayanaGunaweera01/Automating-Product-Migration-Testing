@@ -2,8 +2,14 @@
 
 MIGRATION_PAT=$1
 
-# Source the script to set the environment variables
-source <(curl -sSL https://raw.githubusercontent.com/wso2-extensions/identity-migration-resources/1.0.225/release-info.sh)
+# Download the release-info.sh script
+curl -sSL -o release-info.sh https://raw.githubusercontent.com/wso2-extensions/identity-migration-resources/1.0.225/release-info.sh
+
+# Source the downloaded script to set the environment variables
+source release-info.sh
+
+# Remove the downloaded script
+rm release-info.sh
 
 github_tag_url=$(curl -s -S -H "Authorization: token $MIGRATION_PAT" -H "Accept: application/json, application/vnd.github.v3+json" \
   "https://api.github.com/repos/$GITHUB_REPO_OWNER/$GITHUB_REPO_NAME/releases?per_page=100&draft=false" |
@@ -36,5 +42,6 @@ curl -O -s -S "$ASSET_FILE_NAME_WITH_EXT"
 wait $!
 echo "Unzipped downloaded migration client"
 ls -a
+
 
 
