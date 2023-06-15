@@ -29,6 +29,7 @@ database=$5
 os=$6
 email=$7
 password=$8
+migrationClient=$9
 
 # Remove spaces from the beginning and end of the currentVersion variable
 currentVersion=$(echo $currentVersion | xargs)
@@ -303,37 +304,20 @@ echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 ./wso2update_darwin 
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
 
-
-# Divert to utils folder
-cd "$UTILS_MAC_PATH"
-echo "${GREEN}==> Diverted to utils folder${RESET}"
+cd "$AUTOMATION_HOME_MAC"
+chmod +x download-migration-client.sh
+sh download-migration-client.sh "$migrationClient" 
+ls -a
+unzip -qq wso2is-migration-1.0.225.zip  &
+wait $!
+echo "${GREEN}==> Unzipped migration client successfully${RESET}"
 
 # Copy migration client from home to migration client folder
-cp -r "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/wso2is-migration-1.0.225.zip" "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/" &
+cp -r "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/wso2is-migration-1.0.225" "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/" &
 cp_pid=$!
 
 wait $cp_pid
 echo "${GREEN}==> Copied migration client from home to migration client folder${RESET}"
-
-
-# Download migration client
-#wget -qq "$LINK_TO_MIGRATION_CLIENT" &
-# wait $!
-# ls -a
-# echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
-
-# Unzip migration client archive
-migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
-if [ -n "$migration_archive" ]; then
-    unzip -qq "$migration_archive" &
-    wait $!
-    echo "${GREEN}==> Unzipped migration client archive${RESET}"
-    # Remove migration client archive
-    rm "$migration_archive"
-    echo "${GREEN}==> Removed downloaded migration client zip from the system${RESET}"
-else
-    echo "${RED}==> Migration client archive not found!${RESET}"
-fi
 
 # Navigate to dropins folder
 cd "$DROPINS_PATH_HOME_MAC"
