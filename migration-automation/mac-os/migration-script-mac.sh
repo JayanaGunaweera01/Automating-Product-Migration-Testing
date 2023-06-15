@@ -304,13 +304,13 @@ echo "${GREEN}==> Updated the Client Tool successfully${RESET}"
 ./wso2update_darwin 
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}"
 
- cd "$MAC_HOME"
-chmod +x download-migration-client-mac.sh
-sh download-migration-client-mac.sh "$migrationClient" 
-ls -a
+cd "$AUTOMATION_HOME_MAC"
+chmod +x download-migration-client.sh
+sh download-migration-client.sh "$migrationClient" 
 unzip -qq wso2is-migration-1.0.225.zip  &
 wait $!
 pwd
+ls -a
 echo "${GREEN}==> Unzipped migration client successfully${RESET}"
 
 cd "$AUTOMATION_HOME_MAC"
