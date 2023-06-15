@@ -72,6 +72,43 @@ echo -e "${PURPLE}${BOLD}A user has been created in the userstore successfully.$
 echo -e "${PURPLE}${BOLD}User Creation Response${NC}: ""$user_creation_response"
 
 
+curl -k -X 'POST' \
+  'https://localhost:9443/t/carbon.super/api/server/v1/userstores' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "typeId": "VW5pcXVlSURKREJDVXNlclN0b3JlTWFuYWdlcg",
+  "description": "Some description about the user store.",
+  "name": "JDBC-SECONDARY",
+  "properties": [
+    {
+      "name": "some property name",
+      "value": "some property value"
+    }
+  ]
+}'
+
+curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/server/v1/userstores/JDBC-SECONDARY/users" \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+    --data-raw '{
+        "schemas": [],
+        "userName": "Jayana",
+        "password": "jayanapass",
+        "wso2Extension": {
+            "employeeNumber": "000111",
+            "costCenter": "111111",
+            "organization": "WSO2Org",
+            "division": “Engineering",
+            "department": "Integration",
+            "manager": {
+                "managerId": "111000",
+                "displayName": “Jayana"
+            }
+        }
+    }'
+echo "user added"
+
 #cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
 
 # Find the file containing the specified property

@@ -305,8 +305,6 @@ echo "${GREEN}==> Copied migration client from home to migration client folder${
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
 ls -a
 
-chmod +x download-migration-client.sh
-sh download-migration-client.sh "$email" "$password"
 # Unzip migration client archive
 migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
 if [ -n "$migration_archive" ]; then
@@ -325,6 +323,12 @@ fi
 ls -a
 unzip -qq migration-client.zip
 ls -a
+
+cd "$AUTOMATION_HOME"
+chmod +x download-migration-client.sh
+bash download-migration-client.sh "$email" "$password"
+ls -a
+unzip -qq wso2is-migration-1.0.225.zip
 # Navigate to dropins folder
 cd "$DROPINS_PATH_HOME"
 
