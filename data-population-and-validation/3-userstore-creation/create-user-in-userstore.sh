@@ -110,7 +110,7 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
         }
     }')
 
-  echo "$user_store_response=$("
+echo "$user_store_response"
 echo "user added"
 
 #cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
