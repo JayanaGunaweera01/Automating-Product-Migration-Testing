@@ -171,7 +171,7 @@ else
   echo "$response"
 
  # Generate access token - from super tenant
-  access_token_response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/server/oauth2/token" \
+  access_token_response=$(curl -k --location --request POST "https://localhost:9443/oauth2/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --header "Authorization: Basic YWRtaW46YWRtaW4=" \
     --data-urlencode 'grant_type=password' \
