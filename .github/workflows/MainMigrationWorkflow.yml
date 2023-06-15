@@ -330,11 +330,11 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-
+      - name: 🐘 Set up PostgreSQL
         env:
-          PGDATA: /usr/local/var/postgres
-          PGDATABASE: testdb
-          run: |
+           PGDATA: /usr/local/var/postgres
+           PGDATABASE: testdb
+        run: |
             brew update
             brew install postgresql
             initdb $PGDATA
