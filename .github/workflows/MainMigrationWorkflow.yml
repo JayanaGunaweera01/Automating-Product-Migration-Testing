@@ -185,7 +185,7 @@ jobs:
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
               chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
-              sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+              sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" "${{ secrets.MIGRATION_PAT }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
       
       - name: 📋 Persist Logs
@@ -281,7 +281,7 @@ jobs:
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
           chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
-          sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+          sh migration-automation/ubuntu-os/migration-script-ubuntu.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" "${{ secrets.MIGRATION_PAT }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
 
       - name: 📋 Persist Logs
@@ -308,7 +308,7 @@ jobs:
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
           chmod +x migration-automation/mac-os/migration-script-mac.sh 
-          sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+          sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" "${{ secrets.MIGRATION_PAT }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
       - name: 📋 Persist Logs
         run: |
@@ -356,7 +356,7 @@ jobs:
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
           chmod +x migration-automation/mac-os/migration-script-mac.sh 
-          sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+          sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" "${{ secrets.MIGRATION_PAT }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
       - name: 📋 Persist Logs
         run: |
@@ -406,7 +406,7 @@ jobs:
       - name: 🚀 Execute Migration Automation Script 🍎 Mac
         run: |
           chmod +x migration-automation/mac-os/migration-script-mac.sh 
-          sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" | tee "migration-automation/logs.txt"
+          sh migration-automation/mac-os/migration-script-mac.sh "${{ github.event.inputs.urlOld }}" "${{ github.event.inputs.urlNew }}" "${{ github.event.inputs.currentVersion }}" "${{ github.event.inputs.migratingVersion }}" "${{ github.event.inputs.database }}" "${{ github.event.inputs.os }}" "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}" "${{ secrets.MIGRATION_PAT }}" | tee "migration-automation/logs.txt"
         continue-on-error: true
       - name: 📋 Persist Logs
         run: |
