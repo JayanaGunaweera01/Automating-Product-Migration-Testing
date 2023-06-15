@@ -295,18 +295,10 @@ wait $!
 ls -a
 cd wso2is-migration-1.0.225
 ls -a
-
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
-ls -a
-unzip -qq migration-client.zip  &
-wait $!
-ls -a
-
-cd wso2is-migration-1.0.225
-ls -a
+pwd
 
 # Copy migration client from home to migration client folder
-cp -r "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/wso2is-migration-1.0.225.zip" "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/" &
+cp -r "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/wso2is-migration-1.0.225" "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/" &
 cp_pid=$!
 
 wait $cp_pid
