@@ -291,8 +291,11 @@ chmod +x download-migration-client.sh
 sh download-migration-client.sh "$migrationClient" 
 ls -a
 unzip -qq wso2is-migration-1.0.225.zip
+ls -a
 
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
+ls -a
+unzip -qq wso2is-migration-1.0.225.zip
 ls -a
 
 # Copy migration client from home to migration client folder

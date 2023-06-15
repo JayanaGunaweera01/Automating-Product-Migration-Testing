@@ -46,7 +46,8 @@ curl -LJO --show-error \
   "$redirect_url"
 echo "Binary $ASSET_FILE_NAME_WITH_EXT download is completed."
 
-wget -qq --waitretry=5 --retry-connrefused "$ASSET_FILE_NAME_WITH_EXT"
+wget -qq "$ASSET_FILE_NAME_WITH_EXT"
+wait $!
 echo "Unzipped downloaded migration client"
 ls -a
 
