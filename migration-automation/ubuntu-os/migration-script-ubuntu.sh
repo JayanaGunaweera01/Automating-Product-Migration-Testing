@@ -286,9 +286,14 @@ wait $!
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
 
-# Divert to utils folder
-cd "$UTILS"
-echo "${GREEN}==> Diverted to utils folder${RESET}"
+cd "$AUTOMATION_HOME"
+chmod +x download-migration-client.sh
+sh download-migration-client.sh "$migrationClient" 
+ls -a
+unzip -qq wso2is-migration-1.0.225.zip
+
+cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
+ls -a
 
 # Copy migration client from home to migration client folder
 cp -r "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/wso2is-migration-1.0.225.zip" "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client/" &
@@ -297,39 +302,6 @@ cp_pid=$!
 wait $cp_pid
 echo "${GREEN}==> Copied migration client from home to migration client folder${RESET}"
 
-# Download migration client
-# wget -qq "$LINK_TO_MIGRATION_CLIENT" &
-# wait $!
-# ls -a
-# echo "${GREEN}==> Downloaded migration client successfully!${RESET}"
-
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
-ls -a
-
-# Unzip migration client archive
-migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
-if [ -n "$migration_archive" ]; then
-    unzip -qq "$migration_archive" &
-    wait $!
-    echo "${GREEN}==> Unzipped migration client archive${RESET}"
-    # Remove migration client archive
-    rm "$migration_archive"
-    ls -a
-    echo "${GREEN}==> Removed downloaded migration client zip from the system${RESET}"
-
-else
-    ls -a
-    echo "${RED}==> Migration client archive not found!${RESET}"
-fi
-ls -a
-unzip -qq migration-client.zip
-ls -a
-
-cd "$AUTOMATION_HOME"
-chmod +x download-migration-client.sh
-sh download-migration-client.sh "$migrationClient" 
-ls -a
-unzip -qq wso2is-migration-1.0.225.zip
 # Navigate to dropins folder
 cd "$DROPINS_PATH_HOME"
 
