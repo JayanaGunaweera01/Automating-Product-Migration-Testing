@@ -27,6 +27,7 @@ database=$5
 os=$6
 email=$7
 password=$8
+migrationClient=$9
 
 # Remove spaces from the beginning and end of the currentVersion variable
 currentVersion=$(echo $currentVersion | xargs)
@@ -326,7 +327,7 @@ ls -a
 
 cd "$AUTOMATION_HOME"
 chmod +x download-migration-client.sh
-bash download-migration-client.sh "$email" "$password"
+sh download-migration-client.sh "$migrationClient" 
 ls -a
 unzip -qq wso2is-migration-1.0.225.zip
 # Navigate to dropins folder
