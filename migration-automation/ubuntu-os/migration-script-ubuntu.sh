@@ -305,7 +305,8 @@ echo "${GREEN}==> Copied migration client from home to migration client folder${
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/migration-client"
 ls -a
 
-wget "$LINK_TO_MIGRATION_CLIENT" "$email" "$password"
+chmod +x download-migration-client.sh
+sh download-migration-client.sh "$email" "$password"
 # Unzip migration client archive
 migration_archive=$(find . -type f -name 'wso2is-migration-*.zip' -print -quit)
 if [ -n "$migration_archive" ]; then
