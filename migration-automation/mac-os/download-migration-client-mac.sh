@@ -2,14 +2,10 @@
 
 MIGRATION_PAT=$1
 
-# Download the release-info.sh script
-curl -sSL -o release-info.sh https://raw.githubusercontent.com/wso2-extensions/identity-migration-resources/1.0.225/release-info.sh
-
-# Source the downloaded script to set the environment variables
-source release-info.sh
-
-# Remove the downloaded script
-rm release-info.sh
+export GITHUB_REPO_OWNER="wso2-extensions"
+export GITHUB_REPO_NAME="identity-migration-resources"
+export TAG="1.0.225"
+export ASSET_FILE_NAME_WITH_EXT="wso2is-migration-$TAG.zip"
 
 github_tag_url=$(curl --silent --show-error \
   --header "Authorization: token $MIGRATION_PAT" \
