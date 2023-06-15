@@ -72,7 +72,7 @@ echo -e "${PURPLE}${BOLD}A user has been created in the userstore successfully.$
 echo -e "${PURPLE}${BOLD}User Creation Response${NC}: ""$user_creation_response"
 
 
-curl -k -X 'POST' \
+user_store_response=$(curl -k -X 'POST' \
   'https://localhost:9443/t/carbon.super/api/server/v1/userstores' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
@@ -86,9 +86,11 @@ curl -k -X 'POST' \
       "value": "some property value"
     }
   ]
-}'
+}')
 
-curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/server/v1/userstores/JDBC-SECONDARY/users" \
+echo "$user_store_response"
+
+user_store_response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/server/v1/userstores/JDBC-SECONDARY/users" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
@@ -106,7 +108,9 @@ curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/ser
                 "displayName": “Jayana"
             }
         }
-    }'
+    }')
+
+  echo "$user_store_response=$("
 echo "user added"
 
 #cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
