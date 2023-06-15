@@ -288,10 +288,11 @@ wait $!
 
 cd "$AUTOMATION_HOME"
 chmod +x download-migration-client.sh
-sh download-migration-client.sh "$migrationClient" 
-ls -a
+sh download-migration-client.sh "$migrationClient" &
+wait $!
 unzip -qq wso2is-migration-1.0.225.zip  &
 wait $!
+ls -a
 echo "${GREEN}==> Unzipped migration client successfully${RESET}"
 
 # Copy migration client from home to migration client folder
