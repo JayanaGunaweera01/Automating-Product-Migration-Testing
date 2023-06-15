@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MIGRATION_PAT=$1
+
 export GITHUB_REPO_OWNER="wso2-extensions"
 export GITHUB_REPO_NAME="identity-migration-resources"
 export TAG="1.0.225"
