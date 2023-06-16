@@ -14,6 +14,7 @@ RESET='\033[0m'            # reset color
 # Update the system before downloading packages
 sudo apt-get -qq update
 
+
 cd "$AUTOMATION_HOME"
 cd migration-automation
 
@@ -86,7 +87,10 @@ cd IS_HOME_OLD
 echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 # Download needed wso2IS zip
-wget -qq --waitretry=5 --retry-connrefused "$urlOld"
+#wget -qq --waitretry=5 --retry-connrefused "$urlOld"
+
+response=$(curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1Qn4BKskpzCQY55525Hk0GvWhjyq6T1_h&export=download&confirm=t&uuid=c7c3a26c-0462-4d30-869d-676c539ed82b")
+echo "response"
 ls -a
 echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
 
