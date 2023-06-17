@@ -87,7 +87,10 @@ cd IS_HOME_OLD
 echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 # Download needed wso2IS zip
-wget -qq --waitretry=5 --retry-connrefused "$urlOld"
+#wget -qq --waitretry=5 --retry-connrefused "$urlOld"
+
+curl -k -L -o wso2is.zip -H 'Referer: https://wso2.com' '$urlOld' | grep -o -E 'https://[^\"]+' | grep ".zip"
+
 wait $!
 
 #curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1Qn4BKskpzCQY55525Hk0GvWhjyq6T1_h&export=download&confirm=t&uuid=c7c3a26c-0462-4d30-869d-676c539ed82b"
