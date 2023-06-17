@@ -87,10 +87,11 @@ cd IS_HOME_OLD
 echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 # Download needed wso2IS zip
-#wget -qq --waitretry=5 --retry-connrefused "$urlOld"
-
-curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1Qn4BKskpzCQY55525Hk0GvWhjyq6T1_h&export=download&confirm=t&uuid=c7c3a26c-0462-4d30-869d-676c539ed82b"
+wget -qq --waitretry=5 --retry-connrefused "$urlOld"
 wait $!
+
+#curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1Qn4BKskpzCQY55525Hk0GvWhjyq6T1_h&export=download&confirm=t&uuid=c7c3a26c-0462-4d30-869d-676c539ed82b"
+#wait $!
 ls -a
 echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
 
@@ -226,8 +227,8 @@ echo "${GREEN}==> Created a directory for placing latest wso2IS${RESET}"
 cd "$IS_HOME_NEW"
 
 # Download needed (latest) wso2IS zip
-#wget -qq --waitretry=5 --retry-connrefused "$urlNew"
-#wait $!
+wget -qq --waitretry=5 --retry-connrefused "$urlNew"
+wait $!
 #curl -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL"
 #response=$(curl -k -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL")
 #echo "$response"
