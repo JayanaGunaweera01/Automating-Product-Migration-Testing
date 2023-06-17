@@ -89,19 +89,21 @@ echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 # Download needed wso2IS zip
 #wget -qq --waitretry=5 --retry-connrefused "$urlOld"
 
-curl -k -L -o wso2is.zip -H 'Referer: https://wso2.com' "$urlOld" | grep -o -E 'https://[^\"]+' | grep ".zip"
+download_url="$urlOld"
 
+# Download the file using curl
+curl -LJO --show-error "$download_url"
+
+# Verify the downloaded file
+unzip -t wso2is.zip
 wait $!
-
-#curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1Qn4BKskpzCQY55525Hk0GvWhjyq6T1_h&export=download&confirm=t&uuid=c7c3a26c-0462-4d30-869d-676c539ed82b"
-#wait $!
 ls -a
 echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
 
 # Unzip IS archive
-unzip -qq *.zip &
-wait
-echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
+#unzip -qq *.zip &
+#wait
+#echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
 # Copy update tool from utils to bin folder
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
