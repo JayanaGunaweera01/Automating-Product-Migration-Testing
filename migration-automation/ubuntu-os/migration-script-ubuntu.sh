@@ -233,7 +233,7 @@ cd "$IS_HOME_NEW"
 #echo "$response"
 
 curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL&export=download"
-
+wait $!
 ls -a
 echo "${GREEN}==> Downloaded "$migratingVersion" zip${RESET}"
 
