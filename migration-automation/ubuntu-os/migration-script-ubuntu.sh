@@ -89,14 +89,8 @@ echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 # Download needed wso2IS zip
 #wget -qq --waitretry=5 --retry-connrefused "$urlOld"
 
-#response=$(curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1Qn4BKskpzCQY55525Hk0GvWhjyq6T1_h&export=download&confirm=t&uuid=c7c3a26c-0462-4d30-869d-676c539ed82b")
-#echo "response"
-#curl -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL"
-#response=$(curl -k -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL")
-#echo "$response"
-
-curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL&export=download&confirm=t&uuid=a7d78ef7-370c-4dd2-9773-ba4bde05610c&at=AKKF8vxnGHmon_-waqqdNsOLXTUb:1686975272778"
-
+curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1Qn4BKskpzCQY55525Hk0GvWhjyq6T1_h&export=download&confirm=t&uuid=c7c3a26c-0462-4d30-869d-676c539ed82b"
+wait $!
 ls -a
 echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
 
@@ -238,9 +232,7 @@ cd "$IS_HOME_NEW"
 #response=$(curl -k -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL")
 #echo "$response"
 
-curl -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL"
-response=$(curl -k -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL")
-echo "$response"
+curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL&export=download"
 
 ls -a
 echo "${GREEN}==> Downloaded "$migratingVersion" zip${RESET}"
