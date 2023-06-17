@@ -226,8 +226,10 @@ echo "${GREEN}==> Created a directory for placing latest wso2IS${RESET}"
 cd "$IS_HOME_NEW"
 
 # Download needed (latest) wso2IS zip
-wget -qq --waitretry=5 --retry-connrefused "$urlNew"
-wait $!
+#wget -qq --waitretry=5 --retry-connrefused "$urlNew"
+#wait $!
+curl -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL"
+
 ls -a
 echo "${GREEN}==> Downloaded "$migratingVersion" zip${RESET}"
 
