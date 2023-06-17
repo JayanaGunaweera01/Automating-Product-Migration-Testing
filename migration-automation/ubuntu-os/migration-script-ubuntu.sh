@@ -95,8 +95,7 @@ echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 #response=$(curl -k -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL")
 #echo "$response"
 
-curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL&export=download"
-
+curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL&export=download&confirm=t&uuid=a7d78ef7-370c-4dd2-9773-ba4bde05610c&at=AKKF8vxnGHmon_-waqqdNsOLXTUb:1686975272778"
 
 ls -a
 echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
