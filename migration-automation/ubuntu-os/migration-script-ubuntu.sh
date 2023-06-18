@@ -91,8 +91,22 @@ echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 download_url="$urlOld"
 
-# Download the file using curl
-curl -LJO --show-error "$download_url"
+
+export DOWNLOAD_URL="$urlOld"
+export FILE_NAME="wso2is.zip"
+
+# Download the file
+curl -LJO "$DOWNLOAD_URL"
+
+wait $!
+
+# Check if the download was successful
+if [ $? -eq 0 ]; then
+  echo "File $FILE_NAME downloaded successfully."
+else
+  echo "Failed to download the file."
+fi
+
 
 # Verify the downloaded file
 unzip -t wso2is.zip
