@@ -91,13 +91,12 @@ echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 download_url="$urlOld"
 
-
 export DOWNLOAD_URL="$urlOld"
 export FILE_NAME="wso2is.zip"
 
 # Download the file
-curl -LJO "$DOWNLOAD_URL"
 
+curl -L -o wso2is.zip -H 'Referer: https://wso2.com' "$DOWNLOAD_URL" | grep -o -E 'https://[^\"]+' | grep ".zip"
 wait $!
 
 # Check if the download was successful
