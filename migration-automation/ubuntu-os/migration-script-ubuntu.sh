@@ -87,7 +87,8 @@ cd IS_HOME_OLD
 echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 # Download needed wso2IS zip
-wget -qq --waitretry=5 --retry-connrefused "$urlOld"
+wget -qq --waitretry=5 --retry-connrefused "$urlOld" &
+wait $!
 
 #download_url="$urlOld"
 #export DOWNLOAD_URL="$urlOld"
