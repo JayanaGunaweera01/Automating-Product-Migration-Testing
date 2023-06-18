@@ -95,21 +95,7 @@ wget -qq --waitretry=5 --retry-connrefused "$urlOld"
 
 # Download the file
 #curl -L -o wso2is.zip -H 'Referer: https://wso2.com' "$DOWNLOAD_URL" | grep -o -E 'https://[^\"]+' | grep ".zip"
-wait $!
-
-# Check if the download was successful
-if [ $? -eq 0 ]; then
-  echo "File $FILE_NAME downloaded successfully."
-else
-  echo "Failed to download the file."
-fi
-
-
-# Verify the downloaded file
-unzip -t wso2is.zip
-wait $!
-ls -a
-echo "${GREEN}==> Downloaded needed wso2IS zip${RESET}"
+#wait $!
 
 # Unzip IS archive
 unzip -qq *.zip &
@@ -249,7 +235,6 @@ wait $!
 #response=$(curl -k -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL")
 #echo "$response"
 #curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1ik0CJM5V9CXzBwl7DQpeBDBTT4t_cWlL&export=download"
-wait $!
 ls -a
 echo "${GREEN}==> Downloaded "$migratingVersion" zip${RESET}"
 
