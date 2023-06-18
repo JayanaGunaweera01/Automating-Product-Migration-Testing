@@ -101,6 +101,7 @@ wait $!
 # Unzip IS archive
 unzip -qq *.zip &
 wait $!
+ls -a
 echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
 # Copy update tool from utils to bin folder
