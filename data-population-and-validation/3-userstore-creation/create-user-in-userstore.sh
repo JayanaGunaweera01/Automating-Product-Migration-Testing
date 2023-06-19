@@ -90,7 +90,7 @@ user_store_response=$(curl -k -X 'POST' \
 
 echo "$user_store_response"
 
-user_store_response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/server/v1/userstores/UniqueIDJDBCUserStoreManager/users" \
+user_store_response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/scim2/Users" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
