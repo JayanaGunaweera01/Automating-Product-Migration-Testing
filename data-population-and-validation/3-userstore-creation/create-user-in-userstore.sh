@@ -95,8 +95,8 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
         "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
-        "userName": "Jayana",
-        "password": "jayanapass",
+        "userName": "JayanaG",
+        "password": "jayanapassword",
         "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
             "employeeNumber": "000111",
             "costCenter": "111111",
