@@ -4,27 +4,24 @@ os=$1
 
 # Set deployment file and path based on OS
 if [ "$os" = "ubuntu-latest" ]; then
-
   chmod +x env.sh
   . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
   echo "${GREEN}==> Env file for Ubuntu sourced successfully"
 fi
-if [ "$os" = "macos-latest" ]; then
 
+if [ "$os" = "macos-latest" ]; then
   chmod +x env.sh
   source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
   echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
-
 fi
 
 # Set variables
-url="https://localhost:9443/services/TenantMgtAdminService.TenantMgtAdminServiceHttpsSoap11Endpoint/"
+url="https://localhost:9443/services/TenantMgtAdminService.TenantMgtAdminServiceHttpsSoap11Endpoint"
 username="admin"
 password="admin"
 
 # Set the SOAP request body
-soap_request=$(
-   cat <<EOF
+soap_request=$(cat <<EOF
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.mgt.tenant.carbon.wso2.org" xmlns:xsd="http://beans.common.stratos.carbon.wso2.org/xsd">
    <soapenv:Header>
       <ser:AuthHeader>
