@@ -61,15 +61,6 @@ if [ -n "$user_store_response" ]; then
     echo "$user_store_response"
 fi
 
-# Create a user in the userstore
-user_creation_response=$(curl -k -i --location --request POST "$SCIM_USER_EP_USERSTORE" \
-    --header 'Content-Type: application/json' \
-    --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
-    --data-raw '{"schemas":[],"userName":"'$USERSTORE_USER_NAME'","password":"'$USERSTORE_USER_PASSWORD'","wso2Extension":{"employeeNumber":"000111","costCenter":"111111","organization":"WSO2Org","division":"'$USERSTORE_GROUP_NAME'","department":"Intigration","manager":{"managerId":"111000","displayName":"'$USERSTORE_USER_NAME'"}}}')
-echo -e "${PURPLE}${BOLD}A user has been created in the userstore successfully.${NC}"
-echo -e "${PURPLE}${BOLD}User Creation Response${NC}: ""$user_creation_response"
-
-
 user_store_response=$(curl -k -X 'POST' \
   'https://localhost:9443/t/carbon.super/scim2/Users' \
   -H 'accept: application/json' \
