@@ -27,7 +27,7 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
-    "typeId": "SkRCQ1VzZXJTdG9yZU1hbmFnZXI",
+    "typeId": "VW5pcXVlSURKREJDVXNlclN0b3JlTWFuYWdlcg",
     
     "description": "Sample JDBC user store to add.",
     "name": "Testuserstore",
@@ -73,7 +73,7 @@ echo -e "${PURPLE}${BOLD}User Creation Response${NC}: ""$user_creation_response"
 
 
 user_store_response=$(curl -k -X 'POST' \
-  'https://localhost:9443/t/carbon.super/api/server/v1/userstores' \
+  'https://localhost:9443/t/carbon.super/scim2/Users' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
