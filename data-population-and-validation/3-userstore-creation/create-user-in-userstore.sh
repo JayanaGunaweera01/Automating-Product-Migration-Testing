@@ -97,7 +97,7 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
         "schemas": [],
         "userName": "Jayana",
         "password": "jayanapass",
-        ""urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"": {
+        "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User": {
             "employeeNumber": "000111",
             "costCenter": "111111",
             "organization": "WSO2Org",
