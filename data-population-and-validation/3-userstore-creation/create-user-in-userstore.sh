@@ -79,7 +79,7 @@ user_store_response=$(curl -k -X 'POST' \
   -d '{
   "typeId": "VW5pcXVlSURKREJDVXNlclN0b3JlTWFuYWdlcg",
   "description": "Some description about the user store.",
-  "name": "JDBC-SECONDARY",
+  "name": "UniqueIDJDBCUserStoreManager",
   "properties": [
     {
       "name": "some property name",
@@ -90,14 +90,14 @@ user_store_response=$(curl -k -X 'POST' \
 
 echo "$user_store_response"
 
-user_store_response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/server/v1/userstores/JDBC-SECONDARY/users" \
+user_store_response=$(curl -k --location --request POST "https://localhost:9443/t/carbon.super/api/server/v1/userstores/UniqueIDJDBCUserStoreManager/users" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
         "schemas": [],
         "userName": "Jayana",
         "password": "jayanapass",
-        "wso2Extension": {
+        ""urn:ietf:params:scim:schemas:extension:enterprise:2.0:User"": {
             "employeeNumber": "000111",
             "costCenter": "111111",
             "organization": "WSO2Org",

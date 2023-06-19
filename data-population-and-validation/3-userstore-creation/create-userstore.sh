@@ -30,7 +30,7 @@ response=$(curl -k --location --request POST "https://localhost:9443/api/server/
   --header 'Content-Type: application/json' \
   --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
   --data-raw '{
-    "typeId": "SkRCQ1VzZXJTdG9yZU1hbmFnZXI",
+    "typeId": "VW5pcXVlSURKREJDVXNlclN0b3JlTWFuYWdlcg==",
     "description": "Sample JDBC user store to add.",
     "name": "'"$USERSTORE_NAME"'",
     "properties": [
