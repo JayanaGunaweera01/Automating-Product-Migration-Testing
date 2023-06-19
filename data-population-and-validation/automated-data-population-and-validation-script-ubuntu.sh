@@ -20,7 +20,7 @@ if [ -d "$data_population_dir" ]; then
   }
 
 # execute scripts in order
-for script in \  
+for script in \
   "2-tenant-creation/tenant-soap.sh" \
   "1-user-creation/create-user.sh" \
   "1-user-creation/create-bulk-users.sh" \
