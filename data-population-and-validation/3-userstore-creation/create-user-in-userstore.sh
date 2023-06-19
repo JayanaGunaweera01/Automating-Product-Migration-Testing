@@ -55,8 +55,6 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
     ]
   }')
 
-echo "Userstore Creation Response: "$user_store_response""
-
 if [ -n "$user_store_response" ]; then
     echo -e "${PURPLE}${BOLD}User store 'Testuserstore' has been created successfully.${NC}"
     echo -e "${PURPLE}${BOLD}User Store Response:${NC}"
@@ -89,7 +87,9 @@ user_store_response=$(curl -k -X 'POST' \
 }')
 
 echo "$user_store_response"
+ echo -e "${PURPLE}${BOLD} A UniqueIDJDBCUserStore has been created successfully${NC}"
 
+# Create a user in the userstore
 user_store_response=$(curl -k --location --request POST "https://localhost:9443/scim2/Users" \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
@@ -110,8 +110,8 @@ user_store_response=$(curl -k --location --request POST "https://localhost:9443/
         }
     }')
 
-
-echo "$user_store_response"
+echo -e "${PURPLE}${BOLD}A user has been created in the userstore successfully.${NC}"
+echo -e "${PURPLE}${BOLD}User Creation Response${NC}: ""$user_store_response"
 echo "user added"
 
 #cd /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/repository/deployment/server/userstores
