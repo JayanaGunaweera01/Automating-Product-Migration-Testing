@@ -106,8 +106,8 @@ echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 cd "$AUTOMATION_HOME"
 
 # Update IS packs
-chmod +x update-pack.sh
-sh update-pack.sh
+chmod +x update-pack.sh 
+sh update-pack.sh "$email" "$password"
 
 cd "$AUTOMATION_HOME"
 
