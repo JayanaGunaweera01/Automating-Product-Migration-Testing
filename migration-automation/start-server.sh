@@ -41,22 +41,22 @@ elif [ "$os" = "macos-latest" ]; then
   source ./env.sh
   echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
   
-  # Add the following line to fix the 'chmod' error
-  chmod +x wso2server.sh
-  
   if [ "$startServer" = "current" ]; then
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting current Identity Server in macOS${RESET}"
+    chmod +x wso2server.sh
     echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" > start.sh
   elif [ "$startServer" = "migrated" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrated Identity Server in macOS${RESET}"
+    chmod +x wso2server.sh
     echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" > start.sh
   elif [ "$startServer" = "migration" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Starting Migration terminal${RESET}"
+    chmod +x wso2server.sh
     echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" > start.sh
   fi
 fi
