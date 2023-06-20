@@ -128,7 +128,6 @@ fi
 cd "$BIN_ISOLD"
 
 sudo apt-get install expect -y
-
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
@@ -154,9 +153,11 @@ expect {
     }
 }
 EOF
+
 # Set executable permissions for the expect script
 sudo chmod +x wso2update_script.expect
-# Run the expect script
+
+# Run the expect script as root
 sudo ./wso2update_script.expect
 
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
@@ -165,8 +166,10 @@ wait $!
 # Update Product Pack
 sudo chmod +x ./wso2update_linux
 sudo ./wso2update_linux
+./wso2update_linux
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
+
 
 cd "$AUTOMATION_HOME"
 
