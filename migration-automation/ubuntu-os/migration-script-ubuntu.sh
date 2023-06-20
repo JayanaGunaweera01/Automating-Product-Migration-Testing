@@ -161,7 +161,7 @@ expect {
 EOF
 
 # Set executable permissions for the expect script
-spawn chmod +x wso2update_script.expect
+chmod +x wso2update_script.expect
 
 # Run the expect script as root
 sudo ./wso2update_script.expect
