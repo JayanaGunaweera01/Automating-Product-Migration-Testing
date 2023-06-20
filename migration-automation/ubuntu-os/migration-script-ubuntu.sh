@@ -132,7 +132,6 @@ sudo apt-get install expect -y
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
-chmod +x wso2update_linux
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
 sleep 5
@@ -156,7 +155,7 @@ expect {
 }
 EOF
 # Set executable permissions for the expect script
-/usr/bin/chmod +x wso2update_script.expect
+chmod +x wso2update_script.expect
 # Run the expect script
 ./wso2update_script.expect
 
@@ -260,6 +259,7 @@ echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
 # Copy update tool from utils to bin folder
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
 
+# Update package
 cp -r $UPDATE_TOOL_UBUNTU $BIN_ISNEW
 copy_exit_code=$?
 if [ $copy_exit_code -eq 0 ]; then
@@ -275,7 +275,6 @@ sudo apt-get install expect -y
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
-chmod +x wso2update_linux
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
 sleep 5
