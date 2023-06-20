@@ -128,9 +128,15 @@ fi
 cd "$BIN_ISOLD"
 
 sudo apt-get install expect -y
+
+# Set executable permissions for the expect script
+sudo chmod +x ./wso2update_linux
+
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
+# Set executable permissions for the expect script
+sudo chmod +x ./wso2update_linux
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
 sleep 5
