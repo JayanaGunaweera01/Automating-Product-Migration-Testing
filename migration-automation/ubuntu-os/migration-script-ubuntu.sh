@@ -14,7 +14,6 @@ RESET='\033[0m'            # reset color
 # Update the system before downloading packages
 sudo apt-get -qq update
 
-
 cd "$AUTOMATION_HOME"
 cd migration-automation
 
@@ -108,6 +107,7 @@ cd "$AUTOMATION_HOME"
 # Update IS packs
 chmod +x update-pack.sh 
 sh update-pack.sh "$email" "$password"
+wait $!
 
 cd "$AUTOMATION_HOME"
 
