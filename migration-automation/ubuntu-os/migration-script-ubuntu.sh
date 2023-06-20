@@ -173,6 +173,7 @@ wait $!
 sudo chmod +x ./wso2update_linux
 sudo ./wso2update_linux
 ./wso2update_linux
+chmod +x /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/updates/logs/wso2update-20-06-2023.log
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
 
