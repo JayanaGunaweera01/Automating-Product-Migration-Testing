@@ -87,8 +87,8 @@ cd IS_HOME_OLD
 echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 # Download needed wso2IS zip
-wget -qq --waitretry=5 --retry-connrefused "$urlOld" &
-wait $!
+# wget -qq --waitretry=5 --retry-connrefused "$urlOld" &
+# wait $!
 
 #download_url="$urlOld"
 #export DOWNLOAD_URL="$urlOld"
@@ -97,6 +97,16 @@ wait $!
 # Download the file
 #curl -L -o wso2is.zip -H 'Referer: https://wso2.com' "$DOWNLOAD_URL" | grep -o -E 'https://[^\"]+' | grep ".zip"
 #wait $!
+
+if [ "$currentVersion" = "5.9.0" ]; then
+    curl -k -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1GU32FtPGvvB2WsmQoPnHr5yn1M6ddL-h"
+    response=$(curl -k -L -o wso2is.zip "https://drive.google.com/uc?export=download&id=1GU32FtPGvvB2WsmQoPnHr5yn1M6ddL-h")
+    wait $!
+    echo "$response"
+else
+    wget -qq --waitretry=5 --retry-connrefused "$urlOld"
+    wait $!
+fi
 
 # Unzip IS archive
 unzip -qq *.zip &
