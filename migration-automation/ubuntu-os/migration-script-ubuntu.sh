@@ -107,7 +107,7 @@ cd "$AUTOMATION_HOME"
 
 # Update IS packs
 chmod +x update-pack.sh 
-sh update-pack.sh "$email" "$password"
+sh update-pack.sh "${{ secrets.MIGRATION_EMAIL }}" "${{ secrets.MIGRATION_PASSWORD }}"
 
 cd "$AUTOMATION_HOME"
 
