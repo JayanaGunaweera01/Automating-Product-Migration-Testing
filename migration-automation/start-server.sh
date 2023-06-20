@@ -16,6 +16,7 @@ if [ "$os" = "ubuntu-latest" ]; then
   chmod +x env.sh
   . ./env.sh
   echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
+  chmod +x wso2server.sh
   if [ "$startServer" = "current" ]; then
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
@@ -36,6 +37,7 @@ elif [ "$os" = "macos-latest" ]; then
   chmod +x env.sh
   source ./env.sh
   echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
+  chmod +x wso2server.sh
   if [ "$startServer" = "current" ]; then
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
