@@ -164,7 +164,8 @@ echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Update Product Pack
-chmod +x wso2update_linux
+chmod +x ./wso2update_linux
+sudo ./wso2update_linux
 ./wso2update_linux
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
