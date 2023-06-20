@@ -136,7 +136,7 @@ chmod +x ./wso2update_linux
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
 # Set executable permissions for the expect script
-chmod +x ./wso2update_linux
+spawn chmod +x ./wso2update_linux
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
 sleep 5
@@ -161,7 +161,7 @@ expect {
 EOF
 
 # Set executable permissions for the expect script
-sudo chmod +x wso2update_script.expect
+spawn chmod +x wso2update_script.expect
 
 # Run the expect script as root
 sudo ./wso2update_script.expect
