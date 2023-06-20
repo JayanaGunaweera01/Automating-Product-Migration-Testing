@@ -17,22 +17,22 @@ if [ "$os" = "ubuntu-latest" ]; then
   . ./env.sh
   echo "${GREEN}==> Env file for Ubuntu sourced successfully${RESET}"
   
-  # Add the following line to fix the 'chmod' error
-  chmod +x wso2server.sh
-  
   if [ "$startServer" = "current" ]; then
     cd "$IS_OLD_BIN"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting current Identity Server in Ubuntu OS${RESET}"
+    chmod +x ./wso2server.sh
     echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" > start.sh
   elif [ "$startServer" = "migrated" ]; then
     cd "$BIN_ISNEW"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrated Identity Server in Ubuntu OS${RESET}"
+    chmod +x ./wso2server.sh
     echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" > start.sh
   elif [ "$startServer" = "migration" ]; then
     cd "$BIN_ISNEW"
     echo "${GREEN}Starting Migration terminal${RESET}"
+    chmod +x ./wso2server.sh
     echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" > start.sh
   fi
 elif [ "$os" = "macos-latest" ]; then
@@ -45,18 +45,18 @@ elif [ "$os" = "macos-latest" ]; then
     cd "$IS_OLD_BIN_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting current Identity Server in macOS${RESET}"
-    chmod +x wso2server.sh
+    chmod +x ./wso2server.sh
     echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" > start.sh
   elif [ "$startServer" = "migrated" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Diverted to bin${RESET}"
     echo "${GREEN}Starting Migrated Identity Server in macOS${RESET}"
-    chmod +x wso2server.sh
+    chmod +x ./wso2server.sh
     echo "./wso2server.sh -Dcarbon.bootstrap.timeout=300" > start.sh
   elif [ "$startServer" = "migration" ]; then
     cd "$BIN_ISNEW_MAC"
     echo "${GREEN}Starting Migration terminal${RESET}"
-    chmod +x wso2server.sh
+    chmod +x ./wso2server.sh
     echo "./wso2server.sh -Dmigrate -Dcomponent=identity -Dcarbon.bootstrap.timeout=300" > start.sh
   fi
 fi
