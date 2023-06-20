@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copy update tool from utils to bin folder
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
 
