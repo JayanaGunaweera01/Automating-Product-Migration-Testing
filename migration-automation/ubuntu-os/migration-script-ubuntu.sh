@@ -87,8 +87,8 @@ cd IS_HOME_OLD
 echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 
 # Download needed wso2IS zip
-# wget -qq --waitretry=5 --retry-connrefused "$urlOld" &
-# wait $!
+wget -qq --waitretry=5 --retry-connrefused "$urlOld" &
+wait $!
 
 #download_url="$urlOld"
 #export DOWNLOAD_URL="$urlOld"
@@ -98,85 +98,11 @@ echo "${GREEN}==> Navigated to home folder successfully${RESET}"
 #curl -L -o wso2is.zip -H 'Referer: https://wso2.com' "$DOWNLOAD_URL" | grep -o -E 'https://[^\"]+' | grep ".zip"
 #wait $!
 
-if [ "$currentVersion" = "5.9.0" ]; then
-
-    response=$(curl -k -L -o wso2is.zip "https://drive.google.com/u/0/uc?id=1GU32FtPGvvB2WsmQoPnHr5yn1M6ddL-h&amp;amp;export=download&amp;amp;confirm=t&amp;amp;uuid=712b27d8-ea10-4e0b-bbbd-3cde24b1d92e&amp;amp;at=AKKF8vzpFDL5XdIrNRv6KFY0ZvPr:1687251333945&amp;confirm=t&amp;uuid=efe88210-d059-4968-84c6-7a1236bb6ef9&amp;at=AKKF8vxFWIDReSULenUtKrASKULT:1687251490306&confirm=t&uuid=7017f976-902b-4050-a3a6-22b26bb46d88&at=AKKF8vyia4DpEk742C_FTMCmJDE9:1687251582718")
-    wait $!
-    echo "$response"
-else
-    wget -qq --waitretry=5 --retry-connrefused "$urlOld"
-    wait $!
-fi
-
 # Unzip IS archive
 unzip -qq *.zip &
 wait $!
 ls -a
 echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
-
-# Copy update tool from utils to bin folder
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
-
-cp -r $UPDATE_TOOL_UBUNTU $BIN_ISOLD
-copy_exit_code=$?
-if [ $copy_exit_code -eq 0 ]; then
-    echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
-else
-    echo "${RED}==> Failed to copy the update tool.${RESET}"
-fi
-
-cd "$BIN_ISOLD"
-
-sudo apt-get install expect -y
-
-# Set executable permissions for the expect script
-chmod +x ./wso2update_linux
-
-# Create an expect script file
-cat >wso2update_script.expect <<EOF
-#!/usr/bin/expect -f
-# Set executable permissions for the expect script
-spawn chmod +x ./wso2update_linux
-spawn ./wso2update_linux
-expect "Please enter your credentials to continue."
-sleep 5
-send -- "$email\r"
-expect "Email:"
-sleep 5
-send -- "$password\r"
-expect {
-    "wso2update: Error while authenticating user: Error while authenticating user credentials: Invalid email address '*'" {
-        puts "Invalid email address. Please check the MIGRATION_EMAIL environment variable."
-        exit 1
-    }
-    "wso2update: Error while authenticating user: Error while authenticating user credentials: Unable to read input: EOF" {
-        puts "Error while authenticating user credentials. Please check the MIGRATION_PASSWORD environment variable."
-        exit 1
-    }
-    eof {
-        puts "Updated the Client Tool successfully"
-        exit 0
-    }
-}
-EOF
-
-# Set executable permissions for the expect script
-chmod +x wso2update_script.expect
-
-# Run the expect script as root
-sudo ./wso2update_script.expect
-
-echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
-wait $!
-
-# Update Product Pack
-sudo chmod +x ./wso2update_linux
-sudo ./wso2update_linux
-./wso2update_linux
-chmod +x /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/updates/logs/wso2update-20-06-2023.log
-echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
-wait $!
-
 
 cd "$AUTOMATION_HOME"
 
@@ -265,59 +191,6 @@ echo "${GREEN}==> Downloaded "$migratingVersion" zip${RESET}"
 unzip -qq *.zip &
 wait $!
 echo "${GREEN}==> Unzipped "$migratingVersion" zip${RESET}"
-# Copy update tool from utils to bin folder
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
-
-# Update package
-cp -r $UPDATE_TOOL_UBUNTU $BIN_ISNEW
-copy_exit_code=$?
-if [ $copy_exit_code -eq 0 ]; then
-    echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
-else
-    echo "${RED}==> Failed to copy the update tool.${RESET}"
-fi
-
-cd "$BIN_ISNEW"
-
-sudo apt-get install expect -y
-
-# Create an expect script file
-cat >wso2update_script.expect <<EOF
-#!/usr/bin/expect -f
-spawn ./wso2update_linux
-expect "Please enter your credentials to continue."
-sleep 5
-send -- "$email\r"
-expect "Email:"
-sleep 5
-send -- "$password\r"
-expect {
-    "wso2update: Error while authenticating user: Error while authenticating user credentials: Invalid email address '*'" {
-        puts "Invalid email address. Please check the MIGRATION_EMAIL environment variable."
-        exit 1
-    }
-    "wso2update: Error while authenticating user: Error while authenticating user credentials: Unable to read input: EOF" {
-        puts "Error while authenticating user credentials. Please check the MIGRATION_PASSWORD environment variable."
-        exit 1
-    }
-    eof {
-        puts "Updated the Client Tool successfully"
-        exit 0
-    }
-}
-EOF
-# Set executable permissions for the expect script
-chmod +x wso2update_script.expect
-# Run the expect script
-./wso2update_script.expect
-
-echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
-wait $!
-
-# Update Product Pack
-./wso2update_linux
-echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
-wait $!
 
 cd "$AUTOMATION_HOME"
 chmod +x download-migration-client.sh
