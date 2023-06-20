@@ -105,6 +105,12 @@ echo "${GREEN}==> Unzipped downloaded Identity Server zip${RESET}"
 
 cd "$AUTOMATION_HOME"
 
+# Update IS packs
+chmod +x update-pack.sh
+sh update-pack.sh
+
+cd "$AUTOMATION_HOME"
+
 # Given read write access to deployment.toml
 chmod +x "$DEPLOYMENT"
 echo "${GREEN}==> Given read write access to deployment.toml${RESET}"
