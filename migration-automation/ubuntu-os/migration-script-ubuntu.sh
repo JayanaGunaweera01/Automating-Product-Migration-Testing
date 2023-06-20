@@ -106,7 +106,7 @@ cd "$AUTOMATION_HOME"
 
 # Update IS packs
 chmod +x update-pack.sh 
-sh update-pack.sh "$email" "$password"
+sh update-pack.sh "$email" "$password" "current"
 wait $!
 
 cd "$AUTOMATION_HOME"
