@@ -130,7 +130,7 @@ cd "$BIN_ISOLD"
 sudo apt-get install expect -y
 
 # Set executable permissions for the expect script
-sudo chmod +x ./wso2update_linux
+chmod +x ./wso2update_linux
 
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
