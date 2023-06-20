@@ -156,7 +156,7 @@ expect {
 }
 EOF
 # Set executable permissions for the expect script
-chmod +x wso2update_script.expect
+/usr/bin/chmod +x wso2update_script.expect
 # Run the expect script
 ./wso2update_script.expect
 
@@ -164,7 +164,7 @@ echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Update Product Pack
-chmod +x ./wso2update_linux
+/usr/bin/chmod +x ./wso2update_linux
 sudo ./wso2update_linux
 ./wso2update_linux
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
