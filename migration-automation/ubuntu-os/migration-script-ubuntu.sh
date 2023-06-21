@@ -114,7 +114,7 @@ if [ "$currentVersion" = "5.9.0" ]; then
 else
     # Copy update tool from utils to bin folder
     cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
-
+    chmod +x "$UPDATE_TOOL_UBUNTU"
     cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISOLD"
     copy_exit_code=$?
     if [ $copy_exit_code -eq 0 ]; then
