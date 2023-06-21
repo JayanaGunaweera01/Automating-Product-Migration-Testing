@@ -1,35 +1,10 @@
 #!/bin/bash
 
-os=$1
-
-# Set deployment file and path based on OS
-if [ "$os" = "ubuntu-latest" ]; then
-
-  chmod +x env.sh
-  . "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo "${GREEN}==> Env file for Ubuntu sourced successfully"
-fi
-if [ "$os" = "macos-latest" ]; then
-
-  chmod +x env.sh
-  source "/Users/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/env.sh"
-  echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
-
-fi
-
-# WSO2 Identity Server admin credentials
-admin_username="admin"
-admin_password="admin"
-
-# Tenant details
-tenant_domain="sample.com"
-admin_username="admin"
-admin_password="admin"
-
-# Create the SOAP request XML
-soap_request=$(
-   cat <<EOF
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.mgt.tenant.carbon.wso2.org" xmlns:xsd="http://beans.common.stratos.carbon.wso2.org/xsd">
+curl -k--location --request POST 'https://localhost:9443/services/TenantMgtAdminService?wsdl' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Content-Type: text/plain' \
+--header 'Cookie: JSESSIONID=ACA1E8B9DC56368B526D09ED8AA9FE33' \
+--data-raw '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.mgt.tenant.carbon.wso2.org" xmlns:xsd="http://beans.common.stratos.carbon.wso2.org/xsd">
    <soapenv:Header/>
    <soapenv:Body>
       <ser:addTenant>
@@ -38,36 +13,18 @@ soap_request=$(
             <!--Optional:-->
             <xsd:active>true</xsd:active>
             <!--Optional:-->
-            <xsd:admin>jayanag</xsd:admin>
+            <xsd:admin>jayanag11</xsd:admin>
             <!--Optional:-->
-            <xsd:adminPassword>jayanagpw</xsd:adminPassword>
+            <xsd:adminPassword>jayana11gpw</xsd:adminPassword>
             <!--Optional:-->
-            <xsd:email>jayanag@examplestest.com</xsd:email>
+            <xsd:email>jayanag@examplestest11.com</xsd:email>
             <!--Optional:-->
-            <xsd:firstname>First</xsd:firstname>
+            <xsd:firstname>First11</xsd:firstname>
             <!--Optional:-->
-            <xsd:lastname>Last</xsd:lastname>
+            <xsd:lastname>Last11</xsd:lastname>
             <!--Optional:-->
-            <xsd:tenantDomain>examplestest.com</xsd:tenantDomain>
+            <xsd:tenantDomain>examplestest11.com</xsd:tenantDomain>
          </ser:tenantInfoBean>
       </ser:addTenant>
    </soapenv:Body>
-</soapenv:Envelope>
-EOF
-)
-
-# WSO2 Identity Server SOAP admin service endpoint
-soap_endpoint="https://localhost:9443/services/TenantMgtAdminService?wsdl"
-
-# Send the SOAP request and capture the response
-soap_response=$(curl -k -s -u "${admin_username}:${admin_password}" -H "Content-Type: text/xml" -d "${soap_request}" "${soap_endpoint}")
-
-# Check the SOAP response for errors
-if echo "${soap_response}" | grep -q "<ns:addTenantResponse>"; then
-   echo "Tenant created successfully."
-else
-   echo "Failed to create tenant. Error response:"
-   echo "${soap_response}"
-fi
-
-sleep 15
+</soapenv:Envelope>'
