@@ -17,17 +17,17 @@ response=$(curl -k --location --request POST 'https://localhost:9443/services/Te
             <!--Optional:-->
             <xsd:active>true</xsd:active>
             <!--Optional:-->
-            <xsd:admin>jayanag11</xsd:admin>
+            <xsd:admin>jayanagunaweers</xsd:admin>
             <!--Optional:-->
-            <xsd:adminPassword>jayana11gpw</xsd:adminPassword>
+            <xsd:adminPassword>jayanag11</xsd:adminPassword>
             <!--Optional:-->
-            <xsd:email>jayanag@examplestest11.com</xsd:email>
+            <xsd:email>jayanag@examplestest.com</xsd:email>
             <!--Optional:-->
             <xsd:firstname>First11</xsd:firstname>
             <!--Optional:-->
             <xsd:lastname>Last11</xsd:lastname>
             <!--Optional:-->
-            <xsd:tenantDomain>examplestest11.com</xsd:tenantDomain>
+            <xsd:tenantDomain>examplestest.com</xsd:tenantDomain>
          </ser:tenantInfoBean>
       </ser:addTenant>
    </soapenv:Body>
@@ -35,3 +35,33 @@ response=$(curl -k --location --request POST 'https://localhost:9443/services/Te
 
 echo -e "${PURPLE}==> Created a tenant using a SOAP API request${NC}"
 echo "$response"
+
+# Extract the tenant ID from the response
+tenant_id=$(echo "$response" | grep -oP '(?<=<return>).*(?=</return>)')
+
+# Register a service provider inside the tenant
+service_provider_response=$(curl -k --location --request POST "https://localhost:9443/t/${tenant_id}/api/server/v1/service-providers" \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+   "name": "SampleServiceProvider",
+   "description": "This is a sample service provider"
+}')
+
+echo -e "${PURPLE}==> Registered a service provider inside the tenant${NC}"
+echo "$service_provider_response"
+
+# Extract the client ID and client secret from the service provider response
+client_id=$(echo "$service_provider_response" | grep -oP '(?<=client_id": ")[^"]+')
+client_secret=$(echo "$service_provider_response" | grep -oP '(?<=client_secret": ")[^"]+')
+
+# Obtain an access token for the registered service provider
+access_token_response=$(curl -k --location --request POST 'https://localhost:9443/oauth2/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=client_credentials' \
+--data-urlencode "client_id=${client_id}" \
+--data-urlencode "client_secret=${client_secret}" \
+--data-urlencode 'scope=openid')
+
+echo -e "${PURPLE}==> Obtained an access token for the registered service provider${NC}"
+echo "$access_token_response"
