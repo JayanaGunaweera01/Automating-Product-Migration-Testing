@@ -212,7 +212,7 @@ fi
 ##############################################################################################
 
 # Register a service provider inside the tenant
-response=$(curl -k --location --request POST 'https://localhost:9443/oauth2/dcr/v1.1/register' \
+response=$(curl -k --location --request POST 'https://localhost:9443/identity/oauth2/dcr/v1.1/register' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
 --data-raw '{
