@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl --location --request POST 'https://localhost:9443/services/TenantMgtAdminService?wsdl' \
+curl -k--location --request POST 'https://localhost:9443/services/TenantMgtAdminService?wsdl' \
 --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
 --header 'Content-Type: text/plain' \
 --header 'Cookie: JSESSIONID=ACA1E8B9DC56368B526D09ED8AA9FE33' \
