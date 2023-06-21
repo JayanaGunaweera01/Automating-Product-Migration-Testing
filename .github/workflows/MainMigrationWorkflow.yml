@@ -101,12 +101,6 @@ jobs:
             echo "Binary $asset_file_name_with_ext download is completed."
             pwd
             ls -a
-      # Upload migration client
-
-      - uses: actions/upload-artifact@v3
-        with:
-           name: migration-client.zip
-           path: ./utils/migration-client
     
   ubuntu-postgres-migration:
     needs: setup-migration-client 
