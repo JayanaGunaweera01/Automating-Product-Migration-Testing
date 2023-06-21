@@ -91,22 +91,42 @@ response=$(curl -k --location --request POST 'https://localhost:9443/t/wso2.com/
 if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$response" | jq -r '.error_description')
-  echo -e "${RED}${BOLD}Failure in registering a service provider inside the tenant: $error_description${NC}"
+  echo -e "${RED}${BOLD}Failure: $error_description${NC}"
+  exit 1
 else
-  # If there is no error, print the success message
-  echo -e "${PURPLE}${BOLD}Success: Service provider registered successfully.${NC}"
+  # If successful, print additional details in purple
+  client_name=$(echo "$response" | jq -r '.client_name')
+  echo -e "${PURPLE}Response${NC}: $response"
+  echo -e "${PURPLE}Service provider '$client_name' registered successfully${NC}"
+  echo
+fi
 
-  # Print the details of the successful response
-  echo -e "${PURPLE}Response Details:${NC}"
-  echo "$response"
+# Extract client_id and client_secret
+client_id=$(echo "$response" | jq -r '.client_id')
+client_secret=$(echo "$response" | jq -r '.client_secret')
 
-# Encode client_id:client_secret in base64
-base64_encoded_token=$(echo -n "dummyuser@wso2.com:dummypassword")
+# Store client_id and client_secret in a file
+client_credentials_file="/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/data-population-and-validation/2-tenant-creation/client_credentials"
+
+if [ -f "$client_credentials_file" ]; then
+  echo "client_id=$client_id" >>"$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
+else
+  echo "client_id=$client_id" >"$client_credentials_file"
+  echo "client_secret=$client_secret" >> "$client_credentials_file"
+fi
+
+# Print client_id and client_secret
+echo -e "Client ID: ${PURPLE}$client_id${NC}"
+echo -e "Client Secret: ${PURPLE}$client_secret${NC}"
+
+# Encode client_id:client_secret as base64
+base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 
   # Generate access token
   access_token_response=$(curl -k -i --location --request POST "https://localhost:9443/t/wso2.com/oauth2/token" \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --header "Authorization: Basic ZHVtbXl1c2VyQHdzbzIuY29tOmR1bW15cGFzc3dvcmQ=" \
+    --header "Authorization: Basic "$base64_encoded" \
     --data-urlencode 'grant_type=password' \
     --data-urlencode 'username=dummyuser@wso2.com' \
     --data-urlencode 'password=dummypassword' \
