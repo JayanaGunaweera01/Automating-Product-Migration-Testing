@@ -212,7 +212,7 @@ fi
 ##############################################################################################
 
 # Register service provider inside the super tenant
-response=$(curl -k --location --request POST "https://localhost:9443/carbon.super/api/server/v1/applications" \
+response=$(curl -k --location --request POST "localhost:9443/identity/oauth2/dcr/v1.1/register" \
   --header 'Content-Type: application/json' \
   --header "Authorization: Basic YWRtaW46YWRtaW4=" \
   --data-raw '{  "client_name": "supertenantApplication", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
@@ -227,7 +227,7 @@ else
   # If successful, print additional details in purple
   client_name=$(echo "$response" | jq -r '.client_name')
   echo -e "${PURPLE}Response${NC}: $response"
-  echo -e "${PURPLE}Service provider '$client_name' registered successfully${NC}"
+  echo -e "${PURPLE}Service provider "$client_name" registered inside the super tenant successfully${NC}"
   echo
 fi
 
@@ -266,7 +266,7 @@ access_token_response=$(curl -k --location --request POST "https://localhost:944
 if echo "$access_token_response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
   error_description=$(echo "$access_token_response" | jq -r '.error_description')
-  echo -e "${RED}No access token generated from the super tenant.${NC}"
+  echo -e "${RED}No access token generated from the service provider registered in the super tenant.${NC}"
   echo -e "${RED}${BOLD}Failure: $error_description${NC}"
 else
   # If there is no error, print the success message
