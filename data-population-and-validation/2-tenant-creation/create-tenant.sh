@@ -271,25 +271,7 @@ if echo "$access_token_response" | grep -q '"error":'; then
 else
   # If there is no error, print the success message
   echo -e "${PURPLE}${BOLD}Success: Access token generated from the service provider registered in the super tenant successfully.${NC}"
-
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
   echo "$access_token_response"
-
-  # Extract access token from response
-  access_token=$(echo "$access_token_response" | grep -o '"access_token":"[^"]*' | cut -d':' -f2 | tr -d '"')
-
-  if [ -n "$access_token" ]; then
-    # Store access token in a file
-    echo "access_token=$access_token" >>tenant_credentials
-
-    # Print tenant access token in file
-    echo -e "${PURPLE}Tenant Access Token:${NC}"
-    cat tenant_credentials
-
-    # Print success message
-    echo -e "${PURPLE}Generated an access token from the service provider registered in the tenant successfully!${NC}"
-  else
-    # Print error message
-    echo -e "${RED}No access token generated from the tenant.${NC}"
-  fi
+fi
