@@ -21,6 +21,30 @@ if [ "$os" = "macos-latest" ]; then
   echo "${GREEN}==> Env file for Mac sourced successfully${RESET}"
 fi
 
+# Create a sample tenant
+
+# Create tenant
+response=$(curl -k --location --request POST 'https://localhost:9443/api/server/v1/tenants' \
+  --header 'accept: */*' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+  --data-raw '{"domain":"iit.com","owners":[{"username":"admin","password":"admin","email":"jayana@iit.com","firstname":"Jayana","lastname":"Gunaweera","provisioningMethod":"inline-password","additionalClaims":[{"claim":"http://wso2.org/claims/telephone","value":"+94 562 8723"}]}]}')
+
+# Check if the response contains any error message
+if echo "$response" | grep -q '"error":'; then
+  # If there is an error, print the failure message with the error description
+  error_description=$(echo "$response" | jq -r '.error_description')
+  echo -e "${RED}${BOLD}Failure: $error_description${NC}"
+
+else
+  # If there is no error, print the success message
+  echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully.${NC}"
+  # Print the details of the successful response
+  echo -e "${PURPLE}Response Details:${NC}"
+  echo "$response" | jq '.'
+fi
+
+# Create a sample tenant, register a service provider inside in it and generate an access token from it.
 # Define variables
 TENANT_EP="https://localhost:9443/api/server/v1/tenants"
 USERNAME="dummyuser"
