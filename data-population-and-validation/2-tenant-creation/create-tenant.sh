@@ -22,8 +22,6 @@ if [ "$os" = "macos-latest" ]; then
 fi
 
 # Create a sample tenant
-
-# Create tenant
 response=$(curl -k --location --request POST 'https://localhost:9443/api/server/v1/tenants' \
   --header 'accept: */*' \
   --header 'Content-Type: application/json' \
