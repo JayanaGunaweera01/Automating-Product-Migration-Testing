@@ -37,9 +37,6 @@ if echo "$response" | grep -q '"error":'; then
 else
   # If there is no error, print the success message
   echo -e "${PURPLE}${BOLD}Success: A tenant has been created successfully.${NC}"
-  # Print the details of the successful response
-  echo -e "${PURPLE}Response Details:${NC}"
-  echo "$response" | jq '.'
 fi
 
 # Create a sample tenant, register a service provider inside in it and generate an access token from it.
