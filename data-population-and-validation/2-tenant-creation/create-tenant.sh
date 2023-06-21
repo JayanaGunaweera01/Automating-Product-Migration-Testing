@@ -144,7 +144,7 @@ base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 # Generate access token
 access_token_response=$(curl -k -i --location --request POST "https://localhost:9443/t/wso2.com/oauth2/token" \
   --header 'Content-Type: application/x-www-form-urlencoded' \
-  --header "Authorization: Basic "$base64_encoded" \
+  --header "Authorization: Basic $base64_encoded" \
   --data-urlencode 'grant_type=password' \
   --data-urlencode 'username=dummyuser@wso2.com' \
   --data-urlencode 'password=dummypassword' \
@@ -232,7 +232,7 @@ base64_encoded=$(echo -n "$client_id:$client_secret" | base64)
 # Generate access token - from super tenant
 access_token_response=$(curl -k --location --request POST "https://localhost:9443/oauth2/token" \
   --header 'Content-Type: application/x-www-form-urlencoded' \
-  --header "Authorization: Basic $base64_encoded" \
+  --header "Authorization: Basic '$base64_encoded'" \
   --data-urlencode 'grant_type=password' \
   --data-urlencode 'username=admin' \
   --data-urlencode 'password=admin' \
