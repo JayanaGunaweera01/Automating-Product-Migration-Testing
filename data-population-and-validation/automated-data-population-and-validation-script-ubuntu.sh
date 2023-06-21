@@ -27,7 +27,6 @@ if [ -d "$data_population_dir" ]; then
     "2-tenant-creation/register-an-app-in-a-tenant.sh" \
     "2-tenant-creation/get-access-token-tenantwise.sh" \
     "2-tenant-creation/create-tenant-soapAPI.sh" \
-    "2-tenant-creation/tenant-soap.sh" \
     "3-userstore-creation/create-userstore.sh" \
     "3-userstore-creation/create-user-in-userstore.sh" \
     "4-service-provider-creation/register-a-service-provider.sh" \
