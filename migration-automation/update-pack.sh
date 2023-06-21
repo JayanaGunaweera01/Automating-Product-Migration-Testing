@@ -2,41 +2,19 @@
 
 email=$1
 password=$2
-startServer=$3
-
-cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
-  chmod +x env.sh
-  . ./env.sh
 
 # Copy update tool from utils to bin folder
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
-if [ "$startServer" == "current" ]; then
-    cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISOLD"
-    copy_exit_code=$?
-    if [ $copy_exit_code -eq 0 ]; then
-        echo "==> Update tool successfully copied to $currentVersion"
-    else
-        echo "==> Failed to copy the update tool."
-    fi
+
+cp -r $UPDATE_TOOL_UBUNTU $BIN_ISOLD
+copy_exit_code=$?
+if [ $copy_exit_code -eq 0 ]; then
+    echo "${GREEN}==> Update tool successfully copied to $currentVersion${RESET}"
+else
+    echo "${RED}==> Failed to copy the update tool.${RESET}"
 fi
 
-if [ "$startServer" == "migrating" ]; then
-    cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISNEW"
-    copy_exit_code=$?
-    if [ $copy_exit_code -eq 0 ]; then
-        echo "==> Update tool successfully copied to $currentVersion"
-    else
-        echo "==> Failed to copy the update tool."
-    fi
-fi
-
-if [ "$startServer" == "current" ]; then
-    cd "$BIN_ISOLD"
-fi
-
-if [ "$startServer" == "migrating" ]; then
-    cd "$BIN_ISNEW"
-fi
+cd "$BIN_ISOLD"
 
 sudo apt-get install expect -y
 
@@ -84,5 +62,6 @@ wait $!
 sudo chmod +x ./wso2update_linux
 sudo ./wso2update_linux
 ./wso2update_linux
+chmod +x /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/updates/logs/wso2update-20-06-2023.log
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
