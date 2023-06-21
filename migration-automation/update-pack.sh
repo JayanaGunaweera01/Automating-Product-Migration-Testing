@@ -4,6 +4,10 @@ email=$1
 password=$2
 startServer=$3
 
+cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation"
+  chmod +x env.sh
+  . ./env.sh
+
 # Copy update tool from utils to bin folder
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
 if [ "$startServer" == "current" ]; then
