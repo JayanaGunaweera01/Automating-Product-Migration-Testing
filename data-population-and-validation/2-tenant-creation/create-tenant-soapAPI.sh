@@ -45,17 +45,3 @@ service_provider_response=$(curl -k --location --request POST "https://localhost
 echo -e "${PURPLE}==> Registered a service provider inside the tenant${NC}"
 echo "$service_provider_response"
 
-# Extract the client ID and client secret from the service provider response
-client_id=$(echo "$service_provider_response" | grep -oP '(?<=client_id": ")[^"]+')
-client_secret=$(echo "$service_provider_response" | grep -oP '(?<=client_secret": ")[^"]+')
-
-# Obtain an access token for the registered service provider
-access_token_response=$(curl -k --location --request POST 'https://localhost:9443/oauth2/token' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'grant_type=client_credentials' \
---data-urlencode "client_id=${client_id}" \
---data-urlencode "client_secret=${client_secret}" \
---data-urlencode 'scope=openid')
-
-echo -e "${PURPLE}==> Obtained an access token for the registered service provider${NC}"
-echo "$access_token_response"
