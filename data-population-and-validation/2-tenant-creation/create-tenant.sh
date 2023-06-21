@@ -83,14 +83,10 @@ base64_encoded_sp=$(echo -n "dummyuser:dummypassword")
 
 # Register a service provider inside the tenant
 response=$(curl -k --location --request POST 'https://localhost:9443/t/wso2.com/api/identity/oauth2/dcr/v1.1/register' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Basic ZHVtbXl1c2VyQHdzbzIuY29tOmR1bW15cGFzc3dvcmQ=' \
-  --data-raw '{
-    "client_name": "tenant app",
-    "grant_types": ["authorization_code", "implicit", "password", "client_credentials", "refresh_token"],
-    "redirect_uris": ["http://localhost:8080/playground2"]
-  }')
-                          
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic ZHVtbXl1c2VyQHdzbzIuY29tOmR1bW15cGFzc3dvcmQ=' \
+--data-raw '{  "client_name": "tenantApp", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
+                                                
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
   # If there is an error, print the failure message with the error description
