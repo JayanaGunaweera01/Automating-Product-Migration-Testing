@@ -269,4 +269,3 @@ else
     # Print error message
     echo -e "${RED}No access token generated from the tenant.${NC}"
   fi
-fi
