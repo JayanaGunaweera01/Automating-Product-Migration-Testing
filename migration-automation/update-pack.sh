@@ -6,7 +6,7 @@ startServer=$3
 
 # Copy update tool from utils to bin folder
 cd "/home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/utils/update-tools"
-if [ "$startServer" = "current" ]; then
+if [ "$startServer" == "current" ]; then
     cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISOLD"
     copy_exit_code=$?
     if [ $copy_exit_code -eq 0 ]; then
@@ -16,7 +16,7 @@ if [ "$startServer" = "current" ]; then
     fi
 fi
 
-if [ "$startServer" = "migrating" ]; then
+if [ "$startServer" == "migrating" ]; then
     cp -r "$UPDATE_TOOL_UBUNTU" "$BIN_ISNEW"
     copy_exit_code=$?
     if [ $copy_exit_code -eq 0 ]; then
@@ -26,11 +26,11 @@ if [ "$startServer" = "migrating" ]; then
     fi
 fi
 
-if [ "$startServer" = "current" ]; then
+if [ "$startServer" == "current" ]; then
     cd "$BIN_ISOLD"
 fi
 
-if [ "$startServer" = "migrating" ]; then
+if [ "$startServer" == "migrating" ]; then
     cd "$BIN_ISNEW"
 fi
 
