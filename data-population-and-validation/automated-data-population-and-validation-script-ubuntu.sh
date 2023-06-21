@@ -21,12 +21,13 @@ if [ -d "$data_population_dir" ]; then
 
 # execute scripts in order
 for script in \
-  "2-tenant-creation/tenant-soap.sh" \
+
   "1-user-creation/create-user.sh" \
   "1-user-creation/create-bulk-users.sh" \
   "2-tenant-creation/create-tenant.sh" \
   "2-tenant-creation/register-an-app-in-a-tenant.sh" \
   "2-tenant-creation/get-access-token-tenantwise.sh" \
+  "2-tenant-creation/create-tenant-soapAPI.sh" \
   "2-tenant-creation/tenant-soap.sh" \
   "3-userstore-creation/create-userstore.sh" \
   "3-userstore-creation/create-user-in-userstore.sh" \
