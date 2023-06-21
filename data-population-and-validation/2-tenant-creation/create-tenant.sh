@@ -79,7 +79,7 @@ fi
 tenant_id=$(echo "$response" | jq -r '.tenant_id')
 
 # Encode client_id:client_secret in base64
-base64_encoded_sp=$(echo -n "dummyuser:dummypassword")
+base64_encoded_sp=$(echo -n "dummyuser@wso2.com:dummypassword")
 
 # Register a service provider inside the tenant
 response=$(curl -k --location --request POST 'https://localhost:9443/t/wso2.com/api/identity/oauth2/dcr/v1.1/register' \
