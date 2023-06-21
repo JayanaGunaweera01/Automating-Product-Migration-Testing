@@ -193,18 +193,7 @@ jobs:
     steps:
       - name: 💾 Checkout code
         uses: actions/checkout@v2
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: migration-client.zip
-          path: "./utils/migration-client/migration-client.zip"
-
-      - name: check client
-        run: |  
-           cd "./utils/migration-client"
-           pwd
-           ls -a
-      
+        
       - name: 🚀 Execute Migration Automation Script 🐧 Ubuntu
         run: |
             chmod +x migration-automation/ubuntu-os/migration-script-ubuntu.sh 
