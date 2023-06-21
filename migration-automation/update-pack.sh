@@ -24,8 +24,6 @@ chmod +x ./wso2update_linux
 # Create an expect script file
 cat >wso2update_script.expect <<EOF
 #!/usr/bin/expect -f
-# Set executable permissions for the expect script
-spawn chmod +x ./wso2update_linux
 spawn ./wso2update_linux
 expect "Please enter your credentials to continue."
 sleep 5
@@ -48,20 +46,15 @@ expect {
     }
 }
 EOF
-
 # Set executable permissions for the expect script
 chmod +x wso2update_script.expect
-
-# Run the expect script as root
-sudo ./wso2update_script.expect
+# Run the expect script
+./wso2update_script.expect
 
 echo "${GREEN}==> Updated the Client Tool successfully${RESET}" &
 wait $!
 
 # Update Product Pack
-sudo chmod +x ./wso2update_linux
-sudo ./wso2update_linux
 ./wso2update_linux
-chmod +x /home/runner/work/Automating-Product-Migration-Testing/Automating-Product-Migration-Testing/migration-automation/IS_HOME_OLD/wso2is-5.11.0/updates/logs/wso2update-20-06-2023.log
 echo "${GREEN}==> Updated the Product Pack successfully${RESET}" &
 wait $!
