@@ -36,7 +36,7 @@ if echo "$response" | grep -q '"error":'; then
 
 else
   # If there is no error, print the success message
-  echo -e "${PURPLE}${BOLD}Success: Tenant has been created successfully.${NC}"
+  echo -e "${PURPLE}${BOLD}Success: A tenant has been created successfully.${NC}"
   # Print the details of the successful response
   echo -e "${PURPLE}Response Details:${NC}"
   echo "$response" | jq '.'
@@ -51,6 +51,8 @@ EMAIL="dummyuser@wso2.com"
 FIRSTNAME="Dummy"
 LASTNAME="User"
 TELEPHONE="+94 123 4567"
+
+echo -e "${PURPLE}${BOLD}Creating a tenant using a tenanted url....${NC}"
 
 # Create tenant
 response=$(curl -k --location --request POST "$TENANT_EP" \
