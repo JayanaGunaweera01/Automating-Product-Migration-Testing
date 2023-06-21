@@ -211,11 +211,15 @@ fi
 # Generate access token from carbon.super
 ##############################################################################################
 
-# Register service provider inside the super tenant
-response=$(curl -k --location --request POST "localhost:9443/identity/oauth2/dcr/v1.1/register" \
-  --header 'Content-Type: application/json' \
-  --header "Authorization: Basic YWRtaW46YWRtaW4=" \
-  --data-raw '{  "client_name": "supertenantApplication", "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"], "redirect_uris":["http://localhost:8080/playground2"] }')
+# Register a service provider inside the tenant
+response=$(curl -k --location --request POST 'https://localhost:9443/oauth2/dcr/v1.1/register' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic YWRtaW46YWRtaW4=' \
+--data-raw '{
+  "client_name": "supertenantapp",
+  "grant_types": ["authorization_code","implicit","password","client_credentials","refresh_token"],
+  "redirect_uris":["http://localhost:8080/playground2"]
+}')
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"error":'; then
