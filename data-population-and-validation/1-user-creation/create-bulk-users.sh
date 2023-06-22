@@ -25,13 +25,9 @@ if [ "$os" = "macos-latest" ]; then
 
 fi
 
-SCIM_BULK_EP="https://example.com/scim/bulk/endpoint"
-USERNAME="admin"
-PASSWORD="adminpass"
-
 response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
     --header 'Content-Type: application/scim+json' \
-    --header "Authorization: Basic $(echo -n "$USERNAME:$PASSWORD" | base64)" \
+    --header 'Authorization: Basic YWRtaW46YWRtaW4=' \
     --data-raw '{
   "failOnErrors": 1,
   "schemas": ["urn:ietf:params:scim:api:messages:2.0:BulkRequest"],
@@ -110,7 +106,6 @@ response=$(curl -k --location --request POST "$SCIM_BULK_EP" \
     }
   ]
 }')
-
 
 # Check if the response contains any error message
 if echo "$response" | grep -q '"Errors":'; then
