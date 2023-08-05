@@ -40,6 +40,13 @@ This repository contains automation scripts and tools for automating product mig
 │   │   │   └── setup-mysql-ubuntu.sh
 │   ├── migration-automation
 │   │   ├── deployment-tomls
+│   │   │   ├── IS-5.9
+│   │   │   │   ├── deployment-mssql.toml
+│   │   │   │   ├── deployment-mysql.toml
+│   │   │   │   └── deployment-postgre.toml
+│   │   │   │   ├── deployment-mssql-migration.toml
+│   │   │   │   ├── deployment-mysql-migration.toml
+│   │   │   │   └── deployment-postgre-migration.toml
 │   │   │   ├── IS-5.10
 │   │   │   │   ├── deployment-mssql.toml
 │   │   │   │   ├── deployment-mysql.toml
@@ -48,13 +55,6 @@ This repository contains automation scripts and tools for automating product mig
 │   │   │   │   ├── deployment-mysql-migration.toml
 │   │   │   │   └── deployment-postgre-migration.toml
 │   │   │   ├── IS-5.11
-│   │   │   │   ├── deployment-mssql.toml
-│   │   │   │   ├── deployment-mysql.toml
-│   │   │   │   └── deployment-postgre.toml
-│   │   │   │   ├── deployment-mssql-migration.toml
-│   │   │   │   ├── deployment-mysql-migration.toml
-│   │   │   │   └── deployment-postgre-migration.toml
-│   │   │   ├── IS-5.9
 │   │   │   │   ├── deployment-mssql.toml
 │   │   │   │   ├── deployment-mysql.toml
 │   │   │   │   └── deployment-postgre.toml
