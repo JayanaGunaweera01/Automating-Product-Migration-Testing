@@ -17,10 +17,10 @@ This repository contains automation scripts and tools for automating product mig
 
 ```
 .
-├── Automating-Product-Migration-Testing
+├── product-is
 │   ├── .github
 │   │   └── workflows
-│   │       └── MainMigrationWorkflow.yml
+│   │       └── migration-automation.yml
 │   ├── data-population-and-validation
 │   │   ├── 1-user-creation
 │   │   ├── 2-tenant-creation
@@ -29,13 +29,6 @@ This repository contains automation scripts and tools for automating product mig
 │   │   ├── 5-group-creation
 │   │   └── automated-data-poputation-and-validation-script-mac.sh
 │   │   └── automated-data-poputation-and-validation-script-ubuntu.sh
-│   │   └── windows-os
-│   │       ├── 1-user-creation
-│   │       ├── 2-tenant-creation
-│   │       ├── 3-userstore-creation
-│   │       ├── 4-service-provider-creation
-│   │       ├── 5-group-creation
-│   │       └── automated-data-poputation-and-validation-script.ps1
 │   ├── documents
 │   │   └── Automating Product Migration Testing.word
 │   ├── local-setups
@@ -45,10 +38,6 @@ This repository contains automation scripts and tools for automating product mig
 │   │   ├── ubuntu-os
 │   │   │   ├── migration-script-ubuntu.sh
 │   │   │   └── setup-mysql-ubuntu.sh
-│   │   └── windows-os
-│   │       ├── change-deployment-toml-windows.ps1
-│   │       ├── change-migration-config-yaml-windows.ps1
-│   │       ├── migration-script-windows.ps1
 │   ├── migration-automation
 │   │   ├── deployment-tomls
 │   │   │   ├── IS-5.10
@@ -161,7 +150,6 @@ This repository contains automation scripts and tools for automating product mig
 │       └── wso2is-migration-1.0.225.zip
 │   └── other-db-scripts
 │       └── config-management-is-5-11.sql
-├── LICENSE
 └── README.md
 
 ```
