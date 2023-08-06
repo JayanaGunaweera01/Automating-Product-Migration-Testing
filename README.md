@@ -286,6 +286,8 @@ This project utilizes the following technologies and tools:
 
 - **wso2 SOAP APIs**
 
+- **Google Drive APIs**
+
 - **Bash Scripting**
 
 - **Docker**
