@@ -284,7 +284,7 @@ This project utilizes the following technologies and tools:
 
 - **wso2 REST APIs**
 
-- **wso2 SOAP APIs**
+- **wso2 SOAP APIs** - API V3
 
 - **Google Drive APIs**
 
