@@ -331,9 +331,6 @@ This project utilizes the following technologies and tools:
 Feel free to explore the repository and leverage these technologies and tools for the project.
 
 
-## License
-
-This project is licensed under the MIT License.
 
 
 
