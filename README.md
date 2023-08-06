@@ -1,5 +1,5 @@
 
-# 🪄 Automating-Product-Migration-Testing
+#  Automating-Product-Migration-Testing
 
 Welcome to Automating-Product-Migration-Testing! This project aims to automate the testing process of the migration client for WSO2 Identity Server when migrating between different product versions. By automating the migration client test execution, we can significantly reduce the overhead and effort involved in manual testing.
 
